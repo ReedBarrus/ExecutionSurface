@@ -49,6 +49,7 @@ function makeTestSignal(options = {}) {
         modality = "voltage",
         units = "arb",
         amplitudeScale = 1.0,
+        profile = "baseline",
     } = options;
 
     if (!Number.isFinite(durationSec) || durationSec <= 0) {
@@ -70,56 +71,90 @@ function makeTestSignal(options = {}) {
 
         let x = 0;
 
-        // Segment A: 0-3s baseline
-        // 8 Hz strong + 20 Hz weaker
-        if (inRange(t, 0, 3)) {
-            x += sine(8, t, 1.0 * amplitudeScale);
-            x += sine(20, t, 0.45 * amplitudeScale);
-        }
-
-        // Segment B: 3-5s novelty enters
-        // Keep baseline and add 40 Hz
-        else if (inRange(t, 3, 5)) {
-            x += sine(8, t, 1.0 * amplitudeScale);
-            x += sine(20, t, 0.45 * amplitudeScale);
-            x += sine(40, t, 0.65 * amplitudeScale);
-        }
-
-        // Segment C: 5-7s frequency shift
-        // Replace 20 Hz with 24 Hz
-        else if (inRange(t, 5, 7)) {
-            x += sine(8, t, 1.0 * amplitudeScale);
-            x += sine(24, t, 0.45 * amplitudeScale);
-        }
-
-        // Segment D: 7-8s dropout
-        // Mostly missing / invalid samples with occasional baseline resumption
-        else if (inRange(t, 7, 8)) {
-            const localT = t - 7;
-            if (localT < 0.5) {
-                annotations.push({
-                    t,
-                    segment: "dropout",
-                    event: "dropped_sample",
-                });
-                continue; // omit this sample entirely to create a real time gap
-            } else {
+        if (profile === "clean") {
+            // cleaner, calmer family
+            if (inRange(t, 0, 4)) {
+                x += sine(8, t, 1.0 * amplitudeScale);
+                x += sine(20, t, 0.25 * amplitudeScale);
+            } else if (inRange(t, 4, 7)) {
+                x += sine(8, t, 1.0 * amplitudeScale);
+                x += sine(20, t, 0.25 * amplitudeScale);
+                x += sine(32, t, 0.18 * amplitudeScale);
+            } else if (inRange(t, 7, 10)) {
+                x += sine(8, t, 1.0 * amplitudeScale);
+                x += sine(20, t, 0.25 * amplitudeScale);
+            }
+        } else if (profile === "rough") {
+            // rougher, more fractured family
+            if (inRange(t, 0, 2)) {
                 x += sine(8, t, 1.0 * amplitudeScale);
                 x += sine(20, t, 0.45 * amplitudeScale);
+            } else if (inRange(t, 2, 4)) {
+                x += sine(8, t, 1.0 * amplitudeScale);
+                x += sine(20, t, 0.45 * amplitudeScale);
+                x += sine(40, t, 0.80 * amplitudeScale);
+            } else if (inRange(t, 4, 6)) {
+                x += sine(10, t, 0.9 * amplitudeScale);
+                x += sine(28, t, 0.55 * amplitudeScale);
+            } else if (inRange(t, 6, 7)) {
+                const localT = t - 6;
+                if (localT < 0.7) {
+                    annotations.push({
+                        t,
+                        segment: "dropout",
+                        event: "dropped_sample",
+                    });
+                    continue;
+                } else {
+                    x += sine(10, t, 0.9 * amplitudeScale);
+                    x += sine(28, t, 0.55 * amplitudeScale);
+                }
+            } else if (inRange(t, 7, 10)) {
+                x += sine(8, t, 1.0 * amplitudeScale);
+                x += sine(20, t, 0.45 * amplitudeScale);
+
+                const burstCenters = [7.2, 7.55, 8.1, 8.7, 9.15, 9.7];
+                for (const c of burstCenters) {
+                    const dt = t - c;
+                    const sigma = 0.015;
+                    x += 1.5 * Math.exp(-(dt * dt) / (2 * sigma * sigma));
+                }
             }
-        }
+        } else {
+            // baseline family
+            if (inRange(t, 0, 3)) {
+                x += sine(8, t, 1.0 * amplitudeScale);
+                x += sine(20, t, 0.45 * amplitudeScale);
+            } else if (inRange(t, 3, 5)) {
+                x += sine(8, t, 1.0 * amplitudeScale);
+                x += sine(20, t, 0.45 * amplitudeScale);
+                x += sine(40, t, 0.65 * amplitudeScale);
+            } else if (inRange(t, 5, 7)) {
+                x += sine(8, t, 1.0 * amplitudeScale);
+                x += sine(24, t, 0.45 * amplitudeScale);
+            } else if (inRange(t, 7, 8)) {
+                const localT = t - 7;
+                if (localT < 0.5) {
+                    annotations.push({
+                        t,
+                        segment: "dropout",
+                        event: "dropped_sample",
+                    });
+                    continue;
+                } else {
+                    x += sine(8, t, 1.0 * amplitudeScale);
+                    x += sine(20, t, 0.45 * amplitudeScale);
+                }
+            } else if (inRange(t, 8, 10)) {
+                x += sine(8, t, 1.0 * amplitudeScale);
+                x += sine(20, t, 0.45 * amplitudeScale);
 
-        // Segment E: 8-10s burst + return
-        else if (inRange(t, 8, 10)) {
-            x += sine(8, t, 1.0 * amplitudeScale);
-            x += sine(20, t, 0.45 * amplitudeScale);
-
-            // deterministic pulse bursts
-            const burstCenters = [8.35, 8.9, 9.45];
-            for (const c of burstCenters) {
-                const dt = t - c;
-                const sigma = 0.02;
-                x += 1.2 * Math.exp(-(dt * dt) / (2 * sigma * sigma));
+                const burstCenters = [8.35, 8.9, 9.45];
+                for (const c of burstCenters) {
+                    const dt = t - c;
+                    const sigma = 0.02;
+                    x += 1.2 * Math.exp(-(dt * dt) / (2 * sigma * sigma));
+                }
             }
         }
 
@@ -205,6 +240,7 @@ function makeTestSignal(options = {}) {
                 seed,
                 durationSec,
                 noiseStd,
+                profile,
             },
         },
         truth: {

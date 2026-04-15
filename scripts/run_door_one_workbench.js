@@ -178,13 +178,19 @@ const SYNTHETIC_CASES = {
     }
 };
 
-function makeRawInput({ seed = 42, noiseStd = 0.03, source_id = "synthetic_workbench_v1" } = {}) {
+function makeRawInput({
+    seed = 42,
+    noiseStd = 0.03,
+    source_id = "synthetic_workbench_v1",
+    profile = "baseline",
+} = {}) {
     const { signal } = makeTestSignal({
         durationSec: 10,
         fs: 256,
         seed,
         noiseStd,
         source_id,
+        profile,
         channel: "ch0",
         modality: "voltage",
         units: "arb",
@@ -266,19 +272,19 @@ async function main() {
 
     const cases = {
         baseline: {
-            raw: { seed: 42, noiseStd: 0.03, source_id: "synthetic_workbench_v1" },
+            raw: { seed: 42, noiseStd: 0.03, source_id: "synthetic_workbench_v1", profile: "baseline" },
             anomaly_threshold: 0.15,
             substrate_id: "door_one_workbench_substrate_baseline",
             run_label: "workbench_run_baseline",
         },
         clean: {
-            raw: { seed: 42, noiseStd: 0.01, source_id: "synthetic_workbench_clean_v1" },
+            raw: { seed: 42, noiseStd: 0.01, source_id: "synthetic_workbench_clean_v1", profile: "clean" },
             anomaly_threshold: 0.20,
             substrate_id: "door_one_workbench_substrate_clean",
             run_label: "workbench_run_clean",
         },
         rough: {
-            raw: { seed: 123, noiseStd: 0.08, source_id: "synthetic_workbench_rough_v1" },
+            raw: { seed: 123, noiseStd: 0.08, source_id: "synthetic_workbench_rough_v1", profile: "rough" },
             anomaly_threshold: 0.08,
             substrate_id: "door_one_workbench_substrate_rough",
             run_label: "workbench_run_rough",
