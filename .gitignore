@@ -1,0 +1,39 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local env
+.env
+.env.*
+!.env.example
+
+# Generated runtime outputs
+out_workbench/
+out_lm/
+out/
+dist/
+build/
+coverage/
+
+# Experiment/log outputs
+ExecutionResults/
+*.log
+
+# Local LM I/O artifacts
+lm_input.json
+lm_output.json
+
+# Keep templates/contracts
+!lm_output.template.json
+!lm_wrapper_contract.json
+
+# Optional: keep folder structure if needed
+out_workbench/.gitkeep
