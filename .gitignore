@@ -15,13 +15,6 @@ Thumbs.db
 .env.*
 !.env.example
 
-# Generated runtime outputs
-out_workbench/*
-!out_workbench/.gitkeep
-
-out_lm/*
-!out_lm/.gitkeep
-
 out/
 dist/
 build/
@@ -30,11 +23,3 @@ coverage/
 # Experiment/log outputs
 ExecutionResults/
 *.log
-
-# Local LM I/O artifacts
-lm_input.json
-lm_output.json
-
-# Keep templates/contracts
-!lm_output.template.json
-!lm_wrapper_contract.json

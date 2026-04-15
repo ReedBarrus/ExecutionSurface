@@ -1,0 +1,26 @@
+{
+  "contract_type": "execution_surface:workbench_lm_wrapper_contract",
+  "contract_version": "0.1.0",
+  "reads": [
+    "out_workbench/workbench.json"
+  ],
+  "writes": [
+    "out_lm/lm_input.json",
+    "out_lm/lm_prompt.txt",
+    "out_lm/lm_wrapper_contract.json",
+    "out_lm/lm_output.template.json"
+  ],
+  "accepts_manual_output": "out_lm/lm_output.json",
+  "invocation_step": "manual_local_model_invocation",
+  "forbidden": [
+    "auto_commit",
+    "auto_promote",
+    "runtime_mutation",
+    "substrate_writeback",
+    "memory_writeback",
+    "canon_authority",
+    "truth_closure",
+    "same_object_closure",
+    "identity_closure"
+  ]
+}
