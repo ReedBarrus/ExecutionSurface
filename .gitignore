@@ -36,4 +36,8 @@ lm_output.json
 !lm_wrapper_contract.json
 
 # Optional: keep folder structure if needed
-out_workbench/.gitkeep
+out_workbench/*
+!out_workbench/.gitkeep
+
+out_lm/*
+!out_lm/.gitkeep
