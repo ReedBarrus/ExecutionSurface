@@ -60,23 +60,24 @@ LM input follows:
       "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:1",
       "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:2",
       "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:3",
-      "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:4"
+      "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:4",
+      "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:5"
     ],
     "cross_run_available": true,
     "run_count": 3
   },
   "runtime_receipt": {
-    "state_count": 23,
-    "basin_count": 4,
-    "segment_count": 4,
-    "trajectory_frames": 23,
-    "segment_transition_count": 4,
-    "h1_count": 16,
+    "state_count": 22,
+    "basin_count": 8,
+    "segment_count": 5,
+    "trajectory_frames": 22,
+    "segment_transition_count": 5,
+    "h1_count": 15,
     "m1_count": 7,
-    "anomaly_count": 12,
+    "anomaly_count": 10,
     "query_present": true,
-    "skipped_window_count": 1,
-    "merge_failure_count": 1
+    "skipped_window_count": 2,
+    "merge_failure_count": 0
   },
   "claim_posture": {
     "authority": "read_side_only",

@@ -4884,7 +4884,8 @@
         "generator": "test_signal.js",
         "seed": 42,
         "durationSec": 10,
-        "noiseStd": 0.03
+        "noiseStd": 0.03,
+        "profile": "baseline"
       },
       "policies": {
         "clock_policy_id": "clock.synthetic.v1",
