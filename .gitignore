@@ -16,8 +16,12 @@ Thumbs.db
 !.env.example
 
 # Generated runtime outputs
-out_workbench/
-out_lm/
+out_workbench/*
+!out_workbench/.gitkeep
+
+out_lm/*
+!out_lm/.gitkeep
+
 out/
 dist/
 build/
@@ -34,10 +38,3 @@ lm_output.json
 # Keep templates/contracts
 !lm_output.template.json
 !lm_wrapper_contract.json
-
-# Optional: keep folder structure if needed
-out_workbench/*
-!out_workbench/.gitkeep
-
-out_lm/*
-!out_lm/.gitkeep
