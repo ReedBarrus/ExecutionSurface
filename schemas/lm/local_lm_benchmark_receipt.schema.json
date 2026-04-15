@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/lm/local_lm_benchmark_receipt.schema.json",
+  "title": "Local LM Benchmark Receipt",
+  "description": "Per-run benchmark receipt for bounded local LM invocation over a Door One LM input surface.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_type",
+    "receipt_version",
+    "benchmark_id",
+    "model_id",
+    "endpoint",
+    "threading_mode",
+    "input_ref",
+    "run_ref",
+    "request_config",
+    "contract_obedience",
+    "repeatability_surface",
+    "usefulness",
+    "response_ref"
+  ],
+  "properties": {
+    "receipt_type": {
+      "type": "string",
+      "const": "lm:local_benchmark_receipt"
+    },
+    "receipt_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "benchmark_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "endpoint": {
+      "type": "string",
+      "minLength": 1
+    },
+    "threading_mode": {
+      "type": "string",
+      "const": "fresh_request"
+    },
+    "input_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lm_input_path",
+        "prompt_path"
+      ],
+      "properties": {
+        "lm_input_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompt_path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "run_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "run_dir",
+        "run_index"
+      ],
+      "properties": {
+        "run_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_index": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "request_config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "temperature"
+      ],
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "contract_obedience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "json_parse_ok",
+        "schema_ok",
+        "no_extra_text",
+        "exact_response_type",
+        "required_non_claims_present",
+        "correct_authority_posture",
+        "passed"
+      ],
+      "properties": {
+        "json_parse_ok": {
+          "type": "boolean"
+        },
+        "schema_ok": {
+          "type": "boolean"
+        },
+        "no_extra_text": {
+          "type": "boolean"
+        },
+        "exact_response_type": {
+          "type": "boolean"
+        },
+        "required_non_claims_present": {
+          "type": "boolean"
+        },
+        "correct_authority_posture": {
+          "type": "boolean"
+        },
+        "passed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "repeatability_surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_output_hash",
+        "normalized_output_hash",
+        "observation_count",
+        "question_count"
+      ],
+      "properties": {
+        "raw_output_hash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "normalized_output_hash": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "observation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "question_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "usefulness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observation_count",
+        "question_count",
+        "authority_drift_count",
+        "empty_observation_count",
+        "duplicate_question_count"
+      ],
+      "properties": {
+        "observation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "question_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "authority_drift_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "empty_observation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate_question_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "response_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_path",
+        "parsed_path",
+        "validation_path",
+        "benchmark_path"
+      ],
+      "properties": {
+        "raw_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parsed_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "validation_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "benchmark_path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "api_stats": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  }
+}

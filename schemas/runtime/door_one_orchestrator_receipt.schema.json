@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/runtime/door_one_orchestrator_receipt.schema.json",
+  "title": "Door One Orchestrator Receipt",
+  "description": "Compact deterministic runtime receipt for a completed Door One orchestration pass.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_type",
+    "stream_id",
+    "source_id",
+    "state_count",
+    "basin_count",
+    "segment_count",
+    "trajectory_frames",
+    "segment_transition_count",
+    "h1_count",
+    "m1_count",
+    "anomaly_count",
+    "query_present",
+    "skipped_window_count",
+    "merge_failure_count"
+  ],
+  "properties": {
+    "receipt_type": {
+      "type": "string",
+      "const": "runtime:door_one_orchestrator_receipt"
+    },
+    "stream_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "state_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "basin_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "segment_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "trajectory_frames": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "segment_transition_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "h1_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "m1_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "anomaly_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "query_present": {
+      "type": "boolean"
+    },
+    "skipped_window_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "merge_failure_count": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

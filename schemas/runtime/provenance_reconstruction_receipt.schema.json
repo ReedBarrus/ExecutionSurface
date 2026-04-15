@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/runtime/provenance_reconstruction_receipt.schema.json",
+  "title": "Provenance Reconstruction Receipt",
+  "description": "Compact receipt for bounded provenance reconstruction and replay support posture.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_type",
+    "replay_request_id",
+    "replay_type",
+    "reconstruction_status",
+    "target_type",
+    "retained_tier",
+    "support_basis_count",
+    "runtime_support_available",
+    "receipt_support_available",
+    "interpretive_support_available",
+    "threshold_outcome",
+    "downgrade_output",
+    "mechanization_status"
+  ],
+  "properties": {
+    "receipt_type": {
+      "type": "string",
+      "const": "runtime:provenance_reconstruction_receipt"
+    },
+    "replay_request_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "replay_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reconstruction_status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "downgraded",
+        "failed",
+        "unknown"
+      ]
+    },
+    "target_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "retained_tier": {
+      "type": "string",
+      "minLength": 1
+    },
+    "support_basis_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "runtime_support_available": {
+      "type": "boolean"
+    },
+    "receipt_support_available": {
+      "type": "boolean"
+    },
+    "interpretive_support_available": {
+      "type": "boolean"
+    },
+    "threshold_outcome": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "downgrade_output": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mechanization_status": {
+      "type": "string",
+      "enum": [
+        "mechanized",
+        "partially_mechanized",
+        "failed",
+        "unknown"
+      ]
+    }
+  }
+}

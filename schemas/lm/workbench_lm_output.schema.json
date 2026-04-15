@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/lm/workbench_lm_output.schema.json",
+  "title": "Door One Workbench LM Output",
+  "description": "Bounded read-side-only LM response over a Door One workbench LM input view.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "response_type",
+    "input_stream_id",
+    "observations",
+    "questions",
+    "non_claims",
+    "authority_posture"
+  ],
+  "properties": {
+    "response_type": {
+      "type": "string",
+      "const": "door_one_workbench_lm_response"
+    },
+    "input_stream_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "non_claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "authority_posture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "read_side_only",
+        "canon_authority",
+        "runtime_authority",
+        "truth_closure",
+        "identity_closure",
+        "same_object_closure",
+        "promotion_authority"
+      ],
+      "properties": {
+        "read_side_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "canon_authority": {
+          "type": "boolean",
+          "const": false
+        },
+        "runtime_authority": {
+          "type": "boolean",
+          "const": false
+        },
+        "truth_closure": {
+          "type": "boolean",
+          "const": false
+        },
+        "identity_closure": {
+          "type": "boolean",
+          "const": false
+        },
+        "same_object_closure": {
+          "type": "boolean",
+          "const": false
+        },
+        "promotion_authority": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    }
+  }
+}

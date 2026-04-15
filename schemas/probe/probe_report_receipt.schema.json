@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/probe/probe_report_receipt.schema.json",
+  "title": "Probe Report Receipt",
+  "description": "Bounded companion receipt for a read-side probe report.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_type",
+    "receipt_version",
+    "probe_type",
+    "row_surface",
+    "summary_surface",
+    "posture_flags",
+    "authority_posture",
+    "counts",
+    "report_ref"
+  ],
+  "properties": {
+    "receipt_type": {
+      "type": "string",
+      "const": "runtime:probe_report_receipt"
+    },
+    "receipt_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "probe_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "row_surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "row_count"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "row_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "summary_surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "available"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "available": {
+          "type": "boolean"
+        }
+      }
+    },
+    "posture_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "has_constitutional_posture",
+        "has_disclaimers",
+        "not_canon_evidence",
+        "not_prediction_evidence"
+      ],
+      "properties": {
+        "has_constitutional_posture": {
+          "type": "boolean"
+        },
+        "has_disclaimers": {
+          "type": "boolean"
+        },
+        "not_canon_evidence": {
+          "type": "boolean"
+        },
+        "not_prediction_evidence": {
+          "type": "boolean"
+        }
+      }
+    },
+    "authority_posture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "advisory_only",
+        "read_side_only",
+        "runtime_authority",
+        "canon_authority"
+      ],
+      "properties": {
+        "advisory_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "read_side_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "runtime_authority": {
+          "type": "boolean",
+          "const": false
+        },
+        "canon_authority": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "comparison_count",
+        "family_summary_count"
+      ],
+      "properties": {
+        "comparison_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "family_summary_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "report_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "report_path"
+      ],
+      "properties": {
+        "report_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

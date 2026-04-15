@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/lm/workbench_lm_input.schema.json",
+  "title": "Door One Workbench LM Input View",
+  "description": "Bounded LM-facing extraction from a Door One workbench integration surface.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "input_type",
+    "workbench_type",
+    "scope",
+    "runtime_receipt",
+    "claim_posture"
+  ],
+  "properties": {
+    "input_type": {
+      "type": "string",
+      "const": "door_one_workbench_lm_view"
+    },
+    "workbench_type": {
+      "type": "string",
+      "const": "runtime:door_one_workbench"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stream_id",
+        "source_id",
+        "segment_ids",
+        "cross_run_available",
+        "run_count"
+      ],
+      "properties": {
+        "stream_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "segment_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "cross_run_available": {
+          "type": "boolean"
+        },
+        "run_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "runtime_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state_count",
+        "basin_count",
+        "segment_count",
+        "trajectory_frames",
+        "segment_transition_count",
+        "h1_count",
+        "m1_count",
+        "anomaly_count",
+        "query_present",
+        "skipped_window_count",
+        "merge_failure_count"
+      ],
+      "properties": {
+        "state_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "basin_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "segment_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "trajectory_frames": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "segment_transition_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "h1_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "m1_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "anomaly_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "query_present": {
+          "type": "boolean"
+        },
+        "skipped_window_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "merge_failure_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "claim_posture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority",
+        "forbidden"
+      ],
+      "properties": {
+        "authority": {
+          "type": "string",
+          "const": "read_side_only"
+        },
+        "forbidden": {
+          "type": "array",
+          "minItems": 6,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+    "response_type": "door_one_workbench_lm_response",
+    "input_stream_id": "STR:synthetic_workbench_v1:ch0:voltage:arb:256",
+    "observations": [
+        "state_count is 23",
+        "basin_count is 5",
+        "cross-run context is available"
+    ],
+    "questions": [
+        "Is merge_failure_count stable across repeated workbench runs?",
+        "Does anomaly_count remain proportional under fixture perturbation?"
+    ],
+    "non_claims": [
+        "not canon",
+        "not truth closure",
+        "not same-object closure",
+        "not identity closure",
+        "not promotion"
+    ],
+    "authority_posture": {
+        "read_side_only": true,
+        "runtime_authority": false,
+        "canon_authority": false,
+        "truth_closure": false,
+        "same_object_closure": false,
+        "identity_closure": false,
+        "promotion_authority": false
+    }
+}

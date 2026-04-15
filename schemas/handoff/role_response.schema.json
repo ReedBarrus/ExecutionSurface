@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/handoff/role_response.schema.json",
+  "title": "Morphogenesis Role Response",
+  "description": "Bounded role response envelope for one pass over an active subject.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pass_id",
+    "role",
+    "active_subject_id",
+    "state_before",
+    "state_after",
+    "mutated_live_surface",
+    "accepted_changes",
+    "rejected_changes",
+    "live_tensions",
+    "write_payload_notes",
+    "cycle_log_entry",
+    "recommended_next_role",
+    "recommended_next_state"
+  ],
+  "properties": {
+    "pass_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "active_subject_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state_before": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state_after": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mutated_live_surface": {
+      "type": "boolean"
+    },
+    "live_surface_patch": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "accepted_changes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "rejected_changes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "live_tensions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "write_payload_notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "cycle_log_entry": {
+      "$ref": "cycle_log_entry.schema.json"
+    },
+    "recommended_next_role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recommended_next_state": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

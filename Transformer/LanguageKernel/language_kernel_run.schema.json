@@ -1,0 +1,519 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "dme/language-kernel/language_kernel_run.schema.json",
+    "title": "DME Language Kernel Run Envelope v0",
+    "description": "Schema for a complete DME Language Kernel run. This envelope binds one bounded export packet, one or more reasoning frames, run-level metrics, and validation posture into a single read-side experiment object. It carries no structural, retention, memory, identity, canon, or truth authority by itself.",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "kernel_run_id",
+        "kernel_contract_version",
+        "reasoning_schema_version",
+        "export_schema_version",
+        "validation_schema_version",
+        "model_info",
+        "export_packet_id",
+        "declared_lens",
+        "query_class",
+        "claim_class_ceiling",
+        "legal_posture",
+        "language_frames",
+        "run_metrics",
+        "validation_receipt"
+    ],
+    "properties": {
+        "kernel_run_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^KR:[A-Za-z0-9._:-]+$",
+            "description": "Unique identifier for this Language Kernel run envelope."
+        },
+        "kernel_contract_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^v[0-9]+(?:\\.[0-9]+)?$",
+            "description": "Version of the Language Kernel contract governing this run."
+        },
+        "reasoning_schema_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^v[0-9]+(?:\\.[0-9]+)?$",
+            "description": "Version of the reasoning_frame schema used for this run."
+        },
+        "export_schema_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^v[0-9]+(?:\\.[0-9]+)?$",
+            "description": "Version of the language_overlay_export schema used for this run."
+        },
+        "validation_schema_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^v[0-9]+(?:\\.[0-9]+)?$",
+            "description": "Version of the validation receipt schema used for this run."
+        },
+        "model_info": {
+            "$ref": "#/$defs/modelInfo"
+        },
+        "export_packet_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^EK:[A-Za-z0-9._:-]+$",
+            "description": "Identifier of the bounded export packet this run used as its read surface."
+        },
+        "prompt_receipt_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^PR:[A-Za-z0-9._:-]+$",
+            "description": "Optional prompt receipt id associated with this run."
+        },
+        "response_receipt_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^RR:[A-Za-z0-9._:-]+$",
+            "description": "Optional response receipt id associated with this run."
+        },
+        "declared_lens": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "description": "Declared lens under which this run should be interpreted. Must match the export packet posture."
+        },
+        "query_class": {
+            "type": "string",
+            "enum": [
+                "Q3",
+                "Q4",
+                "Q6",
+                "Q7"
+            ],
+            "description": "Active bounded query class governing this run."
+        },
+        "claim_class_ceiling": {
+            "type": "string",
+            "enum": [
+                "L1",
+                "L2",
+                "L4",
+                "L5",
+                "L6"
+            ],
+            "description": "Strongest lawful claim class this run may express."
+        },
+        "legal_posture": {
+            "type": "string",
+            "const": "Read-side Language Kernel run only. No canon authority. Not structural truth. Not primary retention substance.",
+            "description": "Fixed non-authority and non-substrate posture for the run envelope."
+        },
+        "operator_mode": {
+            "type": "string",
+            "enum": [
+                "explicit_only"
+            ],
+            "default": "explicit_only",
+            "description": "Recursion control posture for this run. v0 permits explicit-only progression only."
+        },
+        "recursion_depth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 256,
+            "description": "Observed recursion depth for this run envelope."
+        },
+        "language_frames": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 512,
+            "description": "Bounded language frames returned in this run.",
+            "items": {
+                "$ref": "reasoning_frame.schema.json"
+            }
+        },
+        "run_metrics": {
+            "$ref": "#/$defs/runMetrics"
+        },
+        "validation_receipt": {
+            "$ref": "validation_receipt.schema.json"
+        },
+        "run_notes": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 32,
+            "description": "Optional bounded notes about the run as a whole.",
+            "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+            }
+        },
+        "timestamps": {
+            "$ref": "#/$defs/timestamps"
+        }
+    },
+    "$defs": {
+        "modelInfo": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "provider",
+                "model_name"
+            ],
+            "properties": {
+                "provider": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "description": "Model provider, for example ollama."
+                },
+                "model_name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "description": "Model name used for the run."
+                },
+                "model_version": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "description": "Optional explicit model version string."
+                },
+                "temperature": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2,
+                    "description": "Optional sampling temperature used for the run."
+                },
+                "top_p": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Optional top_p value used for the run."
+                }
+            }
+        },
+        "runMetrics": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "structural_fidelity_score",
+                "provenance_trace_completeness",
+                "anomaly_propagation_fidelity",
+                "loss_gradient_honesty",
+                "claim_ceiling_adherence",
+                "recursion_explicitness_score",
+                "stack_purity_score",
+                "overall_status"
+            ],
+            "properties": {
+                "structural_fidelity_score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Fraction of frames that correctly stayed inside exact allowed references and bounded object distinctions."
+                },
+                "provenance_trace_completeness": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Fraction of frames with valid provenance / dependency trace completeness."
+                },
+                "anomaly_propagation_fidelity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Fraction of anomaly posture correctly preserved from exported rows into frames."
+                },
+                "loss_gradient_honesty": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Agreement score between exported loss posture and reported frame loss posture."
+                },
+                "continuity_badge_accuracy": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Optional agreement score for continuity badges across the run."
+                },
+                "claim_ceiling_adherence": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Fraction of frames that remained inside the allowed claim ceiling for the active query class."
+                },
+                "recursion_explicitness_score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Fraction of frames that preserved explicit-only recursion posture."
+                },
+                "stack_purity_score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Fraction of frames that preserved stack-like alignment without lateral graph collapse."
+                },
+                "identity_trace_completeness": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Optional run-level score tracking whether each frame retained exact bounded object identity references."
+                },
+                "overall_status": {
+                    "type": "string",
+                    "enum": [
+                        "valid",
+                        "downgraded",
+                        "aborted"
+                    ],
+                    "description": "Run-level status after validation and metric evaluation."
+                }
+            }
+        },
+        "timestamps": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "exported_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "invoked_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "validated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "query_class": {
+                        "const": "Q3"
+                    }
+                },
+                "required": [
+                    "query_class"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "claim_class_ceiling": {
+                        "enum": [
+                            "L1",
+                            "L4",
+                            "L5"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "query_class": {
+                        "const": "Q4"
+                    }
+                },
+                "required": [
+                    "query_class"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "claim_class_ceiling": {
+                        "enum": [
+                            "L2",
+                            "L4",
+                            "L5"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "query_class": {
+                        "const": "Q6"
+                    }
+                },
+                "required": [
+                    "query_class"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "claim_class_ceiling": {
+                        "enum": [
+                            "L4",
+                            "L5"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "query_class": {
+                        "const": "Q7"
+                    }
+                },
+                "required": [
+                    "query_class"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "claim_class_ceiling": {
+                        "const": "L6"
+                    }
+                }
+            }
+        }
+    ],
+    "examples": [
+        {
+            "kernel_run_id": "KR:run_1775479542686:001",
+            "kernel_contract_version": "v0.1",
+            "reasoning_schema_version": "v0.1",
+            "export_schema_version": "v0.1",
+            "validation_schema_version": "v0.1",
+            "model_info": {
+                "provider": "ollama",
+                "model_name": "llama3.1",
+                "temperature": 0.2,
+                "top_p": 0.9
+            },
+            "export_packet_id": "EK:run_1775479542686:v1",
+            "prompt_receipt_id": "PR:run_1775479542686:001",
+            "response_receipt_id": "RR:run_1775479542686:001",
+            "declared_lens": "medium FFT / Hann baseline",
+            "query_class": "Q3",
+            "claim_class_ceiling": "L1",
+            "legal_posture": "Read-side Language Kernel run only. No canon authority. Not structural truth. Not primary retention substance.",
+            "operator_mode": "explicit_only",
+            "recursion_depth": 1,
+            "language_frames": [
+                {
+                    "frame_id": "LF:run_1775479542686:0001",
+                    "frame_type": "reasoning_overlay",
+                    "what_object_am_i": "Bounded reasoning frame over RET:1775479542686:4MI-1",
+                    "how_produced": "Prompted read-side overlay over export packet EK:run_1775479542686:v1 with no prior language frames.",
+                    "depends_on": [
+                        "RET:1775479542686:4MI-1",
+                        "SPC:1775479542686:8HI"
+                    ],
+                    "query_class": "Q3",
+                    "claim_class_ceiling": "L1",
+                    "current_status": {
+                        "continuity": "Stable",
+                        "structural_loss_percent": 12.5,
+                        "support_tier": "RETAINED_ONLY",
+                        "uncertainty_class": "U1",
+                        "drift_class": "G0"
+                    },
+                    "legal_claim": "Bounded interpretation overlay only. No canon authority. Not structural truth. Read-side recursion experiment.",
+                    "non_claims": [
+                        "not canon",
+                        "not source restoration",
+                        "not identity proof",
+                        "not mechanized memory function"
+                    ],
+                    "reasoning_overlay": "This frame remains grounded in the listed retained and upstream handles only and does not assert stronger continuity than the exported support permits.",
+                    "what_next": "Await explicit operator request for next recursion turn or new retained signature reference."
+                }
+            ],
+            "run_metrics": {
+                "structural_fidelity_score": 0.98,
+                "provenance_trace_completeness": 1,
+                "anomaly_propagation_fidelity": 0.95,
+                "loss_gradient_honesty": 0.99,
+                "continuity_badge_accuracy": 1,
+                "claim_ceiling_adherence": 1,
+                "recursion_explicitness_score": 1,
+                "stack_purity_score": 0.97,
+                "identity_trace_completeness": 1,
+                "overall_status": "valid"
+            },
+            "validation_receipt": {
+                "validation_receipt_id": "VR:run_1775479542686:001",
+                "validator_version": "v0.1",
+                "validation_scope": "full_kernel_run",
+                "checked_artifacts": {
+                    "kernel_run_id": "KR:run_1775479542686:001",
+                    "export_packet_id": "EK:run_1775479542686:v1",
+                    "prompt_receipt_id": "PR:run_1775479542686:001",
+                    "response_receipt_id": "RR:run_1775479542686:001",
+                    "frame_ids": [
+                        "LF:run_1775479542686:0001"
+                    ]
+                },
+                "invariant_results": [
+                    {
+                        "invariant_name": "identity",
+                        "status": "pass",
+                        "score": 1,
+                        "checked_frames": [
+                            "LF:run_1775479542686:0001"
+                        ]
+                    },
+                    {
+                        "invariant_name": "provenance",
+                        "status": "pass",
+                        "score": 1
+                    },
+                    {
+                        "invariant_name": "explicit_recursion",
+                        "status": "pass",
+                        "score": 1
+                    },
+                    {
+                        "invariant_name": "continuity_loss",
+                        "status": "pass",
+                        "score": 0.99
+                    },
+                    {
+                        "invariant_name": "geometric_alignment",
+                        "status": "pass",
+                        "score": 0.97
+                    }
+                ],
+                "passed_invariants": [
+                    "identity",
+                    "provenance",
+                    "explicit_recursion",
+                    "continuity_loss",
+                    "geometric_alignment"
+                ],
+                "violations": [],
+                "summary_counts": {
+                    "frames_checked": 1,
+                    "invariants_checked": 5,
+                    "violations_total": 0,
+                    "fatal_violations": 0,
+                    "downgraded_invariants": 0
+                },
+                "overall_status": "valid"
+            },
+            "timestamps": {
+                "exported_at": "2026-04-06T12:00:00Z",
+                "invoked_at": "2026-04-06T12:00:10Z",
+                "validated_at": "2026-04-06T12:00:12Z"
+            }
+        }
+    ]
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/runtime/door_one_workbench_receipt.schema.json",
+  "title": "Door One Workbench Receipt",
+  "description": "Compact read-side receipt for a Door One workbench bundle.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_type",
+    "stream_id",
+    "source_id",
+    "segment_count",
+    "state_count",
+    "basin_count",
+    "query_present",
+    "cross_run_available",
+    "cross_run_run_count"
+  ],
+  "properties": {
+    "receipt_type": {
+      "type": "string",
+      "const": "runtime:door_one_workbench_receipt"
+    },
+    "stream_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "segment_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "state_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "basin_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "query_present": {
+      "type": "boolean"
+    },
+    "cross_run_available": {
+      "type": "boolean"
+    },
+    "cross_run_run_count": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

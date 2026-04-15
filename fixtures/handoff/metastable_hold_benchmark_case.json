@@ -1,0 +1,38 @@
+{
+  "benchmark_case_id": "gate_case_metastable_hold_001",
+  "benchmark_family": "handoff_gate_posture",
+  "benchmark_version": "0.1.0",
+  "description": "Gate should hold when deeper descent buys wording only and upward compression would erase a live distinction.",
+  "active_subject": {
+    "subject_id": "stream_segment_residue_contract",
+    "title": "Stream / Segment Residue Contract",
+    "layer": "L3",
+    "state": "gate_pending"
+  },
+  "candidate_summary": "The subject still distinguishes stream residue from segment residue with repo-backed control. Descending would sharpen wording only. Compressing upward would erase the still-live distinction.",
+  "expected_correct_decision": {
+    "decision": "hold",
+    "state_to": "metastable_hold",
+    "structural_gain_judgment": "metastable_hold"
+  },
+  "expected_incorrect_decisions": [
+    {
+      "decision": "release",
+      "why_wrong": "Release would imply sufficient closure despite a still-live distinction."
+    },
+    {
+      "decision": "compress_upward",
+      "why_wrong": "Compression would erase a distinction the current layer still needs to preserve."
+    }
+  ],
+  "reason_basis": [
+    "descent buys wording only",
+    "compression erases live distinction",
+    "hold preserves current control surface"
+  ],
+  "non_claims": [
+    "not a canon decision",
+    "not a truth claim",
+    "not a promotion signal"
+  ]
+}

@@ -1,0 +1,330 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "dme/language-kernel/reasoning_frame.schema.json",
+    "title": "DME Language Kernel Reasoning Frame v0",
+    "description": "Schema for one bounded Language Kernel reasoning frame. This object is a read-side language overlay artifact only. It carries no structural, retention, memory, identity, canon, or truth authority by itself.",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "frame_id",
+        "frame_type",
+        "what_object_am_i",
+        "how_produced",
+        "depends_on",
+        "query_class",
+        "claim_class_ceiling",
+        "current_status",
+        "legal_claim",
+        "non_claims",
+        "reasoning_overlay",
+        "what_next"
+    ],
+    "properties": {
+        "frame_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^LF:[A-Za-z0-9._:-]+$",
+            "description": "Unique immutable identifier for this reasoning frame. Should remain stable across validation and replay of the same output object."
+        },
+        "frame_type": {
+            "type": "string",
+            "const": "reasoning_overlay",
+            "description": "Narrow v0 frame family. Additional frame types, if ever added, should be introduced in later schema versions rather than widening v0."
+        },
+        "what_object_am_i": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512,
+            "pattern": "^.*[A-Za-z0-9:_-].*$",
+            "description": "Human-readable bounded self-description of the frame. Should preserve exact source object identity rather than abstracting into a broad narrative object."
+        },
+        "how_produced": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "description": "Bounded production note describing how this frame was generated from the export packet and optional prior frame set."
+        },
+        "depends_on": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 32,
+            "uniqueItems": true,
+            "description": "Exact exported object handles, provenance receipt hashes, and/or prior frame ids that this frame depends on. No fuzzy references are allowed at the contract level.",
+            "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256,
+                "pattern": "^(LF:[A-Za-z0-9._:-]+|[A-Z]{2,6}:[A-Za-z0-9._:-]+|[A-Fa-f0-9]{16,128})$"
+            }
+        },
+        "query_class": {
+            "type": "string",
+            "enum": [
+                "Q3",
+                "Q4",
+                "Q6",
+                "Q7"
+            ],
+            "description": "Active bounded query class for this frame. Early Language Kernel use should remain mostly inside Q3, Q4, and Q6. Q7 should remain narrowed and advisory only."
+        },
+        "claim_class_ceiling": {
+            "type": "string",
+            "enum": [
+                "L1",
+                "L2",
+                "L4",
+                "L5",
+                "L6"
+            ],
+            "description": "Strongest lawful claim class this frame may express. v0 intentionally excludes stronger identity and promotion classes."
+        },
+        "current_status": {
+            "$ref": "#/$defs/currentStatus"
+        },
+        "legal_claim": {
+            "type": "string",
+            "const": "Bounded interpretation overlay only. No canon authority. Not structural truth. Read-side recursion experiment.",
+            "description": "Fixed non-authority posture string. A validator may choose to fail closed on any deviation."
+        },
+        "non_claims": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 16,
+            "uniqueItems": true,
+            "description": "Explicit denials that help preserve claim ceiling and downgrade posture.",
+            "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+            }
+        },
+        "reasoning_overlay": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000,
+            "description": "Concise bounded natural-language overlay grounded only in the declared dependencies. This field remains read-side annotation, not structural substance."
+        },
+        "what_next": {
+            "type": "string",
+            "const": "Await explicit operator request for next recursion turn or new retained signature reference.",
+            "description": "Fixed explicit-recursion posture. Prevents autonomous continuation or implied self-propagation."
+        },
+        "frame_metrics": {
+            "$ref": "#/$defs/frameMetrics"
+        },
+        "frame_notes": {
+            "type": "array",
+            "description": "Optional narrow validator or operator notes attached to this frame only. Not a substitute for run-level validation receipts.",
+            "minItems": 1,
+            "maxItems": 16,
+            "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+            }
+        }
+    },
+    "$defs": {
+        "currentStatus": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "continuity",
+                "structural_loss_percent",
+                "support_tier"
+            ],
+            "properties": {
+                "continuity": {
+                    "type": "string",
+                    "enum": [
+                        "Stable",
+                        "Drifting",
+                        "Broken",
+                        "Recurring"
+                    ],
+                    "description": "Continuity posture copied or derived strictly from the export packet under the active bounded question."
+                },
+                "structural_loss_percent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "multipleOf": 0.01,
+                    "description": "Reported structural loss percentage for the referenced bounded object. Must not be narratively smoothed."
+                },
+                "support_tier": {
+                    "type": "string",
+                    "enum": [
+                        "Tier 0 live runtime",
+                        "RETAINED_ONLY",
+                        "INSUFFICIENT_TIER"
+                    ],
+                    "description": "Support-tier posture for this frame. v0 keeps the allowed set intentionally small."
+                },
+                "uncertainty_class": {
+                    "type": "string",
+                    "enum": [
+                        "U0",
+                        "U1",
+                        "U2",
+                        "U3",
+                        "U4"
+                    ],
+                    "description": "Optional uncertainty posture for this frame."
+                },
+                "drift_class": {
+                    "type": "string",
+                    "enum": [
+                        "G0",
+                        "G1",
+                        "G2",
+                        "G3",
+                        "G4"
+                    ],
+                    "description": "Optional drift posture for this frame."
+                }
+            }
+        },
+        "frameMetrics": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Optional frame-local metrics only. Most metrics should remain at run level in the language_kernel_run envelope.",
+            "properties": {
+                "reference_integrity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "loss_honesty": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "anomaly_fidelity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "query_class": {
+                        "const": "Q3"
+                    }
+                },
+                "required": [
+                    "query_class"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "claim_class_ceiling": {
+                        "enum": [
+                            "L1",
+                            "L4",
+                            "L5"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "query_class": {
+                        "const": "Q4"
+                    }
+                },
+                "required": [
+                    "query_class"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "claim_class_ceiling": {
+                        "enum": [
+                            "L2",
+                            "L4",
+                            "L5"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "query_class": {
+                        "const": "Q6"
+                    }
+                },
+                "required": [
+                    "query_class"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "claim_class_ceiling": {
+                        "enum": [
+                            "L4",
+                            "L5"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "query_class": {
+                        "const": "Q7"
+                    }
+                },
+                "required": [
+                    "query_class"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "claim_class_ceiling": {
+                        "const": "L6"
+                    }
+                }
+            }
+        }
+    ],
+    "examples": [
+        {
+            "frame_id": "LF:run_1775479542686:0001",
+            "frame_type": "reasoning_overlay",
+            "what_object_am_i": "Bounded reasoning frame over RET:1775479542686:4MI-1",
+            "how_produced": "Prompted read-side overlay over export packet EK:run_1775479542686:v1 with no prior language frames.",
+            "depends_on": [
+                "RET:1775479542686:4MI-1",
+                "SPC:1775479542686:8HI"
+            ],
+            "query_class": "Q3",
+            "claim_class_ceiling": "L1",
+            "current_status": {
+                "continuity": "Stable",
+                "structural_loss_percent": 12.5,
+                "support_tier": "RETAINED_ONLY",
+                "uncertainty_class": "U1",
+                "drift_class": "G0"
+            },
+            "legal_claim": "Bounded interpretation overlay only. No canon authority. Not structural truth. Read-side recursion experiment.",
+            "non_claims": [
+                "not canon",
+                "not source restoration",
+                "not identity proof",
+                "not mechanized memory function"
+            ],
+            "reasoning_overlay": "This frame remains grounded in the listed retained and upstream handles only and does not assert stronger continuity than the exported support permits.",
+            "what_next": "Await explicit operator request for next recursion turn or new retained signature reference."
+        }
+    ]
+}

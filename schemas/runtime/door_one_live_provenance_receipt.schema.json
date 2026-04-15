@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/runtime/door_one_live_provenance_receipt.schema.json",
+  "title": "Door One Live Provenance Receipt",
+  "description": "Durable provenance receipt for one Door One live cycle.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_type",
+    "receipt_version",
+    "generated_from",
+    "written_at",
+    "cycle",
+    "scope",
+    "structural_summary",
+    "cross_run_context",
+    "references"
+  ],
+  "properties": {
+    "receipt_type": {
+      "type": "string",
+      "const": "runtime:door_one_live_provenance_receipt"
+    },
+    "receipt_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "generated_from": {
+      "type": "string",
+      "minLength": 1
+    },
+    "written_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "cycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cycle_dir",
+        "cycle_index",
+        "run_label"
+      ],
+      "properties": {
+        "cycle_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cycle_index": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "run_label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stream_id",
+        "source_mode",
+        "source_id",
+        "channel",
+        "modality"
+      ],
+      "properties": {
+        "stream_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_mode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "channel": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "modality": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "structural_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state_count",
+        "basin_count",
+        "segment_count",
+        "convergence",
+        "motion",
+        "occupancy",
+        "recurrence",
+        "continuity"
+      ],
+      "properties": {
+        "state_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "basin_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "segment_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "convergence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "motion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "occupancy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recurrence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "continuity": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "cross_run_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "available",
+        "run_count"
+      ],
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "run_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "references": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "live_cycle_dir",
+        "latest_workbench",
+        "latest_run_result",
+        "latest_cross_run_report",
+        "latest_session_summary"
+      ],
+      "properties": {
+        "live_cycle_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "latest_workbench": {
+          "type": "string",
+          "minLength": 1
+        },
+        "latest_run_result": {
+          "type": "string",
+          "minLength": 1
+        },
+        "latest_cross_run_report": {
+          "type": "string",
+          "minLength": 1
+        },
+        "latest_session_summary": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

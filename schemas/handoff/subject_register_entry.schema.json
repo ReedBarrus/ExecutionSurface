@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/handoff/subject_register_entry.schema.json",
+  "title": "Morphogenesis Subject Register Entry",
+  "description": "Registry entry for one subject tracked by the runtime ecology.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "subject_id",
+    "title",
+    "layer",
+    "state",
+    "parent_subject_id",
+    "eligible_next_subjects",
+    "release_criteria",
+    "known_tensions",
+    "last_role",
+    "recommended_next_role"
+  ],
+  "properties": {
+    "subject_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "layer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_subject_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "eligible_next_subjects": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "release_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "known_tensions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "last_role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recommended_next_role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dme/execution-surface/handoff/gate_decision.schema.json",
+  "title": "Morphogenesis Gate Decision",
+  "description": "Bounded gate decision for hold, release, rebound, or compression posture changes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pass_id",
+    "role",
+    "active_subject_id",
+    "structural_gain_judgment",
+    "decision",
+    "next_layer",
+    "next_active_subject_id",
+    "reason",
+    "state_transition"
+  ],
+  "properties": {
+    "pass_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "role": {
+      "type": "string",
+      "const": "auditor_gate"
+    },
+    "active_subject_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "structural_gain_judgment": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "hold",
+        "release",
+        "compress_upward",
+        "rebound",
+        "defer"
+      ]
+    },
+    "next_layer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "next_active_subject_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state_transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to"
+      ],
+      "properties": {
+        "from": {
+          "type": "string",
+          "minLength": 1
+        },
+        "to": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "subject_register_update": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  }
+}
