@@ -1,0 +1,11 @@
+{
+  "summary_type": "lm:local_benchmark_summary",
+  "summary_version": "0.1.0",
+  "run_count": 3,
+  "pass_count": 3,
+  "fail_count": 0,
+  "unique_normalized_output_hashes": 1,
+  "observation_count_stable": true,
+  "question_count_stable": true,
+  "threading_mode": "fresh_request"
+}

@@ -14330,7 +14330,7 @@
   "summaries": {
     "substrate": {
       "report_type": "substrate:operational_summary",
-      "substrate_id": "door_one_workbench_substrate",
+      "substrate_id": "door_one_workbench_substrate_a",
       "state_count": 23,
       "commit_count": 23,
       "basin_count": 5,

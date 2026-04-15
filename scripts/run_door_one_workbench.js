@@ -145,6 +145,39 @@ const QUERY_POLICY = {
     topK: 5,
 };
 
+const SYNTHETIC_CASES = {
+    baseline: {
+        run_label: "workbench_run_a",
+        substrate_id: "door_one_workbench_substrate_a",
+        raw: {
+            seed: 42,
+            noiseStd: 0.03,
+            source_id: "synthetic_workbench_v1"
+        },
+        anomaly_threshold: 0.15
+    },
+    clean: {
+        run_label: "workbench_run_b",
+        substrate_id: "door_one_workbench_substrate_b",
+        raw: {
+            seed: 42,
+            noiseStd: 0.01,
+            source_id: "synthetic_workbench_clean_v1"
+        },
+        anomaly_threshold: 0.20
+    },
+    rough: {
+        run_label: "workbench_run_c",
+        substrate_id: "door_one_workbench_substrate_c",
+        raw: {
+            seed: 123,
+            noiseStd: 0.08,
+            source_id: "synthetic_workbench_rough_v1"
+        },
+        anomaly_threshold: 0.08
+    }
+};
+
 function makeRawInput({ seed = 42, noiseStd = 0.03, source_id = "synthetic_workbench_v1" } = {}) {
     const { signal } = makeTestSignal({
         durationSec: 10,
@@ -191,60 +224,37 @@ async function writeJson(path, data) {
     await writeFile(path, JSON.stringify(data, null, 2), "utf8");
 }
 
+function runWorkbenchCase({ run_label, substrate_id, raw, anomaly_threshold }) {
+    const orch = new DoorOneOrchestrator({
+        policies: {
+            ...POLICIES,
+            anomaly_policy: {
+                ...POLICIES.anomaly_policy,
+                threshold_value: anomaly_threshold
+            }
+        },
+        substrate_id
+    });
+
+    const result = orch.runBatch(
+        makeRawInput(raw),
+        { query_spec: QUERY_SPEC, query_policy: QUERY_POLICY }
+    );
+
+    if (!result?.ok) {
+        throw new Error(`DoorOneOrchestrator failed for ${run_label}`);
+    }
+
+    result.run_label = run_label;
+    return result;
+}
+
 async function main() {
     await mkdir("./out_workbench", { recursive: true });
 
-    const raw = makeRawInput({ seed: 42, noiseStd: 0.03, source_id: "synthetic_workbench_v1" });
-
-    const orch = new DoorOneOrchestrator({
-        policies: POLICIES,
-        substrate_id: "door_one_workbench_substrate",
-    });
-
-    const result = orch.runBatch(raw, {
-        query_spec: QUERY_SPEC,
-        query_policy: QUERY_POLICY,
-    });
-
-    if (!result?.ok) {
-        console.error("DoorOneOrchestrator failed:");
-        console.error(JSON.stringify(result, null, 2));
-        process.exit(1);
-    }
-
-    result.run_label = "workbench_run_a";
-
-    const runB = (() => {
-        const o = new DoorOneOrchestrator({
-            policies: POLICIES,
-            substrate_id: "door_one_workbench_substrate_b",
-        });
-        const r = o.runBatch(
-            makeRawInput({ seed: 42, noiseStd: 0.03, source_id: "synthetic_workbench_v1" }),
-            { query_spec: QUERY_SPEC, query_policy: QUERY_POLICY }
-        );
-        r.run_label = "workbench_run_b";
-        return r;
-    })();
-
-    const runC = (() => {
-        const o = new DoorOneOrchestrator({
-            policies: {
-                ...POLICIES,
-                anomaly_policy: {
-                    ...POLICIES.anomaly_policy,
-                    threshold_value: 0.08,
-                },
-            },
-            substrate_id: "door_one_workbench_substrate_c",
-        });
-        const r = o.runBatch(
-            makeRawInput({ seed: 99, noiseStd: 0.05, source_id: "synthetic_workbench_v2" }),
-            { query_spec: QUERY_SPEC, query_policy: QUERY_POLICY }
-        );
-        r.run_label = "workbench_run_c";
-        return r;
-    })();
+    const result = runWorkbenchCase(SYNTHETIC_CASES.baseline);
+    const runB = runWorkbenchCase(SYNTHETIC_CASES.clean);
+    const runC = runWorkbenchCase(SYNTHETIC_CASES.rough);
 
     const session = new CrossRunSession({
         session_id: "door-one-workbench-session",
