@@ -22,7 +22,7 @@ Do not write back into runtime or substrate state.
 Return JSON matching this template:
 {
   "response_type": "door_one_workbench_lm_response",
-  "input_stream_id": "STR:synthetic_workbench_v1:ch0:voltage:arb:256",
+  "input_stream_id": "STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256",
   "observations": [
     "Read-side observation only."
   ],
@@ -53,21 +53,21 @@ LM input follows:
   "input_type": "door_one_workbench_lm_view",
   "workbench_type": "runtime:door_one_workbench",
   "scope": {
-    "stream_id": "STR:synthetic_workbench_v1:ch0:voltage:arb:256",
-    "source_id": "synthetic_workbench_v1",
+    "stream_id": "STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256",
+    "source_id": "synthetic_workbench_rough_v1",
     "segment_ids": [
-      "seg:STR:synthetic_workbench_v1:ch0:voltage:arb:256:0",
-      "seg:STR:synthetic_workbench_v1:ch0:voltage:arb:256:1",
-      "seg:STR:synthetic_workbench_v1:ch0:voltage:arb:256:2",
-      "seg:STR:synthetic_workbench_v1:ch0:voltage:arb:256:3",
-      "seg:STR:synthetic_workbench_v1:ch0:voltage:arb:256:4"
+      "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:0",
+      "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:1",
+      "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:2",
+      "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:3",
+      "seg:STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256:4"
     ],
     "cross_run_available": true,
     "run_count": 3
   },
   "runtime_receipt": {
     "state_count": 23,
-    "basin_count": 5,
+    "basin_count": 4,
     "segment_count": 4,
     "trajectory_frames": 23,
     "segment_transition_count": 4,

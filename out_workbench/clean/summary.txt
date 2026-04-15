@@ -1,9 +1,9 @@
 
 Door One Workbench
-  stream_id: STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256
-  segments: 5
+  stream_id: STR:synthetic_workbench_clean_v1:ch0:voltage:arb:256
+  segments: 3
   states: 23
-  basins: 4
+  basins: 3
   cross_run: yes (3)
   convergence: insufficient_data
   recurrence: high

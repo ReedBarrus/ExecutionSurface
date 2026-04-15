@@ -224,6 +224,18 @@ async function writeJson(path, data) {
     await writeFile(path, JSON.stringify(data, null, 2), "utf8");
 }
 
+async function writeWorkbenchBundle(caseName, assembled, result) {
+    const dir = `./out_workbench/${caseName}`;
+    await mkdir(dir, { recursive: true });
+
+    await writeJson(`${dir}/orchestrator_result.json`, result);
+    await writeJson(`${dir}/workbench.json`, assembled);
+    await writeFile(`${dir}/summary.txt`, conciseWorkbenchSummary(assembled), "utf8");
+    await writeJson(`${dir}/cross_run_report.json`, assembled.cross_run?.report);
+
+    console.log(`[${caseName}] wrote ${dir}/`);
+}
+
 function runWorkbenchCase({ run_label, substrate_id, raw, anomaly_threshold }) {
     const orch = new DoorOneOrchestrator({
         policies: {
@@ -252,41 +264,82 @@ function runWorkbenchCase({ run_label, substrate_id, raw, anomaly_threshold }) {
 async function main() {
     await mkdir("./out_workbench", { recursive: true });
 
-    const result = runWorkbenchCase(SYNTHETIC_CASES.baseline);
-    const runB = runWorkbenchCase(SYNTHETIC_CASES.clean);
-    const runC = runWorkbenchCase(SYNTHETIC_CASES.rough);
+    const cases = {
+        baseline: {
+            raw: { seed: 42, noiseStd: 0.03, source_id: "synthetic_workbench_v1" },
+            anomaly_threshold: 0.15,
+            substrate_id: "door_one_workbench_substrate_baseline",
+            run_label: "workbench_run_baseline",
+        },
+        clean: {
+            raw: { seed: 42, noiseStd: 0.01, source_id: "synthetic_workbench_clean_v1" },
+            anomaly_threshold: 0.20,
+            substrate_id: "door_one_workbench_substrate_clean",
+            run_label: "workbench_run_clean",
+        },
+        rough: {
+            raw: { seed: 123, noiseStd: 0.08, source_id: "synthetic_workbench_rough_v1" },
+            anomaly_threshold: 0.08,
+            substrate_id: "door_one_workbench_substrate_rough",
+            run_label: "workbench_run_rough",
+        },
+    };
+
+    const results = {};
+
+    for (const [caseName, cfg] of Object.entries(cases)) {
+        const orch = new DoorOneOrchestrator({
+            policies: {
+                ...POLICIES,
+                anomaly_policy: {
+                    ...POLICIES.anomaly_policy,
+                    threshold_value: cfg.anomaly_threshold,
+                },
+            },
+            substrate_id: cfg.substrate_id,
+        });
+
+        const result = orch.runBatch(
+            makeRawInput(cfg.raw),
+            {
+                query_spec: QUERY_SPEC,
+                query_policy: QUERY_POLICY,
+            }
+        );
+
+        if (!result?.ok) {
+            console.error(`DoorOneOrchestrator failed for ${caseName}:`);
+            console.error(JSON.stringify(result, null, 2));
+            process.exit(1);
+        }
+
+        result.run_label = cfg.run_label;
+        results[caseName] = result;
+    }
 
     const session = new CrossRunSession({
         session_id: "door-one-workbench-session",
         max_runs: 10,
     });
 
-    session.addRun(result);
-    session.addRun(runB);
-    session.addRun(runC);
+    session.addRun(results.baseline);
+    session.addRun(results.clean);
+    session.addRun(results.rough);
 
     const workbench = new DoorOneWorkbench();
-    const assembled = workbench.assemble(result, {
-        crossRunSession: session,
-    });
 
-    if (!assembled?.workbench_type) {
-        console.error("DoorOneWorkbench assembly failed:");
-        console.error(JSON.stringify(assembled, null, 2));
+    const assembledBaseline = workbench.assemble(results.baseline, { crossRunSession: session });
+    const assembledClean = workbench.assemble(results.clean, { crossRunSession: session });
+    const assembledRough = workbench.assemble(results.rough, { crossRunSession: session });
+
+    if (!assembledBaseline?.workbench_type || !assembledClean?.workbench_type || !assembledRough?.workbench_type) {
+        console.error("DoorOneWorkbench assembly failed.");
         process.exit(1);
     }
 
-    await writeJson("./out_workbench/orchestrator_result.json", result);
-    await writeJson("./out_workbench/workbench.json", assembled);
-    await writeFile("./out_workbench/summary.txt", conciseWorkbenchSummary(assembled), "utf8");
-    await writeJson("./out_workbench/cross_run_report.json", assembled.cross_run?.report);
-
-    console.log(conciseWorkbenchSummary(assembled));
-    console.log("Outputs written to ./out_workbench/");
-    console.log("  - orchestrator_result.json");
-    console.log("  - workbench.json");
-    console.log("  - summary.txt");
-    console.log("  - cross_run_report.json");
+    await writeWorkbenchBundle("baseline", assembledBaseline, results.baseline);
+    await writeWorkbenchBundle("clean", assembledClean, results.clean);
+    await writeWorkbenchBundle("rough", assembledRough, results.rough);
 }
 
 main().catch((err) => {

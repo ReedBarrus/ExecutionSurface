@@ -1,0 +1,54 @@
+{
+  "receipt_type": "lm:local_benchmark_receipt",
+  "receipt_version": "0.1.0",
+  "benchmark_id": "run_2026-04-15T08-00-23-960Z",
+  "model_id": "meta-llama-3.1-8b-instruct",
+  "endpoint": "http://10.2.0.2:1234",
+  "threading_mode": "fresh_request",
+  "input_ref": {
+    "lm_input_path": "./out_lm/lm_input.json",
+    "prompt_path": "./out_lm/lm_prompt.txt"
+  },
+  "run_ref": {
+    "run_dir": "benchmarks\\results\\run_2026-04-15T08-00-23-960Z\\attempt_003",
+    "run_index": 3
+  },
+  "request_config": {
+    "temperature": 0
+  },
+  "contract_obedience": {
+    "json_parse_ok": true,
+    "schema_ok": true,
+    "no_extra_text": true,
+    "exact_response_type": true,
+    "required_non_claims_present": true,
+    "correct_authority_posture": true,
+    "passed": true
+  },
+  "repeatability_surface": {
+    "raw_output_hash": "9e9ae8e4bd6d49c8696adb4c55d5fa5a68ea413e0aa38b96333223e47d5d9577",
+    "normalized_output_hash": "b34c38df26fe5508cb6ef6a61d5d9c78498f69cd066e5bd0e33779494d17f44c",
+    "observation_count": 1,
+    "question_count": 1
+  },
+  "usefulness": {
+    "observation_count": 1,
+    "question_count": 1,
+    "authority_drift_count": 0,
+    "empty_observation_count": 1,
+    "duplicate_question_count": 0
+  },
+  "response_ref": {
+    "raw_path": "benchmarks\\results\\run_2026-04-15T08-00-23-960Z\\attempt_003\\raw.txt",
+    "parsed_path": "benchmarks\\results\\run_2026-04-15T08-00-23-960Z\\attempt_003\\parsed.json",
+    "validation_path": "benchmarks\\results\\run_2026-04-15T08-00-23-960Z\\attempt_003\\validation.json",
+    "benchmark_path": "benchmarks\\results\\run_2026-04-15T08-00-23-960Z\\attempt_003\\benchmark.json"
+  },
+  "api_stats": {
+    "input_tokens": 801,
+    "total_output_tokens": 187,
+    "reasoning_output_tokens": 0,
+    "tokens_per_second": 48.745189345083624,
+    "time_to_first_token_seconds": 0.053
+  }
+}
