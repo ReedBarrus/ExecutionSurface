@@ -1,0 +1,12 @@
+{
+  "extraction": {
+    "ok": true,
+    "jsonText": "{\n  \"response_type\": \"door_one_workbench_lm_response\",\n  \"input_stream_id\": \"STR:synthetic_workbench_v1:ch0:voltage:arb:256\",\n  \"observations\": [\n    \"The workbench is operating in read-side-only mode.\",\n    \"There are five segments available for analysis.\",\n    \"Cross-run data is accessible, with a total of three runs recorded.\",\n    \"The runtime receipt indicates 23 state counts and 5 basin counts.\",\n    \"Anomalies detected: 12\",\n    \"One segment transition count observed at 4.\",\n    \"A query is present within the current scope.\"\n  ],\n  \"questions\": [\n    \"What specific anomalies were identified in the data?\",\n    \"How do the segment transitions correlate with the state changes?\"\n  ],\n  \"non_claims\": [\n    \"Not canon authority.\",\n    \"Not runtime authority.\",\n    \"Not truth closure.\",\n    \"Not same-object closure.\",\n    \"Not identity closure.\",\n    \"Not promotion authority.\"\n  ],\n  \"authority_posture\": {\n    \"read_side_only\": true,\n    \"canon_authority\": false,\n    \"runtime_authority\": false,\n    \"truth_closure\": false,\n    \"identity_closure\": false,\n    \"same_object_closure\": false,\n    \"promotion_authority\": false\n  }\n}",
+    "leadingText": "```json\n",
+    "trailingText": "\n```"
+  },
+  "validation": {
+    "ok": true,
+    "errors": []
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "receipt_type": "lm:local_benchmark_receipt",
+  "receipt_version": "0.1.0",
+  "benchmark_id": "run_2026-04-15T10-24-38-316Z",
+  "model_id": "microsoft/phi-4",
+  "endpoint": "http://10.2.0.2:1234",
+  "threading_mode": "fresh_request",
+  "input_ref": {
+    "lm_input_path": "out_lm\\baseline\\lm_input.json",
+    "prompt_path": "out_lm\\baseline\\lm_prompt.txt"
+  },
+  "run_ref": {
+    "run_dir": "benchmarks\\results\\baseline\\run_2026-04-15T10-24-38-316Z\\attempt_003",
+    "run_index": 3
+  },
+  "request_config": {
+    "temperature": 0
+  },
+  "contract_obedience": {
+    "json_parse_ok": true,
+    "schema_ok": true,
+    "no_extra_text": false,
+    "exact_response_type": true,
+    "required_non_claims_present": true,
+    "correct_authority_posture": true,
+    "passed": false
+  },
+  "repeatability_surface": {
+    "raw_output_hash": "97b5c9d6fc0e04eb95aa7326c7fb10d6ce030d9c659c9fb9960ede2e124b0d6e",
+    "normalized_output_hash": "773af94135b1c1342ec26df7f2aa2f8e0df8f7a19c03352ac86eec084f7cf083",
+    "observation_count": 7,
+    "question_count": 2
+  },
+  "usefulness": {
+    "observation_count": 7,
+    "question_count": 2,
+    "authority_drift_count": 0,
+    "empty_observation_count": 0,
+    "duplicate_question_count": 0
+  },
+  "response_ref": {
+    "raw_path": "benchmarks\\results\\baseline\\run_2026-04-15T10-24-38-316Z\\attempt_003\\raw.txt",
+    "parsed_path": "benchmarks\\results\\baseline\\run_2026-04-15T10-24-38-316Z\\attempt_003\\parsed.json",
+    "validation_path": "benchmarks\\results\\baseline\\run_2026-04-15T10-24-38-316Z\\attempt_003\\validation.json",
+    "benchmark_path": "benchmarks\\results\\baseline\\run_2026-04-15T10-24-38-316Z\\attempt_003\\benchmark.json"
+  },
+  "api_stats": {
+    "input_tokens": 743,
+    "total_output_tokens": 280,
+    "reasoning_output_tokens": 0,
+    "tokens_per_second": 8.297077327842091,
+    "time_to_first_token_seconds": 0.269
+  }
+}

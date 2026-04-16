@@ -5,7 +5,7 @@ import { stageWorkbenchLmInvocation } from "../runtime/lm/WorkbenchLmWrapper.js"
 import { runLocalLmBenchmark } from "../runtime/lm/LocalLmBenchmark.js";
 
 const ENDPOINT = process.env.LM_STUDIO_ENDPOINT ?? "http://10.2.0.2:1234";
-const MODEL = process.env.LM_STUDIO_MODEL ?? "meta-llama-3.1-8b-instruct";
+const MODEL = process.env.LM_STUDIO_MODEL ?? "microsoft/phi-4";
 const REPEAT_COUNT = Number.parseInt(process.env.LM_BENCH_REPEAT_COUNT ?? "3", 10);
 const TEMPERATURE = Number.parseFloat(process.env.LM_BENCH_TEMPERATURE ?? "0");
 const WORKBENCH_ROOT = process.env.WORKBENCH_ROOT ?? "./out_workbench";

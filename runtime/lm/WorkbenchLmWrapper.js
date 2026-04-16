@@ -87,10 +87,10 @@ export function buildWorkbenchLmOutputTemplate(inputStreamId = null) {
         response_type: "door_one_workbench_lm_response",
         input_stream_id: inputStreamId,
         observations: [
-            "Read-side observation only."
+            " "
         ],
         questions: [
-            "What bounded follow-up comparison would be most useful next?"
+            " "
         ],
         non_claims: [
             "Not canon authority.",

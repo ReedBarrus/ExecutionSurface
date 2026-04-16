@@ -1,59 +1,45 @@
-Return exactly one JSON object with these keys only:
+You are reading a bounded Door One workbench LM input view.
+Operate in read-side-only mode.
+Return JSON only.
+Use exactly these top-level keys: response_type, input_stream_id, observations, questions, non_claims, authority_posture.
+Do not add any other keys.
+Do not wrap the JSON in markdown fences.
+Do not use a code block.
+The first character of your response must be {.
+The last character of your response must be }.
+observations must be an array of strings.
+questions must be an array of strings.
+non_claims must be an array of strings.
+authority_posture must exactly match the required booleans shown below.
+Do not claim canon authority.
+Do not claim runtime authority.
+Do not claim truth closure.
+Do not claim same-object closure.
+Do not claim identity closure.
+Do not claim promotion authority.
+Do not write back into runtime or substrate state.
 
-- response_type
-- input_stream_id
-- observations
-- questions
-- non_claims
-- authority_posture
-
-Rules:
-- Output JSON only.
-- Do not use markdown fences.
-- Do not repeat the input.
-- Do not wrap the response in another object.
-- Do not include explanations before or after the JSON.
-- observations must be an array of short strings.
-- questions must be an array of short strings.
-- non_claims must be an array of short strings.
-- authority_posture must be an object.
-- authority_posture.read_side_only must equal true.
-- authority_posture.runtime_authority must equal false.
-- authority_posture.canon_authority must equal false.
-- authority_posture.truth_closure must equal false.
-- authority_posture.same_object_closure must equal false.
-- authority_posture.identity_closure must equal false.
-- authority_posture.promotion_authority must equal false.
-- Do not include authority_posture.read_mode.
-
-Use this exact output shape:
-
+Return JSON matching this template:
 {
   "response_type": "door_one_workbench_lm_response",
-  "input_stream_id": "STR:synthetic_workbench_v1:ch0:voltage:arb:256",
+  "input_stream_id": "STR:synthetic_workbench_rough_v1:ch0:voltage:arb:256",
   "observations": [
-    "state_count is 23",
-    "basin_count is 5",
-    "cross-run context is available"
+    " "
   ],
   "questions": [
-    "Is merge_failure_count stable across repeated workbench runs?",
-    "Does anomaly_count remain proportional under fixture perturbation?"
+    " "
   ],
   "non_claims": [
-    "not canon",
-    "not truth closure",
-    "not same-object closure",
-    "not identity closure",
-    "not promotion"
+    " "
   ],
   "authority_posture": {
-    "read_side_only": true,
-    "runtime_authority": false,
-    "canon_authority": false,
-    "truth_closure": false,
-    "same_object_closure": false,
-    "identity_closure": false,
-    "promotion_authority": false
+    read_side_only: boolean,
+    canon_authority: boolean,
+    runtime_authority: boolean,
+    truth_closure: boolean,
+    identity_closure: boolean,
+    same_object_closure: boolean,
+    promotion_authority: boolean,
   }
 }
+

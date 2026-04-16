@@ -1,0 +1,32 @@
+{
+  "response_type": "door_one_workbench_lm_response",
+  "input_stream_id": "STR:synthetic_workbench_clean_v1:ch0:voltage:arb:256",
+  "observations": [
+    "The workbench is in read-side-only mode with a synthetic input stream.",
+    "There are 28 state counts, 1 basin count, and 1 segment count.",
+    "The trajectory frames total 28 with no segment transitions.",
+    "Anomalies detected: 18 out of 19 H1 and 9 M1 counts.",
+    "Query is present without any skipped windows or merge failures."
+  ],
+  "questions": [
+    "What are the implications of having 18 anomalies in this dataset?",
+    "How does the presence of a query affect data analysis?"
+  ],
+  "non_claims": [
+    "Not canon authority.",
+    "Not runtime authority.",
+    "Not truth closure.",
+    "Not same-object closure.",
+    "Not identity closure.",
+    "Not promotion authority."
+  ],
+  "authority_posture": {
+    "read_side_only": true,
+    "canon_authority": false,
+    "runtime_authority": false,
+    "truth_closure": false,
+    "identity_closure": false,
+    "same_object_closure": false,
+    "promotion_authority": false
+  }
+}

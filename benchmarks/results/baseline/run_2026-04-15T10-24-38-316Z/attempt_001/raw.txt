@@ -1,11 +1,19 @@
+```json
 {
   "response_type": "door_one_workbench_lm_response",
   "input_stream_id": "STR:synthetic_workbench_v1:ch0:voltage:arb:256",
   "observations": [
-    " "
+    "The workbench is operating in read-side-only mode.",
+    "There are five segments available for analysis.",
+    "Cross-run data is accessible, with a total of three runs recorded.",
+    "The runtime receipt indicates 23 state counts and 5 basin counts.",
+    "Anomalies detected: 12",
+    "One segment transition count observed at 4.",
+    "A query is present within the current scope."
   ],
   "questions": [
-    " "
+    "What specific anomalies were identified in the data?",
+    "How do the segment transitions correlate with the anomaly occurrences?"
   ],
   "non_claims": [
     "Not canon authority.",
@@ -25,3 +33,4 @@
     "promotion_authority": false
   }
 }
+```
