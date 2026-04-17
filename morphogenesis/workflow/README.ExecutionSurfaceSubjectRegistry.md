@@ -49,11 +49,11 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** Memory Routing Law
+- **Active subject:** Read-Model Distinction
 - **Current state:** Seeded
-- **Why active now:** Reconstruction Law has now been released, and the next lawful question is how retain / archive / promote posture and reconstruction availability are routed explicitly without collapsing routing into commit-boundary crossing, reconstruction, or proof.
+- **Why active now:** Memory Routing Law has now been released, and the next lawful question is how retained object, reconstruction object, comparison receipt, query/read result, and later agent emission remain class-distinct without collapsing routing, comparison, or reconstruction into one mixed read-side surface.
 - **Recommended next role:** Constructor
-- **Likely next child subject after release:** Read-Model Distinction
+- **Likely next child subject after release:** Continuity Under Bounded Identity Posture
 
 ---
 
@@ -88,7 +88,7 @@ Allowed states:
 - note: Define lawful re-entry from retained state using explicit source and lens.
 
 ### 6. Memory Routing Law
-- state: Seeded
+- state: Released
 - note: Define retain / archive / promote posture, reconstruction availability, and reuse-condition handling.
 
 ### 7. Read-Model Distinction
@@ -156,12 +156,12 @@ These are active across all subjects:
 
 ## Immediate gate question
 
-For **Memory Routing Law**, the gate question is:
+For **Read-Model Distinction**, the gate question is:
 
-Can explicit memory-state routing be named clearly enough through retain / archive / promote posture, reconstruction availability, bounded reuse-condition carriage, and explicit non-claims, that Read-Model Distinction can be opened as a narrower child subject without collapsing routing into commit-boundary crossing, reconstruction, or proof?
+Can retained object, reconstruction object, comparison receipt, query/read result, and later agent emission be separated clearly enough, with explicit boundaries and explicit non-claims, that Continuity Under Bounded Identity Posture can be opened as a narrower child subject without collapsing read-side products into same-object closure, truth, or routing posture?
 
 ---
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Memory Routing Law active so later read-model distinction, continuity posture, and agent exchange can unfold from a stabilized object, boundary, comparison, and reconstruction foundation.
+This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Read-Model Distinction active so later continuity posture, bounded agent read/use, and object-addressable LM attachment can unfold from a stabilized object, boundary, comparison, reconstruction, and routing foundation.
