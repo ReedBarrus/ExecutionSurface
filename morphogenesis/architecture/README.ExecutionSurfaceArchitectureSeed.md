@@ -923,6 +923,196 @@ This is intentionally narrower than full routing-receipt shape law, schema law, 
 
 ---
 
+## Read-Model Distinction
+
+Read-Model Distinction answers one narrow question:
+
+**How do retained object, reconstruction object, comparison receipt, query/read result, and later agent emission remain class-distinct at the read side so that retrieval, review, and later use do not collapse them into one mixed surface?**
+
+This subject does not reopen Memory Routing Law.
+
+It assumes the lower memory-side classes already exist and asks what minimum distinction contract keeps read-side object products explicit rather than allowing read products to masquerade as memory objects, truth objects, or routing posture.
+
+### Core distinction rule
+
+Read-side products must remain class-distinct.
+
+A lawful read-side surface may expose multiple classes into workflow visibility, but it must not erase their boundaries.
+
+Each visible class must remain inspectable as its own kind of object with its own bounded role and non-claims.
+
+### Minimum lawful read-model distinctions
+
+The current floor must keep the following classes distinct:
+
+#### 1. Retained object
+
+A retained object is the persisted bounded continuity object inside memory space.
+
+At minimum, the read side must be able to answer:
+
+- that the object is a retained continuity object
+- that it carries persisted class, provenance, policy, authority posture, and reuse conditions
+- that it is not merely a read-side retrieval surface generated for present viewing
+
+A retained object is **not**:
+
+- a reconstruction object
+- a comparison receipt
+- a query/read result
+- a routing posture
+- a later agent emission object
+
+Retained object remains the persistence-bearing class, not the retrieval event that happens to expose it.
+
+#### 2. Reconstruction object
+
+A reconstruction object is the regenerated workflow-visible re-entry object arising from retained state under a declared source and declared lens.
+
+At minimum, the read side must be able to answer:
+
+- that the object is a reconstruction rather than retained continuity itself
+- what retained source reference and declared lens govern it
+- that it is present workflow-visible re-entry rather than raw original or persisted retained object
+
+A reconstruction object is **not**:
+
+- the retained object itself
+- the raw original
+- a comparison receipt
+- a query/read result
+- a routing posture
+- a later agent emission object
+
+Reconstruction object remains re-entry posture, not source recovery.
+
+#### 3. Comparison receipt
+
+A comparison receipt is the bounded relation or difference object emitted between declared operands under a declared basis.
+
+At minimum, the read side must be able to answer:
+
+- that the object is a comparison artifact rather than one of its operands
+- what operands and basis it depends on
+- that it records bounded relation posture rather than truth, source recovery, or same-object closure
+
+A comparison receipt is **not**:
+
+- a retained object
+- a reconstruction object
+- a query/read result
+- a routing posture
+- a later agent emission object
+
+Comparison receipt remains relation-bearing, not identity-bearing proof.
+
+#### 4. Query/read result
+
+A query/read result is the bounded retrieval or read-side result surface returned to workflow when some set of objects is exposed, listed, filtered, or surfaced for present reading.
+
+At minimum, the read side must be able to answer:
+
+- that the surface is a read-side retrieval result rather than a persisted memory object by itself
+- what bounded object or object-set it exposes or points toward
+- that retrieval/view posture remains distinct from the underlying retained object, reconstruction object, or comparison receipt it may reference
+
+A query/read result is **not**:
+
+- a retained object
+- a reconstruction object
+- a comparison receipt
+- a routing posture
+- a later agent emission object
+
+Query/read result remains retrieval posture, not persistence, relation, or proof.
+
+#### 5. Later agent emission object
+
+A later agent emission object is a deferred upper class that may eventually carry bounded output from an agent over the substrate.
+
+At this layer, the read side must be able to answer:
+
+- that this class is not current floor content
+- that any later agent emission must remain distinct from retained object, reconstruction object, comparison receipt, and query/read result
+- that agent output must not collapse backward into current read-side classes by convenience
+
+Later agent emission object is therefore deferred here.
+
+It is named only so that the current floor can forbid backward collapse into it or from it.
+
+### Current floor and deferred classes
+
+The current read-model floor contains:
+
+- retained object
+- reconstruction object
+- comparison receipt
+- query/read result
+
+The following class is named but deferred at this layer:
+
+- later agent emission object
+
+The current floor therefore stabilizes the distinction among present read-side memory products while keeping later agent output explicitly outside current class content.
+
+### Distinction rule
+
+Read-Model Distinction remains distinct from neighboring subjects.
+
+It does **not** decide:
+
+- whether an object may cross commit-boundary lawfully
+- whether routing posture should retain, archive, or promote
+- whether reconstruction occurs or how its source/lens are validated
+- whether comparison establishes truth or same-object closure
+- continuity law for reuse across time
+- human resolution posture
+- control intent / action posture
+
+It only decides how the major read-side object classes stay separate and what kinds of collapse are forbidden.
+
+### Non-claim rule
+
+Read-side distinction is **not**:
+
+- same-object closure
+- truth posture
+- routing posture
+- reconstruction/source-recovery proof
+- agent-emission design by itself
+
+The current floor also does **not** yet define:
+
+- full LM read packet contract
+- retained object addressability contract
+- reconstruction export surface contract
+- full agent emission object law
+
+Those remain later narrower subjects or later deferred upper subjects.
+
+A read-side result may expose, point toward, or summarize another class.
+
+It does **not** by itself become that class.
+
+### Early compression rule
+
+The first compressed shape of Read-Model Distinction is therefore:
+
+- retained object = persisted bounded continuity object
+- reconstruction object = regenerated workflow-visible re-entry object
+- comparison receipt = bounded relation/difference object between operands
+- query/read result = bounded retrieval/result surface distinct from the underlying objects it exposes
+- later agent emission object = deferred class, not current floor content
+- explicit non-claims against same-object closure, truth posture, routing posture, and reconstruction/source-recovery collapse
+
+This is the universal minimum read-model floor.
+
+Any stricter addressability handling, export handling, LM packet handling, or agent-emission handling remains later overlay or later subject content, not current floor content.
+
+This is intentionally narrower than full LM packet design, addressability contract, export surface design, schema law, validator law, or implementation mechanics.
+
+---
+
 ## First operation thesis
 
 ExecutionSurface should stabilize the following substrate operations before broader agent recursion claims:
