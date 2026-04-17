@@ -219,7 +219,7 @@
 - what changed:
   - The live subject surface now contains a dedicated `Commit-Boundary Law` section.
   - That section now states the core crossing rule and the six minimum lawful prerequisites for boundary crossing.
-  - The live subject surface now states explicitly what Commit-Boundary Law does not decide.
+  - That section now states explicitly what Commit-Boundary Law does not decide.
   - The minimum lawful crossing contract is now compact enough for later pressure without widening into implementation.
 - unresolved tensions:
   - The retained-object candidate language may still need pressure on whether class-specific prerequisites differ materially beyond the shared minimum crossing contract.
@@ -473,3 +473,35 @@
 - recommended next role: Creative
 - decision: Hold
 - reason: Reconstruction Law now has a compressed first identity-bearing shape, but contrastive pressure should test whether the minimum reconstruction contract is sufficient before gate review.
+
+### ES-CYCLE-0005-CREATIVE
+- cycle_id: ES-CYCLE-0005
+- active subject: Reconstruction Law
+- active role: Creative
+- state before: Compressed
+- state after: Tension-Held
+- live-surface mutation status: none on `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`; appended cycle-log entry only
+- proposals accepted:
+  - preserve the current reconstruction contract as the shared minimum floor for lawful re-entry acts
+  - keep declared retained source reference, declared reconstruction lens, bounded regenerated object posture, and provenance of the reconstruction act as the current reconstruction-floor requirements
+  - keep explicit non-claims against raw-original restoration, perfect recovery, truth restoration, source-recovery proof, routing posture, and comparison closure in place
+  - keep source-family handling, reconstructed-operand comparison participation, and full reconstruction-receipt shape outside current shared-floor content
+  - hold open one narrow asymmetry for Reflector: bounded regenerated-object re-entry now versus later source-family and reconstructed-operand participation handling
+- proposals rejected:
+  - widening into Memory Routing Law
+  - widening into comparison closure, commit-boundary law, or full read-model distinction
+  - importing deferred upper subjects
+  - treating reconstruction as raw-original restoration, truth restoration, or source-recovery proof
+  - opening full receipt-shape, schema, validator, or implementation mechanics
+  - directly mutating the live subject surface under Creative default posture
+- what changed:
+  - The cycle log now records that the compressed reconstruction contract survives first contrastive pressure as the current shared minimum floor.
+  - Creative pressure found one still-live asymmetry that should remain explicit: source-family differences and reconstructed-operand participation appear to be later handling overlays or relation work, not current reconstruction-floor content, and should not be flattened into source recovery or comparison closure.
+  - Creative pressure also found that the compressed regenerated-object shape is acceptable at this layer, but should not silently expand into full reconstruction-receipt shape law inside Reconstruction Law yet.
+- unresolved tensions:
+  - Reflector still needs to decide whether later source-family handling and reconstructed-operand comparison participation should be named explicitly as later overlays or relation work, or remain only as bounded unresolved non-claims for now.
+  - Memory Routing Law remains unopened and must later clarify routing posture without being smuggled into reconstruction.
+  - Full reconstruction-receipt shape law must remain deferred.
+- recommended next role: Reflector
+- decision: Hold
+- reason: the minimum reconstruction contract holds, but one narrow fork between bounded regenerated-object re-entry and later source-family / reconstructed-operand handling still earns explicit tension.
