@@ -695,3 +695,36 @@
 - recommended next role: Administrator
 - decision: Release
 - reason: Memory Routing Law is now explicit and compressive enough to open `Read-Model Distinction` without multiplying ambiguity.
+
+### ES-CYCLE-0007-CONSTRUCTOR
+- cycle_id: ES-CYCLE-0007
+- active subject: Read-Model Distinction
+- active role: Constructor
+- state before: Seeded
+- state after: Compressed
+- live-surface mutation status: updated `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`
+- proposals accepted:
+  - define the minimum lawful distinctions among retained object, reconstruction object, comparison receipt, query/read result, and later agent emission object
+  - keep retained object distinct from reconstruction object
+  - keep comparison receipt distinct from query/read result
+  - keep later agent emission explicitly named but deferred
+  - preserve explicit non-claims against same-object closure, truth posture, routing posture, and reconstruction/source-recovery collapse
+  - keep addressability, export, LM packet design, and full agent-emission law out of current floor content
+- proposals rejected:
+  - widening into full LM read packet contract, retained object addressability contract, or reconstruction export surface contract
+  - importing deferred upper subjects beyond naming later agent emission as later class
+  - reopening Memory Routing Law
+  - silently opening Continuity Under Bounded Identity Posture in the same pass
+  - treating query/read result as retained object, reconstruction object as raw original, or comparison receipt as truth / same-object declaration
+- what changed:
+  - The live subject surface now contains a dedicated `Read-Model Distinction` section.
+  - That section now states the core distinction rule and the minimum lawful read-side class distinctions.
+  - The live subject surface now states which classes are current floor content and which later class remains deferred at this layer.
+  - The minimum lawful read-model floor is now compact enough for later pressure without widening into LM packet, addressability, export, schema, or implementation design.
+- unresolved tensions:
+  - The current section may still need pressure on how later retained-object addressability should relate to query/read result without collapsing retrieval into persistence.
+  - Later reconstruction export handling and LM read packet handling remain unopened and must not be silently imported into current read-model floor content.
+  - Later agent emission law remains deferred and must not collapse backward into current read-side classes.
+- recommended next role: Creative
+- decision: Hold
+- reason: Read-Model Distinction now has a compressed first identity-bearing shape, but contrastive pressure should test whether the current class distinctions are sufficient before gate review.
