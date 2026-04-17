@@ -204,8 +204,17 @@ A memory routing object is **not**:
 - a comparison receipt
 - an evaluation object
 - a commit event by itself
+- the object that authorizes commit-boundary crossing by itself
 
-Routing decides memory posture. It does not erase the distinction between the object being routed and the decision taken about it.
+Routing decides memory posture and bounded reuse posture.
+
+Commit-boundary eligibility remains a narrower question for the next child subject.
+
+Routing therefore does not erase the distinction between:
+
+- the object being routed
+- the routing decision taken about it
+- the boundary law that determines whether the object may cross into retained continuity lawfully
 
 ### Early trunk distinction rule
 
@@ -217,6 +226,8 @@ These four classes are sufficient for the first trunk because they separate:
 - what routes persistence posture
 
 That separation is the minimum needed to prevent mixed-object sludge before commit law opens.
+
+The trunk therefore names memory routing as persistence-side posture, not as silent commit authorization.
 
 The following remain later object families and must not define the trunk yet:
 
