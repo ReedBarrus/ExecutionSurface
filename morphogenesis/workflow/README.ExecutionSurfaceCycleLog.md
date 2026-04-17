@@ -83,3 +83,31 @@
   - Full schemas, validator targets, and mechanized proof surfaces remain implementation-ladder work rather than subject-trunk work.
 - recommended next role: Auditor
 - decision: Hold
+
+### ES-CYCLE-0002-CREATIVE
+- cycle_id: ES-CYCLE-0002
+- active subject: Object-Class Grammar
+- active role: Creative
+- state before: Compressed
+- state after: Tension-Held
+- live-surface mutation status: none on `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`; appended cycle-log entry only
+- proposals accepted:
+  - preserve the four-class compressed trunk as the current minimum lawful object family
+  - keep query / read result object, agent emission object, human resolution object, and control intent / action object deferred
+  - hold open one narrow asymmetry for the next pass: memory routing object versus commit-boundary eligibility
+- proposals rejected:
+  - reopening the trunk into more than four classes
+  - collapsing memory routing object into retained object
+  - importing read-result, agent-emission, governance, or control-intent law into the active trunk
+  - proposing full schemas or repo-wide redesign
+  - directly mutating the live subject surface under Creative default posture
+- what changed:
+  - The cycle log now records a specific pressure result against the compressed four-class trunk.
+  - Creative pressure found that the retained / reconstruction / comparison cuts hold under stress.
+  - The still-live asymmetry is narrower: memory routing object currently names persistence posture, but class-specific write eligibility and boundary crossing remain outside it and appear likely to belong to the next child subject rather than to the trunk itself.
+- unresolved tensions:
+  - It must stay explicit that a memory routing object governs persistence posture after or around retained continuity without silently becoming the object that authorizes boundary crossing.
+  - Commit-Boundary Law still needs to answer whether write eligibility is class-specific while preserving the current fourfold trunk.
+  - The repo process surfaces referenced in earlier packets are not all visibly present in live repo reality yet, so later state-commit expectations should continue to follow live repo state first.
+- recommended next role: Reflector
+- decision: Hold
