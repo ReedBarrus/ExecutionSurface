@@ -736,6 +736,193 @@ This is intentionally narrower than full reconstruction-receipt shape law, schem
 
 ---
 
+## Memory Routing Law
+
+Memory Routing Law answers one narrow question:
+
+**What explicit memory-state posture must be declared for retained continuity and later reuse, and what does that routing decide, carry, and make available without collapsing into commit crossing, reconstruction, or proof?**
+
+This subject does not reopen Reconstruction Law.
+
+It assumes retained continuity, comparison, and reconstruction law already exist and asks what minimum contract makes memory-state routing explicit rather than hidden in side effects or implied by later use.
+
+### Core routing rule
+
+Memory routing is the explicit decision posture over retained continuity inside memory space.
+
+It does not itself perform commit-boundary crossing, reconstruction, comparison, or proof.
+
+A lawful memory routing act must remain inspectable as its own routing decision and must remain distinct from the bounded object it routes.
+
+### Minimum lawful routing prerequisites
+
+A bounded memory-routing act must declare all of the following:
+
+#### 1. Retain posture
+
+Routing must be able to declare whether the target remains active retained continuity.
+
+At minimum, the routing act must be able to answer:
+
+- whether the target remains retained and active inside memory space
+- what active memory posture is being preserved
+- what this retained posture makes available for later lawful use
+
+Memory routing law therefore requires explicit retain posture.
+
+It does **not** allow active retained continuity to be inferred silently from later reuse.
+
+Retain is not proof.
+
+#### 2. Archive posture
+
+Routing must be able to declare whether the target is moved into non-active retained state.
+
+At minimum, the routing act must be able to answer:
+
+- whether the target is archived rather than retained as active continuity
+- what non-active retained posture is being assigned
+- what remains available later despite archive status
+
+Memory routing law therefore requires explicit archive posture.
+
+It does **not** allow archive to collapse into deletion, disappearance, or nonexistence.
+
+Archive is not deletion.
+
+#### 3. Promote posture inside memory space
+
+Routing must be able to declare whether the target receives stronger trust posture inside memory space.
+
+At minimum, the routing act must be able to answer:
+
+- whether the target is promoted within memory space
+- what stronger bounded trust posture is being assigned
+- what remains limited despite that stronger memory-space posture
+
+Memory routing law therefore requires explicit promote posture within memory space.
+
+It does **not** allow promote to collapse into canon admission, truth, or unrestricted authority.
+
+Promote is not canon.
+
+#### 4. Reconstruction availability posture
+
+Routing must be able to declare whether and how later lawful reconstruction is available.
+
+At minimum, the routing act must be able to answer:
+
+- whether later re-entry from retained continuity is available
+- what bounded availability posture is being carried forward for later reconstruction acts
+- how reconstruction availability remains distinct from reconstruction itself
+
+Memory routing law therefore requires explicit reconstruction availability posture.
+
+It does **not** itself perform the reconstruction act.
+
+Routing is not reconstruction.
+
+#### 5. Bounded reuse-condition carriage
+
+Routing must be able to carry bounded reuse conditions for later lawful use.
+
+At minimum, the routing act must be able to answer:
+
+- what bounded reuse conditions travel with the routed target
+- what later uses remain allowed, limited, or conditioned
+- how those reuse conditions remain inspectable in later continuity
+
+Memory routing law therefore requires bounded reuse-condition carriage.
+
+It does **not** allow later reuse posture to appear without declared carriage.
+
+### What routing decides, carries, and makes available
+
+Memory routing decides explicit memory-state posture inside memory space.
+
+At this layer, the compressed identity-bearing shape remains:
+
+- retain posture
+- archive posture
+- promote posture inside memory space
+- reconstruction availability posture
+- bounded reuse-condition carriage
+
+This compressed routing posture is sufficient to keep memory-state decisions visible as their own lawful operation.
+
+It is not yet full routing-receipt shape law, schema law, validator law, or helper design.
+
+### Shared floor and later overlays
+
+The five prerequisites above are the universal minimum routing floor for Memory Routing Law.
+
+They answer what every bounded memory-routing act must declare before explicit routing posture can exist at all.
+
+If later object-class differences need stricter routing treatment beyond this shared floor, that treatment belongs to a later overlay or later narrower subject opened explicitly.
+
+If later read-model distinctions need stricter routing treatment, that treatment belongs to later overlay work or to Read-Model Distinction relation work opened explicitly.
+
+Those later treatments are not part of the current routing floor unless and until they are opened directly.
+
+Memory Routing Law therefore remains compressed at the shared floor first.
+
+It does not silently import read-model distinctions into the current floor, and it does not silently import class-specific deltas into routing posture.
+
+### Distinction rule
+
+Memory routing law remains distinct from neighboring subjects.
+
+It does **not** decide:
+
+- whether a bounded object may cross into retained continuity
+- whether reconstruction occurs or how it regenerates a present workflow object
+- whether comparison establishes truth or same-object closure
+- evaluation verdict or workflow resolution
+- query / read result posture
+- agent emission posture
+- human resolution posture
+- control intent / action posture
+
+It only decides explicit memory-state posture, what bounded reuse conditions are carried, and what reconstruction availability is made available later.
+
+### Non-claim rule
+
+Memory routing is **not**:
+
+- commit-boundary crossing
+- reconstruction
+- comparison result
+- evaluation verdict
+- canon
+- proof
+- deletion equivalence
+- same-object closure
+
+The current shared floor also does **not** yet define class-specific routing overlay law, read-model-distinction overlay law, or full routing-receipt shape law beyond naming them as later work if needed.
+
+A routing act may support later reconstruction, review, or reuse.
+
+It does **not** by itself prove anything, perform reconstruction, authorize commit crossing, delete archived material, or convert promoted memory-space posture into canon admission.
+
+### Early compression rule
+
+The first compressed shape of Memory Routing Law is therefore:
+
+- retain posture
+- archive posture
+- promote posture inside memory space
+- reconstruction availability posture
+- bounded reuse-condition carriage
+- explicit non-claims against commit-boundary crossing, reconstruction itself, truth / canon / proof, deletion equivalence, and same-object closure
+
+This is the universal minimum routing floor.
+
+Any stricter class-specific routing treatment or read-model-distinction handling remains later overlay or relation-work content, not current floor content.
+
+This is intentionally narrower than full routing-receipt shape law, schema law, validator law, helper seams, or implementation mechanics.
+
+---
+
 ## First operation thesis
 
 ExecutionSurface should stabilize the following substrate operations before broader agent recursion claims:

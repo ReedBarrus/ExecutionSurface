@@ -568,3 +568,35 @@
 - recommended next role: Administrator
 - decision: Release
 - reason: Reconstruction Law is now explicit and compressive enough to open `Memory Routing Law` without multiplying ambiguity.
+
+### ES-CYCLE-0006-CONSTRUCTOR
+- cycle_id: ES-CYCLE-0006
+- active subject: Memory Routing Law
+- active role: Constructor
+- state before: Seeded
+- state after: Compressed
+- live-surface mutation status: updated `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`
+- proposals accepted:
+  - define routing as explicit memory-state decision posture inside memory space
+  - require explicit retain, archive, and promote postures inside memory space
+  - require explicit reconstruction availability posture and bounded reuse-condition carriage
+  - preserve explicit non-claims against commit-boundary crossing, reconstruction itself, truth / canon / proof, deletion equivalence, and same-object closure
+  - keep routing distinct from commit crossing, reconstruction, comparison, and deferred upper subjects
+- proposals rejected:
+  - widening into full schemas, validators, helper design, receipt-shape law, or implementation mechanics
+  - importing query / read result, agent emission, human resolution, or control intent classes
+  - reopening Reconstruction Law
+  - silently opening Read-Model Distinction in the same pass
+  - treating archive as deletion, retain as proof, or promote as canon
+- what changed:
+  - The live subject surface now contains a dedicated `Memory Routing Law` section.
+  - That section now states the core routing rule and the minimum lawful routing prerequisites.
+  - The live subject surface now states what routing decides, carries, and makes available at this layer and what routing explicitly does not decide.
+  - The minimum lawful routing contract is now compact enough for later pressure without widening into implementation.
+- unresolved tensions:
+  - The current section may still need pressure on how class-specific routing differences should later be handled without widening the current floor.
+  - Later relation work between routing and Read-Model Distinction remains unopened and must not be imported early.
+  - Routing result shape is now named in compressed form, but full routing-receipt shape law remains deferred.
+- recommended next role: Creative
+- decision: Hold
+- reason: Memory Routing Law now has a compressed first identity-bearing shape, but contrastive pressure should test whether the minimum routing contract is sufficient before gate review.
