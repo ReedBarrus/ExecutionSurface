@@ -111,130 +111,34 @@ ExecutionSurface should not begin by centering agent emissions.
 
 It should begin by stabilizing the memory-side objects that later agent loops must live inside.
 
-The minimum early object family is:
+The minimum early object family is provisionally:
 
-### 1. Retained object
+1. **Retained object**
+   - persistent bounded object inside memory space
+   - carries class, provenance refs, policy anchors, authority posture, and reuse conditions
 
-A retained object is the bounded persistence-bearing object inside memory space.
+2. **Reconstruction object**
+   - declared re-entry object regenerated from retained state
+   - must declare source and lens
+   - must remain distinct from the retained source object
 
-It is the class that carries forward continuity after lawful write or retain.
+3. **Comparison receipt**
+   - first-class difference object between bounded operands
+   - may compare retained↔retained, retained↔reconstruction, run↔run, session↔session
+   - must preserve non-claim posture
 
-Minimum boundary:
+4. **Memory routing object**
+   - explicit memory-state decision surface
+   - answers retain / archive / promote posture, reconstruction availability, and bounded reuse conditions
 
-- carries class identity
-- carries provenance references
-- carries policy anchors
-- carries declared authority posture
-- carries bounded reuse conditions
-
-A retained object is **not**:
-
-- the raw admitted source
-- a reconstruction event
-- a comparison result
-- a query / read result
-- an evaluation verdict
-- a control or action object
-
-Retained continuity does not by itself imply truth, canon, or same-object closure across every later use.
-
-### 2. Reconstruction object
-
-A reconstruction object is the declared workflow-visible re-entry object regenerated from retained state.
-
-It exists so prior retained material can be brought back into active use under explicit conditions.
-
-Minimum boundary:
-
-- declares its retained source reference
-- declares its reconstruction lens
-- declares that it is a regenerated object for present workflow use
-- remains inspectably distinct from the retained source object
-
-A reconstruction object is **not**:
-
-- the retained object itself
-- the raw original source
-- proof that recovery is perfect or lens-free
-- a comparison receipt
-- a memory-routing decision
-
-Reconstruction is a lawful remembering-like operation, not truth restoration.
-
-### 3. Comparison receipt
-
-A comparison receipt is the first-class bounded difference object emitted between declared operands under a declared comparison basis.
-
-It exists to preserve comparison as an explicit primary operation instead of hiding it inside interpretation.
-
-Minimum boundary:
-
-- names operand references
-- names comparison basis or lens
-- records bounded similarity / difference posture
-- preserves provenance of the comparison act itself
-
-A comparison receipt is **not**:
-
-- a same-object declaration
-- a truth verdict
-- an evaluation object
-- a routing object
-- a substitute for either operand
-
-Comparison may support recognition and review later, but it must remain non-claiming at the substrate trunk.
-
-### 4. Memory routing object
-
-A memory routing object is the explicit memory-state decision object for a bounded target object or bounded target set.
-
-It exists to make persistence posture visible rather than burying it in side effects.
-
-Minimum boundary:
-
-- answers retain / archive / promote posture
-- states reconstruction availability posture
-- carries bounded reuse-condition posture
-- keeps routing distinct from the retained object it governs
-
-A memory routing object is **not**:
-
-- the retained object itself
-- a reconstruction object
-- a comparison receipt
-- an evaluation object
-- a commit event by itself
-- the object that authorizes commit-boundary crossing by itself
-
-Routing decides memory posture and bounded reuse posture.
-
-Commit-boundary eligibility remains a narrower question for the next child subject.
-
-Routing therefore does not erase the distinction between:
-
-- the object being routed
-- the routing decision taken about it
-- the boundary law that determines whether the object may cross into retained continuity lawfully
-
-### Early trunk distinction rule
-
-These four classes are sufficient for the first trunk because they separate:
-
-- what persists
-- what re-enters
-- what compares
-- what routes persistence posture
-
-That separation is the minimum needed to prevent mixed-object sludge before commit law opens.
-
-The trunk therefore names memory routing as persistence-side posture, not as silent commit authorization.
-
-The following remain later object families and must not define the trunk yet:
+Later object families may include:
 
 - query / read result object
 - agent emission object
 - human resolution object
 - control intent / action object
+
+These later objects should not define the substrate trunk prematurely.
 
 ---
 
@@ -295,8 +199,6 @@ Always unfold into one named target.
 The recommended first active morphogenesis subject under this seed is:
 
 **Object-Class Grammar**
-
-Object-Class Grammar should be considered ready for narrower gate review once the minimum early object family is explicit enough that later write eligibility can be asked per class without collapsing retained object, reconstruction object, comparison receipt, and memory routing object into one mixed surface.
 
 Recommended likely next child subject after release:
 
