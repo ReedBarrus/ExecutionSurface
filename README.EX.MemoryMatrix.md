@@ -1,7 +1,7 @@
 # Dynamical Memory Engine — Memory Matrix
 
 Live Repo State:
-https://github.com/ReedBarrus/DynamicalMemoryEngine_V2
+https://github.com/ReedBarrus/ExecutionSurface
 
 ## Status
 
@@ -37,6 +37,8 @@ If memory and decision conflict on movement procedure, decision wins.
 
 If memory and evaluation conflict on immediate judgment or workflow resolution, evaluation wins.
 
+For ExecutionSurface, memory additionally governs persistence posture for retained read-side artifacts, retained benchmark artifacts, and future bounded reconstruction surfaces without making those artifacts runtime authority by default.
+
 Memory trust-tier uplift does not override higher-layer canon gating.
 
 ---
@@ -51,6 +53,7 @@ This document exists only to answer:
 - what becomes inactive memory
 - how memory is reconstructed into workflow
 - how memory trust tier may rise without silently becoming canon
+- how retained read-side artifacts may be reconstructed into workflow without silent authority uplift
 
 Nothing else belongs here.
 

@@ -1,7 +1,7 @@
 # Dynamical Memory Engine — Evaluation Matrix
 
 Live Repo State:
-https://github.com/ReedBarrus/DynamicalMemoryEngine_V2
+https://github.com/ReedBarrus/ExecutionSurface
 
 ## Status
 
@@ -37,6 +37,8 @@ If evaluation and formation conflict on structure or placement, formation wins.
 
 If evaluation and memory conflict on retention, archive, reconstruction, or trust-tier persistence, memory wins.
 
+For ExecutionSurface, evaluation also governs immediate benchmark, wrapper, and audit outcome judgment, but does not by itself settle persistence or reconstruction posture.
+
 ---
 
 ## 1. Evaluation function
@@ -48,6 +50,7 @@ This document exists only to answer:
 - how evaluated state is folded back into active continuity
 - how immediate workflow outcomes are routed
 - how evaluation closes without silently becoming memory
+- how immediate benchmark and wrapper outcomes are judged without silently becoming memory
 
 Nothing else belongs here.
 

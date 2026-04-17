@@ -1,7 +1,7 @@
 # Dynamical Memory Engine — Constraint Matrix
 
 Live Repo State:
-https://github.com/ReedBarrus/DynamicalMemoryEngine_V2
+https://github.com/ReedBarrus/ExecutionSurface
 
 ## Status
 
@@ -41,13 +41,17 @@ This document remains the highest authority for:
 
 Authority resolves in this order:
 
-1. `README.ConstraintMatrix.md`
-2. `README.FormationMatrix.md`
-3. `README.DecisionMatrix.md`
-4. `README.EvaluationMatrix.md`
-5. `README.MemoryMatrix.md`
+1. `README.EX.ConstraintMatrix.md`
+2. `README.EX.FormationMatrix.md`
+3. `README.EX.DecisionMatrix.md`
+4. `README.EX.EvaluationMatrix.md`
+5. `README.EX.MemoryMatrix.md`
 6. seam-local contracts and notes
 7. implementation files
+
+If two lower surfaces conflict, the higher surface wins.
+
+If a lower surface needs an exception, the exception must be explicit.
 
 If two lower surfaces conflict, the higher surface wins.
 
@@ -67,23 +71,25 @@ No higher layer may define a lower layer before that higher layer is explicitly 
 
 ## 3. Active scope
 
-Current active scope is Door One only.
+Current active scope is the ExecutionSurface development front only.
 
-Door One includes only:
+The active ExecutionSurface development front includes only:
 
-- measurement
-- structure
-- runtime memory
-- recognition
+- deterministic runtime / commit work
+- bounded read-side exposure
+- runtime memory and recognition support
+- JSON-facing receipt design
+- bounded language-kernel attachment
+- benchmark, validation, and governed workflow support built on explicit receipts
 
-Door One does not include active:
+The active ExecutionSurface development front does not include active:
 
 - canon as trusted truth
-- prediction
-- agency
-- ecology
-- symbolic
-- meta
+- unrestricted prediction
+- unrestricted agency
+- unconstrained ecology
+- symbolic closure
+- meta-layer authority
 
 These may be discussed, but they may not shape active implementation unless explicitly admitted.
 
