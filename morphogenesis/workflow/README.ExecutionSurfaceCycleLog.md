@@ -411,3 +411,32 @@
   - Auditor still needs to test whether the current compression is release-sufficient without multiplying ambiguity.
 - recommended next role: Auditor
 - decision: Release-to-Gate
+
+### ES-CYCLE-0004-AUDITOR
+- cycle_id: ES-CYCLE-0004
+- active subject: Comparison Law
+- active role: Auditor
+- state before: Gate-Pending
+- state after: Released
+- live-surface mutation status: no live-subject mutation; updated `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.md`
+- proposals accepted:
+  - treat the current comparison contract as gate-sufficient for release into the next narrower child subject
+  - keep `Reconstruction Law` as the exact next active subject
+  - keep repeated-reference handling and reconstructed-operand participation deferred as later overlays or dependency work rather than hidden current-floor content
+  - keep compressed comparison result shape bounded at this layer and out of full receipt-shape, schema, validator, and helper law
+  - keep explicit non-claims against truth, same-object closure, and source recovery in place
+- proposals rejected:
+  - reopening Comparison Law for wider redesign
+  - importing Reconstruction Law into Comparison Law itself
+  - widening into full comparison-receipt shape, schema, validator, helper, implementation, routing, or commit-boundary design
+  - treating comparison as proof of truth, same-object identity, or source recovery
+- what changed:
+  - Auditor verified that the universal comparison floor is explicit, bounded, and distinct from neighboring subjects.
+  - Auditor verified that non-claims are explicit and that repeated-reference plus reconstructed-operand handling are openly bounded as later overlay or dependency work rather than hidden ambiguity.
+  - The gate decision is now declared as Release to deeper layer: `Reconstruction Law`.
+- unresolved tensions:
+  - Specific repeated-reference overlay work, if later needed, remains unopened and should not be backfilled into the shared comparison floor.
+  - `Reconstruction Law` still needs its own bounded compression to govern lawful source/lens re-entry without collapsing comparison into source recovery.
+- recommended next role: Administrator
+- decision: Release
+- reason: Comparison Law is now explicit and compressive enough to open `Reconstruction Law` without multiplying ambiguity.
