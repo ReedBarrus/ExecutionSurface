@@ -501,9 +501,25 @@ At this layer, the compressed identity-bearing shape remains:
 - bounded similarity / difference posture
 - provenance of the comparison act
 
-This is sufficient to keep comparison visible as its own lawful operation.
+This compressed comparison result is sufficient to keep comparison visible as its own lawful operation.
 
-This layer does **not** yet require full receipt schema, validator law, or helper design.
+It is not yet full comparison-receipt shape law, schema law, validator law, or helper design.
+
+### Shared floor and later overlays
+
+The four prerequisites above are the universal minimum comparison floor for Comparison Law.
+
+They answer what every bounded comparison act must declare before lawful comparison can occur at all.
+
+If repeated-reference handling later needs stricter treatment beyond this shared floor, that treatment belongs to a later overlay or later narrower subject opened explicitly.
+
+If reconstructed-operand participation later needs stricter treatment, that treatment belongs to a later overlay or to Reconstruction Law dependency work opened explicitly.
+
+Those later treatments are not part of the current comparison floor unless and until they are opened directly.
+
+Comparison Law therefore remains compressed at the shared floor first.
+
+It does not silently import repeated-reference handling into identity closure, and it does not silently import reconstructed-operand handling into source recovery.
 
 ### Distinction rule
 
@@ -534,6 +550,8 @@ Comparison is **not**:
 - memory routing
 - evaluation verdict by itself
 
+The current shared floor also does **not** yet define repeated-reference overlay law, reconstructed-operand overlay law, or full comparison-receipt shape law beyond naming them as later work if needed.
+
 A comparison act may support later recognition, review, or routing.
 
 It does **not** by itself prove that two operands are the same object, that one operand recovered the source of another, or that a stronger truth claim is warranted.
@@ -548,9 +566,11 @@ The first compressed shape of Comparison Law is therefore:
 - provenance of the comparison act
 - explicit non-claims against truth, same-object closure, and source recovery
 
-This is the minimum lawful comparison contract.
+This is the universal minimum comparison floor.
 
-It is intentionally narrower than schema law, validator law, helper seams, or implementation mechanics.
+Any stricter repeated-reference handling or reconstructed-operand handling remains later overlay content, not current floor content.
+
+This is intentionally narrower than full comparison-receipt shape law, schema law, validator law, helper seams, or implementation mechanics.
 
 ---
 
