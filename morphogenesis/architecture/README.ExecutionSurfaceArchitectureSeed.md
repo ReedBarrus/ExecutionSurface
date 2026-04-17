@@ -574,6 +574,168 @@ This is intentionally narrower than full comparison-receipt shape law, schema la
 
 ---
 
+## Reconstruction Law
+
+Reconstruction Law answers one narrow question:
+
+**What must be declared for lawful re-entry from retained state into present workflow use, and what does that regenerated object posture yield without collapsing into raw original, perfect recovery, routing posture, or comparison closure?**
+
+This subject does not reopen Comparison Law.
+
+It assumes retained state already exists and asks what minimum contract makes reconstruction a lawful re-entry act rather than a hidden claim of source recovery or raw restoration.
+
+### Core reconstruction rule
+
+Reconstruction is declared re-entry from retained state under a declared lens.
+
+It does not occur lawfully by convenience, intuition, or mere availability of retained material alone.
+
+A lawful reconstruction act must remain inspectable as its own event and must remain distinct from the retained source it re-enters from.
+
+### Minimum lawful reconstruction prerequisites
+
+A bounded reconstruction act must declare all of the following:
+
+#### 1. Declared retained source reference
+
+Reconstruction requires an explicit retained source reference.
+
+At minimum, the reconstruction act must be able to answer:
+
+- what retained object or retained state is being re-entered from
+- which bounded retained reference is serving as the source for this act
+- what present regenerated object posture is claimed to arise from that source
+
+Reconstruction law therefore requires a declared retained source reference.
+
+It does **not** allow source origin to remain hidden or to be inferred only after the fact.
+
+#### 2. Declared reconstruction lens
+
+Reconstruction requires an explicit reconstruction lens.
+
+At minimum, the reconstruction act must be able to answer:
+
+- by what lens or declared frame the retained source is being regenerated into present workflow use
+- what aspect or bounded slice of the retained source is in scope
+- what kind of reconstruction act is being performed at this layer
+
+Reconstruction law therefore requires a declared reconstruction lens.
+
+It does **not** allow reconstructed meaning or scope to be inferred after the act.
+
+#### 3. Bounded regenerated object posture
+
+Reconstruction must yield a bounded regenerated object posture for present workflow use.
+
+At minimum, the act must be able to answer:
+
+- what regenerated object is now in workflow view
+- how that regenerated object is bounded for present use
+- how the regenerated object remains related to, but distinct from, the retained source reference
+
+Reconstruction law therefore requires bounded regenerated object posture.
+
+It does **not** allow the regenerated object to silently masquerade as the retained source or as raw original.
+
+#### 4. Provenance of the reconstruction act
+
+Reconstruction must preserve the provenance of the act itself.
+
+At minimum, the act must be able to answer:
+
+- when or where the reconstruction act arose in workflow or runtime continuity
+- what declared source and declared lens produced this regenerated object posture
+- what reconstruction event is being referred to later
+
+Reconstruction law therefore requires provenance of the reconstruction act.
+
+It does **not** allow reconstruction to disappear into a naked regenerated object without act history.
+
+### What reconstruction yields
+
+Reconstruction yields a first-class bounded regenerated object for present workflow use.
+
+At this layer, the compressed identity-bearing shape remains:
+
+- declared retained source reference
+- declared reconstruction lens
+- bounded regenerated object posture
+- provenance of the reconstruction act
+
+This compressed regenerated object posture is sufficient to keep reconstruction visible as its own lawful re-entry operation.
+
+It is not yet full reconstruction-receipt shape law, schema law, validator law, or helper design.
+
+### Shared floor and later overlays
+
+The four prerequisites above are the universal minimum reconstruction floor for Reconstruction Law.
+
+They answer what every bounded reconstruction act must declare before lawful re-entry can occur at all.
+
+If later source-family differences need stricter treatment beyond this shared floor, that treatment belongs to a later overlay or later narrower subject opened explicitly.
+
+If later comparison participation of reconstructed operands needs stricter treatment, that treatment belongs to later overlay work or to explicit relation work between Reconstruction Law and Comparison Law.
+
+Those later treatments are not part of the current reconstruction floor unless and until they are opened directly.
+
+Reconstruction Law therefore remains compressed at the shared floor first.
+
+It does not silently import source-family deltas into the current floor, and it does not silently import comparison closure into reconstruction.
+
+### Distinction rule
+
+Reconstruction law remains distinct from neighboring subjects.
+
+It does **not** decide:
+
+- whether a bounded object may cross into retained continuity
+- whether comparison establishes truth or same-object closure
+- retain / archive / promote routing posture
+- evaluation verdict or workflow resolution
+- query / read result posture
+- agent emission posture
+- human resolution posture
+- control intent / action posture
+
+It only decides what a lawful reconstruction act requires and what bounded regenerated posture it yields.
+
+### Non-claim rule
+
+Reconstruction is **not**:
+
+- the raw original
+- proof of perfect recovery
+- truth restoration
+- source-recovery proof
+- comparison closure
+- memory routing
+- evaluation verdict by itself
+
+The current shared floor also does **not** yet define source-family overlay law, reconstructed-operand comparison overlay law, or full reconstruction-receipt shape law beyond naming them as later work if needed.
+
+A reconstruction act may support later comparison, review, or routing.
+
+It does **not** by itself prove that the regenerated object is the raw original, that recovery is perfect, that source truth has been restored, or that routing posture has already been decided.
+
+### Early compression rule
+
+The first compressed shape of Reconstruction Law is therefore:
+
+- declared retained source reference
+- declared reconstruction lens
+- bounded regenerated object posture
+- provenance of the reconstruction act
+- explicit non-claims against raw-original restoration, perfect recovery, truth restoration, source-recovery proof, routing posture, and comparison closure
+
+This is the universal minimum reconstruction floor.
+
+Any stricter source-family handling or reconstructed-operand comparison handling remains later overlay content, not current floor content.
+
+This is intentionally narrower than full reconstruction-receipt shape law, schema law, validator law, helper seams, or implementation mechanics.
+
+---
+
 ## First operation thesis
 
 ExecutionSurface should stabilize the following substrate operations before broader agent recursion claims:
