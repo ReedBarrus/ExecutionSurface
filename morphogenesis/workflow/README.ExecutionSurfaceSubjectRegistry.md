@@ -49,11 +49,11 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** Commit-Boundary Law
+- **Active subject:** Comparison Law
 - **Current state:** Seeded
-- **Why active now:** Object-Class Grammar has now been released, and the next lawful question is what class-specific prerequisites govern crossing from runtime or workflow into retained continuity without collapsing commit authorization into object-class trunk law.
+- **Why active now:** Commit-Boundary Law has now been released, and the next lawful question is how comparison becomes a first-class bounded operation without collapsing into truth, same-object closure, reconstruction, or routing law.
 - **Recommended next role:** Constructor
-- **Likely next child subject after release:** Comparison Law
+- **Likely next child subject after release:** Reconstruction Law
 
 ---
 
@@ -68,7 +68,7 @@ Allowed states:
 - note: Define the minimum lawful object families required for ExecutionSurface to function as a memory medium.
 
 ### 3. Commit-Boundary Law
-- state: Seeded
+- state: Released
 - note: Define what makes an object eligible to cross from runtime or workflow into retained continuity.
 
 ### 4. Comparison Law
@@ -136,12 +136,12 @@ These are active across all subjects:
 
 ## Immediate gate question
 
-For **Object-Class Grammar**, the gate question is:
+For **Comparison Law**, the gate question is:
 
-Can the minimum lawful object families of ExecutionSurface be named clearly enough, with explicit boundaries and non-claims, that Commit-Boundary Law can be opened as a narrower child subject without multiplying ambiguity?
+Can comparison be named clearly enough as a first-class bounded operation, with explicit operands, basis, and non-claims, that Reconstruction Law can be opened as a narrower child subject without collapsing comparison into truth, same-object closure, or source recovery?
 
 ---
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, with Object-Class Grammar active first so later commit law, comparison, reconstruction, and agent exchange can unfold from a stabilized memory-medium trunk.
+This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Comparison Law active so later reconstruction, memory routing, and agent exchange can unfold from a stabilized object and boundary foundation.
