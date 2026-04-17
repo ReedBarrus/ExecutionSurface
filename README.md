@@ -177,6 +177,7 @@ Supporting orientation surfaces include:
 - `schemas/`: JSON schema layer for compact runtime receipts, LM wrapper contracts, benchmark receipts, and process-support surfaces
 - `morphogenesis/architecture/`: architecture seed and implementation-ladder trunk surfaces
 - `morphogenesis/workflow/`: governed recursion and process-support surfaces
+- `morphogenesis/workflow/README.ExecutionSurfacePreDevelopmentTighteningChecklist.md`: ordered burn-down list for repo tightening before wider substrate development resumes
 - `morphogenesis/subject_surfaces/`: live subject mutation surfaces
 
 These surfaces support the repo’s use-oriented development posture, but they do not outrank executable runtime reality.
