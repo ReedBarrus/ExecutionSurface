@@ -412,6 +412,148 @@ This is intentionally narrower than schemas, validators, helper seams, or proof 
 
 ---
 
+## Comparison Law
+
+Comparison Law answers one narrow question:
+
+**What must be declared for a bounded comparison act to occur lawfully, and what does that act emit without inflating itself into truth, same-object closure, or source recovery?**
+
+This subject does not reopen Commit-Boundary Law.
+
+It assumes bounded objects or bounded reconstructions may already be available for comparison and asks what minimum contract makes comparison first-class rather than hidden inside interpretation.
+
+### Core comparison rule
+
+Comparison is a bounded act between declared operands under a declared basis.
+
+It does not occur lawfully by intuition, convenience, or downstream narrative alone.
+
+A lawful comparison act must remain inspectable as its own event.
+
+### Minimum lawful comparison prerequisites
+
+A bounded comparison act must declare all of the following:
+
+#### 1. Declared operands
+
+Comparison requires explicit operands.
+
+At minimum, the comparison act must be able to answer:
+
+- what is being compared
+- which bounded object or bounded objects are the operands
+- whether the operands are distinct references or repeated reference to the same bounded object under a declared lens
+
+Comparison law therefore requires declared operands.
+
+It does **not** allow hidden operands or silent substitution.
+
+#### 2. Declared comparison basis or lens
+
+Comparison requires an explicit basis or lens.
+
+At minimum, the comparison act must be able to answer:
+
+- by what basis the operands are being compared
+- what aspect, slice, or declared frame of the operands is in scope
+- what kind of comparison act is being performed at this layer
+
+Comparison law therefore requires a declared basis or lens.
+
+It does **not** allow the comparison meaning to be inferred after the fact.
+
+#### 3. Bounded difference / similarity posture
+
+Comparison must emit a bounded posture of similarity, difference, or both.
+
+At minimum, the act must be able to answer:
+
+- what bounded difference posture was observed
+- what bounded similarity posture was observed
+- how the act characterizes the relation without inflating into stronger claims
+
+Comparison law therefore requires bounded difference / similarity posture.
+
+It does **not** allow the act to collapse directly into truth or identity closure.
+
+#### 4. Provenance of the comparison act
+
+Comparison must preserve the provenance of the act itself.
+
+At minimum, the act must be able to answer:
+
+- when or where the comparison act arose in workflow or runtime continuity
+- what declared operands and basis produced this comparison posture
+- what comparison event is being referred to later
+
+Comparison law therefore requires provenance of the comparison act.
+
+It does **not** allow comparison to disappear into a naked conclusion.
+
+### What comparison emits
+
+Comparison emits a first-class bounded comparison result.
+
+At this layer, the compressed identity-bearing shape remains:
+
+- declared operands
+- declared comparison basis or lens
+- bounded similarity / difference posture
+- provenance of the comparison act
+
+This is sufficient to keep comparison visible as its own lawful operation.
+
+This layer does **not** yet require full receipt schema, validator law, or helper design.
+
+### Distinction rule
+
+Comparison law remains distinct from neighboring subjects.
+
+It does **not** decide:
+
+- whether an operand may cross into retained continuity
+- whether a reconstruction is lawful source re-entry
+- retain / archive / promote routing posture
+- evaluation verdict or workflow resolution
+- query / read result posture
+- agent emission posture
+- human resolution posture
+- control intent / action posture
+
+It only decides what a lawful comparison act requires and what bounded posture it emits.
+
+### Non-claim rule
+
+Comparison is **not**:
+
+- truth
+- canon
+- same-object declaration
+- source recovery
+- reconstruction
+- memory routing
+- evaluation verdict by itself
+
+A comparison act may support later recognition, review, or routing.
+
+It does **not** by itself prove that two operands are the same object, that one operand recovered the source of another, or that a stronger truth claim is warranted.
+
+### Early compression rule
+
+The first compressed shape of Comparison Law is therefore:
+
+- declared operands
+- declared comparison basis or lens
+- bounded difference / similarity posture
+- provenance of the comparison act
+- explicit non-claims against truth, same-object closure, and source recovery
+
+This is the minimum lawful comparison contract.
+
+It is intentionally narrower than schema law, validator law, helper seams, or implementation mechanics.
+
+---
+
 ## First operation thesis
 
 ExecutionSurface should stabilize the following substrate operations before broader agent recursion claims:
