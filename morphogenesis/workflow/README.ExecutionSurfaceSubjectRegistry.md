@@ -49,11 +49,11 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** Reconstruction Law
+- **Active subject:** Memory Routing Law
 - **Current state:** Seeded
-- **Why active now:** Comparison Law has now been released, and the next lawful question is how retained state may re-enter workflow through declared source and declared lens without collapsing reconstruction into raw original, source recovery proof, or comparison closure.
+- **Why active now:** Reconstruction Law has now been released, and the next lawful question is how retain / archive / promote posture and reconstruction availability are routed explicitly without collapsing routing into commit-boundary crossing, reconstruction, or proof.
 - **Recommended next role:** Constructor
-- **Likely next child subject after release:** Memory Routing Law
+- **Likely next child subject after release:** Read-Model Distinction
 
 ---
 
@@ -76,7 +76,7 @@ Allowed states:
 - note: Make comparison first-class and distinct from truth, canon, or same-object closure.
 
 ### 5. Reconstruction Law
-- state: Seeded
+- state: Released
 - note: Define lawful re-entry from retained state using explicit source and lens.
 
 ### 6. Memory Routing Law
@@ -136,12 +136,12 @@ These are active across all subjects:
 
 ## Immediate gate question
 
-For **Reconstruction Law**, the gate question is:
+For **Memory Routing Law**, the gate question is:
 
-Can lawful re-entry from retained state be named clearly enough through declared source, declared lens, bounded regenerated object posture, and explicit non-claims, that Memory Routing Law can be opened as a narrower child subject without collapsing reconstruction into raw original, proof of perfect recovery, or routing posture?
+Can explicit memory-state routing be named clearly enough through retain / archive / promote posture, reconstruction availability, bounded reuse-condition carriage, and explicit non-claims, that Read-Model Distinction can be opened as a narrower child subject without collapsing routing into commit-boundary crossing, reconstruction, or proof?
 
 ---
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Reconstruction Law active so later memory routing, read-model distinction, and agent exchange can unfold from a stabilized object, boundary, and comparison foundation.
+This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Memory Routing Law active so later read-model distinction, continuity posture, and agent exchange can unfold from a stabilized object, boundary, comparison, and reconstruction foundation.
