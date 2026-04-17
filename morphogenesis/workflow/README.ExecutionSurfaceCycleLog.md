@@ -166,3 +166,32 @@
 - recommended next role: Administrator
 - decision: Release
 - reason: Object-Class Grammar is now compressive and explicit enough to open `Commit-Boundary Law` without multiplying ambiguity.
+
+### ES-CYCLE-0002-ADMIN-COMMIT
+
+- cycle_id: ES-CYCLE-0002
+- active subject: Object-Class Grammar
+- active role: Administrator
+- state before: Released (declared) / Gate-Pending in repo process state
+- state after: Released (committed)
+- live-surface mutation status: no live-subject mutation; updated `morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md`; appended cycle-log entry here
+- proposals accepted:
+  - commit the Auditor gate result into the subject registry now that the workflow surface is fetchable again
+  - mark `Object-Class Grammar` as `Released`
+  - route the active subject to `Commit-Boundary Law`
+  - set the next recommended role to `Constructor`
+- proposals rejected:
+  - rerunning the full Auditor gate pass
+  - reopening `Object-Class Grammar`
+  - widening into `Commit-Boundary Law` content during this routing pass
+  - mutating implementation or live subject surfaces outside workflow process state
+- what changed:
+  - The stale asymmetry between declared gate outcome and committed registry state is now removed.
+  - `Object-Class Grammar` is now committed as `Released` in the subject registry.
+  - `Commit-Boundary Law` is now the current active subject in repo process state.
+- unresolved tensions:
+  - `Commit-Boundary Law` still needs its first bounded Constructor pass.
+  - Comparison, reconstruction, memory routing, and deferred upper subjects remain unopened beyond their current registry posture.
+- recommended next role: Constructor
+- decision: Route
+- reason: The released gate result is now committed, and the next lawful move is to open `Commit-Boundary Law` as the active subject.
