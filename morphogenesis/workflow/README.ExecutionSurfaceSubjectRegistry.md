@@ -49,11 +49,11 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** Object-Class Grammar
+- **Active subject:** Commit-Boundary Law
 - **Current state:** Seeded
-- **Why active now:** ExecutionSurface cannot become a lawful memory medium until retained state, reconstruction, comparison, read-side result, and later agent output are distinguished clearly enough to prevent mixed-object sludge.
+- **Why active now:** Object-Class Grammar has now been released, and the next lawful question is what class-specific prerequisites govern crossing from runtime or workflow into retained continuity without collapsing commit authorization into object-class trunk law.
 - **Recommended next role:** Constructor
-- **Likely next child subject after release:** Commit-Boundary Law
+- **Likely next child subject after release:** Comparison Law
 
 ---
 
@@ -64,7 +64,7 @@ Allowed states:
 - note: Distinguish memory medium, execution substrate, read-side helper surfaces, later control/action surfaces, and later agent exchange surfaces.
 
 ### 2. Object-Class Grammar
-- state: Seeded
+- state: Released
 - note: Define the minimum lawful object families required for ExecutionSurface to function as a memory medium.
 
 ### 3. Commit-Boundary Law
