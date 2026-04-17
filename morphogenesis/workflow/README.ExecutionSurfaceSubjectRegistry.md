@@ -49,11 +49,11 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** Comparison Law
+- **Active subject:** Reconstruction Law
 - **Current state:** Seeded
-- **Why active now:** Commit-Boundary Law has now been released, and the next lawful question is how comparison becomes a first-class bounded operation without collapsing into truth, same-object closure, reconstruction, or routing law.
+- **Why active now:** Comparison Law has now been released, and the next lawful question is how retained state may re-enter workflow through declared source and declared lens without collapsing reconstruction into raw original, source recovery proof, or comparison closure.
 - **Recommended next role:** Constructor
-- **Likely next child subject after release:** Reconstruction Law
+- **Likely next child subject after release:** Memory Routing Law
 
 ---
 
@@ -72,7 +72,7 @@ Allowed states:
 - note: Define what makes an object eligible to cross from runtime or workflow into retained continuity.
 
 ### 4. Comparison Law
-- state: Seeded
+- state: Released
 - note: Make comparison first-class and distinct from truth, canon, or same-object closure.
 
 ### 5. Reconstruction Law
@@ -136,12 +136,12 @@ These are active across all subjects:
 
 ## Immediate gate question
 
-For **Comparison Law**, the gate question is:
+For **Reconstruction Law**, the gate question is:
 
-Can comparison be named clearly enough as a first-class bounded operation, with explicit operands, basis, and non-claims, that Reconstruction Law can be opened as a narrower child subject without collapsing comparison into truth, same-object closure, or source recovery?
+Can lawful re-entry from retained state be named clearly enough through declared source, declared lens, bounded regenerated object posture, and explicit non-claims, that Memory Routing Law can be opened as a narrower child subject without collapsing reconstruction into raw original, proof of perfect recovery, or routing posture?
 
 ---
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Comparison Law active so later reconstruction, memory routing, and agent exchange can unfold from a stabilized object and boundary foundation.
+This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Reconstruction Law active so later memory routing, read-model distinction, and agent exchange can unfold from a stabilized object, boundary, and comparison foundation.
