@@ -7,6 +7,22 @@ V2 shell, or a canon system. Its current job is simpler and more valuable:
 preserve a lawful execution spine, keep provenance visible, expose bounded JSON
 surfaces, and give us something we can actually test before we widen autonomy.
 
+## Active Development Front
+
+`ExecutionSurface` is now the active use-oriented foundation for real DME v2 development.
+
+For current development purposes, this repo is the live home of:
+
+- deterministic executive runtime work
+- provenance-first receipt design
+- bounded language-kernel attachment
+- benchmark and audit harness development
+- workflow and morphogenesis process support built on explicit runtime receipts
+
+This does **not** mean every future DME layer is already active here.
+
+It means current DME v2 development should start from this repo’s executable reality and widen lawfully from this base, rather than treating it as a sidecar to a separate “real” runtime.
+
 If we do this well, this becomes the stable executive substrate we can later
 bolt language kernels, JSON handoff schemas, audit gates, and runtime ecology
 onto without turning the project into prose drift.
@@ -38,59 +54,140 @@ contributors aligned with what the code actually does today.
 
 ## Repository Shape
 
-These are the directories that currently define the active execution basis:
+The active repository shape is now best understood as three coordinated bands.
+
+### Runtime / commit implementation
+
+These directories hold the execution-bearing substrate and the bounded fixtures that feed it:
 
 - `fixtures/`: deterministic input fixtures and test data builders
-- `operators/`: the bounded transformation and memory operators
-- `runtime/`: orchestration, workbench, cross-run observation, and retained reconstruction bridge
-- `scripts/`: machine-facing runners that emit JSON artifacts and summaries
-- `tests/`: contract, runtime, and exploratory stability tests
+- `operators/`: bounded transformation and memory operators
+- `runtime/`: orchestration, workbench assembly, cross-run observation, and reconstruction-adjacent runtime support
 - `test_signal/`: signal material used by fixtures and replay-style checks
+
+### Read-side / control surfaces
+
+These directories hold the machine-facing receipt, wrapper, benchmark, and validation surfaces that attach to the executive substrate without bypassing it:
+
+- `schemas/`: JSON schema layer for bounded receipts, wrapper inputs/outputs, and process surfaces
+- `scripts/`: machine-facing runners that emit JSON artifacts, staging surfaces, and benchmark outputs
+- `tests/`: contract, runtime, reconstruction, wrapper, and benchmark checks
 - `Transformer/LanguageKernel/`: early kernel attachment surface and schema-adjacent materials
 
-Key runtime entry points:
+### Repo-level orientation surfaces
 
-- `runtime/DoorOneOrchestrator.js`: core deterministic coordination surface
-- `runtime/DoorOneExecutiveLane.js`: repeated-cycle executive lane wrapper
-- `runtime/DoorOneWorkbench.js`: JSON workbench bundle for downstream inspection
-- `runtime/CrossRunSession.js`: cross-run continuity tracker
-- `runtime/CrossRunDynamicsReport.js`: comparative read-side dynamics summary
+These files define the current self-description and development posture of the repo:
 
-Key runner entry points:
+- `README.md`
+- `ARCHITECTURE.md`
 
-- `scripts/run_pipeline_substrate.js`: single pipeline-to-substrate execution
-- `scripts/run_door_one_workbench.js`: workbench bundle emission
-- `scripts/run_door_one_live.js`: repeated-cycle live-style execution with retained provenance receipts
-- `scripts/run_door_one_provenance_digest.js`: digest surface over retained provenance
+## Runtime / commit authority
 
-Supporting documents:
+The runtime / commit authority of this repo is the narrowest execution-bearing path that transforms admitted input and lawfully commits bounded state into substrate continuity.
+
+The active runtime / commit spine is:
+
+1. `IngestOp`
+2. `ClockAlignOp`
+3. `WindowOp`
+4. `TransformOp`
+5. `CompressOp`
+6. `AnomalyOp`
+7. `MemorySubstrate.commit(...)`
+
+This path is authoritative only for:
+
+- deterministic transformation of admitted inputs
+- policy-bounded state transition
+- preservation of declared lineage and policy anchors
+- lawful commit into substrate continuity
+
+## Read-side / observation and control band
+
+Everything downstream of commit that exposes, compares, reconstructs, summarizes, stages, validates, or benchmarks runtime-visible state belongs to the read-side / observation and control band.
+
+This includes:
+
+- bounded read-side substrate access
+- `MergeOp`
+- `ReconstructOp`
+- `QueryOp`
+- trajectory and cross-run observation
+- `runtime/DoorOneWorkbench.js`
+- LM wrapper / staged invocation surfaces
+- benchmark and validation surfaces
+- workflow and morphogenesis process-support surfaces built on explicit receipts
+
+These surfaces are useful and often essential, but they are not the same thing as runtime / commit authority.
+
+They must not silently promote themselves into:
+
+- substrate authority
+- canon authority
+- truth authority
+- symbolic closure
+- unrestricted runtime mutation
+
+## Key runtime entry points
+
+The main coordination surfaces are:
+
+- `runtime/DoorOneOrchestrator.js`
+- `runtime/DoorOneExecutiveLane.js`
+- `runtime/DoorOneWorkbench.js`
+
+These coordinate runtime execution and read-side exposure, but they do not erase the distinction between the runtime / commit spine and the downstream read-side / control band.
+
+## Key runner entry points
+
+The primary machine-facing entry points remain:
+
+- `scripts/run_pipeline_substrate.js`
+- `scripts/run_door_one_live.js`
+- `scripts/run_door_one_workbench.js`
+- `scripts/run_door_one_provenance_digest.js`
+
+Preferred posture:
+
+- kernels read bounded JSON receipts and summaries
+- kernels emit advisory or separately gated outputs only
+- kernels do not bypass operators or mutate substrate authority
+- workflow and process-support layers ride on explicit receipts, not prose improvisation
+
+## Supporting documents
+
+Supporting orientation surfaces include:
 
 - `ARCHITECTURE.md`: compact statement of the present architectural basis
-- `README.*Matrix.md`: workfield primitives and evaluation aids, useful for orientation but not runtime authority
 - `tests/test_manifest.json`: explicit classification of active tests into `core`, `reconstruction`, `probe`, and `legacy_hold`
-- `schemas/`: JSON schema layer for compact runtime receipts and bounded probe companion receipts
-  and starter morphogenesis handoff schemas
+- `schemas/`: JSON schema layer for compact runtime receipts, LM wrapper contracts, benchmark receipts, and process-support surfaces
+
+These surfaces support the repo’s use-oriented development posture, but they do not outrank executable runtime reality.
 
 ## Authority Boundaries
 
-The code in this repo should be treated as authoritative only for:
+The code in this repo is authoritative only within the runtime / commit spine and the truthful read-side exposure of what that spine actually produced.
 
-- deterministic transformation of admitted inputs
+This repo is authoritative for:
+
+- deterministic transformation of admitted input
 - policy-bounded commits into substrate continuity
 - provenance-preserving receipts
-- lawful read-side summaries over what the runtime actually observed
+- truthful bounded read-side summaries over runtime-visible state
+- explicit JSON-facing attachment surfaces for kernels, wrappers, and benchmark harnesses
 
-It should not be treated as authoritative for:
+This repo is not authoritative for:
 
 - canon decisions
 - symbolic truth claims
 - promotion or publication readiness
 - unconstrained agentic orchestration
 - language-model judgments that bypass runtime receipts
+- workflow or morphogenesis claims that outrun executable repo reality
 
-That boundary is important because the next build phase will add JSON handoff
-surfaces. If we do not keep authority narrow, the language layer will start
-pretending to be the substrate instead of attaching to it.
+That boundary matters because the next build phases will continue adding control and process layers on top of these receipts.
+
+If authority is not kept narrow here, the language and workflow layers will start pretending to be the substrate instead of remaining attached to it lawfully.
 
 ## What Was Intentionally Trimmed
 
