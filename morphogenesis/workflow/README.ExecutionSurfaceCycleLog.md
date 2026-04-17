@@ -111,3 +111,30 @@
   - The repo process surfaces referenced in earlier packets are not all visibly present in live repo reality yet, so later state-commit expectations should continue to follow live repo state first.
 - recommended next role: Reflector
 - decision: Hold
+
+### ES-CYCLE-0002-REFLECTOR
+- cycle_id: ES-CYCLE-0002
+- active subject: Object-Class Grammar
+- active role: Reflector
+- state before: Tension-Held
+- state after: Gate-Pending
+- live-surface mutation status: updated `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`; appended cycle-log entry here
+- proposals accepted:
+  - preserve the four-class trunk of retained object, reconstruction object, comparison receipt, and memory routing object
+  - keep memory routing object responsible for persistence posture and bounded reuse posture
+  - state explicitly that commit-boundary eligibility is not carried by the memory routing object itself
+  - hold Commit-Boundary Law as the next narrower child subject
+- proposals rejected:
+  - importing class-specific write eligibility into the object-class trunk
+  - collapsing routing into commit authorization
+  - widening into query / read result, agent emission, human resolution, or control intent classes
+  - opening full schema or validator surfaces in this pass
+- what changed:
+  - The memory routing object section now states that routing does not by itself authorize commit-boundary crossing.
+  - The live subject now distinguishes among the routed object, the routing decision, and the boundary law governing lawful crossing into retained continuity.
+  - The early trunk distinction rule now explicitly names routing as persistence-side posture rather than silent commit authorization.
+- unresolved tensions:
+  - Commit-Boundary Law still needs to answer the class-specific prerequisites for lawful crossing into retained continuity.
+  - The subject register still reflects earlier repo state and was not mutated in this pass.
+- recommended next role: Auditor
+- decision: Release-to-Gate
