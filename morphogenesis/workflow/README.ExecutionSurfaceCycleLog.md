@@ -286,3 +286,32 @@
   - Auditor still needs to test whether the current compression is release-sufficient without multiplying ambiguity.
 - recommended next role: Auditor
 - decision: Release-to-Gate
+
+### ES-CYCLE-0003-AUDITOR
+- cycle_id: ES-CYCLE-0003
+- active subject: Commit-Boundary Law
+- active role: Auditor
+- state before: Gate-Pending
+- state after: Released
+- live-surface mutation status: no live-subject mutation; updated `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.md`
+- proposals accepted:
+  - treat the six-part crossing contract as gate-sufficient for release into the next narrower child subject
+  - keep `Comparison Law` as the exact next active subject
+  - keep class-specific eligibility deltas deferred as later overlays rather than hidden current-floor content
+  - keep rejection receipt posture bounded as inspectability only, not schema or validator law
+  - keep comparison, reconstruction, memory routing, and deferred upper subjects outside current boundary-law scope
+- proposals rejected:
+  - reopening Commit-Boundary Law for wider redesign
+  - importing Comparison Law content into boundary law itself
+  - widening into schema, validator, helper, implementation-ladder, or receipt-shape design
+  - claiming that commit crossing creates canon, truth, or unrestricted authority
+- what changed:
+  - Auditor verified that the universal six-part floor is explicit, boundary-specific, and kept separate from neighboring subjects.
+  - Auditor verified that non-claims are explicit and that the class-specific-delta question is bounded openly as later overlay work rather than hidden ambiguity.
+  - The gate decision is now declared as Release to deeper layer: `Comparison Law`.
+- unresolved tensions:
+  - Specific class-overlay subjects, if later needed, remain unopened and should not be backfilled into the shared crossing floor.
+  - `Comparison Law` still needs its own bounded compression without importing reconstruction or routing law.
+- recommended next role: Administrator
+- decision: Release
+- reason: Commit-Boundary Law is now explicit and compressive enough to open `Comparison Law` without multiplying ambiguity.
