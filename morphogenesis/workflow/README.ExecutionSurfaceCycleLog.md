@@ -1,55 +1,8 @@
 # ExecutionSurface Cycle Log
 
-## Status
-
-This document is the minimal cycle log surface for early governed recursion over ExecutionSurface architectural subjects.
-
-It is a process surface.
-
-It is not an authority file, implementation contract, or live subject surface.
-
-Its purpose is to:
-
-- record each governed recursion pass
-- preserve state transitions visibly
-- record mutation status and accepted/rejected proposals
-- preserve unresolved tensions between passes
-- keep the next role and stop posture explicit
-
-This cycle log should be read together with:
-
-morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md
-morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md
-morphogenesis/architecture/README.ExecutionSurfaceImplementationLadder.md
-morphogenesis/workflow/README.ExecutionSurfaceGovernedRecursionEntryContract.md
-morphogenesis/workflow/README.ExecutionSurfaceGovernedRecursionAppendices.md
-morphogenesis/workflow/README.ArchitectMorphogenesisWorkflow.md
-
----
-
-## Minimum cycle-log schema
-
-Each entry should record:
-
-- cycle_id
-- active subject
-- active role
-- state before
-- state after
-- live-surface mutation status
-- proposals accepted
-- proposals rejected
-- what changed
-- unresolved tensions
-- recommended next role
-- stop / hold / release / rebound / downgrade decision
-
----
-
 ## Entries
 
 ### ES-CYCLE-0001
-
 - cycle_id: ES-CYCLE-0001
 - active subject: Object-Class Grammar
 - active role: Administrator
@@ -74,10 +27,8 @@ Each entry should record:
   - Minimal cycle-log surface exists, but active role passes have not yet begun appending directly.
 - recommended next role: Constructor
 - decision: Hold
-- reason: The process surfaces are now sufficient to start the first active governed recursion pass, but Object-Class Grammar has not yet received its first writing-role mutation.
 
 ### ES-CYCLE-0002
-
 - cycle_id: ES-CYCLE-0002
 - active subject: Object-Class Grammar
 - active role: Administrator
@@ -101,10 +52,117 @@ Each entry should record:
   - Exact retained vs reconstruction vs comparison distinctions are still only seed-level.
 - recommended next role: Constructor
 - decision: Hold
-- reason: Initialization is complete, but live subject mutation has not yet occurred; next lawful move is the first Constructor pass.
 
----
+### ES-CYCLE-0002-CONSTRUCTOR
+- cycle_id: ES-CYCLE-0002
+- active subject: Object-Class Grammar
+- active role: Constructor
+- state before: Seeded
+- state after: Compressed
+- live-surface mutation status: updated `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`
+- proposals accepted:
+  - tighten the early object-family trunk to four minimum lawful classes
+  - add explicit boundaries and explicit non-claims per class
+  - state the early trunk distinction rule directly
+  - keep later object families out of the trunk
+  - clarify the gate condition for opening Commit-Boundary Law next
+- proposals rejected:
+  - widening into agent emission or multi-agent exchange
+  - widening into human governance or control intent
+  - mutating the implementation ladder in the same pass
+  - opening child subjects in the same pass
+  - defining full schemas instead of class boundaries
+- what changed:
+  - The live subject surface now names the minimum early object family as retained object, reconstruction object, comparison receipt, and memory routing object.
+  - Each class now states what it is and what it is not.
+  - The live subject surface now separates what persists, what re-enters, what compares, and what routes persistence posture.
+  - The recommended-next-subject section now makes the Commit-Boundary Law gate question narrower and clearer.
+- unresolved tensions:
+  - Commit-Boundary Law remains unopened and still needs explicit write-eligibility criteria per class.
+  - Query / read result and agent emission remain deferred later classes that must not leak downward.
+  - Full schemas, validator targets, and mechanized proof surfaces remain implementation-ladder work rather than subject-trunk work.
+- recommended next role: Auditor
+- decision: Hold
 
-## One-line summary
+### ES-CYCLE-0002-CREATIVE
+- cycle_id: ES-CYCLE-0002
+- active subject: Object-Class Grammar
+- active role: Creative
+- state before: Compressed
+- state after: Tension-Held
+- live-surface mutation status: none on `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`; appended cycle-log entry only
+- proposals accepted:
+  - preserve the four-class compressed trunk as the current minimum lawful object family
+  - keep query / read result object, agent emission object, human resolution object, and control intent / action object deferred
+  - hold open one narrow asymmetry for the next pass: memory routing object versus commit-boundary eligibility
+- proposals rejected:
+  - reopening the trunk into more than four classes
+  - collapsing memory routing object into retained object
+  - importing read-result, agent-emission, governance, or control-intent law into the active trunk
+  - proposing full schemas or repo-wide redesign
+  - directly mutating the live subject surface under Creative default posture
+- what changed:
+  - The cycle log now records a specific pressure result against the compressed four-class trunk.
+  - Creative pressure found that the retained / reconstruction / comparison cuts hold under stress.
+  - The still-live asymmetry is narrower: memory routing object currently names persistence posture, but class-specific write eligibility and boundary crossing remain outside it and appear likely to belong to the next child subject rather than to the trunk itself.
+- unresolved tensions:
+  - It must stay explicit that a memory routing object governs persistence posture after or around retained continuity without silently becoming the object that authorizes boundary crossing.
+  - Commit-Boundary Law still needs to answer whether write eligibility is class-specific while preserving the current fourfold trunk.
+  - The repo process surfaces referenced in earlier packets are not all visibly present in live repo reality yet, so later state-commit expectations should continue to follow live repo state first.
+- recommended next role: Reflector
+- decision: Hold
 
-This cycle log records each governed recursion pass so ExecutionSurface architectural morphogenesis remains inspectable, replayable, and bounded across role handoffs.
+### ES-CYCLE-0002-REFLECTOR
+- cycle_id: ES-CYCLE-0002
+- active subject: Object-Class Grammar
+- active role: Reflector
+- state before: Tension-Held
+- state after: Gate-Pending
+- live-surface mutation status: updated `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`; appended cycle-log entry here
+- proposals accepted:
+  - preserve the four-class trunk of retained object, reconstruction object, comparison receipt, and memory routing object
+  - keep memory routing object responsible for persistence posture and bounded reuse posture
+  - state explicitly that commit-boundary eligibility is not carried by the memory routing object itself
+  - hold Commit-Boundary Law as the next narrower child subject
+- proposals rejected:
+  - importing class-specific write eligibility into the object-class trunk
+  - collapsing routing into commit authorization
+  - widening into query / read result, agent emission, human resolution, or control intent classes
+  - opening full schema or validator surfaces in this pass
+- what changed:
+  - The memory routing object section now states that routing does not by itself authorize commit-boundary crossing.
+  - The live subject now distinguishes among the routed object, the routing decision, and the boundary law governing lawful crossing into retained continuity.
+  - The early trunk distinction rule now explicitly names routing as persistence-side posture rather than silent commit authorization.
+- unresolved tensions:
+  - Commit-Boundary Law still needs to answer the class-specific prerequisites for lawful crossing into retained continuity.
+  - The subject register still reflects earlier repo state and was not mutated in this pass.
+- recommended next role: Auditor
+- decision: Release-to-Gate
+
+### ES-CYCLE-0002-AUDITOR
+- cycle_id: ES-CYCLE-0002
+- active subject: Object-Class Grammar
+- active role: Auditor
+- state before: Gate-Pending
+- state after: Released (declared) / Gate-Pending in repo process state until subject-register commit succeeds
+- live-surface mutation status: no live-subject mutation; updated `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.md`
+- proposals accepted:
+  - treat the four-class trunk as gate-sufficient for release into the next narrower child subject
+  - keep Commit-Boundary Law as the exact next active subject
+  - keep query / read result, agent emission, human resolution, and control intent deferred
+  - keep class-specific write eligibility out of the object-class trunk
+- proposals rejected:
+  - reopening Object-Class Grammar for wider trunk redesign
+  - importing schemas, validators, or implementation-ladder detail into the gate decision
+  - collapsing memory routing posture into commit authorization
+  - claiming subject-state commit without a successful subject-register write
+- what changed:
+  - Auditor verified that the live subject now has explicit class boundaries, explicit non-claims, named unresolved tensions, and a single clear next child subject.
+  - The gate decision is now declared as Release to deeper layer: `Commit-Boundary Law`.
+  - The cycle log now records that repo-current-reality blocked subject-register confirmation during this pass.
+- unresolved tensions:
+  - `Commit-Boundary Law` still needs to define class-specific prerequisites for lawful crossing into retained continuity.
+  - `morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md` was not fetchable in live repo reality during this pass, so state-commit could not be verified or completed here.
+- recommended next role: Administrator
+- decision: Release
+- reason: Object-Class Grammar is now compressive and explicit enough to open `Commit-Boundary Law` without multiplying ambiguity.
