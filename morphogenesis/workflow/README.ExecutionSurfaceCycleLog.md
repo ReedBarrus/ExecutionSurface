@@ -195,3 +195,36 @@
 - recommended next role: Constructor
 - decision: Route
 - reason: The released gate result is now committed, and the next lawful move is to open `Commit-Boundary Law` as the active subject.
+
+### ES-CYCLE-0003-CONSTRUCTOR
+- cycle_id: ES-CYCLE-0003
+- active subject: Commit-Boundary Law
+- active role: Constructor
+- state before: Seeded
+- state after: Compressed
+- live-surface mutation status: updated `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`
+- proposals accepted:
+  - define the minimum lawful crossing contract for entry into retained continuity
+  - require explicit class identity at the boundary
+  - require provenance anchors, policy anchors, and declared authority posture
+  - require explicit rejection conditions and rejection receipt posture
+  - preserve that memory routing does not itself authorize crossing
+  - preserve that commit is not canon, truth, comparison, or reconstruction
+- proposals rejected:
+  - widening into full schemas, validators, scripts, or proof harnesses
+  - importing query / read result, agent emission, human resolution, or control intent classes
+  - silently reopening Object-Class Grammar
+  - silently opening Comparison Law, Reconstruction Law, or Memory Routing Law in the same pass
+  - treating routing posture as commit authorization
+- what changed:
+  - The live subject surface now contains a dedicated `Commit-Boundary Law` section.
+  - That section now states the core crossing rule and the six minimum lawful prerequisites for boundary crossing.
+  - The live subject surface now states explicitly what Commit-Boundary Law does not decide.
+  - The minimum lawful crossing contract is now compact enough for later pressure without widening into implementation.
+- unresolved tensions:
+  - The retained-object candidate language may still need pressure on whether class-specific prerequisites differ materially beyond the shared minimum crossing contract.
+  - Comparison, reconstruction, and memory routing still need their own later subjects and must not backfill boundary law by convenience.
+  - Rejection receipt posture is now named, but its eventual object shape remains deferred.
+- recommended next role: Creative
+- decision: Hold
+- reason: Commit-Boundary Law now has a compressed first identity-bearing shape, but contrastive pressure should test whether the shared minimum crossing contract is sufficient before gate review.
