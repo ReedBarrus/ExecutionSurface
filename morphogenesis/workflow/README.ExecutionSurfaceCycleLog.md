@@ -315,3 +315,36 @@
 - recommended next role: Administrator
 - decision: Release
 - reason: Commit-Boundary Law is now explicit and compressive enough to open `Comparison Law` without multiplying ambiguity.
+
+### ES-CYCLE-0004-CONSTRUCTOR
+- cycle_id: ES-CYCLE-0004
+- active subject: Comparison Law
+- active role: Constructor
+- state before: Seeded
+- state after: Compressed
+- live-surface mutation status: updated `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`
+- proposals accepted:
+  - define comparison as a first-class bounded act between declared operands under a declared basis
+  - require explicit operands and explicit comparison basis or lens
+  - require bounded difference / similarity posture
+  - require provenance of the comparison act itself
+  - preserve explicit non-claims against truth, same-object closure, and source recovery
+  - keep comparison distinct from reconstruction, memory routing, evaluation verdict, and deferred upper subjects
+- proposals rejected:
+  - widening into full receipt schema, validator law, helper design, or implementation mechanics
+  - importing query / read result, agent emission, human resolution, or control intent classes
+  - reopening Commit-Boundary Law
+  - silently opening Reconstruction Law in the same pass
+  - treating comparison as source recovery or same-object declaration
+- what changed:
+  - The live subject surface now contains a dedicated `Comparison Law` section.
+  - That section now states the core comparison rule and the minimum lawful comparison prerequisites.
+  - The live subject surface now states what comparison emits at this layer and what comparison explicitly does not decide.
+  - The minimum lawful comparison contract is now compact enough for later pressure without widening into implementation.
+- unresolved tensions:
+  - The current section may still need pressure on how repeated-reference comparisons differ from distinct-operand comparisons without inflating into identity closure.
+  - Reconstruction Law remains unopened and must later clarify how reconstructed operands participate in comparison without collapsing comparison into source recovery.
+  - Comparison result shape is now named in compressed form, but full receipt-shape law remains deferred.
+- recommended next role: Creative
+- decision: Hold
+- reason: Comparison Law now has a compressed first identity-bearing shape, but contrastive pressure should test whether the minimum comparison contract is sufficient before gate review.
