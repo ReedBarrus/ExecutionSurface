@@ -730,7 +730,7 @@ The first compressed shape of Reconstruction Law is therefore:
 
 This is the universal minimum reconstruction floor.
 
-Any stricter source-family handling or reconstructed-operand comparison handling remains later overlay content, not current floor content.
+Any stricter source-family handling or reconstructed-operand comparison handling remains later overlay or relation-work content, not current floor content.
 
 This is intentionally narrower than full reconstruction-receipt shape law, schema law, validator law, helper seams, or implementation mechanics.
 
