@@ -18,12 +18,12 @@ Its purpose is to:
 
 This cycle log should be read together with:
 
-- `README.ExecutionSurfaceArchitectureSeed.md`
-- `README.ExecutionSurfaceSubjectRegistry.md`
-- `README.ExecutionSurfaceImplementationLadder.md`
-- `README.ExecutionSurfaceGovernedRecursionEntryContract.md`
-- `README.ExecutionSurfaceGovernedRecursionAppendices.md`
-- `README.ArchitectMorphogenesisWorkflow.md`
+morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md
+morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md
+morphogenesis/architecture/README.ExecutionSurfaceImplementationLadder.md
+morphogenesis/workflow/README.ExecutionSurfaceGovernedRecursionEntryContract.md
+morphogenesis/workflow/README.ExecutionSurfaceGovernedRecursionAppendices.md
+morphogenesis/workflow/README.ArchitectMorphogenesisWorkflow.md
 
 ---
 

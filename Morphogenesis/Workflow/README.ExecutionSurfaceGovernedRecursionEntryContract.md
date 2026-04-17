@@ -8,10 +8,10 @@ It is a process-surface contract.
 
 It does not replace:
 
-- `README.ExecutionSurfaceArchitectureSeed.md`
-- `README.ExecutionSurfaceSubjectRegistry.md`
-- `README.ExecutionSurfaceImplementationLadder.md`
-- `README.ArchitectMorphogenesisWorkflow.md`
+morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md
+morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md
+morphogenesis/architecture/README.ExecutionSurfaceImplementationLadder.md
+morphogenesis/workflow/README.ArchitectMorphogenesisWorkflow.md
 
 Its purpose is narrower:
 

@@ -54,7 +54,7 @@ contributors aligned with what the code actually does today.
 
 ## Repository Shape
 
-The active repository shape is now best understood as three coordinated bands.
+The active repository shape is now best understood as four coordinated bands.
 
 ### Runtime / commit implementation
 
@@ -74,12 +74,26 @@ These directories hold the machine-facing receipt, wrapper, benchmark, and valid
 - `tests/`: contract, runtime, reconstruction, wrapper, and benchmark checks
 - `Transformer/LanguageKernel/`: early kernel attachment surface and schema-adjacent materials
 
-### Repo-level orientation surfaces
+### Morphogenesis / process-support surfaces
 
-These files define the current self-description and development posture of the repo:
+This directory holds the governed-recursion, architecture-shaping, subject-surface, and workflow-support surfaces used to develop the ExecutionSurface architecture lawfully without promoting those process surfaces into runtime / commit authority:
 
-- `README.md`
-- `ARCHITECTURE.md`
+- `morphogenesis/`
+  - `morphogenesis/architecture/`: architecture seed and implementation-ladder trunk surfaces
+  - `morphogenesis/workflow/`: subject registry, cycle log, administrator note log, governed recursion contract, appendices, and workflow-support surfaces
+  - `morphogenesis/subject_surfaces/`: live subject mutation surfaces opened from the architecture seed during bounded morphogenesis
+
+### Generated artifact surfaces
+
+These directories hold emitted outputs from runtime, wrapper, or benchmark activity:
+
+- `benchmarks/`
+- `out_workbench/`
+- `out_lm/`
+
+These may be inspected, diffed, retained, benchmarked, or reconstructed.
+
+They do not become authority merely by being produced.
 
 ## Runtime / commit authority
 
@@ -161,6 +175,9 @@ Supporting orientation surfaces include:
 - `ARCHITECTURE.md`: compact statement of the present architectural basis
 - `tests/test_manifest.json`: explicit classification of active tests into `core`, `reconstruction`, `probe`, and `legacy_hold`
 - `schemas/`: JSON schema layer for compact runtime receipts, LM wrapper contracts, benchmark receipts, and process-support surfaces
+- `morphogenesis/architecture/`: architecture seed and implementation-ladder trunk surfaces
+- `morphogenesis/workflow/`: governed recursion and process-support surfaces
+- `morphogenesis/subject_surfaces/`: live subject mutation surfaces
 
 These surfaces support the repo’s use-oriented development posture, but they do not outrank executable runtime reality.
 

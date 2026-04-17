@@ -15,9 +15,9 @@ Its function is narrower:
 
 This document should be read together with:
 
-- `README.ExecutionSurfaceArchitectureSeed.md`
-- `README.ExecutionSurfaceSubjectRegistry.md`
-- `README.ArchitectMorphogenesisWorkflow.md`
+morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md
+morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md
+morphogenesis/workflow/README.ArchitectMorphogenesisWorkflow.md
 
 ---
 

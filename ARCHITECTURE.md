@@ -136,6 +136,12 @@ The active repository bands are:
 - `tests/`
 - `Transformer/LanguageKernel/`
 
+### Morphogenesis / process-support surfaces
+- `morphogenesis/`
+- `morphogenesis/architecture/`
+- `morphogenesis/workflow/`
+- `morphogenesis/subject_surfaces/`
+
 ### Repo-level orientation surfaces
 - `README.md`
 - `ARCHITECTURE.md`
@@ -155,15 +161,19 @@ Preferred posture:
 - kernels emit advisory or separately gated outputs only
 - kernels do not bypass operators or mutate substrate authority
 - process-support surfaces ride on explicit receipts, not prose improvisation
+- morphogenesis surfaces may shape architecture and workflow law, but do not become runtime / commit authority by carrying live subject mutation
 
 ## Read-side helper posture
 
-The following remain downstream helper or observation surfaces rather than runtime / commit authority:
+The following remain downstream helper, observation, or process-support surfaces rather than runtime / commit authority:
 
 - `runtime/CrossRunSession.js`
 - `runtime/CrossRunDynamicsReport.js`
 - `runtime/TrajectoryInterpretationReport.js`
 - `runtime/AttentionMemoryReport.js`
+- `morphogenesis/architecture/`
+- `morphogenesis/workflow/`
+- `morphogenesis/subject_surfaces/`
 
 They may support:
 
@@ -172,6 +182,9 @@ They may support:
 - comparison
 - runtime observation
 - downstream kernel attachment
+- governed architectural morphogenesis
+- workflow shaping
+- bounded live subject mutation
 
 They do not by themselves become canon, truth, or runtime authority.
 

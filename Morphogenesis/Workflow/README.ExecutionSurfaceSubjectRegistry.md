@@ -17,8 +17,8 @@ Its function is to:
 
 This registry should be read together with:
 
-- `README.ExecutionSurfaceArchitectureSeed.md`
-- `README.ArchitectMorphogenesisWorkflow.md`
+morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md
+morphogenesis/workflow/README.ArchitectMorphogenesisWorkflow.md
 
 ---
 

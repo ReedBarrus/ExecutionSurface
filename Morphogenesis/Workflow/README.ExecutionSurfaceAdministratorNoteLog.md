@@ -17,10 +17,10 @@ Its purpose is to:
 
 This note log should be read together with:
 
-- `README.ExecutionSurfaceSubjectRegistry.md`
-- `README.ExecutionSurfaceCycleLog.md`
-- `README.ExecutionSurfaceGovernedRecursionEntryContract.md`
-- `README.ArchitectMorphogenesisWorkflow.md`
+morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md
+morphogenesis/workflow/README.ExecutionSurfaceCycleLog.md
+morphogenesis/workflow/README.ExecutionSurfaceGovernedRecursionEntryContract.md
+morphogenesis/workflow/README.ArchitectMorphogenesisWorkflow.md
 
 ---
 
