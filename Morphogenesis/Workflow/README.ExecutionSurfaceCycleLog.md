@@ -76,6 +76,33 @@ Each entry should record:
 - decision: Hold
 - reason: The process surfaces are now sufficient to start the first active governed recursion pass, but Object-Class Grammar has not yet received its first writing-role mutation.
 
+### ES-CYCLE-0002
+
+- cycle_id: ES-CYCLE-0002
+- active subject: Object-Class Grammar
+- active role: Administrator
+- state before: Seeded
+- state after: Seeded
+- live-surface mutation status: none
+- proposals accepted:
+  - Open first governed recursion pass on Object-Class Grammar
+  - Use README.ExecutionSurfaceArchitectureSeed.md as live subject surface
+  - Use existing process surfaces as bounded support
+  - Route next pass to Constructor
+- proposals rejected:
+  - Opening child subjects before Object-Class Grammar compression
+  - Code mutation
+  - Parallel active subjects
+- what changed:
+  - Governed recursion is now formally initialized on Object-Class Grammar with explicit process surfaces, write-right posture, and next-role routing.
+- unresolved tensions:
+  - Minimum lawful object families are not yet compressed.
+  - Commit-Boundary Law remains unopened.
+  - Exact retained vs reconstruction vs comparison distinctions are still only seed-level.
+- recommended next role: Constructor
+- decision: Hold
+- reason: Initialization is complete, but live subject mutation has not yet occurred; next lawful move is the first Constructor pass.
+
 ---
 
 ## One-line summary
