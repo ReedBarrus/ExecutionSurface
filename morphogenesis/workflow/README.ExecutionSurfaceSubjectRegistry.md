@@ -57,6 +57,14 @@ Allowed states:
 
 ---
 
+## Recent findings
+
+- Local-model benchmarking has now shown stable bounded `.json` contract obedience across repeated runs, so contract conformance is no longer the primary bottleneck for the current LM attachment seam.
+- The present LM-facing input view remains too receipt-thin and count-heavy to support meaningful object-level entrainment, reconstruction, comparison, or routing questions beyond format mimicry and generic bounded commentary.
+- The next architectural pressure therefore falls on lawful object addressability and bounded read-side object export rather than on prompt widening alone.
+
+---
+
 ## Subject register
 
 ### 1. Major Partition
@@ -118,6 +126,18 @@ Allowed states:
 ### 15. Control Intent / Action Object
 - state: Deferred
 - note: Only lawful after the project honestly crosses from memory medium toward bounded control architecture.
+
+### 16. Retained Object Addressability Contract
+- state: Seeded
+- note: Define the minimum lawful address surface for retained objects so retrieval, comparison, reconstruction, and routing can refer to bounded objects directly rather than to flat substrate haze or summary counts.
+
+### 17. Reconstruction Export Surface
+- state: Seeded
+- note: Define the minimum bounded reconstruction/export packet that can be shown to read-side tools or local models through declared source, declared lens, bounded evidence, and explicit non-claims without collapsing into raw substrate dump or source-recovery posture.
+
+### 18. LM Read Packet Contract
+- state: Seeded
+- note: Define a governed read-side LM packet made of typed object refs, bounded object cards, compact evidence, and explicit authority posture so model benchmarking can move from format obedience toward lawful object-usefulness tests.
 
 ---
 
