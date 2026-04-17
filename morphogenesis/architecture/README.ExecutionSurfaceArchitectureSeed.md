@@ -344,6 +344,24 @@ At minimum, the boundary must be able to emit a bounded rejection posture that r
 
 Commit-boundary law therefore requires rejection to remain first-class rather than disappearing into absence.
 
+Rejection receipt posture is an inspectability requirement at the boundary.
+
+It is not yet receipt-shape law, schema law, or validator law.
+
+### Shared floor and later overlays
+
+The six prerequisites above are the universal minimum crossing floor for Commit-Boundary Law.
+
+They answer what every bounded candidate must declare before lawful crossing can even be considered.
+
+If a given object class later needs stricter eligibility deltas beyond this shared floor, those deltas belong to later class-specific overlays opened explicitly from this subject.
+
+Those overlays are not part of the current shared minimum unless and until they are opened directly.
+
+Commit-Boundary Law therefore remains compressed at the shared floor first.
+
+It does not silently import class-specific deltas into the current trunk.
+
 ### Distinction rule
 
 Commit-boundary law remains distinct from the neighboring subjects.
@@ -371,6 +389,8 @@ Commit-boundary crossing is **not**:
 - memory routing by itself
 - proof that later reuse is lawful under every lens
 
+The current shared floor also does **not** yet define any class-specific overlay contract beyond naming that such overlays may be opened later if needed.
+
 Crossing only means the candidate object satisfied the minimum lawful prerequisites for entering retained continuity.
 
 ### Early compression rule
@@ -384,9 +404,11 @@ The first compressed shape of Commit-Boundary Law is therefore:
 - rejection conditions declared
 - rejection receipt posture declared
 
-This is the minimum lawful crossing contract.
+This six-part shape is the universal minimum crossing floor.
 
-It is intentionally narrower than schemas, validators, helper seams, or proof harnesses.
+Any stricter class-specific eligibility deltas remain later overlays, not current shared-floor content.
+
+This is intentionally narrower than schemas, validators, helper seams, or proof harnesses.
 
 ---
 
