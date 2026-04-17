@@ -206,6 +206,47 @@ No role may silently elevate its own write privilege.
 
 ---
 
+## Connector-executed write rule
+
+During early governed recursion conducted through ChatGPT threads with GitHub connector access, each role-thread must perform its own lawful repo mutation when mutation rights are granted for that role.
+
+This means:
+
+- Constructor thread must directly update the live subject surface when write-authorized.
+- Reflector thread must directly update the live subject surface when write-authorized.
+- Creative thread must not directly mutate the live subject surface by default, but must directly append its cycle-log entry and may directly write staged proposals if explicitly authorized.
+- Auditor thread must not directly mutate the live subject surface by default, but must directly append its cycle-log entry and may directly update subject state only when acting as Gate and when that state change is explicitly part of the packet.
+- Administrator thread must directly append its own cycle-log entry, directly update the administrator note log when needed, and may directly update the subject register when routing or gate-commit posture requires it.
+
+### Early-phase default writable process surfaces
+
+The following process surfaces are writable during early governed recursion when the packet grants lawful rights:
+
+- `README.ExecutionSurfaceArchitectureSeed.md` (live subject surface)
+- `README.ExecutionSurfaceCycleLog.md`
+- `README.ExecutionSurfaceSubjectRegistry.md` (state changes only)
+- `README.ExecutionSurfaceAdministratorNoteLog.md`
+
+### Execution rule
+
+A role pass is incomplete unless it:
+
+- performs its own required connector write for the surfaces it is authorized to mutate
+- reports the mutation status explicitly
+- returns the exact repo write result or explicit block condition
+
+Returning a payload without performing the required connector write is proposal-only behavior, not a completed write-authorized pass.
+
+### Non-claims
+
+This rule does not authorize:
+
+- silent widening beyond the active subject
+- mutation of implementation code during morphogenesis
+- mutation of neighboring subjects
+- self-elevation of write rights
+- skipping cycle-log append
+
 ## Non-claims
 
 This contract does not yet define:
