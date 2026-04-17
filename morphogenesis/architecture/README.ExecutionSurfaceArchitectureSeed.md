@@ -238,6 +238,158 @@ The following remain later object families and must not define the trunk yet:
 
 ---
 
+## Commit-Boundary Law
+
+Commit-Boundary Law answers one narrow question:
+
+**What must a bounded object declare before it may lawfully cross from runtime or workflow into retained continuity?**
+
+This subject does not reopen object-class grammar.
+
+It assumes the class trunk already exists and asks what minimum crossing contract must be satisfied before a candidate object may enter retained continuity lawfully.
+
+### Core crossing rule
+
+No object may cross into retained continuity merely because it exists, was produced by runtime, was routed for persistence, or appears useful for later reuse.
+
+Crossing requires an explicit eligibility declaration at the boundary.
+
+That boundary decision is narrower than later memory routing, later comparison, and later reconstruction.
+
+### Minimum lawful crossing prerequisites
+
+A bounded object must declare all of the following before it may lawfully cross into retained continuity:
+
+#### 1. Class identity is named
+
+The object must declare what class it is at the boundary.
+
+At minimum, the crossing declaration must make clear whether the boundary is being asked to admit a retained object candidate rather than silently carrying forward some other class by convenience.
+
+Commit-boundary law therefore requires class identity to be explicit before crossing.
+
+It does **not** allow class identity to be inferred from later use.
+
+#### 2. Provenance anchors are present
+
+The object must carry the provenance anchors required to make the crossing inspectable.
+
+At minimum, the boundary must be able to answer:
+
+- where the object came from
+- what upstream act produced it
+- what prior surface or source it depends on
+
+Commit-boundary law therefore requires declared provenance anchors.
+
+It does **not** allow retained continuity to begin from hidden origin.
+
+#### 3. Policy anchors are present
+
+The object must carry the policy anchors that govern why this class of object may cross and under what bounded conditions.
+
+At minimum, the boundary must be able to answer:
+
+- what governing policy or contract allows crossing
+- what bounded reuse posture is being admitted
+- what active constraints still govern the object after crossing
+
+Commit-boundary law therefore requires declared policy anchors.
+
+It does **not** allow convenience retention without governing policy.
+
+#### 4. Authority posture is declared
+
+The object must declare what authority posture it carries at crossing.
+
+At minimum, the boundary must be able to answer:
+
+- whether the object is entering retained continuity only
+- whether the object carries any stronger trust posture
+- what it explicitly does not become by crossing
+
+Crossing into retained continuity does **not** by itself create:
+
+- canon
+- truth
+- unrestricted authority
+- same-object closure across all later uses
+
+Commit-boundary law therefore requires authority posture to be explicit and bounded.
+
+#### 5. Rejection conditions are declared
+
+The boundary must know what would make this candidate fail closed.
+
+At minimum, rejection conditions must include failure of:
+
+- named class identity
+- required provenance anchors
+- required policy anchors
+- declared authority posture
+
+Commit-boundary law therefore requires explicit rejection conditions.
+
+It does **not** permit silent acceptance when the minimum crossing contract is incomplete.
+
+#### 6. Rejection receipt posture is declared
+
+If crossing fails, the failure must remain inspectable.
+
+At minimum, the boundary must be able to emit a bounded rejection posture that records:
+
+- the candidate object reference
+- the failed prerequisite or failed prerequisites
+- the reason crossing did not occur
+
+Commit-boundary law therefore requires rejection to remain first-class rather than disappearing into absence.
+
+### Distinction rule
+
+Commit-boundary law remains distinct from the neighboring subjects.
+
+It does **not** decide:
+
+- comparison basis or comparison meaning
+- reconstruction source/lens law
+- retain / archive / promote routing posture after crossing
+- query / read result posture
+- agent emission posture
+- human resolution posture
+- control intent / action posture
+
+It only decides whether a bounded candidate may cross into retained continuity lawfully.
+
+### Non-claim rule
+
+Commit-boundary crossing is **not**:
+
+- canon admission
+- truth closure
+- comparison
+- reconstruction
+- memory routing by itself
+- proof that later reuse is lawful under every lens
+
+Crossing only means the candidate object satisfied the minimum lawful prerequisites for entering retained continuity.
+
+### Early compression rule
+
+The first compressed shape of Commit-Boundary Law is therefore:
+
+- class identity named
+- provenance anchors present
+- policy anchors present
+- authority posture declared
+- rejection conditions declared
+- rejection receipt posture declared
+
+This is the minimum lawful crossing contract.
+
+It is intentionally narrower than schemas, validators, helper seams, or proof harnesses.
+
+---
+
 ## First operation thesis
 
 ExecutionSurface should stabilize the following substrate operations before broader agent recursion claims:
