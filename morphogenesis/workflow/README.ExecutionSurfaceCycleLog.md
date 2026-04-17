@@ -665,3 +665,33 @@
   - Auditor still needs to test whether the current compression is release-sufficient without multiplying ambiguity.
 - recommended next role: Auditor
 - decision: Release-to-Gate
+
+### ES-CYCLE-0006-AUDITOR
+- cycle_id: ES-CYCLE-0006
+- active subject: Memory Routing Law
+- active role: Auditor
+- state before: Gate-Pending
+- state after: Released
+- live-surface mutation status: no live-subject mutation; updated `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.md`
+- proposals accepted:
+  - treat the current routing contract as gate-sufficient for release into the next narrower child subject
+  - keep `Read-Model Distinction` as the exact next active subject
+  - keep class-specific routing differences and routing/read-model relation work deferred as later overlays or relation work rather than hidden current-floor content
+  - keep compressed routing posture bounded at this layer and out of full routing-receipt shape, schema, validator, and helper law
+  - keep explicit non-claims against commit-boundary crossing, reconstruction itself, truth / canon / proof, deletion equivalence, and same-object closure in place
+- proposals rejected:
+  - reopening Memory Routing Law for wider redesign
+  - importing Read-Model Distinction into Memory Routing Law itself
+  - widening into full routing-receipt shape, schema, validator, helper, implementation, commit-crossing, reconstruction, or proof-posture design
+  - treating retain as proof, archive as deletion, or promote as canon
+- what changed:
+  - Auditor verified that the universal routing floor is explicit, bounded, and distinct from neighboring subjects.
+  - Auditor verified that non-claims are explicit and that class-specific routing differences plus routing/read-model relation work are openly bounded as later overlay or relation work rather than hidden ambiguity.
+  - The gate decision is now declared as Release to deeper layer: `Read-Model Distinction`.
+- unresolved tensions:
+  - Specific class-specific routing overlay work, if later needed, remains unopened and should not be backfilled into the shared routing floor.
+  - Specific routing/read-model relation work remains unopened and should not be backfilled into routing-floor content.
+  - `Read-Model Distinction` still needs its own bounded compression to govern routing/read-model relations without being smuggled into routing.
+- recommended next role: Administrator
+- decision: Release
+- reason: Memory Routing Law is now explicit and compressive enough to open `Read-Model Distinction` without multiplying ambiguity.
