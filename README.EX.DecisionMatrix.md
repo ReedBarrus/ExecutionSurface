@@ -1,38 +1,46 @@
-# Dynamical Memory Engine — Decision Matrix
+# ExecutionSurface — Decision Matrix
 
 Live Repo State:
-https://github.com/ReedBarrus/DynamicalMemoryEngine_V2
+https://github.com/ReedBarrus/ExecutionSurface
 
 ## Status
 
-This document is the movement and decision authority for DME.
+This document is the movement, thread, and packet authority for the active
+ExecutionSurface development front.
 
 It governs only:
 
 - workflow roles
-- thread roles
+- thread classes
+- thread-role posture
 - macro-verb movement law
 - downward recruitment
 - packet completion
 - checkpoint posture
+- active seam discipline at movement level
 
 It does not govern:
 
 - constitutional boundaries
-- formation / placement law
+- structural placement law
 - evaluation law by itself
-- operator-local semantics
+- memory retention law by itself
+- operator-local semantics by itself
 - implementation meaning by itself
 
 The live repo is the authority for current code and current file state.
 
-If this document and live repo state conflict about what currently exists, live repo state wins.
+If this document and live repo state conflict about what currently exists, live
+repo state wins.
 
 If decision and constraint conflict on boundary posture, constraint wins.
 
 If decision and formation conflict on structure or placement, formation wins.
 
 If decision and evaluation conflict on judgment or outcome routing, evaluation wins.
+
+If decision and memory conflict on persistence, archive, reconstruction, or trust
+posture, memory wins.
 
 ---
 
@@ -42,10 +50,12 @@ This document exists only to answer:
 
 - how work moves
 - who does what
+- what class of thread is active
 - how a workflow pass progresses
 - when a pass recruits downward
 - when a pass is complete
 - how repo state becomes the next starting point
+- how bounded packets are formed for active development
 
 Nothing else belongs here.
 
@@ -55,11 +65,17 @@ Nothing else belongs here.
 
 The live repo is upstream of all workflow roles for current file and code reality.
 
-Workflow begins only after current repo reality is read.
+Workflow begins only after current repo reality is read for the active seam.
 
-If declared workflow state and live repo state conflict about what currently exists, live repo state wins.
+If declared workflow state and live repo state conflict about what currently
+exists, live repo state wins.
 
-If a pass has not checked current repo reality for the active seam, the pass is not ready.
+If a pass has not checked current repo reality for the active seam, the pass is
+not ready.
+
+For ExecutionSurface, repo-current-reality includes at minimum the active file,
+the active emitted artifact if one exists, and the immediate executable chain
+that bears on the active seam.
 
 ---
 
@@ -77,7 +93,8 @@ Each macro verb emits one bound object.
 
 The workflow invariant is:
 
-**No workflow step may destroy, replace, or silently inflate the active constraint-bearing identity inherited from admitted reality.**
+**No workflow step may destroy, replace, or silently inflate the active
+constraint-bearing identity inherited from admitted reality.**
 
 If a macro verb cannot emit its object lawfully, it must either:
 
@@ -236,11 +253,6 @@ It recruits to Admit only when the deeper failure is malformed reality admission
 - Reconcile
 - Resolve
 
-#### Conditional branches
-
-- Reconstruct
-- Promote
-
 #### Emitted object
 
 **Evaluation object**
@@ -276,7 +288,10 @@ Evaluate recruits to Admit only when the original source, scope, or policy was m
 
 #### Forward handoff
 
-Evaluate hands off forward to Memorize when immediate judgment is complete and persistence posture must now be decided.
+Evaluate hands off forward to Memorize when immediate judgment is complete and
+persistence posture must now be decided.
+
+---
 
 ### 4.5 Memorize
 
@@ -331,57 +346,309 @@ Memorize recruits to Admit only when the original source, scope, or policy was m
 
 ---
 
-## 5. Roles and role procedure
+## 5. Active role stack
 
 Roles are:
 
-1. Architect Reed
-2. Admission-Advisor
-3. Formation-Constructor / Compressor
-4. Decision-Reflector
-5. Evaluation-Auditor / Reviewer
+1. **Architect Reed**
+2. **Admission-Advisor**
+3. **Formation-Constructor / Compressor**
+4. **Decision-Reflector**
+5. **Evaluation-Auditor / Reviewer**
+
+ExecutionSurface also supports the following bounded morphogenesis-role handles:
+
+- **Administrator**
+- **Constructor**
+- **Creative**
+- **Reflector**
+- **Auditor**
+
+These are not a separate sovereign workflow stack.
+
+They are bounded role handles used inside architect-morphogenesis thread class,
+under this decision grammar.
 
 ### 5.1 Role definitions
 
 #### Architect Reed
-Final authority for priority, acceptance, rejection, bounded scope approval, and escalation disposition.
+
+Final authority for:
+
+- priority
+- acceptance
+- rejection
+- bounded scope approval
+- escalation disposition
+- thread activation
+- active subject selection when morphogenesis is in play
 
 #### Admission-Advisor
-Reads live repo reality for the active seam, bounds scope, identifies governing constraint posture, and prepares the bound work object.
+
+Reads live repo reality for the active seam, bounds scope, identifies governing
+constraint posture, and prepares the bound work object.
 
 #### Formation-Constructor / Compressor
-Structures, compresses, classifies, separates, and externalizes identity-bearing form for the active seam without importing movement or judgment.
+
+Structures, compresses, classifies, separates, and externalizes identity-bearing
+form for the active seam without importing movement or judgment.
 
 #### Decision-Reflector
-Constrains the navigable decision surface, reflects on lawful paths, proposes bounded packets, and governs handoff without silently mutating repo reality.
+
+Constrains the navigable decision surface, reflects on lawful paths, proposes
+bounded packets, and governs handoff without silently mutating repo reality.
 
 #### Evaluation-Auditor / Reviewer
-Audits outcomes, reviews significance, reconciles continuity, resolves workflow posture, and detects role drift or unlawful inflation.
+
+Audits outcomes, reviews significance, reconciles continuity, resolves workflow
+posture, and detects role drift or unlawful inflation.
+
+#### Administrator
+
+Morphogenesis process glue.
+
+Administrator may:
+
+- select the active subject
+- select the next role
+- preserve single-branch discipline
+- approve reroutes, repeats, escalation, deferral, or archive posture
+
+Administrator is not required to generate architecture text in every pass.
+
+#### Constructor
+
+Morphogenesis generation role.
+
+Constructor may:
+
+- generate or revise architecture structure
+- synthesize candidate formulations
+- build compact bundle surfaces
+- incorporate approved corrections
+
+Failure mode:
+- premature architecture
+- overbuilding
+- smoothing by construction
+
+#### Creative
+
+Morphogenesis contrastive-pressure role.
+
+Creative may:
+
+- introduce contrastive framings
+- stretch scope in a controlled way
+- propose nearby alternate cuts
+- preserve productive asymmetry
+
+Creative is advisory by default.
+
+Creative does not directly mutate code-touch seams unless explicitly promoted.
+
+Failure mode:
+- scope bloom
+- novelty without integration
+- too many alternatives at once
+
+#### Reflector
+
+Morphogenesis compression role.
+
+Reflector may:
+
+- compress without flattening
+- reconcile candidate structure
+- preserve meaningful asymmetry while removing noise
+- rewrite the live subject surface when that thread class allows it
+
+Failure mode:
+- premature resolution
+- beautiful blur
+- false unity
+
+#### Auditor
+
+Morphogenesis integrity and gate role.
+
+Auditor may:
+
+- check claims against current repo and workflow law
+- identify hidden co-location, class drift, undefined terms, and false certainty
+- act as Gate when separate gate support is absent
+- issue release / hold / defer / downgrade / rebound recommendations
+
+Failure mode:
+- overblocking
+- excessive conservatism
+- failure to release lawful growth
+
+### 5.2 Role mapping rule
+
+Morphogenesis handles map into the matrix role stack as follows:
+
+- Administrator → Architect Reed process-routing handle
+- Constructor → Formation-Constructor / Compressor handle
+- Creative → advisory contrastive-pressure handle inside Decide-side shaping
+- Reflector → Decision-Reflector / compression handle depending active seam
+- Auditor → Evaluation-Auditor / Reviewer handle
+- Gate → Auditor-as-Gate only when explicitly declared
+
+No handle may silently exceed the authority of its host matrix role.
+
+### 5.3 Role drift rule
 
 No role may silently perform another role’s job.
 
-### 5.2 Thread role rule
+Role drift includes:
 
-Each active thread must have exactly one primary role.
+- admission defining structural identity
+- formation choosing action
+- decision mutating repo reality without accepted packet authority
+- evaluation redefining structure retroactively
+- morphogenesis roles silently absorbing neighboring macro verbs
+- Creative widening active subject or active seam without Administrator approval
 
-Each active thread must operate inside exactly one active macro verb.
+---
 
-Roles do not cut across macro verbs by default.
+## 6. Thread classes
 
-Cross-verb action requires explicit escalation or explicit handoff.
+Every active thread must declare exactly one thread class.
 
-No thread may silently absorb a neighboring verb.
+Allowed thread classes are:
 
-### 5.3 Packet rule
+1. **morphogenesis**
+2. **seam_repair**
+3. **implementation_mutation**
 
-Every role receives a bounded packet.
+### 6.1 Morphogenesis
 
-Every role returns a bounded packet.
+Purpose:
+
+- architecture shaping
+- workflow shaping
+- contract shaping
+- subject compression or release
+- bounded live-surface generation for process and architecture documents
+
+Default posture:
+
+- one active subject
+- one primary role
+- one active macro verb
+- single-branch discipline
+- advisory-to-live-surface mutation only through bounded writing rights
+
+Morphogenesis does not mutate implementation code by default.
+
+### 6.2 Seam repair
+
+Purpose:
+
+- diagnose one active implementation seam
+- verify full executable chain
+- perform the smallest lawful edit that resolves the demonstrated failure point
+
+Default posture:
+
+- one active seam
+- full-chain verification first
+- exact file scope
+- reversible local edit
+- no architectural redesign unless escalated
+
+### 6.3 Implementation mutation
+
+Purpose:
+
+- bounded feature development
+- bounded developmental extension
+- lawful seam growth after accepted packet approval
+
+Default posture:
+
+- one active seam
+- explicit emitted object target
+- explicit non-goals
+- no silent widening into neighboring seams
+- no free mutation outside accepted packet authority
+
+Implementation mutation is not the same as seam repair.
+
+Repair resolves a demonstrated failure.
+
+Implementation mutation builds a bounded new surface or bounded extension.
+
+---
+
+## 7. Thread rule
+
+Each active thread must have exactly:
+
+- one thread class
+- one primary role
+- one active macro verb
+- one active seam
+
+A thread may not:
+
+- silently mix primary roles
+- silently cross macro verbs
+- silently change thread class mid-pass
+- perform repo mutation without accepted packet authority
+- absorb neighboring workflow responsibility for convenience
+
+If a task needs more than one role, more than one macro verb, or more than one
+thread class, it must move by explicit handoff or explicit escalation.
+
+---
+
+## 8. Morphogenesis subject rule
+
+Morphogenesis threads additionally require:
+
+- one active subject only
+- one subject state only
+- one live subject surface only
+- one cycle log only
+
+Allowed subject states are:
+
+- Seeded
+- Tension-Held
+- Compressed
+- Gate-Pending
+- Released
+- Deferred
+- Downgraded
+- Rebound
+- Archived
+- Metastable Hold
+
+A morphogenesis thread may not open parallel active subjects unless the workflow
+is explicitly upgraded later.
+
+Metastable Hold means:
+
+- the subject still carries real structural gain
+- deeper descent would buy wording more than control
+- upward compression would erase a still-live distinction
+
+---
+
+## 9. Packet rule
+
+Every thread receives a bounded packet.
+
+Every thread returns a bounded packet.
 
 A packet must declare:
 
+- thread class
 - active seam
 - active macro verb
+- primary role
 - files in scope
 - non-goals
 - governing surfaces
@@ -393,22 +660,74 @@ If the emitted object cannot be produced lawfully, the role must either:
 - continue inside the same macro verb
 - recruit downward
 - defer
+- hand off forward lawfully
 - or block honestly
 
 Expected emitted object may be:
+
 - bound work object
 - identity object
 - decision object
 - evaluation object
 - memory object
 
-### 5.4 Handoff rule
+Morphogenesis packets may additionally declare:
 
-Handoff is the only lawful route between primary roles.
+- active subject
+- state before pass
+- state after pass
+- live subject surface
+- cycle log target
+- whether gate posture is in play
+
+---
+
+## 10. Thread-start packet contract
+
+Before any pass begins, the initiating packet must provide:
+
+- thread class
+- active seam
+- active macro verb
+- primary role
+- files in scope
+- expected emitted object
+- current artifact, test, or live surface proving the need
+- non-goals
+
+For seam_repair threads, also provide:
+
+- current artifact or test proving failure
+- checked chain or request to perform chain check
+- acceptance target for repair
+
+For implementation_mutation threads, also provide:
+
+- bounded developmental target
+- exact seam to be extended
+- non-goals preventing opportunistic widening
+
+For morphogenesis threads, also provide:
+
+- active subject
+- current subject state
+- live subject surface
+- cycle log target
+- whether mutation rights are live or proposal-only
+
+If this packet is missing, the pass is not ready.
+
+---
+
+## 11. Handoff rule
+
+Handoff is the only lawful route between primary roles or thread classes.
 
 Handoff must preserve:
 
+- thread class
 - active seam
+- active macro verb
 - scoped files
 - governing constraint posture
 - current emitted-object status
@@ -417,35 +736,16 @@ Handoff may narrow scope.
 
 Handoff may not silently widen scope.
 
-### 5.5 Drift rule
+Morphogenesis handoff must additionally preserve:
 
-Evaluation explicitly checks for role drift.
+- active subject
+- subject state
+- live subject surface target
+- cycle log continuity
 
-Role drift includes:
+---
 
-- admission defining structural identity
-- formation choosing action
-- decision mutating repo reality without an accepted bounded packet
-- evaluation redefining structure retroactively
-- any thread silently performing another role’s job
-
-## 6. Thread rule
-
-Each active thread must have exactly one primary role.
-
-Allowed thread classes are the active roles defined in section 5.1.
-
-A thread may not:
-
-- silently mix primary roles
-- silently cross macro verbs
-- perform repo mutation without accepted packet authority
-- absorb neighboring workflow responsibility for convenience
-- combine architectural redesign with direct repo mutation in one pass
-
-If a task needs more than one role or more than one macro verb, it must move by explicit handoff or explicit escalation.
-
-## 7. Active seam rule
+## 12. Active seam rule
 
 Only one seam may be active per pass.
 
@@ -460,9 +760,37 @@ If the seam cannot be named clearly, the pass is not ready.
 
 If the scoped change cannot be bounded clearly, the pass is too large.
 
+Morphogenesis uses the same boundedness rule, but substitutes active subject
+where code-touch seam is not the live object.
+
 ---
 
-## 8. Compression rule
+## 13. Full-chain verification rule
+
+For seam_repair threads and any implementation_mutation thread that begins from
+suspected failure, the full active executable chain that is accessible must be
+checked before naming a confirmed failure point.
+
+Minimum chain check:
+
+- source generator / fixture seam
+- runtime / orchestrator seam
+- emitted runtime artifact seam
+- wrapper / extraction seam
+- staged input seam
+- consuming invocation / benchmark seam
+
+Only then may the narrowest demonstrated failure point be named.
+
+No diagnosis may be stated as confirmed until:
+
+- checked seams are stated
+- demonstrated failure point is stated
+- unverified seams are explicitly named
+
+---
+
+## 14. Compression rule
 
 Compression answers only:
 
@@ -472,7 +800,7 @@ Compression answers only:
 - what should leave active scope
 - whether the current macro verb emitted its required object
 
-Every artifact in scope must be classified as:
+Every artifact or subject in scope must be classified as:
 
 - keep active
 - fold into canonical
@@ -480,11 +808,15 @@ Every artifact in scope must be classified as:
 - archive from active use
 - unresolved
 
-If an artifact does not uniquely answer the active bounded need, it should not remain active.
+If an artifact or subject does not uniquely answer the active bounded need, it
+should not remain active.
+
+Morphogenesis compression must not erase distinctions that have not yet been
+tested for architectural load-bearing value.
 
 ---
 
-## 9. Repo-mutation rule
+## 15. Repo-mutation rule
 
 Repo-mutation under accepted packet may:
 
@@ -501,11 +833,13 @@ Repo-mutation under accepted packet may not:
 - preserve mixed-role artifacts for convenience
 - treat proposal as approval
 
-Repo-mutation follows the accepted packet, not free expansion.
+Morphogenesis live-surface mutation is still mutation and must obey bounded scope.
+
+Creative and Auditor remain proposal-first roles by default unless explicitly promoted.
 
 ---
 
-## 10. Escalation and completion rule
+## 16. Escalation and completion rule
 
 Escalation is allowed only when:
 
@@ -514,6 +848,7 @@ Escalation is allowed only when:
 - pass scope is insufficient
 - repo reality conflicts with declared procedure
 - lawful completion is not possible inside the active macro verb
+- the thread class is wrong for the required next move
 
 Escalation must stay bounded.
 
@@ -527,9 +862,22 @@ A pass is complete only when:
 
 If ambiguity expanded, compression failed.
 
+Morphogenesis passes must additionally report:
+
+- active subject
+- active role
+- state before pass
+- state after pass
+- what changed
+- what remains unresolved
+- recommended next role
+- whether escalation or deferral is requested
+
+If that output is missing, the pass is incomplete.
+
 ---
 
-## 11. Checkpoint rule
+## 17. Checkpoint rule
 
 After each accepted pass:
 
@@ -538,18 +886,30 @@ After each accepted pass:
 - deferred and archived decisions remain explicit
 - future work must start from repo state, not conversational memory
 
+For morphogenesis:
+
+- cycle log must be updated
+- subject-register update occurs only when state changed
+- gate results are declared in the pass and committed when written into the subject register
+
 The repo carries project memory for current reality.
 
 Threads do not.
 
 ---
 
-## 12. One-line review question
+## 18. One-line review question
 
-Did this move conserve constraint-bearing identity by emitting the required object at the current macro verb, or by explicitly recruiting downward when lawful forward movement failed?
+Did this move conserve constraint-bearing identity by emitting the required object
+at the current macro verb, inside one declared thread class, one primary role,
+and one active seam or subject, or by explicitly recruiting downward when lawful
+forward movement failed?
 
 ---
 
-## 13. One-line summary
+## 19. One-line summary
 
-Decision Matrix governs how bounded work moves through the five macro verbs—Admit, Form, Decide, Evaluate, and Memorize—using repo reality as upstream ground, emitted objects as checkpoints, and downward recruitment as the main anti-drift control.
+Decision Matrix governs how bounded work moves through the five macro verbs using
+repo reality as upstream ground, one declared thread class at a time, one active
+seam or subject at a time, emitted objects as checkpoints, and downward
+recruitment plus bounded handoff as the main anti-drift controls.
