@@ -348,3 +348,35 @@
 - recommended next role: Creative
 - decision: Hold
 - reason: Comparison Law now has a compressed first identity-bearing shape, but contrastive pressure should test whether the minimum comparison contract is sufficient before gate review.
+
+### ES-CYCLE-0004-CREATIVE
+- cycle_id: ES-CYCLE-0004
+- active subject: Comparison Law
+- active role: Creative
+- state before: Compressed
+- state after: Tension-Held
+- live-surface mutation status: none on `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`; appended cycle-log entry only
+- proposals accepted:
+  - preserve the current comparison contract as the shared minimum floor for lawful comparison acts
+  - keep declared operands, declared comparison basis or lens, bounded difference / similarity posture, and provenance of the comparison act as the current comparison-floor requirements
+  - keep explicit non-claims against truth, same-object closure, and source recovery in place
+  - keep reconstruction participation, repeated-reference handling, and full comparison-receipt shape outside current shared-floor content
+  - hold open one narrow asymmetry for Reflector: bounded comparison posture versus later repeated-reference and reconstructed-operand handling
+- proposals rejected:
+  - widening into Reconstruction Law
+  - widening into memory routing or commit-boundary law
+  - importing deferred upper subjects
+  - treating comparison as truth, same-object declaration, or source recovery
+  - opening full receipt-shape, schema, validator, or implementation mechanics
+  - directly mutating the live subject surface under Creative default posture
+- what changed:
+  - The cycle log now records that the compressed comparison contract survives first contrastive pressure as the current shared minimum floor.
+  - Creative pressure found one still-live asymmetry that should remain explicit: repeated-reference comparisons and reconstructed-operand participation appear to be later handling overlays, not current comparison-floor content, and should not be flattened into identity closure or source recovery.
+  - Creative pressure also found that the compressed comparison result shape is acceptable at this layer, but should not silently expand into full receipt-shape law inside Comparison Law yet.
+- unresolved tensions:
+  - Reflector still needs to decide whether later repeated-reference and reconstructed-operand handling should be named explicitly as later overlays or remain only as bounded unresolved non-claims for now.
+  - Reconstruction Law remains unopened and must later clarify how reconstructed operands may participate in comparison without collapsing comparison into source recovery.
+  - Full comparison-receipt shape law must remain deferred.
+- recommended next role: Reflector
+- decision: Hold
+- reason: the minimum comparison contract holds, but one narrow fork between bounded comparison posture and later repeated-reference / reconstructed-operand handling still earns explicit tension.
