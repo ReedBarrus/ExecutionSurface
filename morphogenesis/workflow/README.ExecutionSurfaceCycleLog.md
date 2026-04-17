@@ -440,3 +440,36 @@
 - recommended next role: Administrator
 - decision: Release
 - reason: Comparison Law is now explicit and compressive enough to open `Reconstruction Law` without multiplying ambiguity.
+
+### ES-CYCLE-0005-CONSTRUCTOR
+- cycle_id: ES-CYCLE-0005
+- active subject: Reconstruction Law
+- active role: Constructor
+- state before: Seeded
+- state after: Compressed
+- live-surface mutation status: updated `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`
+- proposals accepted:
+  - define reconstruction as declared re-entry from retained state under a declared lens
+  - require explicit retained source reference and explicit reconstruction lens
+  - require bounded regenerated object posture
+  - require provenance of the reconstruction act itself
+  - preserve explicit non-claims against raw-original restoration, perfect recovery, truth restoration, source-recovery proof, routing posture, and comparison closure
+  - keep reconstruction distinct from routing, comparison, and deferred upper subjects
+- proposals rejected:
+  - widening into full schemas, validators, helper design, receipt-shape law, or implementation mechanics
+  - importing query / read result, agent emission, human resolution, or control intent classes
+  - reopening Comparison Law
+  - silently opening Memory Routing Law in the same pass
+  - treating reconstruction as raw original, proof of perfect recovery, source-recovery proof, or routing posture
+- what changed:
+  - The live subject surface now contains a dedicated `Reconstruction Law` section.
+  - That section now states the core reconstruction rule and the minimum lawful reconstruction prerequisites.
+  - The live subject surface now states what reconstruction yields at this layer and what reconstruction explicitly does not decide.
+  - The minimum lawful reconstruction contract is now compact enough for later pressure without widening into implementation.
+- unresolved tensions:
+  - The current section may still need pressure on how source-family differences should later be handled without widening the current floor.
+  - Later relation work between reconstructed operands and comparison remains unopened and must not collapse reconstruction into source recovery.
+  - Reconstruction result shape is now named in compressed form, but full receipt-shape law remains deferred.
+- recommended next role: Creative
+- decision: Hold
+- reason: Reconstruction Law now has a compressed first identity-bearing shape, but contrastive pressure should test whether the minimum reconstruction contract is sufficient before gate review.
