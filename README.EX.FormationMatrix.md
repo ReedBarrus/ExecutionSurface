@@ -73,6 +73,7 @@ Current top-level repo zones are:
 - `benchmarks/`
 - `out_workbench/`
 - `out_lm/`
+- `morphogenesis/`
 
 Current root orientation / authority-support files include:
 
@@ -85,8 +86,6 @@ Current root orientation / authority-support files include:
 - `README.EX.MemoryMatrix.md`
 
 If a zone is not present in the live repo, it is not part of current formation reality.
-
----
 
 ## 3. Root authority files
 
@@ -114,7 +113,7 @@ treated as authority merely because they are visible in the repo.
 
 ## 4. Repository band split
 
-The active repo is organized into three bands:
+The active repo is organized into four bands:
 
 ### 4.1 Runtime / commit implementation
 
@@ -137,7 +136,15 @@ becoming runtime authority:
 - `tests/`
 - `Transformer/`
 
-### 4.3 Generated artifact surfaces
+### 4.3 Morphogenesis / process-support surfaces
+
+These zones hold architecture-shaping, governed-recursion, subject-surface, and
+workflow-support surfaces that operate over bounded receipts and explicit process
+law without becoming runtime / commit authority:
+
+- `morphogenesis/`
+
+### 4.4 Generated artifact surfaces
 
 These zones hold emitted outputs from runtime, wrapper, or benchmark activity:
 
@@ -148,7 +155,6 @@ These zones hold emitted outputs from runtime, wrapper, or benchmark activity:
 These may be inspected, diffed, retained, benchmarked, or reconstructed.
 
 They do not become authority merely by being produced.
-
 ---
 
 ## 5. Zone roles
@@ -179,6 +185,25 @@ Signal-side source material and replay-style signal checks only.
 ### `Transformer/`
 Language-kernel attachment and related bounded downstream control surfaces only.
 
+### `morphogenesis/`
+Governed-recursion, architecture-shaping, subject-surface, workflow-support, and
+implementation-ladder process surfaces only.
+
+This zone is read-side / process-support posture.
+
+It does not become runtime / commit authority by carrying live subject mutation.
+
+#### `morphogenesis/architecture/`
+Architecture seed and implementation-ladder trunk surfaces only.
+
+#### `morphogenesis/workflow/`
+Subject registry, cycle log, administrator note log, governed recursion contract,
+appendices, and workflow law support surfaces only.
+
+#### `morphogenesis/subject_surfaces/`
+Live subject mutation surfaces opened from the architecture seed during bounded
+morphogenesis only.
+
 ### `benchmarks/`
 Benchmark receipts, summaries, and benchmark-run artifacts only.
 
@@ -193,7 +218,6 @@ Public/self-description and repo posture only.
 
 ### `ARCHITECTURE.md`
 Compact architectural basis and development-front description only.
-
 ---
 
 ## 6. Placement rules
@@ -225,17 +249,33 @@ Language-kernel attachment and related bounded downstream kernel surfaces stay i
 `Transformer/`.
 
 ### Rule 9
-Benchmark-run artifacts stay in `benchmarks/`.
+Morphogenesis architecture, workflow, and subject-surface process files stay in
+`morphogenesis/`.
 
 ### Rule 10
-Generated workbench artifacts stay in `out_workbench/`.
+Architecture seed and implementation-ladder trunk surfaces stay in
+`morphogenesis/architecture/`.
 
 ### Rule 11
-Generated LM staging / output artifacts stay in `out_lm/`.
+Subject registry, cycle log, administrator note log, governed recursion entry
+contract, appendices, and workflow-support surfaces stay in
+`morphogenesis/workflow/`.
 
 ### Rule 12
-Root posture and architecture statements stay in `README.md` and `ARCHITECTURE.md`.
+Released or actively mutated narrower live subject surfaces stay in
+`morphogenesis/subject_surfaces/`.
 
+### Rule 13
+Benchmark-run artifacts stay in `benchmarks/`.
+
+### Rule 14
+Generated workbench artifacts stay in `out_workbench/`.
+
+### Rule 15
+Generated LM staging / output artifacts stay in `out_lm/`.
+
+### Rule 16
+Root posture and architecture statements stay in `README.md` and `ARCHITECTURE.md`.
 ---
 
 ## 7. Authority-bearing vs generated surfaces
