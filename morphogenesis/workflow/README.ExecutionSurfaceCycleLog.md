@@ -600,3 +600,35 @@
 - recommended next role: Creative
 - decision: Hold
 - reason: Memory Routing Law now has a compressed first identity-bearing shape, but contrastive pressure should test whether the minimum routing contract is sufficient before gate review.
+
+### ES-CYCLE-0006-CREATIVE
+- cycle_id: ES-CYCLE-0006
+- active subject: Memory Routing Law
+- active role: Creative
+- state before: Compressed
+- state after: Tension-Held
+- live-surface mutation status: none on `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`; appended cycle-log entry only
+- proposals accepted:
+  - preserve the current routing contract as the shared minimum floor for lawful memory-routing acts
+  - keep retain posture, archive posture, promote posture inside memory space, reconstruction availability posture, and bounded reuse-condition carriage as the current routing-floor requirements
+  - keep explicit non-claims against commit-boundary crossing, reconstruction itself, truth / canon / proof, deletion equivalence, and same-object closure in place
+  - keep class-specific routing differences, routing/read-model relation work, and full routing-receipt shape outside current shared-floor content
+  - hold open one narrow asymmetry for Reflector: shared routing floor now versus later class-specific routing differences and read-model relation work
+- proposals rejected:
+  - widening into Read-Model Distinction
+  - widening into commit-boundary crossing, reconstruction, or proof posture
+  - importing deferred upper subjects
+  - treating archive as deletion, retain as proof, or promote as canon
+  - opening full receipt-shape, schema, validator, or implementation mechanics
+  - directly mutating the live subject surface under Creative default posture
+- what changed:
+  - The cycle log now records that the compressed routing contract survives first contrastive pressure as the current shared minimum floor.
+  - Creative pressure found one still-live asymmetry that should remain explicit: class-specific routing differences and routing/read-model relation work appear to be later overlay or relation work, not current routing-floor content, and should not be flattened into the current floor.
+  - Creative pressure also found that the compressed routing posture is acceptable at this layer, but should not silently expand into full routing-receipt shape law inside Memory Routing Law yet.
+- unresolved tensions:
+  - Reflector still needs to decide whether later class-specific routing differences and routing/read-model relation work should be named explicitly as later overlays or relation work, or remain only as bounded unresolved non-claims for now.
+  - Read-Model Distinction remains unopened and must later clarify routing/read-model relations without being smuggled into routing.
+  - Full routing-receipt shape law must remain deferred.
+- recommended next role: Reflector
+- decision: Hold
+- reason: the minimum routing contract holds, but one narrow fork between shared routing floor and later class-specific/read-model handling still earns explicit tension.
