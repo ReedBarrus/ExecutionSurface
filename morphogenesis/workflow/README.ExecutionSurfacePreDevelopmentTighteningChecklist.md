@@ -40,13 +40,13 @@ Do not use this checklist to smuggle in:
 
 ## Phase 1 — Artifact hygiene
 
-- [ ] Decide which generated outputs are source-like fixtures versus disposable run artifacts.
-- [ ] Add explicit ignore posture for generated directories or files that should not live as default tracked state.
-- [ ] Separate canonical example artifacts from transient local run residue in `out_workbench/`.
-- [ ] Separate canonical example artifacts from transient local run residue in `out_lm/`.
-- [ ] Separate preserved benchmark exemplars from timestamped benchmark residue in `benchmarks/results/`.
-- [ ] Remove or archive stale run folders once exemplar fixtures have been preserved intentionally.
-- [ ] Eliminate duplicate or drifting prompt artifacts such as parallel `.txt` and `.md` prompt surfaces when only one should be live.
+- [x] Decide which generated outputs are source-like fixtures versus disposable run artifacts.
+- [x] Add explicit ignore posture for generated directories or files that should not live as default tracked state.
+- [x] Separate canonical example artifacts from transient local run residue in `out_workbench/`.
+- [x] Separate canonical example artifacts from transient local run residue in `out_lm/`.
+- [x] Separate preserved benchmark exemplars from timestamped benchmark residue in `benchmarks/results/`.
+- [x] Remove or archive stale run folders once exemplar fixtures have been preserved intentionally.
+- [x] Eliminate duplicate or drifting prompt artifacts such as parallel `.txt` and `.md` prompt surfaces when only one should be live.
 
 ---
 
@@ -72,8 +72,7 @@ Do not use this checklist to smuggle in:
 ## Phase 4 — Documentation posture cleanup
 
 - [ ] Add a short ownership map naming which directories are source, fixtures, generated outputs, historical experiments, and transitional support surfaces.
-- [ ] Reconcile older `Transformer/LanguageKernel/` manual-loop language with the current `runtime/lm/` wrapper path.
-- [ ] Decide whether `Transformer/LanguageKernel/` is an active lane or legacy-support lane and label it accordingly.
+- [ ] Keep `runtime/lm/` documented as the single active LM attachment lane so removed or historical side paths do not silently regrow.
 - [ ] Reconcile `ExperimentResults/` with current repo posture so it is clear whether those files are historical notes, active benchmark evidence, or removable clutter.
 - [ ] Update public-facing docs where generated outputs currently read as more authoritative than intended.
 

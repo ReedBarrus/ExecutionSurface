@@ -134,7 +134,6 @@ The active repository bands are:
 - `schemas/`
 - `scripts/`
 - `tests/`
-- `Transformer/LanguageKernel/`
 
 ### Morphogenesis / process-support surfaces
 - `morphogenesis/`

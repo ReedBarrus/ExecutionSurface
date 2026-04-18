@@ -72,7 +72,6 @@ These directories hold the machine-facing receipt, wrapper, benchmark, and valid
 - `schemas/`: JSON schema layer for bounded receipts, wrapper inputs/outputs, and process surfaces
 - `scripts/`: machine-facing runners that emit JSON artifacts, staging surfaces, and benchmark outputs
 - `tests/`: contract, runtime, reconstruction, wrapper, and benchmark checks
-- `Transformer/LanguageKernel/`: early kernel attachment surface and schema-adjacent materials
 
 ### Morphogenesis / process-support surfaces
 

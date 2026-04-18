@@ -69,7 +69,6 @@ Current top-level repo zones are:
 - `scripts/`
 - `tests/`
 - `test_signal/`
-- `Transformer/`
 - `benchmarks/`
 - `out_workbench/`
 - `out_lm/`
@@ -134,7 +133,6 @@ becoming runtime authority:
 - `schemas/`
 - `scripts/`
 - `tests/`
-- `Transformer/`
 
 ### 4.3 Morphogenesis / process-support surfaces
 
@@ -181,9 +179,6 @@ checks, and benchmark checks only.
 
 ### `test_signal/`
 Signal-side source material and replay-style signal checks only.
-
-### `Transformer/`
-Language-kernel attachment and related bounded downstream control surfaces only.
 
 ### `morphogenesis/`
 Governed-recursion, architecture-shaping, subject-surface, workflow-support, and
@@ -245,36 +240,32 @@ Fixture builders stay in `fixtures/`.
 Signal-side fixture material stays in `test_signal/`.
 
 ### Rule 8
-Language-kernel attachment and related bounded downstream kernel surfaces stay in
-`Transformer/`.
-
-### Rule 9
 Morphogenesis architecture, workflow, and subject-surface process files stay in
 `morphogenesis/`.
 
-### Rule 10
+### Rule 9
 Architecture seed and implementation-ladder trunk surfaces stay in
 `morphogenesis/architecture/`.
 
-### Rule 11
+### Rule 10
 Subject registry, cycle log, administrator note log, governed recursion entry
 contract, appendices, and workflow-support surfaces stay in
 `morphogenesis/workflow/`.
 
-### Rule 12
+### Rule 11
 Released or actively mutated narrower live subject surfaces stay in
 `morphogenesis/subject_surfaces/`.
 
-### Rule 13
+### Rule 12
 Benchmark-run artifacts stay in `benchmarks/`.
 
-### Rule 14
+### Rule 13
 Generated workbench artifacts stay in `out_workbench/`.
 
-### Rule 15
+### Rule 14
 Generated LM staging / output artifacts stay in `out_lm/`.
 
-### Rule 16
+### Rule 15
 Root posture and architecture statements stay in `README.md` and `ARCHITECTURE.md`.
 ---
 
