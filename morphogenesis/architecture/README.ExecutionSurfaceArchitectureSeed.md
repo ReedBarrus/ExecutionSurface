@@ -1133,6 +1133,176 @@ This is intentionally narrower than full LM packet design, addressability contra
 
 ---
 
+## Continuity Under Bounded Identity Posture
+
+Continuity Under Bounded Identity Posture answers one narrow question:
+
+**How can recurrence and reuse be carried across retained, reconstructed, and read-side use without silently becoming same-object closure, truth, canon, unrestricted identity, or agent-defined substrate authority?**
+
+This subject does not reopen Read-Model Distinction.
+
+It assumes the lower object, boundary, comparison, reconstruction, routing, and read-model distinctions already exist and asks what minimum posture lets recurrence and reuse remain visible without inflating identity beyond its lawful bounds.
+
+### Core continuity rule
+
+Continuity is bounded recurrence / reuse posture.
+
+It is not identity proof.
+
+A lawful continuity posture may show that an object, reconstruction, comparison, or read-side result participates in a declared recurrence or reuse context, but it must not silently assert that the present object is unconditionally the same object across every later use.
+
+Continuity therefore carries bounded identity support, not unrestricted identity closure.
+
+### Minimum lawful continuity prerequisites
+
+A bounded continuity posture must declare all of the following:
+
+#### 1. Declared continuity basis
+
+Continuity requires an explicit basis.
+
+At minimum, the continuity posture must be able to answer:
+
+- what kind of recurrence or reuse is being carried
+- what bounded identity support is being claimed
+- what basis keeps the continuity posture inspectable rather than assumed
+
+Continuity law therefore requires declared continuity basis.
+
+It does **not** allow recurrence to be inferred as identity proof by convenience or repetition alone.
+
+#### 2. Declared recurrence reference or reuse context
+
+Continuity requires a declared recurrence reference or declared reuse context.
+
+At minimum, the continuity posture must be able to answer:
+
+- what prior object, reconstruction, comparison, read result, or reuse event is being related
+- what current use or recurrence context is in scope
+- how the current continuity posture remains bounded to that context
+
+Continuity law therefore requires declared recurrence / reuse context.
+
+It does **not** allow continuity to float free as a general same-object claim.
+
+#### 3. Bounded identity posture
+
+Continuity must carry a bounded identity posture.
+
+At minimum, the continuity posture must be able to answer:
+
+- what identity relation is supported at this layer
+- what identity relation remains unclaimed
+- how recurrence or reuse remains useful without becoming unrestricted identity
+
+Continuity law therefore requires bounded identity posture.
+
+It does **not** allow recurrence, reuse, stability, or availability to become same-object closure.
+
+#### 4. Provenance of the continuity claim or reuse act
+
+Continuity must preserve provenance of the claim or act itself.
+
+At minimum, the continuity posture must be able to answer:
+
+- when or where the recurrence / reuse act arose in workflow or runtime continuity
+- what declared basis and declared context produced the bounded continuity posture
+- what continuity event is being referred to later
+
+Continuity law therefore requires provenance of the continuity claim or reuse act.
+
+It does **not** allow continuity to disappear into an untraceable identity assumption.
+
+### What continuity carries
+
+Continuity carries bounded recurrence / reuse posture across lawful use.
+
+At this layer, the compressed identity-bearing shape remains:
+
+- declared continuity basis
+- declared recurrence reference or reuse context
+- bounded identity posture
+- provenance of the continuity claim or reuse act
+
+This compressed continuity posture is sufficient to keep recurrence and reuse visible without treating them as proof.
+
+It is not yet full continuity-receipt shape law, schema law, validator law, benchmark law, or implementation design.
+
+### Shared floor and later overlays
+
+The four prerequisites above are the universal minimum continuity floor for Continuity Under Bounded Identity Posture.
+
+They answer what every bounded continuity posture must declare before recurrence or reuse can be carried lawfully at all.
+
+If later agent-write handling needs stricter treatment beyond this shared floor, that treatment belongs to Agent Write Discipline opened explicitly.
+
+If later retained-object addressability, reconstruction export, or LM packet handling needs stricter treatment, that treatment belongs to those later subjects or overlays opened explicitly.
+
+Those later treatments are not part of the current continuity floor unless and until they are opened directly.
+
+Continuity Under Bounded Identity Posture therefore remains compressed at the shared floor first.
+
+It does not silently import agent-write law, addressability law, reconstruction-export law, LM-packet law, schema law, validator law, benchmark law, or implementation mechanics into the current floor.
+
+### Distinction rule
+
+Continuity law remains distinct from neighboring subjects.
+
+It does **not** decide:
+
+- whether an object may cross commit-boundary lawfully
+- whether routing posture should retain, archive, or promote
+- whether reconstruction proves source recovery
+- whether comparison establishes truth or same-object closure
+- whether a query/read result is a retained object
+- whether agent emission may write to the substrate
+- human resolution posture
+- control intent / action posture
+
+It only decides how recurrence and reuse can be carried as bounded continuity posture without inflating identity.
+
+### Non-claim rule
+
+Continuity is **not**:
+
+- same-object closure
+- truth
+- canon
+- unrestricted identity
+- perfect persistence
+- reconstruction proof
+- comparison truth
+- routing proof
+- agent-defined substrate authority
+
+The current shared floor also does **not** yet define:
+
+- Agent Write Discipline
+- full retained object addressability contract
+- reconstruction export surface contract
+- LM read packet contract
+- full continuity-receipt shape law
+
+A continuity posture may support later review, reuse, comparison, reconstruction, or agent-facing discipline.
+
+It does **not** by itself prove that identity is absolute, that persistence is perfect, that a truth or canon claim is warranted, or that agent output may define substrate memory law.
+
+### Early compression rule
+
+The first compressed shape of Continuity Under Bounded Identity Posture is therefore:
+
+- declared continuity basis
+- declared recurrence reference or reuse context
+- bounded identity posture
+- provenance of the continuity claim or reuse act
+- explicit non-claims against same-object closure, truth, canon, unrestricted identity, perfect persistence, reconstruction proof, comparison truth, routing proof, and agent-defined substrate authority
+
+This is the universal minimum continuity floor.
+
+Any stricter agent-write handling, addressability handling, reconstruction-export handling, LM-packet handling, continuity-receipt shape law, schema law, validator law, benchmark law, or implementation mechanics remains later subject or later overlay content, not current floor content.
+
+---
+
 ## First operation thesis
 
 ExecutionSurface should stabilize the following substrate operations before broader agent recursion claims:
