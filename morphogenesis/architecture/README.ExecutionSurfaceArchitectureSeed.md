@@ -1234,7 +1234,7 @@ The four prerequisites above are the universal minimum continuity floor for Cont
 
 They answer what every bounded continuity posture must declare before recurrence or reuse can be carried lawfully at all.
 
-If later agent-write handling needs stricter treatment beyond this shared floor, that treatment belongs to Agent Write Discipline opened explicitly.
+If later authority-bearing or agent-write handling needs stricter treatment beyond this shared floor, that treatment belongs to Agent Write Discipline or another explicitly opened authority-bearing overlay.
 
 If later retained-object addressability, reconstruction export, or LM packet handling needs stricter treatment, that treatment belongs to those later subjects or overlays opened explicitly.
 
@@ -1242,7 +1242,7 @@ Those later treatments are not part of the current continuity floor unless and u
 
 Continuity Under Bounded Identity Posture therefore remains compressed at the shared floor first.
 
-It does not silently import agent-write law, addressability law, reconstruction-export law, LM-packet law, schema law, validator law, benchmark law, or implementation mechanics into the current floor.
+It does not silently import authority-bearing law, agent-write law, addressability law, reconstruction-export law, LM-packet law, schema law, validator law, benchmark law, or implementation mechanics into the current floor.
 
 ### Distinction rule
 
@@ -1277,6 +1277,7 @@ Continuity is **not**:
 
 The current shared floor also does **not** yet define:
 
+- authority-bearing overlay law
 - Agent Write Discipline
 - full retained object addressability contract
 - reconstruction export surface contract
@@ -1299,7 +1300,7 @@ The first compressed shape of Continuity Under Bounded Identity Posture is there
 
 This is the universal minimum continuity floor.
 
-Any stricter agent-write handling, addressability handling, reconstruction-export handling, LM-packet handling, continuity-receipt shape law, schema law, validator law, benchmark law, or implementation mechanics remains later subject or later overlay content, not current floor content.
+Any stricter authority-bearing handling, agent-write handling, addressability handling, reconstruction-export handling, LM-packet handling, continuity-receipt shape law, schema law, validator law, benchmark law, or implementation mechanics remains later subject or later overlay content, not current floor content.
 
 ---
 
