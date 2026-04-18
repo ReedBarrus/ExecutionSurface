@@ -23,3 +23,8 @@ coverage/
 # Experiment/log outputs
 ExecutionResults/
 *.log
+
+# Generated runtime / benchmark artifacts
+out_lm/
+out_workbench/
+benchmarks/results/
