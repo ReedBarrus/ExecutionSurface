@@ -1055,6 +1055,26 @@ The following class is named but deferred at this layer:
 
 The current floor therefore stabilizes the distinction among present read-side memory products while keeping later agent output explicitly outside current class content.
 
+### Shared floor and later overlays
+
+The four current floor classes above are the universal minimum read-side class floor for Read-Model Distinction.
+
+They answer what classes must remain separate before lawful read-side exposure can occur without collapse.
+
+If later retained-object addressability needs stricter treatment beyond this shared floor, that treatment belongs to later overlay work or to the Retained Object Addressability Contract opened explicitly.
+
+If later reconstruction-export handling needs stricter treatment, that treatment belongs to later overlay work or to the Reconstruction Export Surface opened explicitly.
+
+If later LM-read-packet handling needs stricter treatment, that treatment belongs to later overlay work or to the LM Read Packet Contract opened explicitly.
+
+Those later treatments are not part of the current read-model floor unless and until they are opened directly.
+
+Later agent emission also remains deferred and distinct rather than current floor content.
+
+Read-Model Distinction therefore remains compressed at the shared floor first.
+
+It does not silently import addressability, export, LM packet, or later agent-emission law into the current floor.
+
 ### Distinction rule
 
 Read-Model Distinction remains distinct from neighboring subjects.
@@ -1081,7 +1101,7 @@ Read-side distinction is **not**:
 - reconstruction/source-recovery proof
 - agent-emission design by itself
 
-The current floor also does **not** yet define:
+The current shared floor also does **not** yet define:
 
 - full LM read packet contract
 - retained object addressability contract
@@ -1107,7 +1127,7 @@ The first compressed shape of Read-Model Distinction is therefore:
 
 This is the universal minimum read-model floor.
 
-Any stricter addressability handling, export handling, LM packet handling, or agent-emission handling remains later overlay or later subject content, not current floor content.
+Any stricter addressability handling, reconstruction-export handling, LM-read-packet handling, or later agent-emission handling remains later overlay or later subject content, not current floor content.
 
 This is intentionally narrower than full LM packet design, addressability contract, export surface design, schema law, validator law, or implementation mechanics.
 
