@@ -50,6 +50,22 @@ morphogenesis/workflow/README.ArchitectMorphogenesisWorkflow.md
 - recommended next target:
   - produce the first bounded live-surface mutation for Object-Class Grammar
 
+### ES-ADMIN-0002
+
+- note_id: ES-ADMIN-0002
+- active subject: Continuity Under Bounded Identity Posture
+- current posture: ES-CYCLE-0008 uses cycle-log Leg 2 for role-pass appends after the Constructor entry was manually appended to the original cycle log.
+- routing note:
+  - The original cycle log remains historical process memory through the ES-CYCLE-0008 Constructor entry.
+  - Routine role-pass appends should now target `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md` unless a later Administrator pass opens a newer log leg.
+  - Initialization packets for Auditor and subsequent Constructor passes should name Leg 2 as the active cycle-log target.
+  - This is a process-log segmentation only; it does not change active subject law, live subject surface, or registry state.
+- reason:
+  - The original cycle log is large enough that connector-based full-file replacement creates avoidable truncation risk for routine appends.
+- recommended next role: Auditor
+- recommended next target:
+  - gate `Continuity Under Bounded Identity Posture` using `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md` as the cycle-log target.
+
 ---
 
 ## One-line summary
