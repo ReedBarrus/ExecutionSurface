@@ -116,6 +116,72 @@ A stabilizing pass must not silently open a new child subject, widen scope, or i
 
 ---
 
+## Appendix F — Structural / Support / Receipt Exposure Rule
+
+ExecutionSurface must not confuse runtime objects with receipt summaries.
+
+Current object-class work should preserve three exposure classes:
+
+1. **Structural object**
+   - coordinate-bearing runtime structure before declared support recruitment
+   - examples: A1, A2, W1, S1
+   - may expose signal geometry, frame geometry, spectral bins, magnitude/phase, provenance, and structural receipts
+
+2. **Support object**
+   - derived mathematical support recruited from structure by declared reduction, comparison, clustering, reconstruction, or retrieval
+   - examples: H1, M1, An, BN, trajectory frames, Q, A3
+   - may expose kept-bin sets, band profiles, uncertainty, confidence, reconstruction loss, basin geometry, relation edges, recurrence/dwell posture, and query scores
+
+3. **Receipt summary**
+   - scalar, index, hash, count, flag, or compact digest over another object
+   - useful for audit, validation, transport, and benchmark surfaces
+   - must not stand in for the object it summarizes
+
+### Exposure rule
+
+No meaningful runtime seam from CompressOp upward should be receipt-only.
+
+Receipts may remain as subordinate audit attachments, but primary read-side exposure should include bounded structural/support descriptors sufficient to preserve class, provenance, comparison basis, and reconstruction posture.
+
+### Non-claims
+
+This rule does not authorize semantic overlays, canon claims, truth closure, or interpretation as default runtime dependency.
+
+It only requires that structural/support objects remain visible enough that downstream consumers do not mistake flattened counts for the state itself.
+
+---
+
+## Appendix G - Runtime grammar inheritance rule
+
+When governed recursion or implementation work touches runtime seam composition, runtime object exposure, descriptor routing, or emission authority, the `morphogenesis/architecture/runtime_grammar/` corpus becomes mandatory inherited authority.
+
+At minimum, that corpus includes:
+
+- `README.ExecutionSurfaceRuntimeGrammarCorpus.md`
+- `README.ExecutionSurfaceRuntimeObjectGrammar.md`
+- `README.ExecutionSurfaceRuntimeEmissionAuthorityGrammar.md`
+
+When the pass is deciding seam placement, mechanism strata, or descriptor routing, it should also inherit:
+
+- `README.ExecutionSurfaceRuntimeChainMap.md`
+- `README.ExecutionSurfaceRuntimeSeamLedger.md`
+
+These runtime grammar surfaces do not replace the architecture seed, subject registry, implementation ladder, or workflow law.
+
+They narrow and stabilize how runtime-front work names:
+
+- operator seams
+- pipeline coordination functions
+- substrate boundaries
+- read-side functions
+- structural objects
+- support objects
+- receipt summaries
+- descriptor families
+- emission authority posture
+
+If a pass touches any of those areas without naming the runtime grammar corpus, the pass should be considered under-scoped and held or rebound until the authority chain is explicit.
+
 ## One-line summary
 
-These appendices tighten early ExecutionSurface governed recursion by resolving reconstruct/promote placement, adding a pre-commit mini-gate, making cycle-log structure explicit, preserving deferred upper subjects visibly, and legitimizing stabilizing passes as an anti-inflation safeguard.
+These appendices tighten early ExecutionSurface governed recursion by resolving reconstruct/promote placement, adding a pre-commit mini-gate, making cycle-log structure explicit, preserving deferred upper subjects visibly, legitimizing stabilizing passes as an anti-inflation safeguard, and requiring explicit inheritance of the runtime grammar corpus for runtime-front work.

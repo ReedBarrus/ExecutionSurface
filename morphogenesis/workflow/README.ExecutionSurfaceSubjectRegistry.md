@@ -49,11 +49,11 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** Agent Write Discipline
+- **Active subject:** Runtime Grammar Pressure Review
 - **Current state:** Seeded
-- **Why active now:** Continuity Under Bounded Identity Posture has now been released, and the next lawful question is how agent output may attach to the memory substrate without defining substrate memory law, bypassing commit-boundary discipline, or inflating retained continuity into agent authority.
-- **Recommended next role:** Constructor
-- **Likely next child subject after release:** Agent Read / Reconstruction Discipline
+- **Why active now:** The runtime grammar corpus now distinguishes structure, support, receipts, descriptors, seam strata, emission authority, and transitional material clearly enough that the next lawful move is one bounded morphogenesis review pass over that corpus before descriptor contracts or implementation shapes harden.
+- **Recommended next role:** Reflector
+- **Likely next child subject after release:** Support Descriptor Contract Family
 
 ---
 
@@ -62,6 +62,8 @@ Allowed states:
 - Local-model benchmarking has now shown stable bounded `.json` contract obedience across repeated runs, so contract conformance is no longer the primary bottleneck for the current LM attachment seam.
 - The present LM-facing input view remains too receipt-thin and count-heavy to support meaningful object-level entrainment, reconstruction, comparison, or routing questions beyond format mimicry and generic bounded commentary.
 - The next architectural pressure therefore falls on lawful object addressability and bounded read-side object export rather than on prompt widening alone.
+- The runtime grammar corpus now distinguishes operator seams, pipeline coordination functions, substrate boundaries / surfaces, read-side functions, and transitional bridges rather than describing all runtime mechanisms through one blurred seam vocabulary.
+- The current runtime doctrine now treats receipts as subordinate audit surfaces only and removes semantic overlay from default runtime authority, but this posture should still be pressure-tested before descriptor contract shapes harden.
 
 ---
 
@@ -100,8 +102,8 @@ Allowed states:
 - note: Preserve recurrence and reuse without silent same-object inflation.
 
 ### 9. Agent Write Discipline
-- state: Seeded
-- note: Wait until memory-side object law is stable enough that agent output can attach to substrate law rather than define it.
+- state: Deferred
+- note: This subject is now premature in the current context. Runtime seam grammar, descriptor routing, and removal of default semantic dependency should stabilize before agent output law reopens.
 
 ### 10. Agent Read / Reconstruction Discipline
 - state: Deferred
@@ -128,16 +130,32 @@ Allowed states:
 - note: Only lawful after the project honestly crosses from memory medium toward bounded control architecture.
 
 ### 16. Retained Object Addressability Contract
-- state: Seeded
-- note: Define the minimum lawful address surface for retained objects so retrieval, comparison, reconstruction, and routing can refer to bounded objects directly rather than to flat substrate haze or summary counts.
+- state: Deferred
+- note: This subject remains useful but is now too narrow as written for the current runtime context. It should later be re-opened through descriptor-bearing state/support addressability rather than retained-object language alone.
 
 ### 17. Reconstruction Export Surface
-- state: Seeded
-- note: Define the minimum bounded reconstruction/export packet that can be shown to read-side tools or local models through declared source, declared lens, bounded evidence, and explicit non-claims without collapsing into raw substrate dump or source-recovery posture.
+- state: Deferred
+- note: This subject remains useful but should wait until replay support descriptor grammar is pressure-tested and stabilized.
 
 ### 18. LM Read Packet Contract
+- state: Deferred
+- note: This subject remains useful but should wait until state / trajectory / query descriptor routing is pressure-tested and stabilized.
+
+### 19. Runtime Grammar Pressure Review
 - state: Seeded
-- note: Define a governed read-side LM packet made of typed object refs, bounded object cards, compact evidence, and explicit authority posture so model benchmarking can move from format obedience toward lawful object-usefulness tests.
+- note: Pressure-test the new runtime grammar corpus for inconsistency, overbreadth, hidden semantic gravity, misrouted seam authority, descriptor-family ambiguity, and transitional material still posing as durable law.
+
+### 20. Runtime Seam And Authority Grammar
+- state: Seeded
+- note: Stabilize the distinction between operator seams, pipeline coordination functions, substrate boundaries / surfaces, read-side functions, and transitional bridges so later implementation does not blur runtime authority with coordination or read-side behavior.
+
+### 21. Support Descriptor Contract Family
+- state: Seeded
+- note: Define the first lawful contract family for state, basin, trajectory, query, and replay support descriptors only after the runtime grammar pressure review either compresses or rebounds cleanly.
+
+### 22. Transitional Material Elimination Posture
+- state: Seeded
+- note: Identify and remove remaining compatibility aliasing, semantic-default dependencies, and count-heavy convenience packets that still behave like durable law despite being transitional in posture.
 
 ---
 
@@ -156,12 +174,19 @@ These are active across all subjects:
 
 ## Immediate gate question
 
-For **Agent Write Discipline**, the gate question is:
+For **Runtime Grammar Pressure Review**, the gate question is:
 
-Can agent output be attached to the memory substrate clearly enough through bounded object class, provenance, authority posture, commit-boundary dependence, and explicit non-claims that Agent Read / Reconstruction Discipline can later open without letting agent output define substrate law or bypass retained continuity discipline?
+Is the current runtime grammar corpus internally coherent enough across seam
+strata, descriptor routing, authority posture, and transitional-material naming
+that descriptor contract-family writing can lawfully open next without freezing
+blurry assumptions into implementation?
 
 ---
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Agent Write Discipline active so later agent read/reconstruction discipline and multi-agent exchange can unfold from stabilized memory-side object, boundary, comparison, reconstruction, routing, read-model, and continuity foundations.
+This registry keeps early ExecutionSurface architectural morphogenesis on one
+active subject at a time, now with Runtime Grammar Pressure Review active so
+descriptor contracts and implementation can unfold from stabilized seam
+grammar, authority posture, and descriptor-routing foundations rather than from
+receipt-thin or semantically mixed runtime assumptions.

@@ -15,6 +15,11 @@ Administrator temporarily performs Archivist function
 
 This workflow exists to support controlled architectural generation without premature smoothing, uncontrolled divergence, or false release into deeper layers.
 
+Current runtime-front cycles that touch seam composition, runtime object exposure, descriptor routing, or emission authority must explicitly inherit the narrower authority corpus in `morphogenesis/architecture/runtime_grammar/`.
+
+The workflow remains the process law.
+The runtime grammar corpus supplies the seam-local doctrine for those narrower runtime questions.
+
 ## Purpose
 
 This workflow exists to:

@@ -129,3 +129,33 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Administrator, or direct next-cycle initialization on Agent Write Discipline using Leg 2 as cycle-log target
 - decision: Release
 - reason: Continuity Under Bounded Identity Posture is now explicit and compressive enough to open `Agent Write Discipline` without multiplying ambiguity.
+
+### ES-CYCLE-0009-ADMIN-REBASE
+- cycle_id: ES-CYCLE-0009
+- active subject: Runtime Grammar Pressure Review
+- active role: Administrator
+- state before: Seeded
+- state after: Tension-Held
+- live-surface mutation status: no live-subject mutation; appended administrative rebase entry here in `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md`; rebased governing authority docs to name `morphogenesis/architecture/runtime_grammar/` as active runtime-front doctrine
+- proposals accepted:
+  - preserve the release of `Continuity Under Bounded Identity Posture` as lawful and still in force
+  - reroute the next active subject away from `Agent Write Discipline` and onto `Runtime Grammar Pressure Review`
+  - treat the runtime grammar corpus as the current seam / object / emission authority chain for runtime-front recursion
+  - keep receipt summaries as subordinate convenience and audit surfaces rather than runtime-shape determinants
+  - keep semantic overlay outside default runtime authority unless later reopened explicitly as read-side or object-class overlay work
+- proposals rejected:
+  - invalidating the prior continuity-floor release
+  - continuing directly into `Agent Write Discipline` before runtime seam and emission grammar are pressure-reviewed
+  - allowing receipt flattening or interpretive carryover to determine runtime shape implicitly
+  - treating the architecture seed alone as sufficient current authority for runtime-front seam composition
+- what changed:
+  - Leg 2 now records an explicit administrative rebase after the runtime grammar corpus was produced and the subject registry was rerouted.
+  - Runtime-front recursion is now expected to inherit the `runtime_grammar/` corpus alongside the seed, registry, ladder, and workflow surfaces.
+  - The next live pressure target is the coherence of runtime seam composition, descriptor routing, emission authority, and receipt subordination, not agent-write mechanics yet.
+- unresolved tensions:
+  - `Support Descriptor Contract Family` remains the likely next child once the runtime grammar pressure review clears.
+  - `Agent Write Discipline` remains deferred until runtime seam / emission grammar is stable enough not to inherit receipt drift.
+  - The architecture seed still needs later rebasing to fully compress the newer runtime grammar findings into its own trunk without losing the historical chain.
+- recommended next role: Reflector
+- decision: Route
+- reason: the strongest current pressure is not on downstream write mechanics, but on making the runtime seam / object / emission grammar explicit enough that later implementation and recursion stop running blind.

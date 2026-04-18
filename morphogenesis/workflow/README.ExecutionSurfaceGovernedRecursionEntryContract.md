@@ -9,6 +9,7 @@ It is a process-surface contract.
 It does not replace:
 
 morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md
+morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md
 morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md
 morphogenesis/architecture/README.ExecutionSurfaceImplementationLadder.md
 morphogenesis/workflow/README.ArchitectMorphogenesisWorkflow.md
@@ -79,11 +80,24 @@ Every cycle must name the governing surfaces it inherits from.
 Minimum expected surfaces are:
 
 - `README.ExecutionSurfaceArchitectureSeed.md`
+- `runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md`
 - `README.ExecutionSurfaceSubjectRegistry.md`
 - `README.ExecutionSurfaceImplementationLadder.md`
 - `README.ArchitectMorphogenesisWorkflow.md`
 
 If a narrower seam-local or subject-local contract exists, it must also be named.
+
+Current runtime-front cycles should inherit the applicable runtime grammar surfaces explicitly.
+
+At minimum:
+
+- `runtime_grammar/README.ExecutionSurfaceRuntimeObjectGrammar.md`
+- `runtime_grammar/README.ExecutionSurfaceRuntimeEmissionAuthorityGrammar.md`
+
+When seam composition or descriptor routing is in scope, cycles should also name:
+
+- `runtime_grammar/README.ExecutionSurfaceRuntimeChainMap.md`
+- `runtime_grammar/README.ExecutionSurfaceRuntimeSeamLedger.md`
 
 ---
 

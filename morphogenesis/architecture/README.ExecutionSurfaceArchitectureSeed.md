@@ -16,6 +16,18 @@ Its purpose is to:
 
 This seed should be treated as a live subject surface candidate, not as settled canon.
 
+Current runtime-front seam, object, and emission doctrine is tightened further in `morphogenesis/architecture/runtime_grammar/`.
+
+That subdirectory should be read as the active narrower authority corpus whenever recursion or implementation work touches:
+
+- runtime seam composition
+- structural versus support object exposure
+- descriptor routing
+- emission authority
+- receipt subordination
+
+This seed remains the trunk and historical parent surface, but it should not be used by itself to settle those narrower runtime-front questions.
+
 ---
 
 ## Purpose
