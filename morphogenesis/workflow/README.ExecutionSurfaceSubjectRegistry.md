@@ -49,11 +49,11 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** Read-Model Distinction
+- **Active subject:** Continuity Under Bounded Identity Posture
 - **Current state:** Seeded
-- **Why active now:** Memory Routing Law has now been released, and the next lawful question is how retained object, reconstruction object, comparison receipt, query/read result, and later agent emission remain class-distinct without collapsing routing, comparison, or reconstruction into one mixed read-side surface.
+- **Why active now:** Read-Model Distinction has now been released, and the next lawful question is how recurrence and reuse can persist across time without silently becoming same-object closure, truth, canon, or unrestricted identity inflation.
 - **Recommended next role:** Constructor
-- **Likely next child subject after release:** Continuity Under Bounded Identity Posture
+- **Likely next child subject after release:** Agent Write Discipline
 
 ---
 
@@ -92,7 +92,7 @@ Allowed states:
 - note: Define retain / archive / promote posture, reconstruction availability, and reuse-condition handling.
 
 ### 7. Read-Model Distinction
-- state: Seeded
+- state: Released
 - note: Separate retained object, reconstruction object, comparison receipt, query/read result, and agent emission object.
 
 ### 8. Continuity Under Bounded Identity Posture
@@ -156,12 +156,12 @@ These are active across all subjects:
 
 ## Immediate gate question
 
-For **Read-Model Distinction**, the gate question is:
+For **Continuity Under Bounded Identity Posture**, the gate question is:
 
-Can retained object, reconstruction object, comparison receipt, query/read result, and later agent emission be separated clearly enough, with explicit boundaries and explicit non-claims, that Continuity Under Bounded Identity Posture can be opened as a narrower child subject without collapsing read-side products into same-object closure, truth, or routing posture?
+Can recurrence and reuse be named clearly enough as bounded continuity posture, with explicit non-claims against same-object inflation, truth, canon, and unrestricted identity, that Agent Write Discipline can be considered later without letting agent output define the memory substrate?
 
 ---
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Read-Model Distinction active so later continuity posture, bounded agent read/use, and object-addressable LM attachment can unfold from a stabilized object, boundary, comparison, reconstruction, and routing foundation.
+This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Continuity Under Bounded Identity Posture active so later agent write/read discipline and object-addressable LM attachment can unfold from stabilized memory-side object, boundary, comparison, reconstruction, routing, and read-model foundations.
