@@ -95,3 +95,37 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Auditor
 - decision: Release-to-Gate
 - reason: the minimum continuity floor is now bounded clearly enough for Auditor to test release without importing later authority, packet, export, addressability, schema, validator, benchmark, or implementation law.
+
+### ES-CYCLE-0008-AUDITOR
+- cycle_id: ES-CYCLE-0008
+- active subject: Continuity Under Bounded Identity Posture
+- active role: Auditor
+- state before: Gate-Pending
+- state after: Released
+- live-surface mutation status: no live-subject mutation; updated `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md`
+- proposals accepted:
+  - treat the current continuity contract as gate-sufficient for release into the next narrower child subject
+  - keep `Agent Write Discipline` as the exact next active subject
+  - keep authority-bearing handling, retained-object addressability, reconstruction-export handling, LM-read-packet handling, and receipt-shape law deferred as later overlays or relation work rather than hidden current-floor content
+  - keep recurrence / reuse useful as bounded continuity support without allowing same-object closure
+  - keep explicit non-claims against same-object closure, truth, canon, unrestricted identity, perfect persistence, reconstruction proof, comparison truth, routing proof, and agent-defined substrate authority in place
+- proposals rejected:
+  - reopening Continuity Under Bounded Identity Posture for wider redesign
+  - importing Agent Write Discipline into continuity law itself
+  - widening into authority-bearing overlay law, retained object addressability contract, reconstruction export surface, LM read packet contract, continuity-receipt shape law, schema, validator, benchmark, packet, or implementation design
+  - treating recurrence or reuse as same-object closure, truth, canon, perfect persistence, unrestricted identity, proof posture, or agent-defined substrate authority
+- what changed:
+  - Auditor verified that the universal continuity floor is explicit, bounded, and distinct from neighboring subjects.
+  - Auditor verified that non-claims are explicit and that authority-bearing, agent-write, addressability, export, LM-packet, and receipt-shape work are openly bounded as later overlay / relation work rather than hidden ambiguity.
+  - Auditor verified that recurrence / reuse remains useful as bounded identity support without becoming same-object closure.
+  - The gate decision is now declared as Release to deeper layer: `Agent Write Discipline`.
+- unresolved tensions:
+  - Specific authority-bearing overlay work remains unopened and should not be backfilled into the shared continuity floor.
+  - Agent Write Discipline remains unopened and must govern agent-write posture without being smuggled into continuity law.
+  - Specific retained-object addressability relation work remains unopened.
+  - Specific reconstruction-export relation work remains unopened.
+  - Specific LM-read-packet relation work remains unopened.
+  - Full continuity-receipt shape law remains deferred.
+- recommended next role: Administrator, or direct next-cycle initialization on Agent Write Discipline using Leg 2 as cycle-log target
+- decision: Release
+- reason: Continuity Under Bounded Identity Posture is now explicit and compressive enough to open `Agent Write Discipline` without multiplying ambiguity.
