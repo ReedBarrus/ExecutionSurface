@@ -49,11 +49,11 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** Continuity Under Bounded Identity Posture
+- **Active subject:** Agent Write Discipline
 - **Current state:** Seeded
-- **Why active now:** Read-Model Distinction has now been released, and the next lawful question is how recurrence and reuse can persist across time without silently becoming same-object closure, truth, canon, or unrestricted identity inflation.
+- **Why active now:** Continuity Under Bounded Identity Posture has now been released, and the next lawful question is how agent output may attach to the memory substrate without defining substrate memory law, bypassing commit-boundary discipline, or inflating retained continuity into agent authority.
 - **Recommended next role:** Constructor
-- **Likely next child subject after release:** Agent Write Discipline
+- **Likely next child subject after release:** Agent Read / Reconstruction Discipline
 
 ---
 
@@ -96,11 +96,11 @@ Allowed states:
 - note: Separate retained object, reconstruction object, comparison receipt, query/read result, and agent emission object.
 
 ### 8. Continuity Under Bounded Identity Posture
-- state: Seeded
+- state: Released
 - note: Preserve recurrence and reuse without silent same-object inflation.
 
 ### 9. Agent Write Discipline
-- state: Deferred
+- state: Seeded
 - note: Wait until memory-side object law is stable enough that agent output can attach to substrate law rather than define it.
 
 ### 10. Agent Read / Reconstruction Discipline
@@ -156,12 +156,12 @@ These are active across all subjects:
 
 ## Immediate gate question
 
-For **Continuity Under Bounded Identity Posture**, the gate question is:
+For **Agent Write Discipline**, the gate question is:
 
-Can recurrence and reuse be named clearly enough as bounded continuity posture, with explicit non-claims against same-object inflation, truth, canon, and unrestricted identity, that Agent Write Discipline can be considered later without letting agent output define the memory substrate?
+Can agent output be attached to the memory substrate clearly enough through bounded object class, provenance, authority posture, commit-boundary dependence, and explicit non-claims that Agent Read / Reconstruction Discipline can later open without letting agent output define substrate law or bypass retained continuity discipline?
 
 ---
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Continuity Under Bounded Identity Posture active so later agent write/read discipline and object-addressable LM attachment can unfold from stabilized memory-side object, boundary, comparison, reconstruction, routing, and read-model foundations.
+This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Agent Write Discipline active so later agent read/reconstruction discipline and multi-agent exchange can unfold from stabilized memory-side object, boundary, comparison, reconstruction, routing, read-model, and continuity foundations.
