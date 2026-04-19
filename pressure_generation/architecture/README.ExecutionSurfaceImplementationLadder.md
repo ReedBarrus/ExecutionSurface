@@ -15,6 +15,7 @@ mechanization steps.
 Read this ladder together with:
 
 - `pressure_generation/architecture/README.ExecutionSurfaceArchitectureSeed.md`
+- `pressure_generation/architecture/README.ExecutionSurfaceMemoryObjectImplementationEntry.md`
 - `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md`
 - `pressure_generation/workflow/README.ExecutionSurfaceSubjectRegistry.md`
 
@@ -45,6 +46,16 @@ one of these proof objects cleanly:
 These do not yet require a full workflow engine.
 
 They define the proof grammar that later workflow reseeding should mechanize.
+
+## Immediate entry point
+
+The current implementation entry note is:
+
+- `pressure_generation/architecture/README.ExecutionSurfaceMemoryObjectImplementationEntry.md`
+
+Use that document for the first bounded `MemoryObject` admission slice.
+
+Use this ladder for broader sequencing across later rungs.
 
 ## Ladder
 

@@ -36,6 +36,11 @@ Projection enters freely.
 
 No authority is granted here.
 
+This lane is still a shared chain surface.
+
+It should be append-only at the role-block level so one item can accumulate a
+visible working history.
+
 ### 2. Working lane
 
 Only topology-grounded candidates may enter.
@@ -47,6 +52,9 @@ This lane runs:
 - conservation decision
 - bounded mutation or compression
 - evaluation
+
+The working lane should continue appending to the same bounded ledger entry for
+that item rather than opening disconnected role notes.
 
 ### 3. Memory / archive sink
 
@@ -122,6 +130,41 @@ Every serious pass should carry:
 - `decision`
 - `unresolved`
 - `next move`
+
+## Shared-ledger execution rule
+
+The cleanest workflow execution posture is:
+
+1. `Administrator` opens one ledger entry.
+2. each acting role appends one bounded role block to that same entry.
+3. no role silently rewrites earlier role blocks.
+4. corrections append as new blocks.
+5. `Auditor` gates against the visible chain, not against reconstructed prose.
+
+### Minimal entry chain
+
+For one serious item, the ledger chain should accumulate in this order:
+
+1. `administrator block`
+2. `detector block`
+3. `perturbator block`
+4. `mutator block`
+5. `compressor block` when needed
+6. `auditor block`
+
+`Compressor` is conditional.
+
+If no compression pass occurs, the chain can move directly from `Mutator` to
+`Auditor`.
+
+### Status authority
+
+To keep status drift small:
+
+- `Administrator` may set initial routing status
+- `Auditor` may set final gate status
+
+Other roles should append findings, not silently mutate shared status fields.
 
 ## Release gate
 

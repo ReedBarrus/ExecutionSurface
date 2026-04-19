@@ -37,6 +37,13 @@ Every role pass should include:
 - `too little friction`
 - `correction`
 
+Every role pass should also append its result to the shared ledger surface for
+the active projection or working item.
+
+Roles should append only their own bounded block.
+
+They should not silently rewrite prior role blocks.
+
 ## Role classifications
 
 Allowed role classifications:
@@ -60,6 +67,13 @@ Required question:
 
 - should this pass continue at all, or is continuation itself drift?
 
+Ledger responsibility:
+
+- open projection entry
+- assign `projection_id`
+- route into working lane or keep in intake
+- record hold, pivot, rebase, defer, or archive posture
+
 Leak risk:
 
 - becoming author instead of router
@@ -73,6 +87,12 @@ Lawful force:
 Required question:
 
 - what object, relation, and transformation are actually present?
+
+Ledger responsibility:
+
+- append topology grounding
+- append verification handle
+- append unknowns and detection blockage if present
 
 Leak risk:
 
@@ -89,6 +109,12 @@ Required question:
 
 - what topology does this mutation protect, and can it be lowered?
 
+Ledger responsibility:
+
+- append bounded mutation plan or result
+- append active seam
+- append expected emitted object or actual emitted object
+
 Leak risk:
 
 - becoming a projection or layer factory
@@ -102,6 +128,12 @@ Lawful force:
 Required question:
 
 - what alternate topology would make this construction unnecessary?
+
+Ledger responsibility:
+
+- append perturbation findings
+- append simplify, lower, invert, or delete pressure
+- append subject mis-aim warnings when needed
 
 Leak risk:
 
@@ -118,6 +150,12 @@ Required question:
 - what can be removed without losing conserved topology, declared non-claims, or
   the next lawful move?
 
+Ledger responsibility:
+
+- append compression result
+- append retained versus removed residue
+- append warning when compression would be premature
+
 Leak risk:
 
 - becoming a beautifier or compressing before perturbation is complete
@@ -131,6 +169,12 @@ Lawful force:
 Required question:
 
 - what demonstrated topology proves this move is lawful?
+
+Ledger responsibility:
+
+- append audit judgment
+- set final gate status for the entry
+- mark release, hold, defer, or archive recommendation
 
 Leak risk:
 
