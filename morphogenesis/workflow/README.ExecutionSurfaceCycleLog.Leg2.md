@@ -780,3 +780,49 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Auditor
 - decision: Release-to-Gate
 - reason: the unified State contract now carries enough `H1` / `M1` distinction, routing-hint boundary, reconstruction-staging condition, RC2 integrity, and malformed-posture clarity for Auditor to test release without opening schema or implementation.
+
+### ES-CYCLE-0012-AUDITOR
+- cycle_id: ES-CYCLE-0012
+- active subject: State Support Descriptor Contract
+- active role: Auditor
+- active macro verb: Evaluate / Gate posture
+- expected emitted object: evaluation object
+- state before: Gate-Pending
+- state after: Released
+- doctrine-surface mutation status: no doctrine-surface mutation; no implementation code mutation; no schema mutation; no test mutation; no architecture seed mutation; no implementation ladder mutation; no implementation sweep payload mutation; no Basin/Trajectory/Query/Replay descriptor contract mutation; coherence governors were used only as audit companions and were not promoted into authority layers; updated `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md`
+- proposals accepted:
+  - release State Support Descriptor Contract as stable enough to open the bounded implementation-facing proof layer
+  - route the next active subject to `State Descriptor Implementation Sweep`
+  - preserve one unified State descriptor contract over `H1` and `M1`
+  - preserve artifact-class-specific `support_shape` requirements inside the unified contract
+  - preserve `H1` as first recruited support composition and `M1` as merged / compacted support composition
+  - preserve downstream routing hints as read-side routing metadata only
+  - preserve reconstruction support staging as conditional on declared replay / reconstruction need
+  - preserve State descriptor authority as `RC2 - Descriptor-Compressing`
+  - preserve receipt-only State exposure above `H1` and semantic / truth / canon / identity / routing / promotion / source-equivalence / agent-authority / hidden-write claims as malformed
+  - keep Basin, Trajectory, Query, and Replay descriptor contracts declared but unopened
+- proposals rejected:
+  - splitting State into separate `H1` and `M1` contracts before implementation
+  - opening broad `Support Descriptor Contract Family` as the immediate next subject
+  - opening Basin, Trajectory, Query, or Replay descriptor contracts in this pass
+  - writing JSON schema, validators, tests, code, implementation payloads, architecture seed changes, implementation ladder changes, LM packet contract, Agent Write law, or Agent Read law in this pass
+  - promoting runtime or workflow coherence governors into primary authority layers
+  - treating State descriptors as runtime transformation authority, runtime support authority by themselves, replacement for `H1` / `M1`, truth, canon, identity closure, memory routing, promotion, source-equivalence proof, agent authority, or hidden write permission
+  - treating downstream routing hints as semantic labels, convenience-shaped projection law, memory routing posture, or hidden authority
+  - treating reconstruction support staging as a general default State descriptor consumer
+- what changed:
+  - Auditor verified that the State descriptor boundary is explicit and limited to `H1` / `M1` state-support composition.
+  - Auditor verified that the contract preserves one unified descriptor contract while retaining artifact-class-specific `H1` / `M1` support-shape distinctions.
+  - Auditor verified that downstream routing hints, reconstruction support staging, RC2 authority, subordinate receipts, malformed descriptor posture, and explicit non-claims are sufficiently bounded for implementation-facing proof work to begin.
+  - Auditor committed the gate decision as Release.
+- what remains unresolved:
+  - Exact JSON schema remains deferred.
+  - Exact validator implementation remains deferred.
+  - Exact implementation edits remain deferred.
+  - Exact semantic-default removal payloads remain deferred.
+  - Exact transitional-material removal payloads remain deferred.
+  - Basin, Trajectory, Query, and Replay descriptor contracts remain declared but unopened.
+  - Broad `Support Descriptor Contract Family` remains deferred until the State implementation sweep proves the load-bearing descriptor posture.
+- recommended next role: Constructor or Implementation-Constructor
+- decision: Release
+- reason: State Support Descriptor Contract is explicit enough over `H1` / `M1` support composition to support a bounded implementation sweep without opening the full descriptor family.
