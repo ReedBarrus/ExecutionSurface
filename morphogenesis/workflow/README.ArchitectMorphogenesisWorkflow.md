@@ -603,3 +603,51 @@ or explicitly schedule a later re-open condition.
 ### One-line summary
 
 A subject may lawfully remain as a metastable bounded leaf when it still carries structural gain but neither deeper descent nor upward compression is yet justified.
+
+## Administrator Escalation Lane
+
+Administrator may stop forward morphogenesis when process reality shows that continuing the default role flow would preserve momentum at the cost of coherence.
+
+This lane exists to make stop / pivot / amend behavior lawful before additional passes are generated.
+
+### Activation triggers
+
+Administrator should consider this lane when:
+
+* the active packet depends on stale repo reality
+* a live subject depends on an unreviewed lower layer
+* a role pass exposes missing runtime, workflow, or object grammar
+* repeated passes are producing elegant wording but less operational control
+* implementation reality contradicts the active subject projection
+* process surfaces diverge from each other
+* the next pass would widen or beautify rather than narrow
+* a required connector write fails or becomes unsafe
+
+### Allowed administrator outcomes
+
+Administrator may declare one of the following before issuing another role packet:
+
+* **Continue** — the current flow remains lawful.
+* **Amend** — a bounded correction should be applied to the current process or doctrine surface before the next role pass.
+* **Pause** — the active subject remains open, but no new role packet should be issued until missing reality is checked.
+* **Pivot** — the active subject should route to a narrower or lower corrective subject.
+* **Rebase** — prior work remains historical/supportive, but the active subject surface or registry needs reconstruction from fresher repo reality.
+* **Archive** — the current branch should stop consuming active attention while remaining inspectable.
+
+### Discipline rule
+
+Administrator escalation must name:
+
+* the trigger
+* the selected outcome
+* the surface or subject affected
+* the next lawful move
+* the non-goals that prevent widening
+
+Administrator escalation does not authorize implementation mutation, registry rewrite, or subject replacement by itself.
+
+Those moves require their own bounded packet or explicitly authorized write pass.
+
+### One-line summary
+
+Administrator may stop the loop before the next role packet when continuing would create drift; the lawful alternatives are Continue, Amend, Pause, Pivot, Rebase, or Archive, each with an explicit trigger and next move.
