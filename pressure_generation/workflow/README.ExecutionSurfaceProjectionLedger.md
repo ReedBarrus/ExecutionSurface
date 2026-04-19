@@ -116,6 +116,8 @@ May:
 - set active seam or bounded scope
 - anchor `live_repo_ref` for the entry
 - require repo-state check-in before role action
+- grant or deny non-ledger mutation authority
+- record explicit mutation packet when non-ledger mutation is lawful
 - route the entry into the working lane
 - mark hold, defer, pivot, rebase, or archive
 
@@ -166,6 +168,19 @@ May append:
 - expected emitted object
 - proof target
 - observed implementation result if a real mutation occurred
+
+By default, `Mutator` may mutate only:
+
+- its own bounded block in the shared ledger entry
+
+`Mutator` may touch non-ledger docs, contracts, or code only when the ledger
+entry already contains an explicit administrator-granted mutation packet naming:
+
+- active mutation surface
+- exact files or bounded surfaces in scope
+- expected emitted object
+- mutation authority window
+- next required auditor check
 
 Must not:
 
@@ -236,6 +251,22 @@ Each entry should reserve room for:
 Empty blocks are acceptable when a role has not yet acted.
 
 Each populated block should include a bounded repo check-in and check-out note.
+
+### Optional mutation packet
+
+When non-ledger mutation is lawful, the ledger entry should carry an explicit
+administrator-written mutation packet containing:
+
+- `mutation_packet_id`
+- `granted_to_role`
+- `active mutation surface`
+- `files or bounded surfaces in scope`
+- `expected emitted object`
+- `grant reason`
+- `authority ceiling`
+- `expires after handoff to`
+
+Without that packet, the default rule is ledger-only mutation.
 
 ## Gate to the working lane
 

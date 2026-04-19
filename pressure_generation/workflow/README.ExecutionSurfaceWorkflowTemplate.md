@@ -137,6 +137,7 @@ Every serious pass should carry:
 - `files or doc surfaces in scope`
 - `expected emitted object`
 - `surface widening risk`
+- `mutation packet status`
 
 ### Repo-state handoff
 
@@ -207,10 +208,24 @@ partial or non-authoritative posture.
 
 If the acting role is `Mutator`, it must also:
 
-1. declare one active mutation surface
-2. declare exact files or bounded doc surfaces in scope
-3. state the expected emitted object before mutation
-4. stop if the pass widens beyond that surface without explicit escalation
+1. default to ledger-only mutation unless a mutation packet exists
+2. declare one active mutation surface
+3. declare exact files or bounded doc surfaces in scope
+4. state the expected emitted object before mutation
+5. stop if the pass widens beyond that surface without explicit escalation
+
+## Mutation-packet rule
+
+Non-ledger mutation by `Mutator` is lawful only when `Administrator` has
+already written an explicit mutation packet into the shared ledger entry.
+
+Without that packet:
+
+- `Mutator` may inspect live repo state
+- `Mutator` may append findings and proposed mutation to its ledger block
+- `Mutator` may not edit docs, code, schemas, or other non-ledger surfaces
+
+This keeps mutation authority explicit instead of ambient.
 
 ## Release gate
 
@@ -221,10 +236,11 @@ A subject may release only if all are true:
 3. conserved topology survived perturbation
 4. a verification handle exists
 5. live repo state was checked for the active seam
-6. any `Mutator` pass stayed inside its declared mutation surface
-7. role leak is below inflation threshold
-8. process friction is productive or metastable
-9. the next move is narrower and more grounded
+6. any non-ledger mutator change was covered by an administrator mutation packet
+7. any `Mutator` pass stayed inside its declared mutation surface
+8. role leak is below inflation threshold
+9. process friction is productive or metastable
+10. the next move is narrower and more grounded
 
 ## Stop conditions
 
@@ -233,6 +249,7 @@ The workflow must hold, recruit downward, defer, pivot, or archive if:
 - no topology is detected
 - no perturbation occurred
 - no live repo check-in occurred for the active seam
+- a mutator performs non-ledger mutation without an administrator mutation packet
 - a mutator pass widens beyond its declared mutation surface
 - the emitted object cannot be produced honestly
 - process friction is over-smooth

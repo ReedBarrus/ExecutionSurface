@@ -158,6 +158,8 @@ Repo-state responsibility:
 
 Mutation-surface responsibility:
 
+- default to ledger-only mutation unless an administrator-granted mutation
+  packet exists
 - declare one active mutation surface before editing
 - name exact files or bounded doc surfaces in scope
 - state expected emitted object before mutation
@@ -166,6 +168,8 @@ Mutation-surface responsibility:
 
 Mutation-surface stop conditions:
 
+- if no administrator-granted mutation packet exists for non-ledger mutation,
+  stop and return ledger-only output
 - if more than one seam must mutate, stop and escalate or split the pass
 - if diagnosis turns into redesign, rebound to `Perturbator` or
   `Administrator`
@@ -178,6 +182,12 @@ Preferred mutation order:
 2. bounded helper or validator adjustment
 3. local seam restructure
 4. broader restructure only after insufficiency is demonstrated
+
+Mutation authority ceiling:
+
+- ledger block mutation is default
+- non-ledger mutation is packet-gated
+- packetless non-ledger mutation is role leakage
 
 Leak risk:
 
