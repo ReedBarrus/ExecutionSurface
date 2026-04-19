@@ -18,6 +18,11 @@ This surface belongs to:
 
 Its role is to accept projection without granting projection authority.
 
+For explicit role authority and scope posture over this ledger, read together
+with:
+
+- `pressure_generation/workflow/README.ExecutionSurfaceRoleAuthorityMatrix.md`
+
 ## Purpose
 
 The projection ledger exists so ideas can enter the process freely without

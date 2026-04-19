@@ -8,6 +8,10 @@ It is a skeletal process surface.
 
 It is not yet the final full workflow law.
 
+For the explicit role authority split, read together with:
+
+- `pressure_generation/workflow/README.ExecutionSurfaceRoleAuthorityMatrix.md`
+
 ## Method name
 
 The current method name is:

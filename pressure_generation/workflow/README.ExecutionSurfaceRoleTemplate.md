@@ -8,6 +8,11 @@ It is a workflow surface for later concretization.
 
 It is intentionally skeletal.
 
+For the explicit authority, responsibility, and scope split, read together
+with:
+
+- `pressure_generation/workflow/README.ExecutionSurfaceRoleAuthorityMatrix.md`
+
 ## Method posture
 
 These roles belong to:
