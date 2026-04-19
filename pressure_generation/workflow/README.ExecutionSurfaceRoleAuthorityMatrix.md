@@ -1,5 +1,7 @@
 # ExecutionSurface Role Authority Matrix
 
+https://github.com/ReedBarrus/ExecutionSurface
+
 ## Status
 
 This document freezes the current role authority, responsibility, and scope
@@ -35,7 +37,7 @@ authority from the overall process.
 
 All roles inherit these rules:
 
-1. live repo state is upstream authority for current implementation reality
+1. live repo state is upstream authority for current implementation reality and is accessible at https://github.com/ReedBarrus/ExecutionSurface
 2. every serious pass must check in against live repo state for the active seam
 3. every serious pass must append only its own bounded ledger block
 4. no role may silently rewrite prior role blocks
