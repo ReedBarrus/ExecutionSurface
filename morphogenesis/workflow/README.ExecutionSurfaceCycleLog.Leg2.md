@@ -667,3 +667,61 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Creative
 - decision: Hold
 - reason: the State descriptor contract is now mechanically compressed enough for pressure, but optional fields, downstream consumer breadth, and `H1` / `M1` support-shape distinction should be tested before release.
+
+### ES-CYCLE-0012-CREATIVE
+- cycle_id: ES-CYCLE-0012
+- active subject: State Support Descriptor Contract
+- active role: Creative
+- active macro verb: Form / controlled pressure
+- expected emitted object: identity object / pressure finding
+- state before: Compressed
+- state after: Tension-Held
+- doctrine-surface mutation status: none; no doctrine surfaces, implementation code, schemas, tests, subject registry, architecture seed, implementation ladder, Basin/Trajectory/Query/Replay descriptor contracts, LM packet contract, Agent Write / Agent Read law, workflow law, or coherence-governor authority posture mutated; appended cycle-log entry only to `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md`
+- exact repo write result: appended by connector execution in this pass
+- pressure applied:
+  - tested whether optional fields are bounded tightly enough or whether they create a backdoor for semantic labels, interpretive summaries, or downstream convenience shaping
+  - tested whether allowed downstream consumers are too broad across orchestrator assembly, workbench runtime section, LM staging, cross-run comparison, and reconstruction support staging
+  - tested whether reconstruction support staging should consume State descriptors only under declared replay/reconstruction need rather than as a general default consumer
+  - tested whether `support_shape` needs separate `H1` and `M1` subprofile posture before implementation
+  - tested whether receipt-only State exposure above `H1` is clearly malformed
+  - tested whether the State descriptor remains `RC2 - Descriptor-Compressing` rather than drifting into `RC3` projection assembly or `RC4` coherence inflation
+  - tested whether implementation can begin next without another doctrine pass
+- pressure result:
+  - The State Support Descriptor contract holds as the first implementation-facing descriptor slice, but it should remain Tension-Held for Reflector tightening rather than release immediately.
+  - The central still-live fork is not whether to split State into two contracts; it is whether one unified State descriptor contract should include artifact-class-specific `support_shape` requirements for `H1` and `M1` before implementation.
+  - Optional fields are bounded enough in principle because they are subordinate to required fields and barred from semantic overlay, but `downstream routing hints` is the highest-risk optional field and should be tightened to declared read-side routing metadata only, not convenience shaping or interpretive summary.
+  - Allowed downstream consumers are lawful as a list, but reconstruction support staging should remain conditional: it should consume State descriptors only when a declared replay/reconstruction need requires a state-support basis.
+  - Receipt-only State exposure above `H1` is clearly malformed in the contract and should remain a hard rejection posture.
+  - The descriptor remains `RC2` when it exposes `H1` / `M1` support composition directly; it risks drifting to `RC3` only when assembled into downstream views and to `RC4` if optional fields or downstream packets add semantic smoothness, apparent completeness, or interpretive closure not grounded in the source support object.
+- proposals accepted:
+  - preserve one unified State Support Descriptor contract for `H1` and `M1`
+  - preserve artifact-class-specific handling inside `support_shape` rather than splitting into separate descriptor contracts
+  - keep required fields and required support-shape floor intact
+  - keep optional fields subordinate and non-semantic
+  - mark `downstream routing hints` as needing tighter wording by Reflector
+  - keep reconstruction support staging as conditional on declared replay/reconstruction need
+  - preserve receipt-only State exposure above `H1` as malformed
+  - preserve `RC2 - Descriptor-Compressing` as the State descriptor classification
+- proposals rejected:
+  - splitting State into separate `H1` and `M1` descriptor contracts now
+  - opening Basin, Trajectory, Query, or Replay descriptor contracts
+  - treating optional fields as semantic labels, interpretive summaries, or convenience-shaped downstream projections
+  - treating reconstruction support staging as a general default State descriptor consumer
+  - allowing receipt-only State exposure above `H1`
+  - treating State descriptors as runtime transformation authority, runtime support authority by themselves, replacement for `H1` / `M1`, routing proof, promotion posture, truth, canon, identity closure, agent authority, or hidden write permission
+  - mutating implementation code, schemas, tests, subject registry, architecture seed, implementation ladder, workflow law, coherence governors, LM packet contract, Agent Write law, or Agent Read law
+- what changed:
+  - The Leg 2 cycle log now records that the State Support Descriptor contract survives Creative pressure as the correct first implementation-facing descriptor slice.
+  - The pressure pass narrows the unresolved question to artifact-class-specific `support_shape` requirements within one unified State contract.
+  - The pass identifies `downstream routing hints` and reconstruction support staging as the two places that most need Reflector tightening before release.
+  - The pass preserves RC2 integrity while naming the exact drift conditions into RC3 or RC4.
+- unresolved tensions:
+  - Reflector still needs to decide how explicitly the contract should state artifact-class-specific `support_shape` posture for `H1` versus `M1`.
+  - Reflector should tighten `downstream routing hints` so it cannot become semantic or convenience-shaped downstream projection law.
+  - Reflector should clarify reconstruction support staging as conditional on declared replay/reconstruction need.
+  - Exact JSON schema remains deferred.
+  - Exact implementation edits remain deferred.
+  - Basin, Trajectory, Query, and Replay descriptor contracts remain unopened.
+- recommended next role: Reflector
+- decision: Hold
+- reason: the State descriptor contract is strong enough to preserve, but Reflector should compress the unified-contract / artifact-class-specific-support-shape fork and tighten the two high-risk edges before Auditor gate.
