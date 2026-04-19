@@ -27,6 +27,11 @@ Every role is a force vector, not just a writing persona.
 A role is lawful only when it contributes friction without leaking into another
 role's function.
 
+Every role is also a repo-state participant.
+
+No role should act only from inherited local thread memory when the active seam
+can be checked against live repo state.
+
 ## Shared role output
 
 Every role pass should include:
@@ -36,6 +41,8 @@ Every role pass should include:
 - `too much friction`
 - `too little friction`
 - `correction`
+- `repo check-in`
+- `repo check-out`
 
 Every role pass should also append its result to the shared ledger surface for
 the active projection or working item.
@@ -43,6 +50,28 @@ the active projection or working item.
 Roles should append only their own bounded block.
 
 They should not silently rewrite prior role blocks.
+
+## Shared repo-state protocol
+
+Before acting, each role should check in against the live repo for the active
+seam.
+
+At minimum, that check-in should name:
+
+- live repo ref
+- files or surfaces checked
+- what was confirmed
+- what remains unverified
+- whether local notes conflict with repo reality
+
+After acting, each role should check out by naming:
+
+- what was mutated or confirmed unchanged
+- what state is being handed forward
+- what repo-state risks remain
+
+If the live repo cannot be checked, the role must say so explicitly and lower
+its authority accordingly.
 
 ## Role classifications
 
@@ -72,6 +101,8 @@ Ledger responsibility:
 - open projection entry
 - assign `projection_id`
 - route into working lane or keep in intake
+- anchor live repo ref and shared ledger location
+- require repo-state check-in before accepting a role pass
 - record hold, pivot, rebase, defer, or archive posture
 
 Leak risk:
@@ -94,6 +125,11 @@ Ledger responsibility:
 - append verification handle
 - append unknowns and detection blockage if present
 
+Repo-state responsibility:
+
+- verify the active seam against live repo state before naming topology
+- refuse topology claims that rely only on inherited local prose
+
 Leak risk:
 
 - inferring topology without verification
@@ -115,6 +151,34 @@ Ledger responsibility:
 - append active seam
 - append expected emitted object or actual emitted object
 
+Repo-state responsibility:
+
+- verify exact files or surfaces before mutation
+- check out with exact touched surfaces or explicit no-mutation result
+
+Mutation-surface responsibility:
+
+- declare one active mutation surface before editing
+- name exact files or bounded doc surfaces in scope
+- state expected emitted object before mutation
+- mutate only the declared surface unless explicit rebound or escalation occurs
+- append exact touched surfaces on check-out
+
+Mutation-surface stop conditions:
+
+- if more than one seam must mutate, stop and escalate or split the pass
+- if diagnosis turns into redesign, rebound to `Perturbator` or
+  `Administrator`
+- if the expected emitted object cannot be produced honestly, return
+  no-mutation and append blockage
+
+Preferred mutation order:
+
+1. local correction
+2. bounded helper or validator adjustment
+3. local seam restructure
+4. broader restructure only after insufficiency is demonstrated
+
 Leak risk:
 
 - becoming a projection or layer factory
@@ -134,6 +198,12 @@ Ledger responsibility:
 - append perturbation findings
 - append simplify, lower, invert, or delete pressure
 - append subject mis-aim warnings when needed
+
+Repo-state responsibility:
+
+- challenge whether the detected topology actually appears in live repo state
+- append when a subject is leaning on stale local framing rather than current
+  repo reality
 
 Leak risk:
 
@@ -156,6 +226,11 @@ Ledger responsibility:
 - append retained versus removed residue
 - append warning when compression would be premature
 
+Repo-state responsibility:
+
+- verify the material being compressed is actually present in the live repo
+- append whether compression reduces bloat or merely hides unresolved state
+
 Leak risk:
 
 - becoming a beautifier or compressing before perturbation is complete
@@ -175,6 +250,11 @@ Ledger responsibility:
 - append audit judgment
 - set final gate status for the entry
 - mark release, hold, defer, or archive recommendation
+
+Repo-state responsibility:
+
+- verify the final chain against live repo state before release or defer
+- reject passes with missing repo check-in or unverifiable local-only claims
 
 Leak risk:
 

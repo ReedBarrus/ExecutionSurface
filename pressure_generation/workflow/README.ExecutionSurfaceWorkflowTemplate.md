@@ -131,6 +131,21 @@ Every serious pass should carry:
 - `unresolved`
 - `next move`
 
+### Mutation surface
+
+- `active mutation surface`
+- `files or doc surfaces in scope`
+- `expected emitted object`
+- `surface widening risk`
+
+### Repo-state handoff
+
+- `live repo ref checked`
+- `files or surfaces checked`
+- `repo/local drift`
+- `surfaces mutated or confirmed unchanged`
+- `handoff repo state`
+
 ## Shared-ledger execution rule
 
 The cleanest workflow execution posture is:
@@ -139,7 +154,9 @@ The cleanest workflow execution posture is:
 2. each acting role appends one bounded role block to that same entry.
 3. no role silently rewrites earlier role blocks.
 4. corrections append as new blocks.
-5. `Auditor` gates against the visible chain, not against reconstructed prose.
+5. every role performs repo-state check-in and check-out.
+6. `Auditor` gates against the visible chain and live repo state, not against
+   reconstructed prose.
 
 ### Minimal entry chain
 
@@ -166,6 +183,35 @@ To keep status drift small:
 
 Other roles should append findings, not silently mutate shared status fields.
 
+## Live-repo authority rule
+
+The workflow should treat live repo state as upstream authority for current
+implementation reality.
+
+The shared ledger is the handoff carrier.
+
+The live repo is the thing being checked and handed against.
+
+### Practical execution rule
+
+For each serious role pass:
+
+1. read the shared ledger entry
+2. check the active seam against live repo state
+3. append bounded findings or mutation
+4. record repo check-out and handoff state
+5. hand to the next role
+
+If the role cannot perform step 2, the pass must explicitly downgrade itself to
+partial or non-authoritative posture.
+
+If the acting role is `Mutator`, it must also:
+
+1. declare one active mutation surface
+2. declare exact files or bounded doc surfaces in scope
+3. state the expected emitted object before mutation
+4. stop if the pass widens beyond that surface without explicit escalation
+
 ## Release gate
 
 A subject may release only if all are true:
@@ -174,9 +220,11 @@ A subject may release only if all are true:
 2. topology was perturbed
 3. conserved topology survived perturbation
 4. a verification handle exists
-5. role leak is below inflation threshold
-6. process friction is productive or metastable
-7. the next move is narrower and more grounded
+5. live repo state was checked for the active seam
+6. any `Mutator` pass stayed inside its declared mutation surface
+7. role leak is below inflation threshold
+8. process friction is productive or metastable
+9. the next move is narrower and more grounded
 
 ## Stop conditions
 
@@ -184,6 +232,8 @@ The workflow must hold, recruit downward, defer, pivot, or archive if:
 
 - no topology is detected
 - no perturbation occurred
+- no live repo check-in occurred for the active seam
+- a mutator pass widens beyond its declared mutation surface
 - the emitted object cannot be produced honestly
 - process friction is over-smooth
 - process friction is branch bloom

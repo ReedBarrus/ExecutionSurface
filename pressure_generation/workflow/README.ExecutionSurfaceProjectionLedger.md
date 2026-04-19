@@ -58,6 +58,52 @@ Do not silently rewrite prior role blocks once they have been appended.
 If a later pass needs correction, append a correction block rather than
 rewriting history.
 
+## Repo-state protocol
+
+This ledger should also act as the shared repo-state handoff surface for a
+projection or subject moving across roles.
+
+The live repo is upstream authority for current file and code reality.
+
+Local thread context is helpful, but it is not authoritative when it conflicts
+with the live repo.
+
+Every serious role pass should therefore:
+
+1. check in against live repo state before acting
+2. append its role-local mutation block
+3. check out by declaring what live state or bounded local mutation it is
+   handing to the next role
+
+### Minimum repo check-in fields
+
+Each serious entry should carry, or append when missing:
+
+- `live_repo_ref`
+- `check_in_time`
+- `active branch or working ref`
+- `files or surfaces checked`
+- `repo-state findings`
+- `repo/local drift note`
+
+### Minimum repo check-out fields
+
+Each serious role block should end with:
+
+- `check_out_time`
+- `surfaces mutated or confirmed unchanged`
+- `handoff state`
+- `next role`
+- `open repo-state risks`
+
+### Working rule
+
+If a role has not checked live repo state for the active seam, that role is not
+ready to act.
+
+If local notes and live repo state conflict, the role must append the conflict
+and defer to live repo state rather than silently proceeding.
+
 ### Entry-level mutation authority
 
 #### Administrator
@@ -68,6 +114,8 @@ May:
 - assign `projection_id`
 - assign initial status
 - set active seam or bounded scope
+- anchor `live_repo_ref` for the entry
+- require repo-state check-in before role action
 - route the entry into the working lane
 - mark hold, defer, pivot, rebase, or archive
 
@@ -80,6 +128,7 @@ Must not:
 
 May append:
 
+- repo check-in findings for the active seam
 - runtime object or relation grounding
 - required detection
 - verification handle
@@ -95,6 +144,7 @@ Must not:
 
 May append:
 
+- repo-checked challenge basis for the active seam
 - required perturbation
 - alternative topology pressure
 - subject mis-aim risk
@@ -110,6 +160,7 @@ Must not:
 
 May append:
 
+- repo check-in on exact files or surfaces to be touched
 - proposed bounded mutation
 - implementation seam
 - expected emitted object
@@ -126,6 +177,7 @@ Must not:
 
 May append:
 
+- repo-checked residue basis
 - reduction result
 - residue removed
 - residue retained
@@ -140,6 +192,7 @@ Must not:
 
 May append:
 
+- repo check-in for the final active seam state
 - audit finding
 - release or hold judgment
 - authority ceiling judgment
@@ -162,6 +215,7 @@ Each entry should carry at minimum:
 - `source`
 - `desired function`
 - `status`
+- `live_repo_ref`
 - `runtime object/relation grounding`
 - `required detection`
 - `required perturbation`
@@ -180,6 +234,8 @@ Each entry should reserve room for:
 - `auditor block`
 
 Empty blocks are acceptable when a role has not yet acted.
+
+Each populated block should include a bounded repo check-in and check-out note.
 
 ## Gate to the working lane
 
