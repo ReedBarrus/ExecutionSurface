@@ -233,3 +233,51 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Reflector
 - decision: Rebound / Hold
 - reason: the corpus is coherent enough to show the right next pressure target, but not stable enough to open broad descriptor contract writing without carrying mixed downstream seams into contract law.
+
+### ES-CYCLE-0010-REFLECTOR
+- cycle_id: ES-CYCLE-0010
+- active subject: Runtime Grammar Pressure Review
+- active role: Reflector
+- active macro verb: Form / compression
+- expected emitted object: identity object / compressed review finding set
+- state before: Tension-Held
+- state after: Rebound
+- live-surface mutation status: no live-subject mutation; no architecture seed mutation; no subject-registry mutation; no implementation-ladder mutation; no schema, code, or descriptor contract mutation; appended required cycle-log entry here in `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md`
+- compressed finding:
+  - The runtime grammar spine is strong enough to trust as current runtime-front reality for the next pass: structural authority runs through `S1`, support recruitment begins at `H1`, support objects remain richer than count receipts, receipts are subordinate audit surfaces, read-side projections are non-authoritative, and semantic overlay is excluded from default runtime authority.
+  - The downstream exposure band is not contract-ready yet: orchestrator assembly, workbench integration, cross-run admission/reporting, LM extraction, and reconstruction staging still carry enough read-side packaging pressure that broad descriptor contract writing would risk freezing mixed seams into contract law.
+  - The descriptor family set is directionally sufficient: State, Basin, Trajectory, Query, and Replay are the right first family set, but family sufficiency is not the same as contract readiness.
+  - Receipts are subordinate in doctrine, but the current exposure pattern still risks receipt-led flattening above `H1` wherever descriptors are absent or not primary.
+  - Semantic overlay is already correctly excluded from default runtime authority in doctrine, but downstream packaging still needs one narrower compression so removal / optionality / non-dependency does not blur into descriptor contract shape.
+- recommended next subject: Runtime Seam And Authority Grammar
+- reason:
+  - Runtime Grammar Pressure Review should not release directly into broad `Support Descriptor Contract Family` yet. One narrower `Runtime Seam And Authority Grammar` compression should first resolve how mixed downstream seams route authority, descriptors, subordinate receipts, transitional material, and semantic-overlay removal before descriptor contracts harden.
+- proposals accepted:
+  - preserve the strong runtime spine finding
+  - preserve the unstable downstream exposure band finding
+  - preserve the five descriptor families as directionally sufficient
+  - distinguish descriptor-family sufficiency from descriptor-contract readiness
+  - preserve receipt subordination as doctrine while naming downstream receipt-led flattening as an exposure risk
+  - preserve semantic overlay exclusion from default runtime authority while requiring one more packaging / authority compression before implementation or contract writing
+  - recommend Rebound into `Runtime Seam And Authority Grammar`
+- proposals rejected:
+  - Release-to-Gate into broad `Support Descriptor Contract Family` now
+  - opening descriptor contracts directly from the present review finding set
+  - treating stable core runtime seams as proof that downstream read-side packaging is stable
+  - treating descriptor family sufficiency as full contract readiness
+  - smoothing receipt subordination into solved exposure safety above `H1`
+  - treating semantic-overlay removal as fully implementation-ready without one more seam-authority compression
+  - mutating implementation code, schemas, architecture seed, implementation ladder, subject registry, or descriptor contracts
+- what changed:
+  - The Constructor finding set is compressed into one routing recommendation: Rebound into `Runtime Seam And Authority Grammar` before opening broad descriptor contract writing.
+  - The distinction is now explicit between runtime core stability, read-side exposure instability, descriptor family sufficiency, and descriptor contract readiness.
+  - The next subject is narrowed to seam and authority compression rather than contract generation, implementation repair, or transitional-material elimination as a standalone branch.
+- what remains unresolved:
+  - Exact descriptor contract fields remain deferred.
+  - Exact implementation edits remain deferred.
+  - Exact transitional-material removal payloads remain deferred.
+  - Whether the later descriptor-contract opening should start with the full family or a first State-support slice remains unresolved until the seam-authority compression completes.
+  - Subject-registry state remains unchanged because this pass was not authorized to mutate it.
+- recommended next role: Auditor
+- decision: Rebound
+- reason: the current review finding set is coherent, but the next lawful move is not descriptor contract writing; it is one narrower seam-authority compression to prevent mixed downstream exposure, receipt-led flattening, and transitional packaging from hardening into contract law.
