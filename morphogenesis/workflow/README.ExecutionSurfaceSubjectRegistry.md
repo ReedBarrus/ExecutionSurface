@@ -49,11 +49,11 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** State Support Descriptor Contract
+- **Active subject:** State Descriptor Implementation Sweep
 - **Current state:** Seeded
-- **Why active now:** Runtime Seam And Authority Grammar has released. The next lawful move is the first load-bearing descriptor slice for `H1` / `M1` state support composition so descriptor-led downstream exposure can begin without opening the full descriptor family at once.
-- **Recommended next role:** Constructor
-- **Likely next child subject after release:** State Descriptor Implementation Sweep
+- **Why active now:** State Support Descriptor Contract has released. The next lawful move is to prove the first descriptor slice in implementation-facing surfaces without opening the broad descriptor family, mutating unrelated code, or collapsing State descriptors into receipts, semantic overlays, truth, canon, identity closure, routing, promotion, source-equivalence, agent authority, or hidden write posture.
+- **Recommended next role:** Constructor or Implementation-Constructor
+- **Likely next child subject after release:** Compression And Audit Sweep
 
 ---
 
@@ -66,6 +66,7 @@ Allowed states:
 - The current runtime doctrine now treats receipts as subordinate audit surfaces only and removes semantic overlay from default runtime authority, but this posture should still be pressure-tested before descriptor contract shapes harden.
 - Runtime Grammar Pressure Review produced useful findings and has now rebounded into Runtime Seam And Authority Grammar because descriptor-family sufficiency is not yet descriptor-contract readiness.
 - Runtime Seam And Authority Grammar has now released into `State Support Descriptor Contract`: the mixed downstream band is bounded enough to begin descriptor contract writing, but only on the State slice first rather than the full descriptor family.
+- State Support Descriptor Contract has now released into `State Descriptor Implementation Sweep`: the State descriptor boundary is explicit over `H1` / `M1`, with artifact-class-specific support-shape posture, RC2 authority, read-side routing-hint limits, conditional reconstruction staging, subordinate receipt posture, and explicit malformed/non-claim conditions.
 
 ---
 
@@ -153,15 +154,19 @@ Allowed states:
 
 ### 21. Support Descriptor Contract Family
 - state: Deferred
-- note: Full family remains deferred. State, Basin, Trajectory, Query, and Replay remain the valid descriptor-family set, but broad family writing should wait until the State descriptor slice proves the shared contract posture.
+- note: Full family remains deferred. State, Basin, Trajectory, Query, and Replay remain the valid descriptor-family set, but broad family writing should wait until the State implementation sweep proves the shared contract posture.
 
 ### 22. Transitional Material Elimination Posture
 - state: Seeded
 - note: Identify and remove remaining compatibility aliasing, semantic-default dependencies, and count-heavy convenience packets that still behave like durable law despite being transitional in posture.
 
 ### 23. State Support Descriptor Contract
+- state: Released
+- note: Defined the first load-bearing descriptor contract for `H1` / `M1` state support composition, bounded support-shape summary, provenance, explicit non-authority, downstream descriptor-led exposure, artifact-class-specific support-shape posture, and malformed/non-claim conditions.
+
+### 24. State Descriptor Implementation Sweep
 - state: Seeded
-- note: Define the first load-bearing descriptor contract for `H1` / `M1` state support composition, bounded support-shape summary, provenance, explicit non-authority, and downstream descriptor-led exposure.
+- note: Prove the State descriptor contract through the smallest implementation-facing sweep that exposes `H1` / `M1` state support descriptors without opening broad descriptor-family contracts or importing semantic/default authority.
 
 ---
 
@@ -180,12 +185,12 @@ These are active across all subjects:
 
 ## Immediate gate question
 
-For **State Support Descriptor Contract**, the gate question is:
+For **State Descriptor Implementation Sweep**, the gate question is:
 
-Can the first descriptor slice for `H1` / `M1` state support composition be defined clearly enough through source refs, support basis, bounded support shape, uncertainty / confidence posture, policy / provenance refs, and explicit non-claims that a State Descriptor Implementation Sweep can open without collapsing State descriptors into receipts, semantic overlays, truth, canon, identity closure, or broad full-family descriptor writing?
+Can the State descriptor contract be proven in the smallest implementation-facing sweep by exposing `H1` / `M1` support composition through bounded State descriptors while preserving source refs, artifact-class-specific support shape, uncertainty / confidence posture, policy / provenance refs, explicit non-claims, subordinate receipts, read-side-only routing, and fail-closed malformed cases without opening broad descriptor-family contracts or semantic/default authority?
 
 ---
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with State Support Descriptor Contract active so the first load-bearing descriptor slice can be stabilized before implementation sweep and before broader Basin, Trajectory, Query, and Replay descriptor contracts open.
+This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with State Descriptor Implementation Sweep active so the first load-bearing descriptor contract can be proven before a Compression And Audit Sweep and before broader Basin, Trajectory, Query, and Replay descriptor contracts open.
