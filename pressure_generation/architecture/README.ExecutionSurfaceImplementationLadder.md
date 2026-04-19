@@ -14,11 +14,11 @@ mechanization steps.
 
 Read this ladder together with:
 
-- `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`
-- `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md`
-- `morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md`
+- `pressure_generation/architecture/README.ExecutionSurfaceArchitectureSeed.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md`
+- `pressure_generation/workflow/README.ExecutionSurfaceSubjectRegistry.md`
 
-Historical workflow material under `morphogenesis/archive/` is non-authoritative
+Historical workflow material under `pressure_generation/archive/` is non-authoritative
 background only.
 
 ## Core rule

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "dme/execution-surface/handoff/subject_register_entry.schema.json",
-  "title": "Morphogenesis Subject Register Entry",
+  "title": "Pressure Generation Subject Register Entry",
   "description": "Registry entry for one subject tracked by the runtime ecology.",
   "type": "object",
   "additionalProperties": false,

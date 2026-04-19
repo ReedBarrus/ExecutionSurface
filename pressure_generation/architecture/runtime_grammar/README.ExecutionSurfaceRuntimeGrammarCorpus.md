@@ -6,7 +6,7 @@ This directory defines the active runtime grammar corpus for `ExecutionSurface`.
 
 It is a compact support set for active implementation and audit work.
 
-Its job is to keep morphogenesis, implementation, and future projection work
+Its job is to keep pressure-generation, implementation, and future projection work
 anchored to executable runtime reality.
 
 ## Purpose

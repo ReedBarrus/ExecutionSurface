@@ -14,9 +14,9 @@ Its job is to keep the architecture front aligned to the runtime grammar corpus
 without drifting back into older retained-object, descriptor-first, or
 receipt-first framing.
 
-Historical morphogenesis process material now lives under:
+Historical pressure-generation process material now lives under:
 
-- `morphogenesis/archive/`
+- `pressure_generation/archive/`
 
 That archive is non-authoritative.
 
@@ -24,12 +24,12 @@ That archive is non-authoritative.
 
 This seed should be read together with:
 
-- `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md`
-- `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeObjectGrammar.md`
-- `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeEmissionAuthorityGrammar.md`
-- `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceMemoryObjectEnvelope.md`
-- `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceSubstrateTopology.md`
-- `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceSubstrateFunctionLedger.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeObjectGrammar.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeEmissionAuthorityGrammar.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceMemoryObjectEnvelope.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceSubstrateTopology.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceSubstrateFunctionLedger.md`
 
 When this seed is broader than the runtime grammar corpus, the runtime grammar
 corpus wins.

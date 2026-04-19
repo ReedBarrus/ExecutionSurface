@@ -2,7 +2,7 @@
 
 ## Status
 
-This directory preserves historical morphogenesis process material for
+This directory preserves historical pressure-generation process material for
 `ExecutionSurface`.
 
 Archived material is explicitly non-authoritative.
@@ -25,12 +25,12 @@ Archived files must not be used by themselves to settle:
 
 Current authority instead lives in:
 
-- `morphogenesis/architecture/runtime_grammar/`
+- `pressure_generation/architecture/runtime_grammar/`
 - the live architecture seed
 - the live subject registry
 - the live implementation ladder
 
 ## One-line summary
 
-This archive keeps older morphogenesis workflow and process history readable
+This archive keeps older workflow and process history readable
 while making its non-authoritative posture explicit.

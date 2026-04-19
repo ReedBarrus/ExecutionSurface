@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "dme/execution-surface/handoff/gate_decision.schema.json",
-  "title": "Morphogenesis Gate Decision",
+  "title": "Pressure Generation Gate Decision",
   "description": "Bounded gate decision for hold, release, rebound, or compression posture changes.",
   "type": "object",
   "additionalProperties": false,

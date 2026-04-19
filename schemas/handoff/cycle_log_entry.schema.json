@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "dme/execution-surface/handoff/cycle_log_entry.schema.json",
-  "title": "Morphogenesis Cycle Log Entry",
+  "title": "Pressure Generation Cycle Log Entry",
   "description": "Append-only cycle log entry for one bounded pass.",
   "type": "object",
   "additionalProperties": false,

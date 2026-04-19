@@ -15,7 +15,7 @@ It is not current workflow law.
 
 ## Purpose
 
-Several older morphogenesis support files still contained useful pressure, but
+Several older support files from the pre-rebase process stack still contained useful pressure, but
 their framing was tied to the older recursion stack, older object trunk, or
 older cleanup phases.
 
@@ -244,5 +244,5 @@ This surface must not become:
 ## One-line summary
 
 This future-debate surface preserves worthwhile workflow, guardrail, cleanup,
-and field-posture ideas from older morphogenesis support files so they can be
+and field-posture ideas from older support files so they can be
 translated later without letting those older files remain active authority.

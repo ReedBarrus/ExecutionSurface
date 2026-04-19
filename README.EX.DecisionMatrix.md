@@ -30,6 +30,12 @@ It does not govern:
 
 The live repo is the authority for current code and current file state.
 
+Legacy term note:
+
+older references in this matrix to `morphogenesis` should now be read as the
+current `pressure_generation` method and file band unless the context is
+explicitly historical.
+
 If this document and live repo state conflict about what currently exists, live
 repo state wins.
 
@@ -356,17 +362,18 @@ Roles are:
 4. **Decision-Reflector**
 5. **Evaluation-Auditor / Reviewer**
 
-ExecutionSurface also supports the following bounded morphogenesis-role handles:
+ExecutionSurface also supports the following bounded pressure-generation role handles:
 
 - **Administrator**
-- **Constructor**
-- **Creative**
-- **Reflector**
+- **Detector**
+- **Mutator**
+- **Perturbator**
+- **Compressor**
 - **Auditor**
 
 These are not a separate sovereign workflow stack.
 
-They are bounded role handles used inside architect-morphogenesis thread class,
+They are bounded role handles used inside the topology-first pressure-generation thread class,
 under this decision grammar.
 
 ### 5.1 Role definitions
@@ -381,7 +388,7 @@ Final authority for:
 - bounded scope approval
 - escalation disposition
 - thread activation
-- active subject selection when morphogenesis is in play
+- active subject selection when pressure generation is in play
 
 #### Admission-Advisor
 
@@ -405,7 +412,7 @@ posture, and detects role drift or unlawful inflation.
 
 #### Administrator
 
-Morphogenesis process glue.
+Pressure-generation process glue.
 
 Administrator may:
 
@@ -418,7 +425,7 @@ Administrator is not required to generate architecture text in every pass.
 
 #### Constructor
 
-Morphogenesis generation role.
+Pressure-generation generation role.
 
 Constructor may:
 
@@ -434,7 +441,7 @@ Failure mode:
 
 #### Creative
 
-Morphogenesis contrastive-pressure role.
+Pressure-generation contrastive-pressure role.
 
 Creative may:
 
@@ -454,7 +461,7 @@ Failure mode:
 
 #### Reflector
 
-Morphogenesis compression role.
+Pressure-generation compression role.
 
 Reflector may:
 
@@ -470,7 +477,7 @@ Failure mode:
 
 #### Auditor
 
-Morphogenesis integrity and gate role.
+Pressure-generation integrity and gate role.
 
 Auditor may:
 
@@ -486,7 +493,7 @@ Failure mode:
 
 ### 5.2 Role mapping rule
 
-Morphogenesis handles map into the matrix role stack as follows:
+Pressure-generation handles map into the matrix role stack as follows:
 
 - Administrator → Architect Reed process-routing handle
 - Constructor → Formation-Constructor / Compressor handle
@@ -507,7 +514,7 @@ Role drift includes:
 - formation choosing action
 - decision mutating repo reality without accepted packet authority
 - evaluation redefining structure retroactively
-- morphogenesis roles silently absorbing neighboring macro verbs
+- pressure-generation roles silently absorbing neighboring macro verbs
 - Creative widening active subject or active seam without Administrator approval
 
 ---
@@ -518,11 +525,11 @@ Every active thread must declare exactly one thread class.
 
 Allowed thread classes are:
 
-1. **morphogenesis**
+1. **pressure_generation**
 2. **seam_repair**
 3. **implementation_mutation**
 
-### 6.1 Morphogenesis
+### 6.1 Pressure generation
 
 Purpose:
 
@@ -540,7 +547,7 @@ Default posture:
 - single-branch discipline
 - advisory-to-live-surface mutation only through bounded writing rights
 
-Morphogenesis does not mutate implementation code by default.
+Pressure generation does not mutate implementation code by default.
 
 ### 6.2 Seam repair
 
@@ -604,9 +611,9 @@ thread class, it must move by explicit handoff or explicit escalation.
 
 ---
 
-## 8. Morphogenesis subject rule
+## 8. Pressure-generation subject rule
 
-Morphogenesis threads additionally require:
+Pressure-generation threads additionally require:
 
 - one active subject only
 - one subject state only
@@ -626,7 +633,7 @@ Allowed subject states are:
 - Archived
 - Metastable Hold
 
-A morphogenesis thread may not open parallel active subjects unless the workflow
+A pressure-generation thread may not open parallel active subjects unless the workflow
 is explicitly upgraded later.
 
 Metastable Hold means:
@@ -671,7 +678,7 @@ Expected emitted object may be:
 - evaluation object
 - memory object
 
-Morphogenesis packets may additionally declare:
+Pressure-generation packets may additionally declare:
 
 - active subject
 - state before pass
@@ -707,7 +714,7 @@ For implementation_mutation threads, also provide:
 - exact seam to be extended
 - non-goals preventing opportunistic widening
 
-For morphogenesis threads, also provide:
+For pressure-generation threads, also provide:
 
 - active subject
 - current subject state
@@ -736,7 +743,7 @@ Handoff may narrow scope.
 
 Handoff may not silently widen scope.
 
-Morphogenesis handoff must additionally preserve:
+Pressure-generation handoff must additionally preserve:
 
 - active subject
 - subject state
@@ -760,7 +767,7 @@ If the seam cannot be named clearly, the pass is not ready.
 
 If the scoped change cannot be bounded clearly, the pass is too large.
 
-Morphogenesis uses the same boundedness rule, but substitutes active subject
+Pressure generation uses the same boundedness rule, but substitutes active subject
 where code-touch seam is not the live object.
 
 ---
@@ -811,7 +818,7 @@ Every artifact or subject in scope must be classified as:
 If an artifact or subject does not uniquely answer the active bounded need, it
 should not remain active.
 
-Morphogenesis compression must not erase distinctions that have not yet been
+Pressure-generation compression must not erase distinctions that have not yet been
 tested for architectural load-bearing value.
 
 ---
@@ -833,7 +840,7 @@ Repo-mutation under accepted packet may not:
 - preserve mixed-role artifacts for convenience
 - treat proposal as approval
 
-Morphogenesis live-surface mutation is still mutation and must obey bounded scope.
+Pressure-generation live-surface mutation is still mutation and must obey bounded scope.
 
 Creative and Auditor remain proposal-first roles by default unless explicitly promoted.
 
@@ -862,7 +869,7 @@ A pass is complete only when:
 
 If ambiguity expanded, compression failed.
 
-Morphogenesis passes must additionally report:
+Pressure-generation passes must additionally report:
 
 - active subject
 - active role
@@ -886,7 +893,7 @@ After each accepted pass:
 - deferred and archived decisions remain explicit
 - future work must start from repo state, not conversational memory
 
-For morphogenesis:
+For pressure generation:
 
 - cycle log must be updated
 - subject-register update occurs only when state changed

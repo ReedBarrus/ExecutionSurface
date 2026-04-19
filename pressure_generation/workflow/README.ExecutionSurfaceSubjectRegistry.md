@@ -5,14 +5,14 @@
 This document is the live subject registry for the current `ExecutionSurface`
 architecture front.
 
-It is not the older morphogenesis workflow seed.
+It is not the older pre-rebase workflow seed.
 
 It is a bounded working register for active and pinned architectural subjects
 after the runtime grammar rebase.
 
 Historical process material now lives under:
 
-- `morphogenesis/archive/`
+- `pressure_generation/archive/`
 
 ## Purpose
 

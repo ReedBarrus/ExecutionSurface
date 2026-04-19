@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "dme/execution-surface/handoff/role_response.schema.json",
-  "title": "Morphogenesis Role Response",
+  "title": "Pressure Generation Role Response",
   "description": "Bounded role response envelope for one pass over an active subject.",
   "type": "object",
   "additionalProperties": false,

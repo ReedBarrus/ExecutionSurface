@@ -72,7 +72,7 @@ Current top-level repo zones are:
 - `benchmarks/`
 - `out_workbench/`
 - `out_lm/`
-- `morphogenesis/`
+- `pressure_generation/`
 
 Current root orientation / authority-support files include:
 
@@ -134,13 +134,13 @@ becoming runtime authority:
 - `scripts/`
 - `tests/`
 
-### 4.3 Morphogenesis / process-support surfaces
+### 4.3 Pressure-generation / process-support surfaces
 
 These zones hold architecture-shaping, governed-recursion, subject-surface, and
 workflow-support surfaces that operate over bounded receipts and explicit process
 law without becoming runtime / commit authority:
 
-- `morphogenesis/`
+- `pressure_generation/`
 
 ### 4.4 Generated artifact surfaces
 
@@ -180,24 +180,24 @@ checks, and benchmark checks only.
 ### `test_signal/`
 Signal-side source material and replay-style signal checks only.
 
-### `morphogenesis/`
-Governed-recursion, architecture-shaping, subject-surface, workflow-support, and
-implementation-ladder process surfaces only.
+### `pressure_generation/`
+Topology-first architecture pressure-generation, architecture-shaping,
+workflow-support, archive, and implementation-ladder process surfaces only.
 
 This zone is read-side / process-support posture.
 
 It does not become runtime / commit authority by carrying live subject mutation.
 
-#### `morphogenesis/architecture/`
+#### `pressure_generation/architecture/`
 Architecture seed and implementation-ladder trunk surfaces only.
 
-#### `morphogenesis/workflow/`
-Subject registry, cycle log, administrator note log, governed recursion contract,
-appendices, and workflow law support surfaces only.
+#### `pressure_generation/workflow/`
+Projection ledger, topology detection protocol, perturbation gate, role
+template, workflow template, compilation surfaces, and live subject registry
+only.
 
-#### `morphogenesis/subject_surfaces/`
-Live subject mutation surfaces opened from the architecture seed during bounded
-morphogenesis only.
+#### `pressure_generation/archive/`
+Non-authoritative historical workflow and support-band material only.
 
 ### `benchmarks/`
 Benchmark receipts, summaries, and benchmark-run artifacts only.
@@ -240,21 +240,21 @@ Fixture builders stay in `fixtures/`.
 Signal-side fixture material stays in `test_signal/`.
 
 ### Rule 8
-Morphogenesis architecture, workflow, and subject-surface process files stay in
-`morphogenesis/`.
+Pressure-generation architecture, workflow, and archive process files stay in
+`pressure_generation/`.
 
 ### Rule 9
 Architecture seed and implementation-ladder trunk surfaces stay in
-`morphogenesis/architecture/`.
+`pressure_generation/architecture/`.
 
 ### Rule 10
 Subject registry, cycle log, administrator note log, governed recursion entry
 contract, appendices, and workflow-support surfaces stay in
-`morphogenesis/workflow/`.
+`pressure_generation/workflow/`.
 
 ### Rule 11
-Released or actively mutated narrower live subject surfaces stay in
-`morphogenesis/subject_surfaces/`.
+Historical and non-authoritative process residue stays in
+`pressure_generation/archive/`.
 
 ### Rule 12
 Benchmark-run artifacts stay in `benchmarks/`.

@@ -78,13 +78,13 @@ This contract applies directly to:
 
 It does not by itself govern:
 
-- morphogenesis thread behavior
+- pressure-generation thread behavior
 - live subject-surface mutation in architecture threads
 - evaluation closure
 - memory retention / reconstruction posture
 - repo placement law
 
-Morphogenesis may touch text surfaces under Decision Matrix law, but that is not
+Pressure generation may touch text surfaces under Decision Matrix law, but that is not
 the primary concern of this contract.
 
 This contract is specifically for implementation-facing seam mutation.

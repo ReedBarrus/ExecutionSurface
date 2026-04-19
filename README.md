@@ -18,7 +18,7 @@ For current development purposes, this repo is the live home of:
 - provenance-first audit design
 - bounded language-kernel attachment
 - benchmark and audit harness development
-- workflow and morphogenesis process support built on explicit runtime outputs and subordinate audit surfaces
+- workflow and pressure-generation support built on explicit runtime outputs and subordinate audit surfaces
 
 This does **not** mean every future DME layer is already active here.
 
@@ -82,14 +82,14 @@ audit surfaces that attach to the executive substrate without bypassing it:
 - `scripts/`: machine-facing runners that emit JSON artifacts, staging surfaces, and benchmark outputs
 - `tests/`: contract, runtime, reconstruction, wrapper, and benchmark checks
 
-### Morphogenesis / process-support surfaces
+### Pressure-Generation / process-support surfaces
 
 This directory holds the governed-recursion, architecture-shaping, subject-surface, and workflow-support surfaces used to develop the ExecutionSurface architecture lawfully without promoting those process surfaces into runtime / commit authority:
 
-- `morphogenesis/`
-  - `morphogenesis/architecture/`: architecture seed and implementation-ladder trunk surfaces
-  - `morphogenesis/workflow/`: subject registry, cycle log, administrator note log, governed recursion contract, appendices, and workflow-support surfaces
-  - `morphogenesis/subject_surfaces/`: live subject mutation surfaces opened from the architecture seed during bounded morphogenesis
+- `pressure_generation/`
+  - `pressure_generation/architecture/`: architecture seed, implementation ladder, and runtime-grammar authority surfaces
+  - `pressure_generation/workflow/`: topology-first workflow templates, subject registry, and workflow compilation surfaces
+  - `pressure_generation/archive/`: non-authoritative historical process material
 
 ### Generated artifact surfaces
 
@@ -138,7 +138,7 @@ This includes:
 - `runtime/DoorOneWorkbench.js`
 - LM wrapper / staged invocation surfaces
 - benchmark and validation surfaces
-- workflow and morphogenesis process-support surfaces built on explicit runtime outputs plus subordinate audit surfaces
+- workflow and pressure-generation support surfaces built on explicit runtime outputs plus subordinate audit surfaces
 
 These surfaces are useful and often essential, but they are not the same thing as runtime / commit authority.
 
@@ -183,10 +183,10 @@ Supporting orientation surfaces include:
 - `ARCHITECTURE.md`: compact statement of the present architectural basis
 - `tests/test_manifest.json`: explicit classification of active tests into `core`, `reconstruction`, `probe`, and `legacy_hold`
 - `schemas/`: JSON schema layer for compact audit surfaces, LM wrapper contracts, benchmark receipts, and process-support surfaces
-- `morphogenesis/architecture/`: architecture seed and implementation-ladder trunk surfaces
-- `morphogenesis/workflow/`: governed recursion and process-support surfaces
-- `morphogenesis/workflow/README.ExecutionSurfacePreDevelopmentTighteningChecklist.md`: ordered burn-down list for repo tightening before wider substrate development resumes
-- `morphogenesis/subject_surfaces/`: live subject mutation surfaces
+- `pressure_generation/README.ExecutionSurfaceUploadPack.md`: compact file-limit-aware upload set
+- `pressure_generation/architecture/`: architecture seed, implementation ladder, and runtime-grammar corpus
+- `pressure_generation/workflow/`: topology-first workflow templates, registry, and workflow compilation
+- `pressure_generation/archive/`: non-authoritative historical process material
 
 These surfaces support the repo’s use-oriented development posture, but they do not outrank executable runtime reality.
 
@@ -209,7 +209,7 @@ This repo is not authoritative for:
 - promotion or publication readiness
 - unconstrained agentic orchestration
 - language-model judgments that bypass runtime outputs
-- workflow or morphogenesis claims that outrun executable repo reality
+- workflow or pressure-generation claims that outrun executable repo reality
 
 That boundary matters because the next build phases will continue adding control and process layers on top of these runtime outputs and audit surfaces.
 

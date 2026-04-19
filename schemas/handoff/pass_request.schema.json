@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "dme/execution-surface/handoff/pass_request.schema.json",
-  "title": "Morphogenesis Pass Request",
+  "title": "Pressure Generation Pass Request",
   "description": "Bounded request envelope for one role pass over an active subject.",
   "type": "object",
   "additionalProperties": false,
