@@ -55,7 +55,7 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
   - Full continuity-receipt shape law, schema law, validator law, benchmark law, and implementation mechanics must remain deferred.
 - recommended next role: Reflector
 - decision: Hold
-- reason: the minimum continuity floor holds, but one narrow fork between bounded recurrence / reuse usefulness and later authority-bearing plus packet/export/addressability relation work still earns explicit tension.
+- reason: the minimum continuity floor holds, but one narrow fork between bounded recurrence / reuse usefulness and later authority-bearing plus packet/export/addressability relation work still earns tension.
 
 ### ES-CYCLE-0008-REFLECTOR
 - cycle_id: ES-CYCLE-0008
@@ -554,3 +554,116 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Constructor
 - decision: Release
 - reason: Runtime Seam And Authority Grammar is stable enough to release, but descriptor contract writing should open first on the State descriptor slice rather than the full family.
+
+### ES-CYCLE-0012-CONSTRUCTOR
+- cycle_id: ES-CYCLE-0012
+- active subject: State Support Descriptor Contract
+- active role: Constructor
+- active macro verb: Form
+- expected emitted object: identity object / descriptor contract object
+- state before: Seeded
+- state after: Compressed
+- live/doctrine-surface mutation status: updated `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeObjectGrammar.md`; appended cycle-log entry here; no implementation code, schemas, tests, subject registry, architecture seed, implementation ladder, Basin/Trajectory/Query/Replay descriptor contracts, LM packet contract, Agent Write / Agent Read law, or broad Support Descriptor Contract Family mutated
+- exact repo write result:
+  - updated `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeObjectGrammar.md`
+  - appended `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md`
+- descriptor contract summary:
+  - State Support Descriptor is the first bounded descriptor contract for `H1` and `M1` support objects.
+  - It defines a compact `RC2 - Descriptor-Compressing` exposure of state-support composition without replacing `H1` / `M1` or importing semantic, truth, canon, identity, routing, promotion, agent-authority, or hidden-write posture.
+- source scope:
+  - applies first to `H1` support objects from support recruitment and `M1` support objects from merge / support compaction
+  - may later generalize only through explicit overlay or later descriptor-family contract work
+  - does not cover Basin, Trajectory, Query, or Replay contracts
+- required fields:
+  - `descriptor_type`
+  - `source_ref`
+  - `artifact_class`
+  - `stream_id`
+  - `segment_id`
+  - `window_span`
+  - `support_basis`
+  - `support_shape`
+  - `uncertainty_posture`
+  - `confidence_posture`
+  - `policy_refs`
+  - `provenance_refs`
+  - `explicit_non_claims`
+- required support shape:
+  - kept-bin index or bounded kept-bin projection
+  - normalized band profile
+  - raw energy or equivalent magnitude summary
+  - distortion or uncertainty posture
+  - count-only state exposure above `H1` is malformed
+- optional fields:
+  - omitted-support posture
+  - support-vector size or shape summary
+  - threshold posture
+  - merge lineage posture for `M1`
+  - descriptor generation receipt ref
+  - downstream routing hints for declared read-side consumers
+- upstream grounding:
+  - one named `H1` or `M1` support object or support family
+  - declared support basis, artifact class, stream / segment / window scope, policy refs, and provenance refs
+- allowed downstream consumers:
+  - orchestrator result assembly
+  - workbench runtime section
+  - LM staging
+  - cross-run comparison
+  - reconstruction support staging when a state-support basis is needed
+- subordinate receipts:
+  - receipts may accompany a State descriptor for audit, validation, generation, transport, benchmark, or handoff posture
+  - receipts must remain subordinate
+  - receipt-only State exposure above `H1` is malformed
+- explicit non-claims:
+  - no semantic labeling
+  - no identity closure
+  - no truth posture
+  - no canon posture
+  - no source restoration
+  - no source-equivalence proof
+  - no promotion or memory routing
+  - no agent authority
+  - no hidden write authority
+  - no replacement of `H1` or `M1`
+- malformed descriptor posture:
+  - missing `source_ref`
+  - missing `artifact_class`
+  - missing `support_basis`
+  - missing `support_shape`
+  - missing `provenance_refs`
+  - missing `explicit_non_claims`
+  - `support_shape` collapses to count-only exposure
+  - semantic labels in required/default fields
+  - truth, canon, identity, promotion, routing, agent-authority, hidden-write, raw-restoration, or source-equivalence claims in required/default fields
+  - receipt-only substitute offered as State descriptor
+  - absent or ambiguous upstream `H1` / `M1` grounding
+- proposals accepted:
+  - define State descriptor contract only
+  - use the existing runtime object grammar minimum field list as the required field floor
+  - make `support_shape` compositional enough to prevent count-only exposure
+  - classify State descriptor as `RC2 - Descriptor-Compressing`
+  - keep State descriptor as compact exposure, not runtime transformation authority or replacement for `H1` / `M1`
+  - name allowed downstream consumers without granting them hidden write, truth, canon, routing, or identity authority
+  - name malformed descriptor conditions mechanically enough for later implementation
+- proposals rejected:
+  - defining exact JSON schema
+  - mutating runtime code, tests, schemas, subject registry, architecture seed, or implementation ladder
+  - opening Basin, Trajectory, Query, or Replay descriptor contracts
+  - opening broad Support Descriptor Contract Family
+  - opening implementation sweep, benchmark redesign, LM packet contract, Agent Write law, or Agent Read law
+  - allowing receipt-only State exposure above `H1`
+  - allowing semantic labels, identity closure verdicts, truth claims, canon posture, source-equivalence claims, routing/promotion claims, agent authority, or hidden write permission into required/default fields
+- what changed:
+  - Added `State Support Descriptor Contract` to the runtime object grammar.
+  - Expanded the existing State descriptor family into a bounded contract over `H1` / `M1` support composition.
+  - Made required fields, required support-shape contents, optional fields, upstream grounding, allowed downstream consumers, subordinate receipt posture, explicit non-claims, and malformed descriptor posture explicit.
+- what remains unresolved:
+  - Whether optional fields are too broad or should be narrowed by Creative / Reflector.
+  - Whether allowed downstream consumers are too broad, especially reconstruction support staging.
+  - Whether `support_shape` should distinguish `H1` and `M1` subprofiles more explicitly before implementation.
+  - Exact JSON schema remains deferred.
+  - Exact implementation edits remain deferred.
+  - Basin, Trajectory, Query, and Replay descriptor contracts remain unopened.
+- recommended next role: Creative
+- decision: Hold
+- reason: the State descriptor contract is now mechanically compressed enough for pressure, but optional fields, downstream consumer breadth, and `H1` / `M1` support-shape distinction should be tested before release.
