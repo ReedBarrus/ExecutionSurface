@@ -49,10 +49,10 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** Runtime Grammar Pressure Review
+- **Active subject:** Runtime Seam And Authority Grammar
 - **Current state:** Seeded
-- **Why active now:** The runtime grammar corpus now distinguishes structure, support, receipts, descriptors, seam strata, emission authority, and transitional material clearly enough that the next lawful move is one bounded morphogenesis review pass over that corpus before descriptor contracts or implementation shapes harden.
-- **Recommended next role:** Reflector
+- **Why active now:** Runtime Grammar Pressure Review has rebounded because the runtime spine is strong enough to retain as current runtime-front reality, but downstream exposure, seam authority, descriptor routing, subordinate receipt posture, semantic-overlay optionality, and transitional-material handling need one narrower compression before descriptor contract writing can lawfully open.
+- **Recommended next role:** Constructor
 - **Likely next child subject after release:** Support Descriptor Contract Family
 
 ---
@@ -64,6 +64,7 @@ Allowed states:
 - The next architectural pressure therefore falls on lawful object addressability and bounded read-side object export rather than on prompt widening alone.
 - The runtime grammar corpus now distinguishes operator seams, pipeline coordination functions, substrate boundaries / surfaces, read-side functions, and transitional bridges rather than describing all runtime mechanisms through one blurred seam vocabulary.
 - The current runtime doctrine now treats receipts as subordinate audit surfaces only and removes semantic overlay from default runtime authority, but this posture should still be pressure-tested before descriptor contract shapes harden.
+- Runtime Grammar Pressure Review produced useful findings and has now rebounded into Runtime Seam And Authority Grammar because descriptor-family sufficiency is not yet descriptor-contract readiness.
 
 ---
 
@@ -142,16 +143,16 @@ Allowed states:
 - note: This subject remains useful but should wait until state / trajectory / query descriptor routing is pressure-tested and stabilized.
 
 ### 19. Runtime Grammar Pressure Review
-- state: Seeded
-- note: Pressure-test the new runtime grammar corpus for inconsistency, overbreadth, hidden semantic gravity, misrouted seam authority, descriptor-family ambiguity, and transitional material still posing as durable law.
+- state: Rebound
+- note: Produced useful findings and confirmed the runtime spine as current runtime-front reality, but did not release into broad descriptor contract writing because downstream exposure and seam-authority handling remain insufficiently compressed.
 
 ### 20. Runtime Seam And Authority Grammar
 - state: Seeded
-- note: Stabilize the distinction between operator seams, pipeline coordination functions, substrate boundaries / surfaces, read-side functions, and transitional bridges so later implementation does not blur runtime authority with coordination or read-side behavior.
+- note: Stabilize the distinction between operator seams, pipeline coordination functions, substrate boundaries / surfaces, read-side functions, transitional bridges, descriptor routing, subordinate receipts, semantic-overlay optionality, and downstream exposure authority before descriptor contracts harden.
 
 ### 21. Support Descriptor Contract Family
-- state: Seeded
-- note: Define the first lawful contract family for state, basin, trajectory, query, and replay support descriptors only after the runtime grammar pressure review either compresses or rebounds cleanly.
+- state: Deferred
+- note: Define the first lawful contract family for state, basin, trajectory, query, and replay support descriptors only after Runtime Seam And Authority Grammar compresses cleanly.
 
 ### 22. Transitional Material Elimination Posture
 - state: Seeded
@@ -174,19 +175,12 @@ These are active across all subjects:
 
 ## Immediate gate question
 
-For **Runtime Grammar Pressure Review**, the gate question is:
+For **Runtime Seam And Authority Grammar**, the gate question is:
 
-Is the current runtime grammar corpus internally coherent enough across seam
-strata, descriptor routing, authority posture, and transitional-material naming
-that descriptor contract-family writing can lawfully open next without freezing
-blurry assumptions into implementation?
+Can the mixed downstream seams be compressed clearly enough across seam authority, descriptor routing, subordinate receipts, semantic-overlay optionality, and transitional-material handling that Support Descriptor Contract Family can open without freezing blurry exposure assumptions into contract law?
 
 ---
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one
-active subject at a time, now with Runtime Grammar Pressure Review active so
-descriptor contracts and implementation can unfold from stabilized seam
-grammar, authority posture, and descriptor-routing foundations rather than from
-receipt-thin or semantically mixed runtime assumptions.
+This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Runtime Seam And Authority Grammar active so descriptor contracts can later unfold from a stabilized runtime spine and compressed downstream seam-authority posture rather than from receipt-led, semantically mixed, or transitional exposure assumptions.
