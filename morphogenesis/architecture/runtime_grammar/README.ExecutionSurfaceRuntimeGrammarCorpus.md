@@ -56,6 +56,7 @@ apart.
 These files are subordinate to the shared authority pair and exist to make the
 grammar operational:
 
+- `README.ExecutionSurfaceRuntimeCoherenceGovernor.md`
 - `README.ExecutionSurfaceRuntimeChainMap.md`
 - `README.ExecutionSurfaceRuntimeSeamLedger.md`
 - `README.ExecutionSurfaceRuntimeFindings.md`
@@ -67,10 +68,11 @@ Read in this order:
 
 1. `README.ExecutionSurfaceRuntimeObjectGrammar.md`
 2. `README.ExecutionSurfaceRuntimeEmissionAuthorityGrammar.md`
-3. `README.ExecutionSurfaceRuntimeChainMap.md`
-4. `README.ExecutionSurfaceRuntimeSeamLedger.md`
-5. `README.ExecutionSurfaceRuntimeFindings.md`
-6. `README.ExecutionSurfaceRuntimeImplementationBridge.md`
+3. `README.ExecutionSurfaceRuntimeCoherenceGovernor.md`
+4. `README.ExecutionSurfaceRuntimeChainMap.md`
+5. `README.ExecutionSurfaceRuntimeSeamLedger.md`
+6. `README.ExecutionSurfaceRuntimeFindings.md`
+7. `README.ExecutionSurfaceRuntimeImplementationBridge.md`
 
 That order moves from law to path to ledger to findings to code-touch.
 

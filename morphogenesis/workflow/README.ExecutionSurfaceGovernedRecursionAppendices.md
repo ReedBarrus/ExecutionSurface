@@ -182,6 +182,29 @@ They narrow and stabilize how runtime-front work names:
 
 If a pass touches any of those areas without naming the runtime grammar corpus, the pass should be considered under-scoped and held or rebound until the authority chain is explicit.
 
+---
+
+## Appendix H - Workflow coherence inflation rule
+
+When a recursion pass appears cleaner, more unified, or more release-ready than
+its packet-bounded subject law can honestly justify, that pass should be
+evaluated under the Workflow Coherence Governor.
+
+The governing companion surface for that check is:
+
+- `README.ExecutionSurfaceWorkflowCoherenceGovernor.md`
+
+Minimum operative rule:
+
+- ambiguity-hiding smoothing cannot release a subject
+- authority-inflating resolution loses write privilege and routes to hold,
+  rebound, or downgrade
+
+This appendix does not add a new role or new state family.
+
+It adds an explicit diagnostic trigger for using the existing workflow stop and
+rebound machinery when coherence is being overstated.
+
 ## One-line summary
 
-These appendices tighten early ExecutionSurface governed recursion by resolving reconstruct/promote placement, adding a pre-commit mini-gate, making cycle-log structure explicit, preserving deferred upper subjects visibly, legitimizing stabilizing passes as an anti-inflation safeguard, and requiring explicit inheritance of the runtime grammar corpus for runtime-front work.
+These appendices tighten early ExecutionSurface governed recursion by resolving reconstruct/promote placement, adding a pre-commit mini-gate, making cycle-log structure explicit, preserving deferred upper subjects visibly, legitimizing stabilizing passes as an anti-inflation safeguard, requiring explicit inheritance of the runtime grammar corpus for runtime-front work, and adding a workflow-side coherence inflation trigger for hold / rebound / downgrade posture.
