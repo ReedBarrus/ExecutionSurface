@@ -219,14 +219,50 @@ It must also not be used to define:
 The runtime grammar should expose the following support descriptor families as
 the default compact read-side carriers above support recruitment.
 
-### State Support Descriptor
+## State Support Descriptor Contract
 
-This is the compact descriptor family for `H1` and `M1`.
+This is the first bounded descriptor contract for `H1` and `M1` support objects.
 
-Its job is to expose support composition without dragging full raw arrays into
-every downstream surface.
+It defines the minimum lawful State descriptor shape for compact exposure of
+state-support composition without expanding into Basin, Trajectory, Query, or
+Replay descriptor contracts.
 
-Minimum required fields:
+### Source scope
+
+State Support Descriptor applies first to:
+
+- `H1` support objects emitted from support recruitment
+- `M1` support objects emitted from merge / support compaction
+
+It may later generalize only through explicit overlay or later descriptor-family
+contract work.
+
+It does not cover:
+
+- `BN` / Basin descriptor contract
+- trajectory frame or relation descriptor contract
+- `Q` / Query descriptor contract
+- `A3` or reconstruction-adjacent Replay descriptor contract
+
+### Authority posture
+
+State Support Descriptor is `RC2 - Descriptor-Compressing`.
+
+It is a compact read-side exposure of a lawful upstream support object.
+
+It is not:
+
+- runtime transformation authority
+- runtime support authority by itself
+- a replacement for `H1` or `M1`
+- a receipt summary
+- a semantic overlay
+- a memory routing object
+- a promotion object
+
+### Required fields
+
+A lawful State descriptor must expose:
 
 - `descriptor_type`
 - `source_ref`
@@ -242,19 +278,157 @@ Minimum required fields:
 - `provenance_refs`
 - `explicit_non_claims`
 
-Expected `support_shape` contents:
+### Required support shape
+
+`support_shape` must expose enough compositional content to prevent count-only
+state exposure above `H1`.
+
+At minimum, `support_shape` must include:
 
 - kept-bin index or bounded kept-bin projection
 - normalized band profile
 - raw energy or equivalent magnitude summary
-- distortion posture
+- distortion or uncertainty posture
 
-Prohibited fields:
+A State descriptor may compress or bound large support composition, but it must
+not reduce state support to counts alone.
+
+### Optional fields
+
+A State descriptor may optionally expose bounded helper fields when they remain
+grounded in `H1` or `M1` support composition and do not become semantic overlay.
+
+Optional fields may include:
+
+- omitted-support posture
+- support-vector size or shape summary
+- threshold posture
+- merge lineage posture for `M1`
+- descriptor generation receipt ref
+- downstream routing hints for declared read-side consumers
+
+Optional fields must remain subordinate to the required fields.
+
+They must not become the only meaningful exposure of state support.
+
+### Upstream grounding
+
+A State descriptor must be grounded in one named upstream support object or
+support family.
+
+The descriptor must preserve enough reference posture to answer:
+
+- which `H1` or `M1` object it exposes
+- what support basis generated that upstream support object
+- what artifact class and stream / segment / window scope bound the descriptor
+- what provenance and policy refs remain active
+
+### Allowed downstream consumers
+
+State descriptors may be consumed by:
+
+- orchestrator result assembly
+- workbench runtime section
+- LM staging
+- cross-run comparison
+- reconstruction support staging when a state-support basis is needed
+
+These consumers receive State descriptors as bounded read-side exposure.
+
+They do not receive authority to treat the descriptor as `H1`, `M1`, truth,
+canon, identity closure, memory routing, or hidden write permission.
+
+### Subordinate receipts
+
+Receipts may accompany a State descriptor for audit, validation, generation,
+transport, benchmark, or handoff posture.
+
+Receipts must remain subordinate.
+
+A receipt-only State exposure above `H1` is malformed.
+
+A receipt must not replace:
+
+- `source_ref`
+- `support_basis`
+- `support_shape`
+- `provenance_refs`
+- `explicit_non_claims`
+
+### Explicit non-claims
+
+A lawful State descriptor must explicitly deny at least:
+
+- semantic labeling
+- identity closure
+- truth posture
+- canon posture
+- source restoration
+- source-equivalence proof
+- promotion or memory routing
+- agent authority
+- hidden write authority
+- replacement of `H1` or `M1`
+
+### Prohibited fields and postures
+
+State descriptors must not include as required or default fields:
 
 - semantic labels
+- interpretation labels
 - identity closure verdicts
 - truth claims
 - canon posture
+- source-equivalence claims
+- promotion posture
+- memory routing verdicts
+- agent authority posture
+- hidden write permission
+
+Optional downstream overlays may refer to a State descriptor only when they remain
+explicitly separate, removable, and non-default.
+
+### Malformed descriptor posture
+
+A State descriptor is malformed or rejectable when any of the following occur:
+
+- missing `source_ref`
+- missing `artifact_class`
+- missing `support_basis`
+- missing `support_shape`
+- missing `provenance_refs`
+- missing `explicit_non_claims`
+- `support_shape` collapses to count-only exposure
+- required or default fields contain semantic labels
+- required or default fields contain truth, canon, identity, promotion,
+  routing, agent-authority, hidden-write, raw-restoration, or source-equivalence
+  claims
+- receipt-only substitute is offered as the State descriptor
+- upstream `H1` / `M1` grounding is absent or ambiguous
+
+### Contract non-goals
+
+This contract does not define:
+
+- exact JSON schema
+- validator implementation
+- runtime code mutation
+- test mutation
+- benchmark redesign
+- LM packet contract
+- Basin descriptor contract
+- Trajectory descriptor contract
+- Query descriptor contract
+- Replay descriptor contract
+- broad Support Descriptor Contract Family
+
+### One-line State contract
+
+A State Support Descriptor is a bounded `RC2` descriptor over `H1` / `M1` support
+composition that exposes source, scope, support basis, support shape,
+uncertainty/confidence posture, policy/provenance refs, and explicit non-claims
+without replacing the support object or importing semantic, truth, canon,
+identity, routing, promotion, agent-authority, or hidden-write posture.
 
 ### Basin Support Descriptor
 
