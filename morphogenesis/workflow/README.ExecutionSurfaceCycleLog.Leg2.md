@@ -321,3 +321,79 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Constructor
 - decision: Rebound
 - reason: Runtime grammar findings are useful and the spine is stable, but descriptor contract writing would currently freeze unresolved downstream exposure and seam-authority ambiguity.
+
+### ES-CYCLE-0011-CONSTRUCTOR
+- cycle_id: ES-CYCLE-0011
+- active subject: Runtime Seam And Authority Grammar
+- active role: Constructor
+- active macro verb: Form
+- expected emitted object: identity object
+- state before: Seeded
+- state after: Compressed
+- live/doctrine-surface mutation status: updated `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeEmissionAuthorityGrammar.md`; appended cycle-log entry here; no implementation code, schemas, tests, subject registry, architecture seed, implementation ladder, or descriptor contracts mutated
+- compressed seam-authority rule:
+  - Downstream mixed seams may assemble, stage, compare, validate, or expose lawful upstream structural and support objects through bounded support descriptors, read-side projections, and subordinate receipts.
+  - They may not treat semantic overlays, compatibility aliases, receipt-only summaries, hidden write authority, identity closure, truth posture, or canon posture as default runtime authority.
+  - Any downstream seam whose current usefulness depends on semantic overlay, compatibility aliasing, or receipt-only exposure above `H1` must be tightened, re-derived, removed, or quarantined before `Support Descriptor Contract Family` opens broadly.
+- seam classifications:
+  - `Orchestrator result assembly seam`: pipeline coordination function; read-side projection only with subordinate audit; allowed class-distinct structural/support sections, support descriptors, subordinate `runtime_receipt`; prohibited semantic overlay runtime dependency, top-level interpretation alias, receipt-only substitute above `H1`, hidden write authority, identity/truth/canon claims; forward posture `Re-derive`.
+  - `Workbench runtime section seam`: pipeline coordination function; read-side projection only with subordinate audit; allowed descriptor-led structural/support integration view and subordinate `workbench_receipt`; prohibited count-heavy packet as sole exposure, semantic overlay dependency, compatibility aliases, hidden write authority, identity/truth/canon claims; forward posture `Tighten`.
+  - `Workbench compatibility alias seam`: transitional bridge; transitional compatibility only until removed; allowed no durable default emission, temporary compatibility shim only when explicitly labeled; prohibited compatibility alias as durable law, semantic mirror as runtime necessity, provenance blur, receipt/object substitution; forward posture `Remove`.
+  - `Cross-run session admission seam`: pipeline coordination function; read-side projection only for run admission; allowed descriptor-capable runtime section admission and bounded admission receipt; prohibited interpretive overlay admission requirement, semantic label family dependency, hidden promotion/truth/canon posture; forward posture `Re-derive`.
+  - `Cross-run report seam`: read-side function; read-side projection only with subordinate comparison receipts; allowed descriptor-led structural/support comparison posture, reproducibility posture, subordinate comparison receipts; prohibited interpretive label comparison as default basis, semantic overlay dependency, truth/canon/same-object closure; forward posture `Re-derive`.
+  - `LM wrapper extraction seam`: read-side function; read-side projection only; allowed bounded descriptor-fed LM input view and subordinate receipts when useful; prohibited semantic overlay as required input, count-only packet as final target, hidden write authority, agent authority inflation; forward posture `Tighten`.
+  - `Reconstruction runtime support collection seam`: read-side function; read-side projection only over runtime support; allowed replay/state descriptor support basis and reconstruction receipts; prohibited interpretive support as required basis, raw restoration claim, source-equivalence proof, hidden enhancement; forward posture `Tighten`.
+  - `Reconstruction interpretive support seam`: read-side function; optional downstream read-side interpretation only; no default runtime authority emission; prohibited default reconstruction support basis, widened interpretation reliance, semantic overlay as support authority; forward posture `Remove`.
+- allowed emissions:
+  - bounded read-side projections that preserve class separation
+  - support descriptors routed from lawful upstream support objects
+  - subordinate receipts for audit, validation, comparison, admission, or transport
+  - optional semantic overlays only when explicitly downstream and non-default
+  - temporary transitional bridges only when explicitly named, removable, and not used as later durable dependencies
+- prohibited emissions:
+  - semantic overlay as runtime dependency
+  - compatibility alias as durable law
+  - receipt-only substitute above `H1`
+  - hidden write authority
+  - hidden memory retention or promotion
+  - identity closure
+  - truth claims
+  - canon posture
+  - source-equivalence or raw restoration claims
+  - agent authority inflation
+- transitional-material posture:
+  - Compatibility aliases, semantic mirrors, count-heavy convenience packets, and interpretive support dependencies are transitional material when they remain necessary for repo continuity.
+  - They may be tolerated only when explicitly labeled, removable, and subordinate to lawful upstream structural/support objects and support descriptors.
+  - They must not become descriptor-contract inputs, implementation proof targets, runtime authority, or default dependencies for cross-run admission, workbench exposure, LM staging, or reconstruction support.
+- support-descriptor-family opening condition:
+  - `Support Descriptor Contract Family` may open only after this seam-authority grammar is stable enough that descriptor contracts will not harden semantic overlays as default runtime authority, compatibility aliases as durable law, receipt-only exposure above `H1`, mixed read-side projections without explicit non-authority posture, or hidden write/identity/truth/canon/promotion/source-equivalence claims.
+  - Later opening should either open the full first descriptor family only if Reflector and Auditor confirm the mixed downstream band is sufficiently bounded, or open a first narrow `State support descriptor` slice with explicit routing and non-claim limits if seam-class tension remains.
+- proposals accepted:
+  - preserve the strong runtime spine without rewriting it
+  - focus the compression on downstream mixed seams only
+  - preserve support descriptors as bounded read-side carriers rather than semantic overlays
+  - keep receipts subordinate and useful without allowing receipt-led exposure above `H1`
+  - classify each target seam by mechanism stratum, authority, allowed emission, prohibited emission, and forward posture
+  - name the gate condition before `Support Descriptor Contract Family` opens
+- proposals rejected:
+  - writing descriptor field contracts
+  - mutating implementation, schemas, tests, subject registry, architecture seed, or implementation ladder
+  - opening LM packet contract or Agent Write / Agent Read law
+  - collapsing receipts into runtime objects
+  - collapsing support descriptors into semantic overlays
+  - treating compatibility aliases or semantic mirrors as durable law
+  - opening broad Support Descriptor Contract Family in this Constructor pass
+- what changed:
+  - Added `Runtime Seam And Authority Grammar Compression` to the runtime emission authority doctrine.
+  - Converted the ES-CYCLE-0010 review findings into a concrete downstream seam-authority rule set.
+  - Made the target mixed-seam band explicit enough for pressure by Creative or compression by Reflector.
+  - Established the condition that must hold before descriptor contracts harden.
+- what remains unresolved:
+  - Whether Reflector can compress this directly toward gate review or whether Creative pressure should test seam-class tensions first.
+  - Whether the later descriptor-contract opening should be full-family or first State-support slice.
+  - Exact descriptor fields remain deferred.
+  - Exact implementation edits remain deferred.
+  - Exact transitional-material removal payloads remain deferred.
+- recommended next role: Creative
+- decision: Hold
+- reason: the seam-authority grammar is now compressed enough to pressure, but target seam classifications still deserve contrastive testing before release into descriptor contract writing.
