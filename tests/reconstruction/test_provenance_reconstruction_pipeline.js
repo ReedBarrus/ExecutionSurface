@@ -137,7 +137,6 @@ const WORKBENCH_ONLY = {
     },
     scope: { stream_id: "stream.test.001" },
     runtime: { substrate: { state_count: 1 } },
-    interpretation: { trajectory: {} },
 };
 
 section("A. Pipeline source constitutional posture");

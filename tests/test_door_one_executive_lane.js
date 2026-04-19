@@ -265,8 +265,8 @@ eq(lane.latestCrossRunReport().report_type, "runtime:cross_run_dynamics_report",
 
 section("E. Structural workbench integration");
 ok(ingestC.workbench.runtime && typeof ingestC.workbench.runtime === "object", "E1: workbench includes runtime section");
-ok(ingestC.workbench.semantic_overlay && typeof ingestC.workbench.semantic_overlay === "object", "E2: workbench includes semantic_overlay");
-ok(ingestC.workbench.interpretation?.trajectory && typeof ingestC.workbench.interpretation.trajectory === "object", "E3: workbench includes interpretation alias");
+ok(ingestC.workbench.runtime.pipeline && typeof ingestC.workbench.runtime.pipeline === "object", "E2: workbench includes runtime.pipeline");
+ok(ingestC.workbench.runtime.pipeline.operators && typeof ingestC.workbench.runtime.pipeline.operators === "object", "E3: workbench exposes operator artifacts directly");
 
 section("F. Determinism");
 const lane2 = new DoorOneExecutiveLane({

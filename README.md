@@ -4,8 +4,9 @@
 
 This repo is not trying to present the whole symbolic architecture, a finished
 V2 shell, or a canon system. Its current job is simpler and more valuable:
-preserve a lawful execution spine, keep provenance visible, expose bounded JSON
-surfaces, and give us something we can actually test before we widen autonomy.
+preserve a lawful execution spine, keep provenance visible, expose direct
+structural/support objects truthfully, and use bounded JSON surfaces for
+transport and audit without letting them replace runtime shape.
 
 ## Active Development Front
 
@@ -14,10 +15,10 @@ surfaces, and give us something we can actually test before we widen autonomy.
 For current development purposes, this repo is the live home of:
 
 - deterministic executive runtime work
-- provenance-first receipt design
+- provenance-first audit design
 - bounded language-kernel attachment
 - benchmark and audit harness development
-- workflow and morphogenesis process support built on explicit runtime receipts
+- workflow and morphogenesis process support built on explicit runtime outputs and subordinate audit surfaces
 
 This does **not** mean every future DME layer is already active here.
 
@@ -32,7 +33,7 @@ onto without turning the project into prose drift.
 The repo should be described publicly as:
 
 **A deterministic executive surface for provenance-first structural memory with
-JSON-facing runtime receipts.**
+direct object exposure and JSON-facing audit/transport surfaces.**
 
 That framing matters. It helps with support recruitment because it invites the
 right kind of collaborators:
@@ -56,6 +57,13 @@ contributors aligned with what the code actually does today.
 
 The active repository shape is now best understood as four coordinated bands.
 
+Direct exposure rule:
+
+- direct structural/support objects first
+- typed refs second
+- bounded packaging third
+- receipts last and always subordinate
+
 ### Runtime / commit implementation
 
 These directories hold the execution-bearing substrate and the bounded fixtures that feed it:
@@ -67,9 +75,10 @@ These directories hold the execution-bearing substrate and the bounded fixtures 
 
 ### Read-side / control surfaces
 
-These directories hold the machine-facing receipt, wrapper, benchmark, and validation surfaces that attach to the executive substrate without bypassing it:
+These directories hold the machine-facing wrapper, benchmark, validation, and
+audit surfaces that attach to the executive substrate without bypassing it:
 
-- `schemas/`: JSON schema layer for bounded receipts, wrapper inputs/outputs, and process surfaces
+- `schemas/`: JSON schema layer for bounded audit, wrapper inputs/outputs, and process surfaces
 - `scripts/`: machine-facing runners that emit JSON artifacts, staging surfaces, and benchmark outputs
 - `tests/`: contract, runtime, reconstruction, wrapper, and benchmark checks
 
@@ -129,7 +138,7 @@ This includes:
 - `runtime/DoorOneWorkbench.js`
 - LM wrapper / staged invocation surfaces
 - benchmark and validation surfaces
-- workflow and morphogenesis process-support surfaces built on explicit receipts
+- workflow and morphogenesis process-support surfaces built on explicit runtime outputs plus subordinate audit surfaces
 
 These surfaces are useful and often essential, but they are not the same thing as runtime / commit authority.
 
@@ -162,10 +171,10 @@ The primary machine-facing entry points remain:
 
 Preferred posture:
 
-- kernels read bounded JSON receipts and summaries
+- kernels read direct object-facing runtime sections where lawful, then bounded transport projections where needed
 - kernels emit advisory or separately gated outputs only
 - kernels do not bypass operators or mutate substrate authority
-- workflow and process-support layers ride on explicit receipts, not prose improvisation
+- workflow and process-support layers ride on explicit runtime outputs and bounded audit surfaces, not prose improvisation
 
 ## Supporting documents
 
@@ -173,7 +182,7 @@ Supporting orientation surfaces include:
 
 - `ARCHITECTURE.md`: compact statement of the present architectural basis
 - `tests/test_manifest.json`: explicit classification of active tests into `core`, `reconstruction`, `probe`, and `legacy_hold`
-- `schemas/`: JSON schema layer for compact runtime receipts, LM wrapper contracts, benchmark receipts, and process-support surfaces
+- `schemas/`: JSON schema layer for compact audit surfaces, LM wrapper contracts, benchmark receipts, and process-support surfaces
 - `morphogenesis/architecture/`: architecture seed and implementation-ladder trunk surfaces
 - `morphogenesis/workflow/`: governed recursion and process-support surfaces
 - `morphogenesis/workflow/README.ExecutionSurfacePreDevelopmentTighteningChecklist.md`: ordered burn-down list for repo tightening before wider substrate development resumes
@@ -189,8 +198,8 @@ This repo is authoritative for:
 
 - deterministic transformation of admitted input
 - policy-bounded commits into substrate continuity
-- provenance-preserving receipts
-- truthful bounded read-side summaries over runtime-visible state
+- provenance-preserving audit surfaces
+- truthful read-side projections over runtime-visible state
 - explicit JSON-facing attachment surfaces for kernels, wrappers, and benchmark harnesses
 
 This repo is not authoritative for:
@@ -199,10 +208,10 @@ This repo is not authoritative for:
 - symbolic truth claims
 - promotion or publication readiness
 - unconstrained agentic orchestration
-- language-model judgments that bypass runtime receipts
+- language-model judgments that bypass runtime outputs
 - workflow or morphogenesis claims that outrun executable repo reality
 
-That boundary matters because the next build phases will continue adding control and process layers on top of these receipts.
+That boundary matters because the next build phases will continue adding control and process layers on top of these runtime outputs and audit surfaces.
 
 If authority is not kept narrow here, the language and workflow layers will start pretending to be the substrate instead of remaining attached to it lawfully.
 

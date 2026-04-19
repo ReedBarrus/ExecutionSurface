@@ -15,7 +15,7 @@ export class CrossRunSession {
 
     addRun(result, meta = {}) {
         if (!this._isValidRun(result)) {
-            return { ok: false, error: "INVALID_RUN", reasons: ["CrossRunSession requires a successful DoorOneOrchestrator result with interpretation overlays"] };
+            return { ok: false, error: "INVALID_RUN", reasons: ["CrossRunSession requires a successful DoorOneOrchestrator result with direct structural/support surfaces"] };
         }
 
         const runLabel = this._resolveRunLabel(result, meta);
@@ -117,8 +117,9 @@ export class CrossRunSession {
     _isValidRun(result) {
         return !!(
             result?.ok &&
-            result?.interpretation?.trajectory &&
-            result?.interpretation?.attention_memory
+            result?.artifacts &&
+            result?.substrate &&
+            result?.runtime_receipt
         );
     }
 

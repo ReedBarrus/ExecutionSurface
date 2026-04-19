@@ -2,723 +2,354 @@
 
 ## Status
 
-This document is part of the shared active runtime grammar authority for
-`ExecutionSurface`.
+This document defines the active object grammar for `ExecutionSurface`.
 
-It defines what object families exist in the active runtime and what those
-families are allowed to do.
-
-It should be read together with:
-
-- `README.ExecutionSurfaceRuntimeEmissionAuthorityGrammar.md`
-- `README.ExecutionSurfaceRuntimeChainMap.md`
-- `README.ExecutionSurfaceRuntimeSeamLedger.md`
+It is part of the shared runtime grammar authority.
 
 ## Purpose
 
-This file exists to stop the runtime from being described through convenience
-surfaces alone.
+This file exists to keep the runtime described in terms of its actual objects
+and relations rather than convenience packets.
 
-In particular, it exists to prevent:
+In particular, it prevents:
 
 - receipts from being mistaken for runtime substance
-- read-side projections from being mistaken for source objects
+- projections from being mistaken for source objects
 - semantic overlays from being mistaken for runtime law
-- support recruitment from being mislabeled as interpretation
-- flat count packets from standing in for actual support composition
+- packaging from outranking the objects it packages
+- subordinate access layers from replacing committed object authority
 
-## Core Object Families
+## Core runtime object families
 
-### Structural Object
+### Structural objects
 
-A structural object preserves coordinate-bearing signal geometry without support
-recruitment, clustering, retrieval, replay interpretation, or semantic
-labeling.
+Structural objects preserve source geometry and coordinate-bearing transforms.
+
+Active structural families:
+
+- `A1` ingest artifact
+- `A2` aligned stream artifact
+- `W1` window artifact
+- `S1` spectral frame artifact
 
 Structural objects may:
 
-- preserve source continuity
-- preserve coordinate frames
-- preserve provenance and policy anchors
-- preserve exact or declared structural transforms
+- preserve source lineage
+- preserve clock/grid/window coordinates
+- preserve full transform geometry
+- carry audit receipts about the transform
 
 Structural objects must not:
 
-- decide what support should be retained
-- narrate meaning
-- claim memory closure
-- claim identity closure
+- recruit support
+- cluster support
+- assert memory closure
+- assert semantic meaning
 
-Structural objects should remain legible through:
+### Support objects
 
-- direct coordinate fields
-- direct source or upstream refs
-- declared policy anchors
-- explicit transform receipts that audit the transform without replacing it
+Support objects are derived mathematical/geometric objects built from lawful
+upstream structure.
 
-### Support Object
+Active support families:
 
-A support object is a derived mathematical or geometric object built from lawful
-upstream structure through declared reduction, comparison, clustering, replay,
-or retrieval.
+- `H1` harmonic state
+- `An` anomaly report
+- `SegmentTransition`
+- `M1` merged state
+- `BN` basin set / basin state
+- `TrajectoryFrame`
+- `Q` query result
+- `A3` reconstructed chunk
 
 Support objects may:
 
-- recruit support
-- expose retained support
+- recruit sparse support
 - compare support
-- cluster support
-- replay retained support
-- retrieve by structural similarity
+- compact support
+- organize support neighborhoods
+- record support trajectory
+- retrieve or replay support under explicit non-claims
 
 Support objects must:
 
-- carry derivation basis explicitly
-- preserve provenance refs explicitly
-- keep claim ceiling bounded
-- remain reconstructable enough for audit
+- preserve derivation basis
+- preserve provenance refs
+- preserve policy anchors
+- keep claim ceilings explicit
 
 Support objects must not:
 
-- silently become truth authority
-- silently become canon authority
-- silently become memory closure
-- silently become semantic interpretation
+- silently become truth claims
+- silently become canon claims
+- silently become memory or identity closure
 
-Support objects should remain legible through:
+### Committed memory objects
 
-- retained support membership
-- compositional vectors or sparse support maps
-- relation measures against other support objects
-- uncertainty and distortion posture
-- provenance refs sufficient for bounded replay or comparison
+Committed memory objects are the singular admitted substrate-boundary objects
+that retain lawful support payload across continuity.
 
-### Receipt Summary
+Active committed family target:
 
-A receipt summary is a subordinate audit digest of another object or seam.
+- `MemoryObject`
 
-Receipts may:
+`MemoryObject` must:
 
-- summarize counts
-- summarize policy ids
-- summarize thresholds and outcomes
-- summarize validation and benchmark posture
+- preserve payload kind
+- preserve internal support payload refs such as `H1` / `M1`
+- preserve support geometry or support-composition basis
+- preserve provenance refs
+- preserve temporal placement
+- preserve continuity constraints
+- preserve policy anchors
 
-Receipts must not:
+`MemoryObject` must not:
 
-- determine runtime shape
-- stand in for the object they summarize
-- become the only legible runtime surface at or above support recruitment
+- replace internal support with counts alone
+- become a descriptor-first summary
+- assert same-object closure
+- invent semantic identity
 
-Receipts remain lawful when they are:
+Implementation note:
+current repo code still commits mixed `H1` / `M1` objects directly. `MemoryObject`
+is the frozen commit-boundary target now being stabilized.
 
-- attached to a structural or support object
-- used for validation or benchmarking
-- used for bounded process-control and handoff surfaces
+### Read-side projections
 
-Receipts become risky when they are:
-
-- the primary LM-facing packet
-- the only visible runtime surface at or above `H1`
-- silently treated as if they carry object composition
-
-### Support Descriptor
-
-A support descriptor is a compact, bounded read-side exposure of a support
-object.
-
-Its job is to preserve enough compositional and relational truth that downstream
-surfaces do not collapse into flat counts.
-
-Support descriptors may include:
-
-- support membership or kept-bin projections
-- normalized band profiles
-- uncertainty envelopes
-- distortion or replay posture
-- basin centroids and radii
-- trajectory relation measures
-- provenance refs and policy anchors
-
-Support descriptors must remain:
-
-- bounded
-- diffable
-- explicitly derived
-- explicitly non-semantic by default
-
-Support descriptors must also be:
-
-- reconstructably grounded in one named source support object or support family
-- explicit about scope
-- explicit about what has been omitted
-- explicit about non-authority posture
-
-### Read-Side Projection
-
-A read-side projection is a convenience view assembled from lawful upstream
+Read-side projections are bounded convenience assemblies over lawful upstream
 objects.
 
-It may:
+Active read-side projection families:
+
+- orchestrator assembled result
+- workbench integration object
+- cross-run comparison report
+- LM staging packet
+- reconstruction support staging
+
+Read-side projections may:
 
 - rearrange
-- compress
 - stage
 - compare
-- render
+- normalize
+- compress
 
-It must not:
+They must not:
 
-- invent runtime authority
+- replace upstream runtime truth
+- invent hidden write authority
 - invent source identity
-- invent hidden memory writes
-- use alias bridges to blur provenance
+- erase object family boundaries
+- replace direct support-object exposure where direct carriage is still lawful
 
-### Transitional Material
+### Receipt summaries
 
-Transitional material is any compatibility bridge or temporary packaging shape
-that still exists to support current repo continuity but should not be mistaken
-for durable runtime grammar.
+Receipts are subordinate audit summaries attached to seams or objects.
 
-Examples include:
+Active receipt families include:
 
-- top-level interpretation mirrors
-- compatibility aliases
-- count-heavy workbench packets that stand in for richer support descriptors
+- operator receipts
+- runtime receipt
+- workbench receipt
+- provenance receipts
+- benchmark receipts
+- validator receipts
 
-Transitional material must:
+Receipts may summarize:
 
-- be labeled explicitly as transitional
-- remain removable
-- never become the sole dependency of later runtime seams
+- counts
+- thresholds
+- policy ids
+- validation outcomes
+- benchmark outcomes
 
-### Semantic Overlay
+Receipts must not determine runtime shape.
 
-A semantic overlay is an optional downstream interpretation layer over already
-lawful runtime outputs.
+## Relation families
 
-It is not part of default runtime authority.
+The runtime is not just a bag of objects.
 
-It must be removable without breaking:
+It is a relation-bearing topology.
 
-- the runtime / commit spine
-- support recruitment
-- substrate storage
-- cross-run admission
-- LM input staging
+### Provenance relations
 
-It must also not be used to define:
+Examples:
 
-- runtime state identity
-- default support recruitment
-- substrate storage shape
-- mandatory comparison grammar
+- `A2 -> A1`
+- `S1 -> W1`
+- `H1 -> S1`
+- `M1 -> H1[]`
+- `A3 -> H1 | M1`
+- `Q -> consulted states`
 
-## Descriptor Families
+### Temporal relations
 
-The runtime grammar should expose the following support descriptor families as
-the default compact read-side carriers above support recruitment.
+Examples:
 
-## State Support Descriptor Contract
+- ordered `TrajectoryFrame` adjacency
+- segment-local frame order
+- dwell runs
+- recurrence and re-entry structure
 
-This is the first bounded descriptor contract for `H1` and `M1` support objects.
+### Support-composition relations
 
-It defines the minimum lawful State descriptor shape for compact exposure of
-state-support composition without expanding into Basin, Trajectory, Query, or
-Replay descriptor contracts.
+Examples:
 
-State remains one unified descriptor contract over `H1` and `M1`.
+- `H1` kept-bin membership
+- `M1` merge lineage
+- basin member-state relation
+- basin centroid-to-member distance relation
 
-`H1` and `M1` may require artifact-class-specific `support_shape` subprofiles,
-but those subprofiles do not create separate descriptor families or separate
-contracts.
+### Neighborhood relations
 
-### Source scope
+Examples:
 
-State Support Descriptor applies first to:
+- state nearest-basin relation
+- frame basin membership
+- basin transition counts
+- basin recurrence over time
 
-- `H1` support objects emitted from support recruitment
-- `M1` support objects emitted from merge / support compaction
+### Read-side consult relations
 
-It may later generalize only through explicit overlay or later descriptor-family
-contract work.
+Examples:
 
-It does not cover:
+- query result ref edges
+- replay source edges
+- cross-run comparison pair edges
 
-- `BN` / Basin descriptor contract
-- trajectory frame or relation descriptor contract
-- `Q` / Query descriptor contract
-- `A3` or reconstruction-adjacent Replay descriptor contract
+## Commit-boundary law
 
-### Authority posture
+The substrate commit boundary is the key runtime divide.
 
-State Support Descriptor is `RC2 - Descriptor-Compressing`.
+### Pre-commit side
 
-It is a compact read-side exposure of a lawful upstream support object.
+Pre-commit, the runtime is still transforming structure into support.
 
-It remains `RC2` only while it compresses declared `H1` / `M1` support
-composition without changing authority class.
-
-It must not become:
-
-- `RC3` projection assembly by containing downstream integration narrative
-- `RC4` coherence inflation by adding semantic smoothness, apparent
-  completeness, or interpretive closure not grounded in the source support
-  object
-
-It is not:
-
-- runtime transformation authority
-- runtime support authority by itself
-- a replacement for `H1` or `M1`
-- a receipt summary
-- a semantic overlay
-- a memory routing object
-- a promotion object
-
-### Required fields
-
-A lawful State descriptor must expose:
-
-- `descriptor_type`
-- `source_ref`
-- `artifact_class`
-- `stream_id`
-- `segment_id`
-- `window_span`
-- `support_basis`
-- `support_shape`
-- `uncertainty_posture`
-- `confidence_posture`
-- `policy_refs`
-- `provenance_refs`
-- `explicit_non_claims`
-
-### Required support shape
-
-`support_shape` must expose enough compositional content to prevent count-only
-state exposure above `H1`.
-
-At minimum, `support_shape` must include:
-
-- kept-bin index or bounded kept-bin projection
-- normalized band profile
-- raw energy or equivalent magnitude summary
-- distortion or uncertainty posture
-
-A State descriptor may compress or bound large support composition, but it must
-not reduce state support to counts alone.
-
-#### Artifact-class-specific support-shape subprofiles
-
-`support_shape` may vary by `artifact_class` inside this single State contract.
-
-For `artifact_class: H1`, `support_shape` must preserve first recruited support
-composition from the support recruitment seam.
-
-The `H1` subprofile should expose the support posture that first arises from
-`CompressOp -> H1`, including the kept-bin or bounded kept-bin projection,
-normalized band profile, raw energy or equivalent magnitude summary, and
-threshold / distortion / uncertainty posture needed to make that first support
-recruitment legible.
-
-For `artifact_class: M1`, `support_shape` must preserve merged or compacted
-support composition from the merge / support compaction seam.
-
-The `M1` subprofile should expose the compacted support posture, including the
-merged kept-bin or bounded projection, merged / compacted normalized band
-profile, raw energy or equivalent magnitude summary after compaction, merge
-lineage posture, and distortion / uncertainty posture needed to make the merge
-legible.
-
-These subprofiles are implementation-facing requirements inside one State
-Support Descriptor Contract.
-
-They do not split State into separate `H1` and `M1` descriptor contracts.
-
-### Optional fields
-
-A State descriptor may optionally expose bounded helper fields when they remain
-grounded in `H1` or `M1` support composition and do not become semantic overlay.
-
-Optional fields may include:
-
-- omitted-support posture
-- support-vector size or shape summary
-- threshold posture
-- merge lineage posture for `M1`
-- descriptor generation receipt ref
-- downstream routing hints for declared read-side consumers
-
-Optional fields must remain subordinate to the required fields.
-
-They must not become the only meaningful exposure of state support.
-
-#### Downstream routing hints
-
-Downstream routing hints are read-side routing metadata only.
-
-They may declare which lawful read-side consumer or seam is expected to consume
-the descriptor.
-
-They must not become:
-
-- semantic labels
-- interpretive summaries
-- convenience-shaped downstream projection law
-- memory routing posture
-- promotion posture
-- hidden authority
-- hidden write permission
-- a substitute for declared descriptor fields
-
-### Upstream grounding
-
-A State descriptor must be grounded in one named upstream support object or
-support family.
-
-The descriptor must preserve enough reference posture to answer:
-
-- which `H1` or `M1` object it exposes
-- what support basis generated that upstream support object
-- what artifact class and stream / segment / window scope bound the descriptor
-- what provenance and policy refs remain active
-
-### Allowed downstream consumers
-
-State descriptors may be consumed by:
-
-- orchestrator result assembly
-- workbench runtime section
-- LM staging
-- cross-run comparison
-- reconstruction support staging when a declared replay / reconstruction need
-  requires a state-support basis
-
-These consumers receive State descriptors as bounded read-side exposure.
-
-They do not receive authority to treat the descriptor as `H1`, `M1`, truth,
-canon, identity closure, memory routing, or hidden write permission.
-
-Reconstruction support staging is conditional.
-
-It may consume State descriptors only under declared replay / reconstruction
-need.
-
-It is not a general default consumer of State descriptors.
-
-### Subordinate receipts
-
-Receipts may accompany a State descriptor for audit, validation, generation,
-transport, benchmark, or handoff posture.
-
-Receipts must remain subordinate.
-
-A receipt-only State exposure above `H1` is malformed.
-
-A receipt must not replace:
-
-- `source_ref`
-- `support_basis`
-- `support_shape`
-- `provenance_refs`
-- `explicit_non_claims`
-
-### Explicit non-claims
-
-A lawful State descriptor must explicitly deny at least:
-
-- semantic labeling
-- identity closure
-- truth posture
-- canon posture
-- source restoration
-- source-equivalence proof
-- promotion or memory routing
-- agent authority
-- hidden write authority
-- replacement of `H1` or `M1`
-
-### Prohibited fields and postures
-
-State descriptors must not include as required or default fields:
-
-- semantic labels
-- interpretation labels
-- identity closure verdicts
-- truth claims
-- canon posture
-- source-equivalence claims
-- promotion posture
-- memory routing verdicts
-- agent authority posture
-- hidden write permission
-
-Optional downstream overlays may refer to a State descriptor only when they remain
-explicitly separate, removable, and non-default.
-
-### Malformed descriptor posture
-
-A State descriptor is malformed or rejectable when any of the following occur:
-
-- missing `source_ref`
-- missing `artifact_class`
-- missing `support_basis`
-- missing `support_shape`
-- missing `provenance_refs`
-- missing `explicit_non_claims`
-- `support_shape` collapses to count-only exposure
-- `support_shape` fails to preserve required `H1` first-recruited support posture
-  when `artifact_class` is `H1`
-- `support_shape` fails to preserve required `M1` merged / compacted support
-  posture when `artifact_class` is `M1`
-- required or default fields contain semantic labels
-- required or default fields contain truth, canon, identity, promotion,
-  routing, agent-authority, hidden-write, raw-restoration, or source-equivalence
-  claims
-- downstream routing hints become semantic labels, convenience-shaped projection
-  law, memory routing posture, or hidden authority
-- reconstruction support staging consumes the descriptor without declared replay /
-  reconstruction need
-- receipt-only substitute is offered as the State descriptor
-- receipt-only State exposure above `H1` is offered as lawful exposure
-- upstream `H1` / `M1` grounding is absent or ambiguous
-
-### Contract non-goals
-
-This contract does not define:
-
-- exact JSON schema
-- validator implementation
-- runtime code mutation
-- test mutation
-- benchmark redesign
-- LM packet contract
-- Basin descriptor contract
-- Trajectory descriptor contract
-- Query descriptor contract
-- Replay descriptor contract
-- broad Support Descriptor Contract Family
-
-### One-line State contract
-
-A State Support Descriptor is one bounded `RC2` descriptor contract over `H1` /
-`M1` support composition that exposes source, scope, support basis, artifact-class
-specific support shape, uncertainty/confidence posture, policy/provenance refs,
-and explicit non-claims without replacing the support object or importing
-semantic, truth, canon, identity, routing, promotion, agent-authority,
-source-equivalence, or hidden-write posture.
-
-### Basin Support Descriptor
-
-This is the compact descriptor family for `BN`.
-
-Minimum required fields:
-
-- `descriptor_type`
-- `source_ref`
-- `stream_id`
-- `segment_id`
-- `member_refs`
-- `centroid_profile`
-- `radius`
-- `mean_distance`
-- `span`
-- `policy_refs`
-- `provenance_refs`
-- `explicit_non_claims`
-
-Prohibited fields:
-
-- attractor truth claims
-- ontology claims
-- hidden member synthesis
-
-### Trajectory Support Descriptor
-
-This is the compact descriptor family for trajectory frames and relation
-surfaces.
-
-Minimum required fields:
-
-- `descriptor_type`
-- `stream_id`
-- `segment_scope`
-- `frame_refs`
-- `state_refs`
-- `transition_edges`
-- `dwell_profile`
-- `recurrence_profile`
-- `velocity_posture`
-- `basin_distance_posture`
-- `provenance_refs`
-- `explicit_non_claims`
-
-Prohibited fields:
-
-- convergence-as-truth claims
-- hidden dynamical identity claims
-- semantic narration of system meaning
-
-### Query Support Descriptor
-
-This is the compact descriptor family for `Q`.
-
-Minimum required fields:
-
-- `descriptor_type`
-- `query_ref`
-- `query_kind`
-- `query_mode`
-- `scope`
-- `result_refs`
-- `score_basis`
-- `policy_refs`
-- `provenance_refs`
-- `explicit_non_claims`
-
-Prohibited fields:
-
-- symbolic interpretation
-- ontology claims
-- promotion or canon posture
-
-### Replay Support Descriptor
-
-This is the compact descriptor family for `A3` and reconstruction-adjacent
-support surfaces.
-
-Minimum required fields:
-
-- `descriptor_type`
-- `source_ref`
-- `source_artifact_class`
-- `replay_mode`
-- `support_basis`
-- `reconstruction_posture`
-- `missing_support_posture`
-- `policy_refs`
-- `provenance_refs`
-- `explicit_non_claims`
-
-Prohibited fields:
-
-- raw restoration claims
-- source-equivalence claims
-- hidden enhancement claims
-
-## Durable Contract Vs Transitional Material
-
-### Durable Contract
-
-Durable runtime grammar should include:
-
-- object-family definitions
-- descriptor-family definitions
-- explicit authority posture
-- explicit provenance posture
-- explicit non-claims
-
-### Transitional Material
-
-Transitional runtime grammar may temporarily include:
-
-- alias bridges
-- mirrored fields
-- count-heavy packets
-- compatibility fallbacks
-
-These should be treated as temporary scaffolding and not future-facing runtime
-law.
-
-## Default Exposure Rules
-
-Above support recruitment, the default exposure order should be:
-
-1. source support object
-2. bounded support descriptor
-3. subordinate receipt summary
-
-The following order is disallowed as a default runtime posture:
-
-1. receipt summary
-2. semantic overlay
-3. missing or absent support descriptor
-
-## Current Object-Family Assignment
-
-### Structural Objects
+The important families here are:
 
 - `A1`
 - `A2`
 - `W1`
 - `S1`
-
-### Support Objects
-
 - `H1`
 - `An`
 - `SegmentTransition`
 - `M1`
-- `BN`
+
+### Commit gate
+
+The substrate admits lawful support payloads into a singular committed
+`MemoryObject` envelope.
+
+Frozen admitted family target:
+
+- `MemoryObject`
+
+Commit law includes:
+
+- append-only storage
+- legitimacy gating
+- provenance preservation
+- policy-anchor preservation
+- payload-kind preservation
+- internal support-geometry preservation
+- temporal-placement preservation
+- bounded continuity constraints
+
+Current implementation note:
+the runtime still stores mixed `H1` / `M1` directly. That is now treated as an
+implementation state on the way to explicit `MemoryObject` admission.
+
+### Post-commit side
+
+After commit, the substrate organizes and exposes support topology.
+
+Primary post-commit families:
+
+- admitted `MemoryObject`
 - `TrajectoryFrame`
-- `Q`
-- `A3`
+- `BN`
+- substrate observational reports
+- query/replay results built over safe copies
 
-### Receipt Summaries
+### Non-admitted families
 
-- operator-local receipts
-- runtime receipt packets
-- workbench receipt packets
-- benchmark receipts
-- validation receipts
-- handoff runner receipts
-- probe receipts
+The following are not substrate-truth carriers:
 
-### Read-Side Projections
+- receipts
+- descriptors
+- object cards
+- workbench packets
+- LM packets
+- cross-run reports
+- optional semantic overlays
 
-- orchestrator assembled result
-- workbench integration object
-- cross-run comparison object
-- LM input staging object
-- reconstruction support staging objects
+## Addressability law
 
-### Transitional Material
+Objects should remain addressable by durable typed identity.
 
-- compatibility aliases
-- top-level interpretation mirrors
-- count-heavy workbench packets used as temporary LM-facing convenience views
+Examples:
 
-### Semantic Overlays
+- `stream_id`
+- `segment_id`
+- `state_id`
+- `basin_id`
+- query refs
+- provenance input refs
 
-- trajectory interpretation overlay
-- attention/memory interpretation overlay
+Addressability is important because later packaging should point back to real
+runtime objects rather than replace them.
 
-These are downstream optional overlays and not default runtime grammar.
+## Exposure order
 
-## Root Runtime Law
+Above support recruitment, the default exposure order is:
+
+1. direct object
+2. typed ref
+3. bounded object card
+4. compact derived projection
+5. subordinate receipt
+
+For support-bearing continuity, direct `H1` / `M1` / `MemoryObject` exposure is
+mandatory wherever honest carriage remains practical.
+
+The reverse order is malformed as default runtime posture.
+
+## Packaging rule
+
+Packaging is lawful only when a seam cannot honestly or practically carry the
+full object.
+
+Good packaging preserves:
+
+- typed identity
+- enough geometry to remain reconstructable
+- relation posture
+- explicit omissions
+- non-authority posture
+- a pointer back to direct support or committed memory objects
+
+Bad packaging:
+
+- collapses objects to counts alone
+- loses typed identity
+- loses relation shape
+- becomes the only visible runtime surface
+
+## Root runtime law
 
 The active runtime law established here is:
 
 - structure remains primary through `S1`
 - support recruitment begins at `H1`
-- everything above `H1` must not collapse into receipts alone
-- default runtime operation must not depend on semantic overlay
+- the commit boundary should bind lawful support payload into `MemoryObject`
+- the substrate organizes committed support topology
+- read-side projections remain secondary to object truth
 
-## Implementation Consequence
+## One-line summary
 
-The next lawful runtime tightening should not ask:
-
-- "how do we make counts smarter?"
-
-It should ask:
-
-- "which support descriptor family should replace the count-only exposure at
-  this seam?"
-
-## One-Line Summary
-
-ExecutionSurface runtime grammar distinguishes structural objects, support
-objects, receipt summaries, support descriptors, read-side projections,
-transitional material, and optional semantic overlays so runtime law remains
-explicit after support recruitment begins.
+ExecutionSurface runtime grammar is now object-topological: structural objects
+lead into support objects, the substrate commits only lawful support carriers,
+relations are first-class, and packaging remains a bounded fallback rather than
+the center of runtime truth.

@@ -2,114 +2,122 @@
 
 ## Status
 
-This document extracts the current runtime laws, prohibitions, and design
-consequences from the active runtime grammar corpus without reopening every seam
-classification from scratch.
+This document extracts the current runtime laws and design consequences from the
+active runtime grammar corpus without reopening every seam note.
 
-It is an operational companion surface within the runtime grammar corpus.
-
-## Core Findings
+## Core findings
 
 ### Finding 1
 
-The runtime core is more structural and support-rich than the current read-side
-receipts suggest.
+The runtime spine is already richer and more honest than its older doctrine
+suggested.
 
-The operator stack already works over:
+The main operator chain already works over:
 
-- full aligned and windowed signal structure
-- full spectral frames
-- retained support bins
-- band-profile vectors
-- uncertainty and distortion measures
-- basin centroids and distances
-- trajectory relation measures
+- full source and grid-bearing structure
+- full spectral geometry
+- sparse retained support
+- support compaction
+- basin topology
+- trajectory relations
 
-The flat count problem is mostly a read-side exposure problem, not a core
-operator problem.
+The flatness problem is now mostly a read-side packaging problem.
 
 ### Finding 2
 
-Support recruitment begins at `CompressOp`, not at later interpretation layers.
+The substrate is not best described as a receipt host.
 
-That means `H1` and its descendants should be treated as explicitly derived
-support objects rather than as thin counts or proto-semantics.
+It is better described as an attributed temporal support topology:
+
+- committed support nodes
+- trajectory frames
+- basin neighborhoods
+- temporal adjacency
+- membership and proximity relations
 
 ### Finding 3
 
-Downstream runtime operators are not primarily reasoning over scalar counts.
+The commit boundary is load-bearing.
 
-They use richer structures such as:
+Pre-commit, the runtime is still transforming structure into support.
+
+At commit, only lawful support carriers enter the substrate:
+
+- `H1`
+- `M1`
+
+Everything else downstream is either organization, retrieval, replay, or audit.
+
+### Finding 4
+
+Downstream operators are not reasoning over scalar counts.
+
+They are already using:
 
 - `kept_bins`
 - `band_profile_norm`
 - `centroid_band_profile`
 - `band_profile_snapshot`
 - `distance_to_basin_centroid`
-- `divergence_score`
-
-### Finding 4
-
-The main flattening and semantic pressure starts in assembled runtime result
-packets and workbench integration packets.
-
-The highest-friction seams are:
-
-- orchestrator result assembly
-- semantic overlay helpers
-- cross-run comparison
-- workbench integration
-- reconstruction support staging
+- merge lineage
+- transition counts and recurrence
 
 ### Finding 5
 
-Receipts are useful and should survive, but only as subordinate audit surfaces.
+The remaining weakness is transport and comparison packaging.
 
-They should not remain the main way runtime state is exposed after support
-recruitment begins.
+The highest-friction seams are now:
 
-## Surviving Runtime Laws
+- LM staging
+- cross-run comparison
+- provenance marker receipts
+- provenance digests
+- reconstruction support staging
 
-- preserve structure as the active authority through `S1`
-- name `H1` as support recruitment explicitly
-- preserve provenance and policy anchors at every seam
-- preserve bounded support retrieval, clustering, replay, and comparison
-- keep read-side projections below runtime authority
+## Surviving runtime laws
 
-## Forbidden Moves
+- preserve structure as active authority through `S1`
+- name `H1` as first support recruitment explicitly
+- preserve commit as a strict boundary
+- preserve typed identity and provenance across every family
+- keep read-side projections below runtime truth
 
-- do not let receipt packets determine runtime shape
-- do not require semantic overlay for default runtime admission or comparison
-- do not duplicate interpretation through compatibility aliases
-- do not reduce support objects to counts alone in primary read-side surfaces
-- do not let projections invent identity or hidden write authority
+## Forbidden moves
 
-## Immediate Design Consequences
+- do not let receipts determine runtime shape
+- do not let transport packets replace objects
+- do not collapse topology into counts alone
+- do not reintroduce semantic overlay as dependency
+- do not let comparison/report seams outrank committed objects
+
+## Immediate design consequences
 
 ### Consequence 1
 
-The next runtime pass should introduce bounded support descriptors for `H1`,
-`M1`, basin topology, and trajectory relation surfaces.
+The next major read-side redesign should be topology-aware, not receipt-heavier.
 
 ### Consequence 2
 
-The orchestrator and workbench should be rebuilt around structural-support
-integration rather than count-led receipt packets with semantic overlays.
+LM packets should move toward typed refs or bounded object cards over an induced
+runtime subgraph.
 
 ### Consequence 3
 
-Cross-run comparison should be re-derived against structural-support descriptors
-rather than interpretive label families.
+Human-facing projection should likely combine:
+
+- graph relations
+- geometric object payloads
+- temporal ordering
+
+rather than collapsing to scalar dashboards.
 
 ### Consequence 4
 
-The LM-facing packet should remain bounded and read-side-only, but it should be
-fed by support descriptors rather than mostly counts once the new descriptor
-surfaces exist.
+The runtime grammar should be rebased around actual object and relation families
+rather than around speculative descriptor families.
 
-## One-Line Summary
+## One-line summary
 
-The active runtime findings show that ExecutionSurface already has a richer
-structural-support core than its current read-side surfaces admit, so the next
-correction is to stop receipt-led flattening and remove semantic overlay from
-default runtime authority.
+ExecutionSurface already has a viable object-topological runtime; the main next
+move is to redesign transport and projection seams so they preserve that truth
+instead of flattening it back into receipts.

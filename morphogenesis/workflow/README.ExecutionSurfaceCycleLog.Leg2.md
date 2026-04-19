@@ -826,3 +826,108 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Constructor or Implementation-Constructor
 - decision: Release
 - reason: State Support Descriptor Contract is explicit enough over `H1` / `M1` support composition to support a bounded implementation sweep without opening the full descriptor family.
+
+### ES-CYCLE-0013-IMPLEMENTATION-CONSTRUCTOR
+- cycle_id: ES-CYCLE-0013
+- active subject: State Descriptor Implementation Sweep
+- active role: Implementation-Constructor
+- active macro verb: Decide / Implement
+- expected emitted object: decision object / bounded implementation plan
+- state before: Seeded
+- state after: Compressed
+- doctrine-surface mutation status: added `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceStateDescriptorImplementationPlan.md`; updated `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md`; updated `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeImplementationBridge.md`; updated `morphogenesis/workflow/README.ExecutionSurfacePreDevelopmentTighteningChecklist.md`; appended cycle-log entry here; no runtime code mutation; no schema mutation; no subject-registry mutation; no architecture-seed mutation; no LM packet mutation; no reconstruction or cross-run mutation
+- active seam:
+  - `State descriptor implementation seam`
+- files checked:
+  - `runtime/DoorOneOrchestrator.js`
+  - `runtime/DoorOneWorkbench.js`
+  - `runtime/lm/WorkbenchLmWrapper.js`
+  - `runtime/reconstruction/ProvenanceReconstructionPipeline.js`
+  - `tests/test_door_one_orchestrator.js`
+  - `tests/test_door_one_workbench.js`
+  - `tests/test_workbench_lm_wrapper.js`
+  - `tests/reconstruction/test_provenance_reconstruction_pipeline.js`
+- files changed:
+  - `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceStateDescriptorImplementationPlan.md`
+  - `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md`
+  - `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeImplementationBridge.md`
+  - `morphogenesis/workflow/README.ExecutionSurfacePreDevelopmentTighteningChecklist.md`
+  - `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md`
+- exact repo write result:
+  - formalized a bounded State descriptor implementation plan grounded in live orchestrator, workbench, LM wrapper, reconstruction, and test seams
+  - recorded the narrow write set for Pass 1 as one new State descriptor helper plus orchestrator/workbench/tests only
+  - recorded auxiliary tightening items for helper placement, proof-sweep separation, shared descriptor assertions, and semantic-overlay-dependent test inventory
+- compressed decision:
+  - the first lawful implementation slice should be builder plus orchestrator plus workbench plus tests
+  - the preferred new helper location is one local runtime file such as `runtime/StateSupportDescriptor.js`
+  - descriptors should be added as a class-distinct support-descriptor section, not as a replacement for `H1` / `M1`
+  - `DoorOneWorkbench` is the first read-side proof seam, but `DoorOneOrchestrator` is the correct descriptor source seam
+  - LM, reconstruction, and cross-run should remain explicit follow-up seams unless Pass 1 reveals a hard local read-path break
+- proposals accepted:
+  - keep the State implementation sweep bounded to the State slice only
+  - ground the plan in live repo reality before mutating runtime code
+  - prefer one local State descriptor helper file over opening a broad helper hierarchy
+  - expose descriptors first through orchestrator and workbench
+  - prove descriptor existence, required fields, explicit non-claims, and non-replacement posture in orchestrator/workbench tests
+  - keep receipts subordinate and useful
+  - defer LM wrapper, reconstruction, cross-run, Basin, Trajectory, Query, and Replay work unless forced locally
+- proposals rejected:
+  - widening the first pass into full descriptor-family implementation
+  - widening the first pass into LM packet redesign
+  - widening the first pass into reconstruction or cross-run redesign
+  - treating State descriptors as runtime transformation authority, runtime support authority by themselves, replacement for `H1` / `M1`, truth, canon, identity closure, promotion, source-equivalence, agent authority, or hidden write authority
+  - removing semantic overlay or interpretation aliases in the same sweep unless they directly block State descriptor proof
+  - opening JSON schema or validator law in this pass
+- what changed:
+  - The runtime grammar corpus now has a concrete State implementation plan companion.
+  - The implementation bridge now names `State Descriptor Implementation Sweep` as the active proof slice and compresses its first legal coding order.
+  - The tightening checklist now carries the auxiliary structural items that fall directly out of the implementation inventory.
+- what remains unresolved:
+  - exact helper filename and final exported API remain uncommitted until code edits begin
+  - exact orchestrator descriptor section name remains open, though a class-distinct support-descriptor section is preferred
+  - exact workbench descriptor primacy threshold remains to be proven in tests
+  - LM wrapper, reconstruction, and cross-run retuning remain follow-up seams
+  - semantic-overlay removal remains follow-up unless the first State proof slice fails locally
+- narrowest next legal move:
+  - implement one local State descriptor builder and wire it into `runtime/DoorOneOrchestrator.js`, `runtime/DoorOneWorkbench.js`, `tests/test_door_one_orchestrator.js`, and `tests/test_door_one_workbench.js`
+- recommended next role: Implementation-Constructor
+- decision: Hold
+- reason: the planning and inventory compression is complete enough to begin the first bounded code proof slice, but the active subject should remain live until that proof is implemented and tested.
+
+### ES-CYCLE-0014-IMPLEMENTATION-REFLECTOR
+- cycle_id: ES-CYCLE-0014
+- active subject: State Descriptor Implementation Sweep
+- active role: Implementation-Reflector
+- active macro verb: Reframe / compress
+- expected emitted object: implementation correction object
+- state before: Compressed
+- state after: Tension-Held
+- doctrine-surface mutation status: updated `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceStateDescriptorImplementationPlan.md`; updated `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeImplementationBridge.md`; appended cycle-log entry here; no runtime code mutation; no schema mutation; no subject-registry mutation; no architecture-seed mutation; no LM packet mutation; no reconstruction or cross-run mutation
+- pressure result:
+  - The runtime spine itself remained mostly object-honest, but the implementation projection had begun drifting descriptor-first faster than the seam chain justified.
+  - The main contamination was convenience contamination rather than outright semantic corruption: descriptor-first wording, packet-first planning, and an implicit assumption that packaging should lead instead of following object truth.
+  - The correct compression is object-first: preserve direct `H1` / `M1` carriage wherever a seam can bear it honestly, use typed refs before bounded packaging, and introduce State descriptors only where direct carriage or refs are not viable.
+  - This keeps the system heavy but truthful rather than light and self-agreeing.
+- proposals accepted:
+  - preserve support objects as runtime truth
+  - preserve direct support-object carriage wherever possible
+  - prefer typed refs before bounded packaging
+  - keep descriptors as fallback bounded object-facing views, not default trunk truth
+  - correct the implementation bridge so it no longer implies descriptor-first rollout
+  - preserve receipts as subordinate audit surfaces only
+- proposals rejected:
+  - letting implementation planning silently outrun the object-first runtime posture
+  - treating descriptors as the default center of downstream truth
+  - smoothing heavy object carriage into summary-first convenience merely because it is easier to packetize
+  - widening this correction into immediate code edits, schema edits, LM redesign, reconstruction redesign, or cross-run redesign
+- what changed:
+  - The State implementation plan now includes an explicit object-first correction and a seam-chain consumption/emission matrix.
+  - The implementation bridge now states the object-first sequencing rule directly.
+  - The repo record now names descriptor-first drift as convenience contamination rather than treating it as neutral planning language.
+- what remains unresolved:
+  - exact Pass 1 code shape still needs to decide where typed refs are enough and where bounded State cards are actually necessary
+  - the workbench remains the first seam most likely to force bounded packaging
+  - LM, reconstruction, and cross-run remain follow-up seams whose packaging need must be proven rather than assumed
+- recommended next role: Implementation-Constructor
+- decision: Hold
+- reason: the planning posture is now truer to the runtime seam chain, but the active subject should remain live until the first code proof shows which seams truly need packaging and which can stay object-first.

@@ -2,62 +2,46 @@
 
 ## Status
 
-This file defines the current architectural basis for the trimmed
-`ExecutionSurface` repo.
+This file defines the current architectural basis for `ExecutionSurface`.
 
-It is a practical operating surface.
+It is an operating document, not canon.
 
-It does not claim final V2 architecture.
-It does not claim canon.
-It does not claim symbolic closure.
-
-Its job is narrower:
-
-- define the deterministic runtime spine we are preserving
-- separate core runtime from optional read-side helpers
-- identify the JSON surfaces a language kernel can attach to
-- make future GitHub sharing legible
+Its job is to keep the repo anchored to executable runtime reality while we
+tighten the surrounding read-side and workflow surfaces.
 
 ## One-line summary
 
 `ExecutionSurface` is a deterministic executive runtime over bounded structural
-memory, with JSON-first runners and provenance-preserving receipts.
+and support objects, with JSON serving as transport and audit surface rather
+than the source of runtime truth.
 
 ## Primary goal
 
-The immediate goal of this repo is not a broad product shell.
-
 The immediate goal is:
 
-- run a lawful deterministic structural pipeline
-- preserve provenance and bounded invariants
-- commit lawful state into substrate continuity
-- expose JSON receipts that a language kernel can consume without bypassing the runtime
+- preserve a lawful deterministic runtime spine
+- keep structural and support objects directly exposed wherever possible
+- keep provenance explicit
+- keep JSON outputs small, typed, and diffable without letting them replace the objects
 
-## Active development front
+## Core stance
 
-`ExecutionSurface` is now the active use-oriented foundation for real DME v2 development.
+Object-first posture:
 
-This repo is the current development front for:
+- direct structural/support object exposure is the default
+- direct `H1` / `M1` / `MemoryObject` exposure is mandatory where honest carriage remains practical
+- typed refs are the next fallback when full drag-forward is too coupled
+- bounded packaging is the last fallback when direct objects or refs are not viable
+- receipts are subordinate audit surfaces only
 
-- deterministic executive runtime work
-- JSON-facing receipt design
-- bounded language-kernel attachment
-- benchmark and audit harness development
-- workflow and morphogenesis process support built on top of the executive substrate
+Convenience surfaces must not determine runtime shape.
 
-This repo is not a sidecar to a separate “real” runtime anymore.
+Descriptors, object cards, projections, receipts, and corpus/index views are
+fallback or access surfaces, not runtime replacements.
 
-For current development purposes, this is the active home of DME v2 runtime-facing work.
-
-That does **not** mean every future DME layer is already active here.
-
-It means current DME v2 development should be grounded in this repo’s executable reality first, then widened lawfully from there.
 ## Runtime / commit spine
 
-The runtime / commit spine is the authority-bearing execution path that transforms admitted input and lawfully commits bounded state into substrate continuity.
-
-Current runtime / commit spine:
+The authority-bearing execution path is:
 
 1. `IngestOp`
 2. `ClockAlignOp`
@@ -67,162 +51,131 @@ Current runtime / commit spine:
 6. `AnomalyOp`
 7. `MemorySubstrate.commit(...)`
 
-This spine is the narrowest authority-bearing execution chain in the repo.
-
-Its job is to:
-
-- transform admitted input deterministically
-- preserve declared policy anchors
-- preserve provenance and receipt integrity
-- commit lawful bounded state into substrate continuity
-
-It does not by itself settle:
-
-- canon
-- truth uplift
-- symbolic closure
-- unconstrained agentic behavior
-- language-layer judgment
-
-## Read-side / observation band
-
-Everything downstream of commit that exposes, compares, reconstructs, summarizes, stages, or benchmarks runtime-visible state belongs to the read-side / observation band.
-
-Current read-side / observation band includes:
-
-1. bounded read-side substrate access
-2. `MergeOp`
-3. `ReconstructOp`
-4. `QueryOp`
-5. trajectory and cross-run observation
-6. `runtime/DoorOneWorkbench.js`
-7. LM wrapper / staged invocation surfaces
-8. benchmark and validation surfaces
-9. workflow and morphogenesis process-support surfaces built on bounded receipts
-
-These surfaces are useful and often essential, but they are not the same thing as runtime / commit authority.
-
-They must not silently promote themselves into:
-
-- substrate authority
-- canon authority
-- truth authority
-- symbolic closure
-- unrestricted runtime mutation
-
-## Coordination surfaces
-
-The main coordination surfaces are:
-
-- `runtime/DoorOneOrchestrator.js`
-- `runtime/DoorOneExecutiveLane.js`
-- `runtime/DoorOneWorkbench.js`
-
-These surfaces coordinate runtime execution and read-side exposure, but they do not erase the distinction between the runtime / commit spine and the downstream read-side / observation band.
-
-## Active repository bands
-
-The active repository bands are:
-
-### Runtime / commit implementation
-- `operators/`
-- `runtime/`
-- `fixtures/`
-- `test_signal/`
-
-### Read-side / control surfaces
-- `schemas/`
-- `scripts/`
-- `tests/`
-
-### Morphogenesis / process-support surfaces
-- `morphogenesis/`
-- `morphogenesis/architecture/`
-- `morphogenesis/workflow/`
-- `morphogenesis/subject_surfaces/`
-
-### Repo-level orientation surfaces
-- `README.md`
-- `ARCHITECTURE.md`
-
-## Machine-facing attachment surfaces
-
-These are the primary machine-facing entry points for kernels, wrappers, benchmarks, and later governed process surfaces:
-
-- `scripts/run_pipeline_substrate.js`
-- `scripts/run_door_one_live.js`
-- `scripts/run_door_one_workbench.js`
-- `scripts/run_door_one_provenance_digest.js`
-
-Preferred posture:
-
-- kernels read bounded JSON receipts and summaries
-- kernels emit advisory or separately gated outputs only
-- kernels do not bypass operators or mutate substrate authority
-- process-support surfaces ride on explicit receipts, not prose improvisation
-- morphogenesis surfaces may shape architecture and workflow law, but do not become runtime / commit authority by carrying live subject mutation
-
-## Read-side helper posture
-
-The following remain downstream helper, observation, or process-support surfaces rather than runtime / commit authority:
-
-- `runtime/CrossRunSession.js`
-- `runtime/CrossRunDynamicsReport.js`
-- `runtime/TrajectoryInterpretationReport.js`
-- `runtime/AttentionMemoryReport.js`
-- `morphogenesis/architecture/`
-- `morphogenesis/workflow/`
-- `morphogenesis/subject_surfaces/`
-
-They may support:
-
-- replay understanding
-- bounded reconstruction
-- comparison
-- runtime observation
-- downstream kernel attachment
-- governed architectural morphogenesis
-- workflow shaping
-- bounded live subject mutation
-
-They do not by themselves become canon, truth, or runtime authority.
-
-## Quarantine completed
-
-The review / promotion / canon-adjacent surfaces have been removed from this
-repo basis:
-
-- consensus and consultation surfaces
-- promotion-readiness and canon-candidate packaging
-- door-two scripts
-- archive / pin-packet packaging runners
-- replay and probe runners that depended on the removed review stack
-
-## Runtime authority rule
-
-The runtime is authoritative only for:
+This path is authoritative only for:
 
 - deterministic transformation of admitted input
-- preservation of declared lineage and policy anchors
+- support recruitment and novelty fencing under policy
+- preservation of lineage and policy anchors
 - lawful commit into substrate continuity
-- truthful read-side retrieval and bounded observational summaries
 
-The runtime is not authoritative for:
+Projected commit target:
 
-- canon
-- promotion
-- ontology
-- truth uplift
-- symbolic closure
-- language-kernel verdicts
+- a singular `MemoryObject` envelope binds lawful support payload into retained continuity
+- internal support payload such as `H1` / `M1` remains preserved rather than flattened
 
-## Suggested public GitHub posture
+## Read-side band
 
-If this repo is shared on GitHub in its current trimmed phase, its public framing
-should be:
+Everything downstream of commit belongs to the read-side band.
 
-"Deterministic executive surface for provenance-first structural memory with
-JSON-first runtime receipts."
+That includes:
 
-That is cleaner and more honest than describing it as a full product shell or as
-the whole DME architecture.
+- substrate retrieval
+- `MergeOp`
+- `ReconstructOp`
+- `QueryOp`
+- cross-run comparison
+- workbench assembly
+- LM staging
+- provenance digests
+- benchmark and validation surfaces
+
+These surfaces may inspect, compare, stage, or summarize runtime-visible state.
+
+They do not become runtime authority merely by being useful.
+
+## Direct exposure rule by seam
+
+### Runtime and substrate seams
+
+Prefer direct object carriage.
+
+Examples:
+
+- orchestrator artifacts
+- committed substrate state
+- segment transitions
+- basin sets
+- query artifacts
+- replay artifacts
+
+### Read-side seams
+
+Prefer direct objects first, then typed refs, then bounded packaging.
+
+Examples:
+
+- workbench should expose operator/function/substrate sections directly
+- cross-run should compare direct structural/support evidence before summary labels
+- LM staging should eventually stage bounded object cards or typed refs, not receipt-only packets
+
+### Audit seams
+
+Receipts, validators, and benchmark artifacts are lawful only as subordinate
+audit surfaces.
+
+They must never stand in for runtime shape.
+
+## Current legitimate compression seams
+
+Compression beyond direct object exposure may still be lawful when:
+
+1. a surface would otherwise drag forward too much coupled substrate detail
+2. a consumer only needs typed evidence slices, not full object bodies
+3. a comparison seam needs normalized vectors or distances to remain diffable
+4. a transport seam needs a bounded packet to stay practical
+
+When that happens, the preferred order is:
+
+1. typed ref
+2. bounded object card
+3. compact derived projection
+4. subordinate receipt
+
+## Current repo reality
+
+The active runtime is already closer to the target posture than the older docs
+claimed:
+
+- orchestrator exposes direct artifact families
+- workbench exposes operator/function/substrate sections directly
+- semantic overlays and compatibility aliases are removed from default runtime
+- substrate commit and retrieval already operate on direct objects
+
+The main remaining compression-heavy seams are:
+
+- `runtime/lm/WorkbenchLmWrapper.js`
+- `runtime/CrossRunDynamicsReport.js`
+- `scripts/run_door_one_live.js`
+- `scripts/run_door_one_provenance_digest.js`
+
+Those are legitimate read-side compression seams, but they should be treated as
+fallback transport or comparison layers, not truth carriers.
+
+## Machine-facing posture
+
+JSON remains important, but its role is narrower:
+
+- transport
+- audit
+- validation
+- staging
+- bounded interchange
+
+JSON is not the runtime substance.
+
+Nor are descriptors, index entries, or receipts.
+
+## Testing posture
+
+The testing program should now prove:
+
+- direct object exposure remains intact
+- read-side packaging stays subordinate
+- semantic overlay does not re-enter runtime dependency
+- compression seams remain truthful and removable
+
+## One-line summary
+
+ExecutionSurface should expose direct structural and support objects by default,
+fall back to typed refs or bounded packaging only when necessary, and keep
+receipts as subordinate audit surfaces rather than runtime truth.

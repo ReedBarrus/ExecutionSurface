@@ -2,112 +2,66 @@
 
 ## Status
 
-This document is a bounded pre-development cleanup and tightening checklist for
-the current `ExecutionSurface` repo.
+This document tracks bounded cleanup before wider development resumes.
 
-It is a workflow support surface.
-
-It is not an authority file, architectural subject release, or implementation
-contract.
-
-Its purpose is narrower:
-
-- capture the current tightening backlog explicitly
-- keep cleanup scoped to real blockers and friction points
-- prevent repo hygiene work from turning into architecture drift
-- give us an ordered burn-down list before wider substrate development resumes
-
----
+It is a workflow support surface, not an implementation contract.
 
 ## Working rule
 
 Only tighten what improves:
 
 - deterministic execution
-- bounded read-side clarity
-- artifact hygiene
-- schema / runner coherence
+- direct object exposure
+- provenance clarity
+- schema and runner coherence
 - benchmark usefulness
 
-Do not use this checklist to smuggle in:
+Do not use this checklist to smuggle in speculative layers.
 
-- new autonomy layers
-- broader orchestration
-- speculative runtime architecture
-- large refactors without a concrete bounded gain
+## Phase 1 - artifact and residue hygiene
 
----
+- [x] Decide which generated outputs are disposable and regenerable.
+- [x] Ignore generated output directories by default.
+- [x] Untrack transient LM/workbench output surfaces.
+- [x] Remove drifting prompt duplicates and stale generated residue.
 
-## Phase 1 — Artifact hygiene
+## Phase 2 - semantic residue removal
 
-- [x] Decide which generated outputs are source-like fixtures versus disposable run artifacts.
-- [x] Add explicit ignore posture for generated directories or files that should not live as default tracked state.
-- [x] Separate canonical example artifacts from transient local run residue in `out_workbench/`.
-- [x] Separate canonical example artifacts from transient local run residue in `out_lm/`.
-- [x] Separate preserved benchmark exemplars from timestamped benchmark residue in `benchmarks/results/`.
-- [x] Remove or archive stale run folders once exemplar fixtures have been preserved intentionally.
-- [x] Eliminate duplicate or drifting prompt artifacts such as parallel `.txt` and `.md` prompt surfaces when only one should be live.
+- [x] Remove default runtime semantic overlays and compatibility aliases.
+- [x] Remove interpretation helper modules from active runtime.
+- [x] Remove interpretation-dependent tests from active runners.
+- [x] Delete probe tests that require interpretation as positive contract.
+- [ ] Sweep remaining docs for descriptor-first or receipt-first language.
 
----
+## Phase 3 - object-first doctrine hardening
 
-## Phase 2 — Surface contraction
+- [ ] Keep direct structural/support object exposure explicit in repo-level docs.
+- [ ] Mark typed refs as the first fallback when direct object drag-forward is too coupled.
+- [ ] Mark bounded packaging as second fallback only.
+- [ ] Mark receipts as subordinate audit surfaces only.
+- [ ] Keep read-side projections explicitly non-authoritative.
 
-- [ ] Decide whether top-level compatibility alias mirroring should remain in `runtime/DoorOneWorkbench.js` or be narrowed to `compatibility_aliases` only.
-- [ ] If compatibility alias mirroring is narrowed, update tests and docs so downstream expectations stay explicit.
-- [ ] Tighten the live LM-facing packet posture so it is clear which fields are durable contract and which are transitional bridge material.
-- [ ] Mark any legacy-support or transitional surfaces explicitly so they stop competing with current runtime / LM attachment seams.
+## Phase 4 - lawful compression seam review
 
----
+- [ ] Tighten `runtime/lm/WorkbenchLmWrapper.js` toward typed refs or bounded object cards.
+- [ ] Recheck `runtime/CrossRunDynamicsReport.js` so comparison vectors stay clearly derived from direct objects.
+- [ ] Recheck live provenance and digest scripts so structural markers remain explicitly secondary.
+- [ ] Identify any remaining read-side surface that still acts as if counts alone are meaningful runtime truth.
 
-## Phase 3 — Runner and toolchain consolidation
+## Phase 5 - benchmark and runner coherence
 
-- [ ] Decide whether `scripts/run_local_lm_benchmark_enumerated.js` is active, deferred, or removable.
-- [ ] If kept, expose the enumerated benchmark runner through `package.json`, align its model default, and add at least one bounded test.
-- [ ] If not kept, remove it before it becomes silent surface area.
-- [ ] Normalize emitted benchmark receipt paths so path formatting is stable across generated artifacts.
-- [ ] Review runner outputs for mixed manual / automated posture and make the current supported invocation path explicit.
+- [ ] Keep the active test manifest aligned with the reduced probe band.
+- [ ] Keep benchmark outputs compact, diffable, and non-authoritative.
+- [ ] Make the supported LM invocation path explicit and boring.
+- [ ] Preserve only benchmark fixtures that are intentionally kept.
 
----
-
-## Phase 4 — Documentation posture cleanup
-
-- [ ] Add a short ownership map naming which directories are source, fixtures, generated outputs, historical experiments, and transitional support surfaces.
-- [ ] Keep `runtime/lm/` documented as the single active LM attachment lane so removed or historical side paths do not silently regrow.
-- [ ] Reconcile `ExperimentResults/` with current repo posture so it is clear whether those files are historical notes, active benchmark evidence, or removable clutter.
-- [ ] Update public-facing docs where generated outputs currently read as more authoritative than intended.
-
----
-
-## Phase 5 — Benchmark basis tightening
-
-- [ ] Preserve one or two benchmark runs intentionally as fixtures rather than treating all historical runs as equal source material.
-- [ ] Keep `.json` contract obedience benchmarking intact while narrowing old residue that obscures what the current benchmark actually proves.
-- [ ] Identify the minimal benchmark receipt set we want to keep under versioned inspection.
-- [ ] Defer broader usefulness scoring changes until the object-facing LM packet surface is real enough to justify them.
-
----
-
-## Phase 6 — Tightening target before new development
-
-These are not cleanup patches by themselves, but they define what the cleanup is
-clearing the path for.
-
-- [ ] Move the next LM-facing read packet from count-heavy receipt exposure toward bounded object-facing exposure.
-- [ ] Introduce typed object refs rather than relying on flat summary-only payloads.
-- [ ] Introduce compact bounded object cards rather than raw substrate drag-forward.
-- [ ] Keep declared lens, bounded evidence, and explicit non-claims first-class in the next packet shape.
-- [ ] Use that object-facing packet as the basis for future usefulness, addressability, and reconstruction benchmarking.
-
----
-
-## Completion posture
+## Phase 6 - next development gate
 
 This tightening pass is complete enough when:
 
-- generated artifact posture is explicit
-- transitional surfaces are named and reduced
-- runner entry points are coherent
-- docs no longer blur source versus output versus history
-- the path is clear for retained-object addressability, reconstruction export, and LM read-packet implementation work
+- direct object exposure is the documented default
+- semantic residue is removed from active runtime and stale probes
+- lawful compression seams are clearly identified as fallback transport/comparison layers
+- the path is clear for object-facing LM packets and stronger read-side graph/projection work
 
-At that point, cleanup should stop and active bounded development should resume.
+At that point cleanup should stop and active bounded development should resume.

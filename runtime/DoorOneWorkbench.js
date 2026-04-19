@@ -35,8 +35,6 @@
  * Output:
  *   Plain-data workbench object containing:
  *     - runtime
- *     - semantic_overlay
- *     - compatibility aliases for transitional downstream consumers
  *     - optional cross_run
  *
  * Non-responsibilities:
@@ -70,30 +68,23 @@ export class DoorOneWorkbench {
 
         const runtime = {
             receipt: runtimeReceipt,
-            artifacts: this._copy(result?.artifacts ?? {}),
+            pipeline: {
+                operators: {
+                    ingest: this._copy(result?.artifacts?.a1 ?? null),
+                    aligned_stream: this._copy(result?.artifacts?.a2 ?? null),
+                    harmonic_states: this._copy(result?.artifacts?.h1s ?? []),
+                    merged_states: this._copy(result?.artifacts?.m1s ?? []),
+                    anomaly_reports: this._copy(result?.artifacts?.anomaly_reports ?? []),
+                    basin_sets: this._copy(result?.artifacts?.basin_sets ?? []),
+                },
+                functions: {
+                    reconstruction: this._copy(result?.artifacts?.a3 ?? null),
+                    query: this._copy(result?.artifacts?.q ?? null),
+                },
+            },
             substrate: this._copy(result?.substrate ?? {}),
             summaries: this._copy(result?.summaries ?? {}),
             audit: this._copy(result?.audit ?? {}),
-        };
-
-        const semanticOverlay = {
-            trajectory: this._copy(
-                result?.semantic_overlay?.trajectory ??
-                result?.interpretation?.trajectory ??
-                null
-            ),
-            attention_memory: this._copy(
-                result?.semantic_overlay?.attention_memory ??
-                result?.interpretation?.attention_memory ??
-                null
-            ),
-        };
-
-        const compatibilityAliases = {
-            interpretation: {
-                trajectory: this._copy(result?.interpretation?.trajectory ?? null),
-                attention_memory: this._copy(result?.interpretation?.attention_memory ?? null),
-            },
         };
         const workbenchReceipt = {
             receipt_type: "runtime:door_one_workbench_receipt",
@@ -112,7 +103,7 @@ export class DoorOneWorkbench {
         return {
             workbench_type: "runtime:door_one_workbench",
             generated_from:
-                "Door One runtime primary section, downstream semantic overlay, optional cross-run report, and interpretation compatibility aliases only; integration view, not canon",
+                "Door One runtime pipeline/operator/function sections plus optional cross-run structural/support comparison only; integration view, not canon",
             scope: {
                 stream_id: result?.artifacts?.a1?.stream_id ?? null,
                 source_id: result?.artifacts?.a1?.source_id ?? null,
@@ -133,15 +124,11 @@ export class DoorOneWorkbench {
             },
             runtime,
             workbench_receipt: workbenchReceipt,
-            semantic_overlay: semanticOverlay,
-            compatibility_aliases: this._copy(compatibilityAliases),
 
             cross_run: {
                 available: !!crossRunReport,
                 report: crossRunReport ? this._copy(crossRunReport) : null,
             },
-
-            interpretation: this._copy(compatibilityAliases.interpretation),
 
             notes: this._buildNotes(crossRunReport),
         };
@@ -167,10 +154,9 @@ export class DoorOneWorkbench {
     _buildNotes(crossRunReport) {
         const notes = [
             "Workbench is an integration view, not canon.",
-            "Structural runtime remains the primary workbench section.",
-            "Semantic overlay remains removable and subordinate to the runtime surface.",
+            "Structural/support runtime objects remain primary; workbench packaging may not replace them.",
+            "Operator artifacts, function outputs, substrate state, and audit surfaces stay separated explicitly.",
             "Cross-run output remains comparative support only and does not imply identity closure.",
-            "Compatibility aliases are grouped under compatibility_aliases and mirrored at top level only as transitional downstream bridges.",
         ];
 
         if (!crossRunReport) {

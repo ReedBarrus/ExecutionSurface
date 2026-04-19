@@ -54,7 +54,6 @@ const STEP = {
     LINEAGE_BOUND: "lineage_bound",
     RUNTIME_SUPPORT_COLLECTED: "runtime_support_collected",
     RECEIPT_SUPPORT_COLLECTED: "receipt_support_collected",
-    INTERPRETIVE_SUPPORT_COLLECTED: "interpretive_support_collected",
     SCALE_LATENCY_DECLARED: "scale_latency_declared",
     REQUEST_CONTEXT_BOUND: "request_context_bound",
     REQUEST_CONTEXT_ABSENT: "request_context_absent",
@@ -192,22 +191,9 @@ function collectReceiptSupport(replayRequest) {
     };
 }
 
-function collectInterpretiveSupport(workbench) {
-    if (!workbench) return { available: false, refs: [] };
-    const refs = [];
-    if (workbench.workbench_receipt) refs.push("workbench_receipt");
-    if (workbench.interpretation) refs.push("workbench_interpretation");
-    return {
-        available: refs.length > 0,
-        refs,
-        workbench_receipt: workbench?.workbench_receipt ?? null,
-    };
-}
-
 function buildSupportSummary({
     runtimeSupport = null,
     receiptSupport = null,
-    interpretiveSupport = null,
 } = {}) {
     return {
         runtime: {
@@ -224,11 +210,6 @@ function buildSupportSummary({
             provenance_complete: receiptSupport?.provenance_complete === true,
             replayable_support_present: receiptSupport?.replayable_support_present === true,
             lineage_summary: receiptSupport?.lineage_summary ?? null,
-        },
-        interpretive: {
-            available: interpretiveSupport?.available === true,
-            ref_count: interpretiveSupport?.refs?.length ?? 0,
-            receipt: interpretiveSupport?.workbench_receipt ?? null,
         },
     };
 }
@@ -252,7 +233,6 @@ function buildReconstructionReceipt({
         support_basis_count: supportBasis.length,
         runtime_support_available: supportSummary?.runtime?.available === true,
         receipt_support_available: supportSummary?.receipts?.available === true,
-        interpretive_support_available: supportSummary?.interpretive?.available === true,
         threshold_outcome: thresholdPosture?.threshold_outcome ?? null,
         downgrade_output: thresholdPosture?.downgrade_output ?? null,
         mechanization_status: mechanizationStatus,
@@ -589,20 +569,6 @@ export function reconstructFromReplayRequest({
                 : "receipt support absent or not required for this tier",
     }));
 
-    const interpretiveSupport = collectInterpretiveSupport(workbench);
-    trace.push(makeTraceStep({
-        stepIndex: 7,
-        stepType: STEP.INTERPRETIVE_SUPPORT_COLLECTED,
-        status: interpretiveSupport.available ? "ok" : "warning",
-        label: "interpretive support collected",
-        detail: interpretiveSupport.available
-            ? `refs=[${interpretiveSupport.refs.join(", ")}]`
-            : "no interpretive support available",
-        evidenceRef: interpretiveSupport.refs[0] ?? null,
-        retainedTier: tierLabel,
-        nonAuthorityNote: "interpretive support is read-side only - not canon",
-    }));
-
     if (tierNum === 0 && !runtimeSupport.available) {
         return failReplay(
             replayRequest,
@@ -665,7 +631,6 @@ export function reconstructFromReplayRequest({
     const allRefs = [
         ...runtimeSupport.refs,
         ...receiptSupport.refs,
-        ...interpretiveSupport.refs,
     ].filter((v, i, a) => a.indexOf(v) === i);
 
     const finalStepType = thresholdPosture.downgrade_output
@@ -696,7 +661,6 @@ export function reconstructFromReplayRequest({
         ...(replayRequest.support_basis ?? []),
         ...runtimeSupport.refs,
         ...receiptSupport.refs,
-        ...interpretiveSupport.refs,
     ].filter((v, i, a) => a.indexOf(v) === i);
 
     const reconstructionSummary = {
@@ -707,7 +671,6 @@ export function reconstructFromReplayRequest({
         support_basis_count: supportBasis.length,
         runtime_available: runtimeSupport.available,
         receipt_lineage_available: receiptSupport.available,
-        interpretive_available: interpretiveSupport.available,
         tier_used: tierNum,
         tier_label: tierLabel,
         lens_declared: !!lens,
@@ -740,7 +703,6 @@ export function reconstructFromReplayRequest({
     const supportSummary = buildSupportSummary({
         runtimeSupport,
         receiptSupport,
-        interpretiveSupport,
     });
     const replayPreview = {
         reconstruction_status: thresholdPosture.downgrade_output ? "downgraded" : "completed",

@@ -82,17 +82,20 @@ function buildProvenanceReceipt({
     rawInputForLog,
 }) {
     const wb = ingestResult?.workbench ?? {};
-    const runtime = wb?.runtime ?? {};
-    const substrate = runtime?.substrate ?? {};
-    const interpretation = wb?.interpretation?.trajectory ?? {};
+    const runtimeReceipt = wb?.runtime?.receipt ?? ingestResult?.run_result?.runtime_receipt ?? {};
+    const workbenchReceipt = wb?.workbench_receipt ?? {};
+    const trajectorySummary = wb?.runtime?.summaries?.trajectory ?? {};
+    const transitionReport = wb?.runtime?.substrate?.transition_report ?? {};
     const runResult = ingestResult?.run_result ?? {};
     const crossRunReport = ingestResult?.cross_run_report ?? null;
+    const basinCount = runtimeReceipt?.basin_count ?? workbenchReceipt?.basin_count ?? 0;
+    const segmentCount = runtimeReceipt?.segment_count ?? workbenchReceipt?.segment_count ?? 0;
 
     return {
         receipt_type: "runtime:door_one_live_provenance_receipt",
         receipt_version: "0.1.0",
         generated_from:
-            "Door One live cycle summary, workbench scope/runtime summaries, interpretation overlays, and optional cross-run report only; durable provenance receipt, not canon",
+            "Door One live cycle summary, workbench scope/runtime summaries, direct structural markers, and optional cross-run report only; durable provenance receipt, not canon",
         written_at: new Date().toISOString(),
         cycle: {
             cycle_dir: cycleDirName,
@@ -107,14 +110,19 @@ function buildProvenanceReceipt({
             modality: rawInputForLog?.modality ?? null,
         },
         structural_summary: {
-            state_count: substrate?.state_count ?? 0,
-            basin_count: substrate?.basin_count ?? 0,
-            segment_count: substrate?.segment_count ?? 0,
-            convergence: interpretation?.trajectory_character?.convergence ?? "unknown",
-            motion: interpretation?.trajectory_character?.motion ?? "unknown",
-            occupancy: interpretation?.neighborhood_character?.occupancy ?? "unknown",
-            recurrence: interpretation?.neighborhood_character?.recurrence_strength ?? "unknown",
-            continuity: interpretation?.segment_character?.continuity ?? "unknown",
+            state_count: runtimeReceipt?.state_count ?? workbenchReceipt?.state_count ?? 0,
+            basin_count: basinCount,
+            segment_count: segmentCount,
+            convergence: (trajectorySummary?.novelty_event_count ?? 0) > 0 ? "novelty_observed" : "novelty_quiet",
+            motion: (transitionReport?.total_transitions ?? 0) > 0 ? "transitions_observed" : "transition_quiet",
+            occupancy:
+                basinCount > 1
+                    ? "multi_basin_observed"
+                    : basinCount === 1
+                        ? "single_basin_observed"
+                        : "basin_absent",
+            recurrence: (transitionReport?.total_re_entries ?? 0) > 0 ? "re_entry_observed" : "re_entry_absent",
+            continuity: segmentCount > 1 ? "multi_segment_observed" : "single_segment_observed",
         },
         cross_run_context: {
             available: !!crossRunReport,
@@ -148,11 +156,9 @@ function makeFixtureIngestResult({
     stateCount = 23,
     basinCount = 5,
     segmentCount = 4,
-    convergence = "insufficient_data",
-    motion = "diffuse",
-    occupancy = "recurrent",
-    recurrence = "medium",
-    continuity = "fragmented",
+    transitionCount = 4,
+    reEntryCount = 2,
+    noveltyEventCount = 1,
     crossRunCount = 3,
     withCrossRun = true,
 } = {}) {
@@ -168,26 +174,27 @@ function makeFixtureIngestResult({
                 stream_id: streamId,
             },
             runtime: {
-                substrate: {
+                receipt: {
                     state_count: stateCount,
                     basin_count: basinCount,
                     segment_count: segmentCount,
                 },
-            },
-            interpretation: {
-                trajectory: {
-                    trajectory_character: {
-                        convergence,
-                        motion,
-                    },
-                    neighborhood_character: {
-                        occupancy,
-                        recurrence_strength: recurrence,
-                    },
-                    segment_character: {
-                        continuity,
+                substrate: {
+                    transition_report: {
+                        total_transitions: transitionCount,
+                        total_re_entries: reEntryCount,
                     },
                 },
+                summaries: {
+                    trajectory: {
+                        novelty_event_count: noveltyEventCount,
+                    },
+                },
+            },
+            workbench_receipt: {
+                state_count: stateCount,
+                basin_count: basinCount,
+                segment_count: segmentCount,
             },
         },
     };
@@ -197,8 +204,6 @@ function makeCycleSummary({
     cycleIndex = 1,
     runLabel = "live_run_1",
     stateCount = 23,
-    convergence = "insufficient_data",
-    recurrence = "medium",
     crossRunCount = 3,
 } = {}) {
     return {
@@ -206,10 +211,6 @@ function makeCycleSummary({
         run_label: runLabel,
         run_health: {
             state_count: stateCount,
-        },
-        structure: {
-            convergence,
-            recurrence,
         },
         delta_vs_prev: {
             cross_run_count: crossRunCount,
@@ -269,7 +270,7 @@ eq(receiptA.scope.modality, "voltage", "A12: modality preserved");
 eq(receiptA.structural_summary.state_count, 23, "A13: structural state_count preserved");
 eq(receiptA.structural_summary.basin_count, 5, "A14: structural basin_count preserved");
 eq(receiptA.structural_summary.segment_count, 4, "A15: structural segment_count preserved");
-eq(receiptA.structural_summary.recurrence, "medium", "A16: recurrence preserved");
+eq(receiptA.structural_summary.recurrence, "re_entry_observed", "A16: recurrence derived structurally");
 eq(receiptA.cross_run_context.available, true, "A17: cross-run available=true when report exists");
 eq(receiptA.cross_run_context.run_count, 1, "A18: cross-run run_count preserved");
 eq(receiptA.references.live_cycle_dir, "./out_live/cycle_01", "A19: live_cycle_dir reference correct");

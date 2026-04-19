@@ -70,11 +70,6 @@ const workbenchFixture = {
             },
         },
     },
-    semantic_overlay: {
-        trajectory: {
-            convergence: "insufficient_data",
-        },
-    },
 };
 
 section("A. LM input extraction");

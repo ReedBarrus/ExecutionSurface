@@ -210,7 +210,10 @@ function makeRawInput({
 
 function conciseWorkbenchSummary(workbench) {
     const runtimeReceipt = workbench?.runtime?.receipt ?? {};
-    const trajectory = workbench?.interpretation?.trajectory ?? {};
+    const trajectorySummary = workbench?.runtime?.summaries?.trajectory ?? {};
+    const transitionReport = workbench?.runtime?.substrate?.transition_report ?? {};
+    const convergence = (trajectorySummary?.novelty_event_count ?? 0) > 0 ? "novelty_observed" : "novelty_quiet";
+    const recurrence = (transitionReport?.total_re_entries ?? 0) > 0 ? "re_entry_observed" : "re_entry_absent";
 
     return [
         "",
@@ -220,8 +223,8 @@ function conciseWorkbenchSummary(workbench) {
         `  states: ${runtimeReceipt?.state_count ?? 0}`,
         `  basins: ${runtimeReceipt?.basin_count ?? 0}`,
         `  cross_run: ${workbench?.scope?.cross_run_context?.available ? `yes (${workbench.scope.cross_run_context.run_count})` : "no"}`,
-        `  convergence: ${trajectory?.trajectory_character?.convergence ?? "-"}`,
-        `  recurrence: ${trajectory?.neighborhood_character?.recurrence_strength ?? "-"}`,
+        `  convergence: ${convergence}`,
+        `  recurrence: ${recurrence}`,
         "",
     ].join("\n");
 }

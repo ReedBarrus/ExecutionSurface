@@ -8,7 +8,6 @@
       "files": [
         "tests/test_substrate_contracts.js",
         "tests/test_anomaly_op_fencing.js",
-        "tests/test_attention_memory_report.js",
         "tests/test_cross_run_dynamics_report.js",
         "tests/test_cross_run_session.js",
         "tests/test_door_one_contracts.js",
@@ -24,8 +23,7 @@
         "tests/test_merge_op_fencing.js",
         "tests/test_query_op_query_posture.js",
         "tests/test_receipt_schema_contracts.js",
-        "tests/handoff/test_tiny_filesystem_runner.js",
-        "tests/test_trajectory_interpretation_report.js"
+        "tests/handoff/test_tiny_filesystem_runner.js"
       ]
     },
     "reconstruction": {
@@ -36,25 +34,12 @@
       ]
     },
     "probe": {
-      "purpose": "Exploratory, calibration, and stress surfaces that can help tighten the runtime but should not block basic execution changes.",
+      "purpose": "Exploratory structural-only probes that can help tighten the runtime but should not block basic execution changes.",
       "files": [
-        "tests/test_active_interaction_zone_probe.js",
-        "tests/test_basin_identity_diagnostics_calibrated.js",
-        "tests/test_basin_phase_ratio_probe.js",
-        "tests/test_boundary_stress_test_probe.js",
-        "tests/test_continuous_master_phase_probe.js",
-        "tests/test_continuous_replay_flow_probe.js",
-        "tests/test_directional_flow_probe.js",
-        "tests/test_harmonic_placement_resonance_probe.js",
         "tests/test_identity_probe_multiscale.js",
         "tests/test_identity_probe_scale_calibrated.js",
-        "tests/test_passive_multiscale_evaluation.js",
         "tests/test_probe_report_receipts.js",
-        "tests/test_real_source_replay_probe.js",
-        "tests/test_replay_resilience_surface_probe.js",
-        "tests/test_rms_envelope_adapter.js",
         "tests/test_spectral_concentration_probe.js",
-        "tests/test_structural_transition_probe.js",
         "tests/test_tighter_band_real_source_probe.js"
       ]
     },

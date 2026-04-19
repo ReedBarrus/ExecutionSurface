@@ -336,15 +336,15 @@ function buildProvenanceReceipt({
     const runtime = wb?.runtime ?? {};
     const runtimeReceipt = runtime?.receipt ?? ingestResult?.run_result?.runtime_receipt ?? {};
     const workbenchReceipt = wb?.workbench_receipt ?? {};
-    const interpretation = wb?.interpretation?.trajectory ?? {};
     const crossRunReport = ingestResult?.cross_run_report ?? null;
     const runResult = ingestResult?.run_result ?? {};
+    const structuralMarkers = deriveStructuralMarkers({ wb, runtimeReceipt, workbenchReceipt });
 
     return {
         receipt_type: "runtime:door_one_live_provenance_receipt",
         receipt_version: "0.1.0",
         generated_from:
-            "Door One live cycle summary, workbench scope/runtime summaries, interpretation overlays, and optional cross-run report only; durable provenance receipt, not canon",
+            "Door One live cycle summary, workbench scope/runtime summaries, direct structural markers, and optional cross-run report only; durable provenance receipt, not canon",
         written_at: new Date().toISOString(),
         cycle: {
             cycle_dir: cycleDirName,
@@ -362,11 +362,11 @@ function buildProvenanceReceipt({
             state_count: runtimeReceipt?.state_count ?? workbenchReceipt?.state_count ?? 0,
             basin_count: runtimeReceipt?.basin_count ?? workbenchReceipt?.basin_count ?? 0,
             segment_count: runtimeReceipt?.segment_count ?? workbenchReceipt?.segment_count ?? 0,
-            convergence: interpretation?.trajectory_character?.convergence ?? "unknown",
-            motion: interpretation?.trajectory_character?.motion ?? "unknown",
-            occupancy: interpretation?.neighborhood_character?.occupancy ?? "unknown",
-            recurrence: interpretation?.neighborhood_character?.recurrence_strength ?? "unknown",
-            continuity: interpretation?.segment_character?.continuity ?? "unknown",
+            convergence: structuralMarkers.convergence,
+            motion: structuralMarkers.motion,
+            occupancy: structuralMarkers.occupancy,
+            recurrence: structuralMarkers.recurrence,
+            continuity: structuralMarkers.continuity,
         },
         cross_run_context: {
             available: !!crossRunReport,
@@ -395,7 +395,7 @@ function buildCycleSummary(ingestResult, cycleIndex, previousSummary = null) {
     const runtime = wb?.runtime ?? {};
     const runtimeReceipt = runtime?.receipt ?? ingestResult?.run_result?.runtime_receipt ?? {};
     const audit = runtime?.audit ?? {};
-    const interpretation = wb?.interpretation?.trajectory ?? {};
+    const structuralMarkers = deriveStructuralMarkers({ wb, runtimeReceipt });
 
     return {
         cycle_index: cycleIndex + 1,
@@ -409,11 +409,11 @@ function buildCycleSummary(ingestResult, cycleIndex, previousSummary = null) {
             merge_failures: Array.isArray(audit?.merge_failures) ? audit.merge_failures.length : 0,
         },
         structure: {
-            convergence: interpretation?.trajectory_character?.convergence ?? "-",
-            motion: interpretation?.trajectory_character?.motion ?? "-",
-            occupancy: interpretation?.neighborhood_character?.occupancy ?? "-",
-            recurrence: interpretation?.neighborhood_character?.recurrence_strength ?? "-",
-            continuity: interpretation?.segment_character?.continuity ?? "-",
+            convergence: structuralMarkers.convergence,
+            motion: structuralMarkers.motion,
+            occupancy: structuralMarkers.occupancy,
+            recurrence: structuralMarkers.recurrence,
+            continuity: structuralMarkers.continuity,
         },
         delta_vs_prev: buildCycleDelta(previousSummary, ingestResult),
     };
@@ -421,14 +421,17 @@ function buildCycleSummary(ingestResult, cycleIndex, previousSummary = null) {
 
 function buildCycleDelta(previousSummary, ingestResult) {
     const wb = ingestResult?.workbench ?? {};
-    const interpretation = wb?.interpretation?.trajectory ?? {};
     const runtimeSubstrate = wb?.runtime?.substrate ?? {};
     const crossRunCount = wb?.scope?.cross_run_context?.run_count ?? 0;
+    const structuralMarkers = deriveStructuralMarkers({
+        wb,
+        runtimeReceipt: wb?.runtime?.receipt ?? {},
+    });
 
     const current = {
         state_count: runtimeSubstrate?.state_count ?? 0,
-        convergence: interpretation?.trajectory_character?.convergence ?? "-",
-        recurrence: interpretation?.neighborhood_character?.recurrence_strength ?? "-",
+        convergence: structuralMarkers.convergence,
+        recurrence: structuralMarkers.recurrence,
     };
 
     if (!previousSummary) {
@@ -479,6 +482,26 @@ function conciseCycleSummary(summary) {
         `    cross_run_count=${summary?.delta_vs_prev?.cross_run_count ?? 0}`,
         "",
     ].join("\n");
+}
+
+function deriveStructuralMarkers({ wb, runtimeReceipt = {}, workbenchReceipt = {} } = {}) {
+    const trajectorySummary = wb?.runtime?.summaries?.trajectory ?? {};
+    const transitionReport = wb?.runtime?.substrate?.transition_report ?? {};
+    const basinCount = runtimeReceipt?.basin_count ?? workbenchReceipt?.basin_count ?? 0;
+    const segmentCount = runtimeReceipt?.segment_count ?? workbenchReceipt?.segment_count ?? 0;
+
+    return {
+        convergence: (trajectorySummary?.novelty_event_count ?? 0) > 0 ? "novelty_observed" : "novelty_quiet",
+        motion: (transitionReport?.total_transitions ?? 0) > 0 ? "transitions_observed" : "transition_quiet",
+        occupancy:
+            basinCount > 1
+                ? "multi_basin_observed"
+                : basinCount === 1
+                    ? "single_basin_observed"
+                    : "basin_absent",
+        recurrence: (transitionReport?.total_re_entries ?? 0) > 0 ? "re_entry_observed" : "re_entry_absent",
+        continuity: segmentCount > 1 ? "multi_segment_observed" : "single_segment_observed",
+    };
 }
 
 async function main() {

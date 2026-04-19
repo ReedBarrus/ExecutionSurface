@@ -2,166 +2,109 @@
 
 ## Status
 
-This document bridges the active runtime grammar corpus to concrete
-implementation order and proof posture.
-
-It is an operational companion surface within the runtime grammar corpus.
+This bridge translates the runtime grammar corpus into implementation order.
 
 It does not replace the broader implementation ladder.
 
-## Purpose
+## Core rule
 
-The runtime grammar corpus defines what the runtime should be.
+Implementation should now follow this order:
 
-This bridge defines:
+1. remove unlawful semantic or receipt-led defaults
+2. preserve direct structural/support object carriage wherever the seam can bear it
+3. add typed refs where full drag-forward is too coupled
+4. add bounded object cards or compact projections only where direct objects or refs fail
+5. keep receipts subordinate
+6. retune read-side transport and benchmarks around that object-first posture
 
-- which tightening moves come first
-- what code surfaces each move touches
-- what proof each move requires
+## Active correction corridor
 
-## Sequencing Rule
+The main bridge no longer starts from descriptor-family rollout.
 
-Implementation should follow this order:
+It starts from proving and hardening direct object exposure.
 
-1. remove unlawful default dependencies
-2. introduce bounded structural-support descriptors
-3. rebuild read-side integration surfaces on those descriptors
-4. retune LM-facing surfaces
-5. retune tests and benchmarks
-
-## Current Bridge Rungs
-
-## Seam-Driven Implementation Map
-
-This bridge now follows the seam-by-seam emission map from the runtime
-authority grammar.
-
-Each high-priority seam should be tightened by answering four questions:
-
-1. what descriptor family should this seam expose
-2. what subordinate receipt may remain
-3. what current emission must be removed
-4. what proof closes the correction
-
-| Seam | Descriptor Family Target | Subordinate Surface Allowed | Remove / Replace | Proof Target |
-| --- | --- | --- | --- | --- |
-| `Orchestrator result assembly seam` | `State support descriptor`, `Trajectory support descriptor`, `Query support descriptor`, `Replay support descriptor` when present | `runtime_receipt` | remove `semantic_overlay` and top-level `interpretation`; replace count-led exposure with descriptor-led sections | assembled result remains lawful and useful without semantic overlay |
-| `Workbench runtime section seam` | `State support descriptor`, `Basin support descriptor`, `Trajectory support descriptor`, `Query support descriptor`, `Replay support descriptor` when present | `workbench_receipt` | replace count-heavy convenience packet with descriptor-led integration view | workbench remains bounded and more informative than count-only packet |
-| `Workbench compatibility alias seam` | none | none | remove `compatibility_aliases` and mirrored `interpretation` entirely | downstream surfaces no longer depend on alias duplication |
-| `Cross-run session admission seam` | descriptor-capable runtime section admission | admission receipt if needed | remove interpretive-overlay admission requirement | successful runs admit on structural-support basis alone |
-| `Cross-run report seam` | `State support descriptor`, `Basin support descriptor`, `Trajectory support descriptor`, `Query support descriptor` when present | comparison receipts | replace interpretive label comparison with descriptor comparison | pairwise and reproducibility outputs become evidence-led in implementation, not just prose |
-| `LM wrapper extraction seam` | `State support descriptor`, `Trajectory support descriptor`, `Query support descriptor` when present, `Replay support descriptor` when present | bounded receipts when helpful | replace count-heavy packet as final target | LM packet remains bounded while giving richer support composition |
-| `Reconstruction runtime support collection seam` | `Replay support descriptor`, `State support descriptor` when needed | reconstruction receipts | remove interpretive support dependence | reconstruction support basis remains structural/support only |
-
-### Rung 1 - Remove default semantic authority from runtime assembly
+### Rung 1 - keep runtime assembly direct
 
 Primary targets:
 
 - `runtime/DoorOneOrchestrator.js`
-- tests that require `semantic_overlay` or top-level `interpretation`
-
-Proof target:
-
-- runtime result remains lawful without semantic overlay
-- core operator and substrate tests still pass on structural-support grounds
-
-### Rung 2 - Define compact support descriptor surfaces
-
-Primary targets:
-
-- support-descriptor contracts for `H1`
-- support-descriptor contracts for `M1`
-- trajectory descriptor contract
-- basin descriptor view
-- query descriptor view
-- replay descriptor view
-
-Proof target:
-
-- downstream read-side surfaces can consume descriptors without collapsing to
-  count-only packets
-
-### Rung 3 - Rebuild workbench around support descriptors
-
-Primary targets:
-
 - `runtime/DoorOneWorkbench.js`
-- workbench validators
-- workbench tests
+- core orchestrator/workbench tests
 
 Proof target:
 
-- workbench stays bounded, diffable, and read-side-only
-- workbench no longer requires compatibility aliases
-- workbench descriptor sections become the primary runtime-facing integration view
+- operator artifacts remain directly exposed
+- substrate state remains directly exposed
+- semantic overlay does not re-enter
+- receipts stay subordinate
 
-### Rung 4 - Re-derive cross-run comparison
+### Rung 2 - keep substrate and read-side seams object-bearing
 
 Primary targets:
 
-- `runtime/CrossRunSession.js`
+- `operators/substrate/MemorySubstrate.js`
+- query/replay seams
+- basin/trajectory exposure paths
+
+Proof target:
+
+- commit uses direct support objects
+- retrieval returns direct objects or safe copies
+- no seam above `H1` is forced into receipt-only shape
+
+### Rung 3 - tighten lawful compression seams
+
+Primary targets:
+
 - `runtime/CrossRunDynamicsReport.js`
+- `scripts/run_door_one_live.js`
+- `scripts/run_door_one_provenance_digest.js`
 
 Proof target:
 
-- cross-run admission no longer requires interpretation overlays
-- comparisons are driven by structural-support evidence
-- descriptor comparison remains deterministic and source-traceable
+- derived projections are explicitly secondary
+- inputs remain traceable to upstream objects
+- projections do not become authority carriers
 
-### Rung 5 - Rebuild reconstruction support staging
-
-Primary targets:
-
-- `runtime/reconstruction/`
-
-Proof target:
-
-- interpretive support no longer appears as a required or default support basis
-- replay support basis remains explicit and bounded
-
-### Rung 6 - Upgrade LM-facing packet
+### Rung 4 - retune LM staging
 
 Primary targets:
 
 - `runtime/lm/WorkbenchLmWrapper.js`
-- LM input/output schemas
-- benchmark harness
+- LM schemas
+- LM benchmark harness
 
 Proof target:
 
-- bounded LM packet remains schema-stable
-- packet becomes more informative than count-only receipt exposure
-- packet remains read-side only and non-authoritative despite richer descriptor input
+- LM packets stop pretending receipt counts are enough
+- packet remains bounded and non-authoritative
+- next packet shape prefers typed refs or bounded object cards over flat summaries
 
-### Rung 7 - Retune tests and benchmark receipts
+### Rung 5 - only then consider helper packaging
 
-Primary targets:
+If a seam still cannot function lawfully on direct objects or typed refs, add the
+smallest bounded helper packaging that solves that local problem.
 
-- orchestrator tests
-- workbench tests
-- cross-run tests
-- reconstruction tests
-- local LM benchmark tests
+Packaging is a fallback, not the implementation center.
 
-Proof target:
+## Current read on the repo
 
-- tests prove structure/support law directly
-- tests no longer defend semantic default packaging
-- tests prove descriptor routing seam by seam
+The runtime has already moved farther than the older bridge assumed:
 
-## Bridge Discipline
+- orchestrator is object-first
+- workbench is object-first
+- interpretation seams are removed from active runtime
 
-Do not start by widening platform behavior.
+The main remaining work is not descriptor construction.
 
-The first work is subtraction and tightening:
+It is:
 
-- remove default semantic dependence
-- sharpen object surfaces
-- sharpen read-side exposure
+- hardening object-first doctrine in docs and tests
+- reducing stale probe expectations
+- retuning LM and comparison seams so their compression remains explicitly secondary
 
-## One-Line Summary
+## One-line summary
 
-The runtime implementation bridge turns the runtime grammar corpus into a coding
-order: remove default semantic dependence first, introduce support descriptors
-next, then rebuild workbench, cross-run, reconstruction, LM input, and tests on
-that cleaner basis.
+The implementation bridge now starts by preserving direct object truth, uses
+typed refs before packaging, and treats any bounded projection as a local
+fallback rather than the runtime’s primary expression.

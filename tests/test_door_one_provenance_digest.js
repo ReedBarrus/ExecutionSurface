@@ -78,7 +78,7 @@ function makeReceipt({
         receipt_type: "runtime:door_one_live_provenance_receipt",
         receipt_version: "0.1.0",
         generated_from:
-            "Door One live cycle summary, workbench scope/runtime summaries, interpretation overlays, and optional cross-run report only; durable provenance receipt, not canon",
+            "Door One live cycle summary, workbench scope/runtime summaries, direct structural markers, and optional cross-run report only; durable provenance receipt, not canon",
         written_at: "2026-03-17T00:00:00.000Z",
         cycle: {
             cycle_dir: `cycle_${String(cycleIndex).padStart(2, "0")}`,

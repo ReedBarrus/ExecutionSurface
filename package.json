@@ -12,8 +12,6 @@
         "door-one:provenance-digest": "node scripts/run_door_one_provenance_digest.js",
         "test:substrate": "node tests/test_substrate_contracts.js",
         "test:orchestrator": "node tests/test_door_one_orchestrator.js",
-        "test:trajectory-interpretation": "node tests/test_trajectory_interpretation_report.js",
-        "test:attention-memory": "node tests/test_attention_memory_report.js",
         "test:door-one-contracts": "node tests/test_door_one_contracts.js",
         "test:cross-run-dynamics": "node tests/test_cross_run_dynamics_report.js",
         "test:cross-run-session": "node tests/test_cross_run_session.js",
@@ -32,8 +30,8 @@
         "test:query-posture": "node tests/test_query_op_query_posture.js",
         "test:door-one-ingest-hardening": "node tests/test_door_one_ingest_hardening.js",
         "test:reconstruction": "node tests/reconstruction/test_provenance_reconstruction_pipeline.js && node tests/reconstruction/readside/test_threshold_state_distinctions.js",
-        "test:probe": "node tests/test_probe_report_receipts.js && node tests/test_active_interaction_zone_probe.js && node tests/test_basin_identity_diagnostics_calibrated.js && node tests/test_basin_phase_ratio_probe.js && node tests/test_boundary_stress_test_probe.js && node tests/test_continuous_master_phase_probe.js && node tests/test_continuous_replay_flow_probe.js && node tests/test_directional_flow_probe.js && node tests/test_harmonic_placement_resonance_probe.js && node tests/test_identity_probe_multiscale.js && node tests/test_identity_probe_scale_calibrated.js && node tests/test_passive_multiscale_evaluation.js && node tests/test_real_source_replay_probe.js && node tests/test_replay_resilience_surface_probe.js && node tests/test_rms_envelope_adapter.js && node tests/test_spectral_concentration_probe.js && node tests/test_structural_transition_probe.js && node tests/test_tighter_band_real_source_probe.js",
-        "test:core": "npm run test:substrate && npm run test:anomaly-fencing && npm run test:attention-memory && npm run test:cross-run-dynamics && npm run test:cross-run-session && npm run test:door-one-contracts && npm run test:door-one-executive-lane && npm run test:door-one-ingest-hardening && npm run test:door-one-live-provenance-retention && npm run test:door-one-provenance-digest && npm run test:door-one-workbench && npm run test:gate-benchmark-metastable-hold && npm run test:merge-fencing && npm run test:orchestrator && npm run test:query-posture && npm run test:receipt-schemas && npm run test:tiny-filesystem-runner && npm run test:trajectory-interpretation && npm run test:workbench-lm-wrapper && npm run test:local-lm-benchmark",
+        "test:probe": "node tests/test_probe_report_receipts.js && node tests/test_identity_probe_multiscale.js && node tests/test_identity_probe_scale_calibrated.js && node tests/test_spectral_concentration_probe.js && node tests/test_tighter_band_real_source_probe.js",
+        "test:core": "npm run test:substrate && npm run test:anomaly-fencing && npm run test:cross-run-dynamics && npm run test:cross-run-session && npm run test:door-one-contracts && npm run test:door-one-executive-lane && npm run test:door-one-ingest-hardening && npm run test:door-one-live-provenance-retention && npm run test:door-one-provenance-digest && npm run test:door-one-workbench && npm run test:gate-benchmark-metastable-hold && npm run test:merge-fencing && npm run test:orchestrator && npm run test:query-posture && npm run test:receipt-schemas && npm run test:tiny-filesystem-runner && npm run test:workbench-lm-wrapper && npm run test:local-lm-benchmark",
         "test:active": "npm run test:core && npm run test:reconstruction"
     }
 }

@@ -178,7 +178,6 @@ export function validateProvenanceReconstructionReceipt(receipt) {
     requireInteger(errors, "receipt.support_basis_count", receipt.support_basis_count, { min: 0 });
     requireBoolean(errors, "receipt.runtime_support_available", receipt.runtime_support_available);
     requireBoolean(errors, "receipt.receipt_support_available", receipt.receipt_support_available);
-    requireBoolean(errors, "receipt.interpretive_support_available", receipt.interpretive_support_available);
     requireString(errors, "receipt.threshold_outcome", receipt.threshold_outcome, { allowNull: true });
     requireString(errors, "receipt.downgrade_output", receipt.downgrade_output, { allowNull: true });
     requireEnum(

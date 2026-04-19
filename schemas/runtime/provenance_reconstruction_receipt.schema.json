@@ -15,7 +15,6 @@
     "support_basis_count",
     "runtime_support_available",
     "receipt_support_available",
-    "interpretive_support_available",
     "threshold_outcome",
     "downgrade_output",
     "mechanization_status"
@@ -62,9 +61,6 @@
       "type": "boolean"
     },
     "receipt_support_available": {
-      "type": "boolean"
-    },
-    "interpretive_support_available": {
       "type": "boolean"
     },
     "threshold_outcome": {

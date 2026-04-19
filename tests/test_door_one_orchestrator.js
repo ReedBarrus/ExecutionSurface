@@ -197,12 +197,10 @@ assert("A22c: result has no review_overlay", !("review_overlay" in result));
 assert("A22d: runtime_receipt.state_count mirrors substrate", result.runtime_receipt?.state_count === result.substrate.state_count);
 assert("A22e: runtime_receipt.h1_count mirrors h1s length", result.runtime_receipt?.h1_count === result.artifacts.h1s.length);
 
-assert("A23: result has semantic_overlay section", result.semantic_overlay && typeof result.semantic_overlay === "object");
-assert("A24: result has interpretation section", result.interpretation && typeof result.interpretation === "object");
-assert("A25: semantic_overlay.trajectory present", typeof result.semantic_overlay?.trajectory === "object");
-assert("A26: semantic_overlay.attention_memory present", typeof result.semantic_overlay?.attention_memory === "object");
-assert("A27: interpretation.trajectory alias present", typeof result.interpretation?.trajectory === "object");
-assert("A28: attention/memory alias present", typeof result.interpretation?.attention_memory === "object");
+assert("A23: result does not emit semantic_overlay", !("semantic_overlay" in result));
+assert("A24: result does not emit interpretation alias", !("interpretation" in result));
+assert("A25: artifacts remain direct structural/support objects", typeof result.artifacts === "object");
+assert("A26: substrate remains direct observational support surface", typeof result.substrate === "object");
 
 section("B. Artifact class discipline");
 assert("B1: A1 carries artifact_class", "artifact_class" in a1);

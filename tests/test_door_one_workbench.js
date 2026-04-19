@@ -276,11 +276,11 @@ includes(wbSingle.generated_from, "integration view, not canon", "A4: generated_
 ok(wbSingle.scope && typeof wbSingle.scope === "object", "A5: scope present");
 ok(wbSingle.runtime && typeof wbSingle.runtime === "object", "A6: runtime present");
 ok(wbSingle.workbench_receipt && typeof wbSingle.workbench_receipt === "object", "A7: workbench_receipt present");
-ok(wbSingle.semantic_overlay && typeof wbSingle.semantic_overlay === "object", "A8: semantic_overlay present");
-ok(wbSingle.compatibility_aliases && typeof wbSingle.compatibility_aliases === "object", "A9: compatibility_aliases present");
-ok(wbSingle.interpretation && typeof wbSingle.interpretation === "object", "A10: interpretation alias present");
-ok(wbSingle.cross_run && typeof wbSingle.cross_run === "object", "A11: cross_run present");
-ok(Array.isArray(wbSingle.notes), "A12: notes array present");
+ok(wbSingle.cross_run && typeof wbSingle.cross_run === "object", "A8: cross_run present");
+ok(Array.isArray(wbSingle.notes), "A9: notes array present");
+eq("semantic_overlay" in wbSingle, false, "A10: semantic_overlay removed");
+eq("compatibility_aliases" in wbSingle, false, "A11: compatibility_aliases removed");
+eq("interpretation" in wbSingle, false, "A12: interpretation alias removed");
 
 section("B. Single-run mode");
 eq(wbSingle.scope.stream_id, runA?.artifacts?.a1?.stream_id ?? null, "B1: scope.stream_id preserved");
@@ -290,8 +290,8 @@ eq(wbSingle.scope.cross_run_context.available, false, "B4: single-run cross_run_
 eq(wbSingle.scope.cross_run_context.run_count, 0, "B5: single-run cross_run_context.run_count=0");
 eq(wbSingle.cross_run.available, false, "B6: single-run cross_run.available=false");
 eq(wbSingle.cross_run.report, null, "B7: single-run cross_run.report=null");
-ok(wbSingle.semantic_overlay.trajectory && typeof wbSingle.semantic_overlay.trajectory === "object", "B8: semantic_overlay.trajectory present");
-ok(wbSingle.semantic_overlay.attention_memory && typeof wbSingle.semantic_overlay.attention_memory === "object", "B9: semantic_overlay.attention_memory present");
+ok(wbSingle.runtime.pipeline && typeof wbSingle.runtime.pipeline === "object", "B8: runtime.pipeline present");
+ok(wbSingle.runtime.pipeline.operators && typeof wbSingle.runtime.pipeline.operators === "object", "B9: runtime.pipeline.operators present");
 
 section("C. Cross-run mode");
 eq(wbCross.scope.cross_run_context.available, true, "C1: cross-run scope.available=true");
@@ -307,14 +307,14 @@ eq(wbSession.cross_run.available, true, "D3: session path cross_run.available=tr
 ok(wbSession.cross_run.report && typeof wbSession.cross_run.report === "object", "D4: session path cross_run.report present");
 eq(wbSession.cross_run.report.report_type, "runtime:cross_run_dynamics_report", "D5: session path report_type correct");
 
-section("E. Aliases and copies");
-ok(wbSingle.runtime.artifacts && typeof wbSingle.runtime.artifacts === "object", "E1: runtime.artifacts present");
+section("E. Direct sections and copies");
+ok(wbSingle.runtime.pipeline && typeof wbSingle.runtime.pipeline === "object", "E1: runtime.pipeline present");
 ok(wbSingle.runtime.receipt && typeof wbSingle.runtime.receipt === "object", "E2: runtime.receipt present");
 ok(wbSingle.runtime.substrate && typeof wbSingle.runtime.substrate === "object", "E3: runtime.substrate present");
 ok(wbSingle.runtime.summaries && typeof wbSingle.runtime.summaries === "object", "E4: runtime.summaries present");
 ok(wbSingle.runtime.audit && typeof wbSingle.runtime.audit === "object", "E5: runtime.audit present");
-ok(wbSingle.compatibility_aliases.interpretation && typeof wbSingle.compatibility_aliases.interpretation === "object", "E6: compatibility_aliases.interpretation present");
-deepEq(wbSingle.compatibility_aliases.interpretation, wbSingle.interpretation, "E7: interpretation alias mirrored under compatibility_aliases");
+ok(Array.isArray(wbSingle.runtime.pipeline.operators.harmonic_states), "E6: harmonic states surfaced directly");
+ok("query" in wbSingle.runtime.pipeline.functions, "E7: function outputs surfaced separately");
 eq(wbSingle.workbench_receipt.state_count, wbSingle.runtime.receipt.state_count, "E8: workbench_receipt state_count mirrors runtime receipt");
 
 section("F. Determinism");
@@ -334,8 +334,8 @@ notIncludes(json, '"promoted"', "H3: no promoted key");
 notIncludes(json, '"truth"', "H4: no truth key");
 notIncludes(json, '"ontology":', "H5: no ontology key");
 includes(wbCross.notes.join(" "), "Workbench is an integration view, not canon.", "H6: note preserves non-canon boundary");
-includes(wbCross.notes.join(" "), "Structural runtime remains the primary workbench section.", "H7: note preserves structural primacy");
-includes(wbCross.notes.join(" "), "Semantic overlay remains removable", "H8: note preserves overlay removability");
+includes(wbCross.notes.join(" "), "Structural/support runtime objects remain primary", "H7: note preserves structural primacy");
+includes(wbCross.notes.join(" "), "Operator artifacts, function outputs, substrate state, and audit surfaces stay separated explicitly.", "H8: note preserves seam separation");
 
 section("I. Failed input handling");
 const bad0 = workbench.assemble(null);

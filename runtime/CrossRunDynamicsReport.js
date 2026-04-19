@@ -8,11 +8,12 @@
  *   Not a pipeline operator. Not an authority-bearing artifact.
  *
  * Purpose:
- *   Compare multiple completed Door One runs using:
- *     - substrate summaries
- *     - transition reports
- *     - trajectory interpretation
- *     - attention/memory overlays
+ *   Compare multiple completed Door One runs using direct structural/support
+ *   evidence only:
+ *     - H1 / M1 state objects
+ *     - anomaly reports
+ *     - basin sets
+ *     - substrate transition reports
  *
  * Boundary contract:
  *   - derived / observational comparison only
@@ -22,11 +23,12 @@
  *   - not ontology
  *   - does not mutate input runs
  *   - does not recompute authoritative artifacts
+ *   - does not depend on semantic overlays or interpretation aliases
  *   - does not claim true dynamical basin membership
  *
  * Output:
  *   Plain-data cross-run comparison report with:
- *     - per-run signatures
+ *     - per-run structural/support signatures
  *     - pairwise comparisons
  *     - reproducibility summary
  *     - flags / notes
@@ -106,8 +108,8 @@ export class CrossRunDynamicsReport {
         return {
             report_type: "runtime:cross_run_dynamics_report",
             generated_from:
-                "Evidence-led comparison of multiple Door One runs using structural/support evidence first and bounded semantic overlay summaries second; not canon, not promotion, not ontology, not same-object closure",
-            comparison_posture: "evidence_first_cross_run_comparison",
+                "Evidence-led comparison of multiple Door One runs using direct structural/support objects only; not canon, not promotion, not ontology, not same-object closure",
+            comparison_posture: "direct_structural_support_comparison",
             claim_ceiling: "comparative_support_only",
             scope: {
                 run_count: labeledRuns.length,
@@ -139,66 +141,63 @@ export class CrossRunDynamicsReport {
     // -------------------------------------------------------------------------
 
     _extractRunSignature(runLabel, result) {
+        const artifacts = result?.artifacts ?? {};
         const substrate = result?.substrate ?? {};
-        const trajectory =
-            result?.semantic_overlay?.trajectory ??
-            result?.interpretation?.trajectory ??
-            {};
-        const attentionMemory =
-            result?.semantic_overlay?.attention_memory ??
-            result?.interpretation?.attention_memory ??
-            {};
+        const h1s = this._asArray(artifacts?.h1s);
+        const m1s = this._asArray(artifacts?.m1s);
+        const anomalies = this._asArray(artifacts?.anomaly_reports);
+        const basins = this._flattenBasins(this._asArray(artifacts?.basin_sets));
+        const transitionReport = substrate?.transition_report ?? {};
 
         const sig = {
-            convergence: trajectory?.trajectory_character?.convergence ?? "unknown",
-            motion: trajectory?.trajectory_character?.motion ?? "unknown",
-            occupancy: trajectory?.neighborhood_character?.occupancy ?? "unknown",
-            transition_density: trajectory?.neighborhood_character?.transition_density ?? "unknown",
-            recurrence_strength: trajectory?.neighborhood_character?.recurrence_strength ?? "unknown",
-            continuity: trajectory?.segment_character?.continuity ?? "unknown",
-            boundary_density: trajectory?.segment_character?.boundary_density ?? "unknown",
-
-            attention_concentration: attentionMemory?.attention_character?.concentration ?? "unknown",
-            attention_persistence: attentionMemory?.attention_character?.persistence ?? "unknown",
-            attention_volatility: attentionMemory?.attention_character?.volatility ?? "unknown",
-            support_persistence: attentionMemory?.support_persistence?.posture ?? "unknown",
-            reuse_pressure: attentionMemory?.reuse_pressure?.posture ?? "unknown",
-            memory_candidate_posture: attentionMemory?.memory_candidate_posture?.posture ?? "unknown",
-
-            memory_recurrence_strength: attentionMemory?.memory_character?.recurrence_strength ?? "unknown",
-            memory_persistence: attentionMemory?.memory_character?.persistence ?? "unknown",
-            memory_stability: attentionMemory?.memory_character?.stability ?? "unknown",
+            h1_band_profile_mean: this._meanProfile(
+                h1s.map((state) => state?.invariants?.band_profile_norm?.band_energy)
+            ),
+            m1_band_profile_mean: this._meanProfile(
+                m1s.map((state) => state?.invariants?.band_profile_norm?.band_energy)
+            ),
+            basin_band_profile_mean: this._meanProfile(
+                basins.map((basin) => basin?.centroid_band_profile)
+            ),
+            dominant_frequency_hz_mean: this._mean(
+                [...h1s, ...m1s].map((state) => this._dominantFrequencyHz(state))
+            ),
+            state_duration_sec_mean: this._mean(
+                [...h1s, ...m1s].map((state) => state?.window_span?.duration_sec)
+            ),
+            transition_density: this._safeRatio(
+                this._finiteOrZero(transitionReport?.total_transitions),
+                Math.max(1, this._finiteOrZero(substrate?.trajectory_frames) - 1)
+            ),
+            recurrence_mean: this._mean(
+                this._asArray(transitionReport?.recurrence).map((row) => row?.re_entry_count)
+            ),
+            basin_radius_mean: this._mean(basins.map((basin) => basin?.radius)),
+            basin_member_count_mean: this._mean(basins.map((basin) => basin?.member_count)),
         };
 
+        const anomalyEventCounts = this._countAnomalyEvents(anomalies);
         const evidence = {
-            h1_count: this._finiteOrZero(result?.artifacts?.h1s?.length),
-            m1_count: this._finiteOrZero(result?.artifacts?.m1s?.length),
-            anomaly_count: this._finiteOrZero(result?.artifacts?.anomaly_reports?.length),
-            query_present: result?.artifacts?.q ? 1 : 0,
+            h1_count: this._finiteOrZero(h1s.length),
+            m1_count: this._finiteOrZero(m1s.length),
+            anomaly_count: this._finiteOrZero(anomalies.length),
+            query_present: artifacts?.q ? 1 : 0,
             state_count: this._finiteOrZero(substrate?.state_count),
             basin_count: this._finiteOrZero(substrate?.basin_count),
             segment_count: this._finiteOrZero(substrate?.segment_count),
             trajectory_frames: this._finiteOrZero(substrate?.trajectory_frames),
-
-            total_transitions: this._finiteOrZero(substrate?.transition_report?.total_transitions),
-            total_re_entries: this._finiteOrZero(substrate?.transition_report?.total_re_entries),
-            dominant_dwell_share: this._finiteOrZero(
-                trajectory?.neighborhood_character?.evidence?.dominant_dwell_share
-            ),
-            current_dwell_count: this._finiteOrZero(
-                trajectory?.neighborhood_character?.evidence?.current_dwell_count
-            ),
-            current_dwell_duration_sec: this._finiteOrZero(
-                trajectory?.neighborhood_character?.evidence?.current_dwell_duration_sec
-            ),
-            transition_density_value: this._finiteOrZero(
-                trajectory?.neighborhood_character?.evidence?.transition_density_value
-            ),
+            total_transitions: this._finiteOrZero(transitionReport?.total_transitions),
+            total_re_entries: this._finiteOrZero(transitionReport?.total_re_entries),
+            novelty_gate_count: anomalies.filter((row) => row?.novelty_gate_triggered === true).length,
+            new_frequency_event_count: anomalyEventCounts.new_frequency,
+            vanished_frequency_event_count: anomalyEventCounts.vanished_frequency,
+            drift_event_count: anomalyEventCounts.drift,
+            energy_shift_event_count: anomalyEventCounts.energy_shift,
         };
 
         return {
             run_label: runLabel,
-            comparison_posture: "structural_support_signature_with_subordinate_semantic_summary",
+            comparison_posture: "direct_structural_support_signature",
             claim_ceiling: "comparative_support_only",
             signature: sig,
             evidence,
@@ -239,36 +238,55 @@ export class CrossRunDynamicsReport {
     _compareSignatures(a, b) {
         const sigA = a.signature;
         const sigB = b.signature;
+        const supportDistances = {
+            h1_band_profile_distance: this._vectorDistance(
+                sigA.h1_band_profile_mean,
+                sigB.h1_band_profile_mean
+            ),
+            m1_band_profile_distance: this._vectorDistance(
+                sigA.m1_band_profile_mean,
+                sigB.m1_band_profile_mean
+            ),
+            basin_band_profile_distance: this._vectorDistance(
+                sigA.basin_band_profile_mean,
+                sigB.basin_band_profile_mean
+            ),
+            dominant_frequency_delta: this._absDelta(
+                sigA.dominant_frequency_hz_mean,
+                sigB.dominant_frequency_hz_mean
+            ),
+            state_duration_delta: this._absDelta(
+                sigA.state_duration_sec_mean,
+                sigB.state_duration_sec_mean
+            ),
+            transition_density_delta: this._absDelta(
+                sigA.transition_density,
+                sigB.transition_density
+            ),
+            recurrence_delta: this._absDelta(sigA.recurrence_mean, sigB.recurrence_mean),
+            basin_radius_delta: this._absDelta(sigA.basin_radius_mean, sigB.basin_radius_mean),
+            basin_member_count_delta: this._absDelta(
+                sigA.basin_member_count_mean,
+                sigB.basin_member_count_mean
+            ),
+        };
 
-        const keys = Object.keys(sigA);
-        let sharedLabels = 0;
-        let differingLabels = 0;
-
-        for (const key of keys) {
-            if (sigA[key] === sigB[key]) sharedLabels += 1;
-            else differingLabels += 1;
-        }
-
-        const semanticSimilarityRatio = this._safeRatio(sharedLabels, keys.length);
-        const evidenceSimilarityRatio = this._evidenceSimilarityRatio(a.evidence, b.evidence);
+        const evidenceSimilarityRatio = this._evidenceSimilarityRatio(a.evidence, b.evidence, supportDistances);
         const similarity = this._labelSimilarity(evidenceSimilarityRatio);
 
         const differences = {
-            convergence_changed: sigA.convergence !== sigB.convergence,
-            motion_changed: sigA.motion !== sigB.motion,
-            occupancy_changed: sigA.occupancy !== sigB.occupancy,
-            continuity_changed: sigA.continuity !== sigB.continuity,
-            attention_shift: this._labelOrdinalShift(sigA.attention_concentration, sigB.attention_concentration),
-            memory_shift: this._labelOrdinalShift(sigA.memory_stability, sigB.memory_stability),
+            h1_band_profile_changed: supportDistances.h1_band_profile_distance > 0.15,
+            m1_band_profile_changed: supportDistances.m1_band_profile_distance > 0.15,
+            basin_profile_changed: supportDistances.basin_band_profile_distance > 0.15,
+            dominant_frequency_shift_hz: supportDistances.dominant_frequency_delta,
+            transition_density_delta: supportDistances.transition_density_delta,
+            recurrence_delta: supportDistances.recurrence_delta,
+            basin_radius_delta: supportDistances.basin_radius_delta,
         };
 
         const evidence = {
-            shared_labels: sharedLabels,
-            differing_labels: differingLabels,
             similarity_ratio: evidenceSimilarityRatio,
-            semantic_similarity_ratio: semanticSimilarityRatio,
-            evidence_priority: "structural_support_primary",
-
+            evidence_priority: "structural_support_only",
             h1_count_delta: this._absDelta(a.evidence.h1_count, b.evidence.h1_count),
             m1_count_delta: this._absDelta(a.evidence.m1_count, b.evidence.m1_count),
             anomaly_count_delta: this._absDelta(a.evidence.anomaly_count, b.evidence.anomaly_count),
@@ -278,8 +296,27 @@ export class CrossRunDynamicsReport {
             segment_count_delta: this._absDelta(a.evidence.segment_count, b.evidence.segment_count),
             total_transitions_delta: this._absDelta(a.evidence.total_transitions, b.evidence.total_transitions),
             total_re_entries_delta: this._absDelta(a.evidence.total_re_entries, b.evidence.total_re_entries),
-            dominant_dwell_share_delta: this._absDelta(a.evidence.dominant_dwell_share, b.evidence.dominant_dwell_share),
-            transition_density_delta: this._absDelta(a.evidence.transition_density_value, b.evidence.transition_density_value),
+            novelty_gate_count_delta: this._absDelta(
+                a.evidence.novelty_gate_count,
+                b.evidence.novelty_gate_count
+            ),
+            new_frequency_event_count_delta: this._absDelta(
+                a.evidence.new_frequency_event_count,
+                b.evidence.new_frequency_event_count
+            ),
+            energy_shift_event_count_delta: this._absDelta(
+                a.evidence.energy_shift_event_count,
+                b.evidence.energy_shift_event_count
+            ),
+            h1_band_profile_distance: supportDistances.h1_band_profile_distance,
+            m1_band_profile_distance: supportDistances.m1_band_profile_distance,
+            basin_band_profile_distance: supportDistances.basin_band_profile_distance,
+            dominant_frequency_delta: supportDistances.dominant_frequency_delta,
+            state_duration_delta: supportDistances.state_duration_delta,
+            transition_density_delta: supportDistances.transition_density_delta,
+            recurrence_delta: supportDistances.recurrence_delta,
+            basin_radius_delta: supportDistances.basin_radius_delta,
+            basin_member_count_delta: supportDistances.basin_member_count_delta,
         };
 
         return {
@@ -290,15 +327,6 @@ export class CrossRunDynamicsReport {
             similarity,
             differences,
             evidence,
-            semantic_summary: {
-                label_similarity: this._labelSimilarity(semanticSimilarityRatio),
-                label_similarity_ratio: semanticSimilarityRatio,
-                subordinate_to_evidence: true,
-                caution_posture:
-                    semanticSimilarityRatio > evidenceSimilarityRatio
-                        ? "semantic_similarity_narrowed_to_structural_support"
-                        : null,
-            },
             explicit_non_claims: [
                 "not same-object closure",
                 "not identity preservation verdict",
@@ -314,22 +342,6 @@ export class CrossRunDynamicsReport {
         return "low";
     }
 
-    _labelOrdinalShift(a, b) {
-        const idxA = this._ordinalIndex(a);
-        const idxB = this._ordinalIndex(b);
-
-        if (idxA === -1 || idxB === -1) return "unknown";
-        const d = Math.abs(idxA - idxB);
-        if (d >= 2) return "high";
-        if (d === 1) return "medium";
-        return "low";
-    }
-
-    _ordinalIndex(label) {
-        const order = ["low", "medium", "high"];
-        return order.indexOf(label);
-    }
-
     // -------------------------------------------------------------------------
     // Reproducibility summary
     // -------------------------------------------------------------------------
@@ -337,13 +349,12 @@ export class CrossRunDynamicsReport {
     _buildReproducibilitySummary(perRunSignatures, pairwiseComparisons) {
         if (perRunSignatures.length <= 1) {
             return {
-                comparison_posture: "evidence_first_reproducibility_summary",
+                comparison_posture: "structural_support_reproducibility_summary",
                 claim_ceiling: "comparative_support_only",
-                structural_reproducibility: "insufficient_data",
-                convergence_reproducibility: "insufficient_data",
-                neighborhood_reproducibility: "insufficient_data",
-                segment_reproducibility: "insufficient_data",
-                overlay_reproducibility: "insufficient_data",
+                count_reproducibility: "insufficient_data",
+                support_profile_reproducibility: "insufficient_data",
+                transition_reproducibility: "insufficient_data",
+                basin_reproducibility: "insufficient_data",
                 overall_reproducibility: "insufficient_data",
                 explicit_non_claims: [
                     "not same-object closure",
@@ -353,31 +364,35 @@ export class CrossRunDynamicsReport {
             };
         }
 
-        const structuralRepro = this._labelPairwiseEvidenceReproducibility(pairwiseComparisons);
-        const convergenceRepro = this._labelRunwiseAgreement(perRunSignatures, ["convergence", "motion"]);
-        const neighborhoodRepro = this._labelRunwiseAgreement(perRunSignatures, ["occupancy", "transition_density", "recurrence_strength"]);
-        const segmentRepro = this._labelRunwiseAgreement(perRunSignatures, ["continuity", "boundary_density"]);
-        const overlayRepro = this._labelRunwiseAgreement(perRunSignatures, [
-            "attention_concentration",
-            "attention_persistence",
-            "attention_volatility",
-            "support_persistence",
-            "reuse_pressure",
-            "memory_candidate_posture",
-            "memory_recurrence_strength",
-            "memory_persistence",
-            "memory_stability",
-        ]);
+        const countRepro = this._labelMeanRatio(
+            pairwiseComparisons,
+            (row) => this._pairwiseCountRatio(row)
+        );
+        const supportProfileRepro = this._labelMeanRatio(
+            pairwiseComparisons,
+            (row) => this._pairwiseSupportRatio(row)
+        );
+        const transitionRepro = this._labelMeanRatio(
+            pairwiseComparisons,
+            (row) => this._pairwiseTransitionRatio(row)
+        );
+        const basinRepro = this._labelMeanRatio(
+            pairwiseComparisons,
+            (row) => this._pairwiseBasinRatio(row)
+        );
+        const overallRepro = this._labelMeanRatio(
+            pairwiseComparisons,
+            (row) => row?.evidence?.similarity_ratio
+        );
 
         return {
-            comparison_posture: "evidence_first_reproducibility_summary",
+            comparison_posture: "structural_support_reproducibility_summary",
             claim_ceiling: "comparative_support_only",
-            structural_reproducibility: structuralRepro,
-            convergence_reproducibility: convergenceRepro,
-            neighborhood_reproducibility: neighborhoodRepro,
-            segment_reproducibility: segmentRepro,
-            overlay_reproducibility: overlayRepro,
-            overall_reproducibility: structuralRepro,
+            count_reproducibility: countRepro,
+            support_profile_reproducibility: supportProfileRepro,
+            transition_reproducibility: transitionRepro,
+            basin_reproducibility: basinRepro,
+            overall_reproducibility: overallRepro,
             explicit_non_claims: [
                 "not same-object closure",
                 "not identity closure",
@@ -386,66 +401,7 @@ export class CrossRunDynamicsReport {
         };
     }
 
-    _labelRunwiseAgreement(perRunSignatures, keys) {
-        const pairCount = this._pairCount(perRunSignatures.length);
-        if (pairCount === 0) return "insufficient_data";
-
-        let matches = 0;
-        let total = 0;
-
-        for (let i = 0; i < perRunSignatures.length; i += 1) {
-            for (let j = i + 1; j < perRunSignatures.length; j += 1) {
-                for (const key of keys) {
-                    total += 1;
-                    if (perRunSignatures[i].signature[key] === perRunSignatures[j].signature[key]) {
-                        matches += 1;
-                    }
-                }
-            }
-        }
-
-        const ratio = this._safeRatio(matches, total);
-        if (ratio >= this.cfg.high_reproducibility_ratio) return "high";
-        if (ratio >= this.cfg.medium_reproducibility_ratio) return "medium";
-        return "low";
-    }
-
-    _labelOverallReproducibility(meanScore) {
-        if (meanScore === null) return "insufficient_data";
-        if (meanScore >= 2.5) return "high";
-        if (meanScore >= 1.5) return "medium";
-        return "low";
-    }
-
-    _reproScore(label) {
-        if (label === "high") return 3;
-        if (label === "medium") return 2;
-        if (label === "low") return 1;
-        return null;
-    }
-
-    _labelPairwiseEvidenceReproducibility(pairwiseComparisons) {
-        if (!Array.isArray(pairwiseComparisons) || pairwiseComparisons.length === 0) {
-            return "insufficient_data";
-        }
-
-        const ratios = pairwiseComparisons
-            .map(row => this._finiteOrNull(row?.evidence?.similarity_ratio))
-            .filter(v => v !== null);
-
-        if (ratios.length === 0) return "insufficient_data";
-
-        const mean = ratios.reduce((a, b) => a + b, 0) / ratios.length;
-        if (mean >= this.cfg.high_reproducibility_ratio) return "high";
-        if (mean >= this.cfg.medium_reproducibility_ratio) return "medium";
-        return "low";
-    }
-
-    _pairCount(n) {
-        return (n * (n - 1)) / 2;
-    }
-
-    _evidenceSimilarityRatio(aEvidence, bEvidence) {
+    _evidenceSimilarityRatio(aEvidence, bEvidence, supportDistances) {
         const checks = [
             this._withinDelta(aEvidence?.h1_count, bEvidence?.h1_count, 2),
             this._withinDelta(aEvidence?.m1_count, bEvidence?.m1_count, 2),
@@ -456,8 +412,26 @@ export class CrossRunDynamicsReport {
             this._withinDelta(aEvidence?.segment_count, bEvidence?.segment_count, 0),
             this._withinDelta(aEvidence?.total_transitions, bEvidence?.total_transitions, 2),
             this._withinDelta(aEvidence?.total_re_entries, bEvidence?.total_re_entries, 1),
-            this._withinDelta(aEvidence?.dominant_dwell_share, bEvidence?.dominant_dwell_share, 0.15),
-            this._withinDelta(aEvidence?.transition_density_value, bEvidence?.transition_density_value, 0.15),
+            this._withinDelta(aEvidence?.novelty_gate_count, bEvidence?.novelty_gate_count, 1),
+            this._withinDelta(
+                aEvidence?.new_frequency_event_count,
+                bEvidence?.new_frequency_event_count,
+                2
+            ),
+            this._withinDelta(
+                aEvidence?.energy_shift_event_count,
+                bEvidence?.energy_shift_event_count,
+                2
+            ),
+            this._withinDelta(supportDistances?.h1_band_profile_distance, 0, 0.2),
+            this._withinDelta(supportDistances?.m1_band_profile_distance, 0, 0.2),
+            this._withinDelta(supportDistances?.basin_band_profile_distance, 0, 0.2),
+            this._withinDelta(supportDistances?.dominant_frequency_delta, 0, 1.0),
+            this._withinDelta(supportDistances?.state_duration_delta, 0, 0.5),
+            this._withinDelta(supportDistances?.transition_density_delta, 0, 0.2),
+            this._withinDelta(supportDistances?.recurrence_delta, 0, 1),
+            this._withinDelta(supportDistances?.basin_radius_delta, 0, 0.25),
+            this._withinDelta(supportDistances?.basin_member_count_delta, 0, 1),
         ];
 
         const matches = checks.filter(Boolean).length;
@@ -475,20 +449,24 @@ export class CrossRunDynamicsReport {
             flags.push("cross_run_reproducible");
         }
 
-        if (reproducibilitySummary?.overlay_reproducibility === "high") {
-            flags.push("overlay_stable");
+        if (reproducibilitySummary?.support_profile_reproducibility === "high") {
+            flags.push("support_profile_stable");
         }
 
-        if (reproducibilitySummary?.structural_reproducibility === "high") {
+        if (reproducibilitySummary?.count_reproducibility === "high") {
             flags.push("structural_support_stable");
+        }
+
+        if (reproducibilitySummary?.transition_reproducibility === "high") {
+            flags.push("transition_pattern_stable");
+        }
+
+        if (reproducibilitySummary?.basin_reproducibility === "high") {
+            flags.push("basin_profile_stable");
         }
 
         if (pairwiseComparisons.some(r => r?.similarity === "low")) {
             flags.push("run_divergence_detected");
-        }
-
-        if (pairwiseComparisons.some(r => r?.semantic_summary?.caution_posture)) {
-            flags.push("semantic_similarity_narrowed_to_evidence");
         }
 
         if (pairwiseComparisons.every(r => r?.similarity === "high") && pairwiseComparisons.length > 0) {
@@ -501,7 +479,7 @@ export class CrossRunDynamicsReport {
     _buildNotes({ runCount, pairwiseComparisons, reproducibilitySummary }) {
         const notes = [
             "Cross-run comparison is derived from completed Door One runs only.",
-            "Structural/support evidence is compared first; semantic overlay summaries are subordinate and may not outrun the evidence basis.",
+            "Structural/support evidence is compared directly from runtime objects and substrate reports.",
             "Similarity and reproducibility do not by themselves justify canon or promotion.",
             "Repeated structure strengthens evidence but does not prove ontology or true dynamical basin membership.",
             "Cross-run comparison does not by itself establish same-object continuity, memory closure, or identity closure across runs.",
@@ -515,10 +493,6 @@ export class CrossRunDynamicsReport {
             notes.push("At least one run pair shows low structural/support similarity across compared runs.");
         }
 
-        if (pairwiseComparisons.some(r => r?.semantic_summary?.caution_posture)) {
-            notes.push("At least one run pair showed semantic-label similarity that was narrowed to the weaker structural/support evidence basis.");
-        }
-
         if (reproducibilitySummary?.overall_reproducibility === "high") {
             notes.push("Overall structural/support comparison remains relatively reproducible across the provided runs.");
         }
@@ -529,6 +503,131 @@ export class CrossRunDynamicsReport {
     // -------------------------------------------------------------------------
     // Small utilities
     // -------------------------------------------------------------------------
+
+    _asArray(value) {
+        return Array.isArray(value) ? value : [];
+    }
+
+    _flattenBasins(basinSets) {
+        return basinSets.flatMap((set) => this._asArray(set?.basins));
+    }
+
+    _dominantFrequencyHz(state) {
+        const bins = this._asArray(state?.kept_bins)
+            .filter((bin) => Number.isFinite(bin?.magnitude))
+            .sort((a, b) => {
+                if (b.magnitude !== a.magnitude) return b.magnitude - a.magnitude;
+                return (a.k ?? 0) - (b.k ?? 0);
+            });
+        const nonDc = bins.find((bin) => bin?.k !== 0);
+        return this._finiteOrNull((nonDc ?? bins[0])?.freq_hz);
+    }
+
+    _mean(values) {
+        const finite = this._asArray(values).filter((value) => Number.isFinite(value));
+        if (finite.length === 0) return null;
+        return finite.reduce((sum, value) => sum + value, 0) / finite.length;
+    }
+
+    _meanProfile(profiles) {
+        const valid = this._asArray(profiles).filter(
+            (profile) => Array.isArray(profile) && profile.every((value) => Number.isFinite(value))
+        );
+        if (valid.length === 0) return [];
+        const width = valid[0].length;
+        if (!valid.every((profile) => profile.length === width)) return [];
+
+        const totals = new Array(width).fill(0);
+        for (const profile of valid) {
+            for (let idx = 0; idx < width; idx += 1) {
+                totals[idx] += profile[idx];
+            }
+        }
+        return totals.map((value) => value / valid.length);
+    }
+
+    _vectorDistance(a, b) {
+        const vecA = this._asArray(a);
+        const vecB = this._asArray(b);
+        if (vecA.length === 0 && vecB.length === 0) return 0;
+        if (vecA.length === 0 || vecB.length === 0 || vecA.length !== vecB.length) return 1;
+
+        let total = 0;
+        for (let idx = 0; idx < vecA.length; idx += 1) {
+            total += Math.abs((vecA[idx] ?? 0) - (vecB[idx] ?? 0));
+        }
+        return total;
+    }
+
+    _countAnomalyEvents(anomalies) {
+        const counts = {
+            new_frequency: 0,
+            vanished_frequency: 0,
+            drift: 0,
+            energy_shift: 0,
+        };
+        for (const anomaly of this._asArray(anomalies)) {
+            for (const event of this._asArray(anomaly?.detected_events)) {
+                const key = event?.type;
+                if (key in counts) counts[key] += 1;
+            }
+        }
+        return counts;
+    }
+
+    _labelMeanRatio(rows, picker) {
+        if (!Array.isArray(rows) || rows.length === 0) return "insufficient_data";
+        const ratios = rows
+            .map((row) => this._finiteOrNull(picker(row)))
+            .filter((value) => value !== null);
+        if (ratios.length === 0) return "insufficient_data";
+        const mean = ratios.reduce((sum, value) => sum + value, 0) / ratios.length;
+        if (mean >= this.cfg.high_reproducibility_ratio) return "high";
+        if (mean >= this.cfg.medium_reproducibility_ratio) return "medium";
+        return "low";
+    }
+
+    _pairwiseCountRatio(row) {
+        const checks = [
+            this._withinDelta(row?.evidence?.h1_count_delta, 0, 2),
+            this._withinDelta(row?.evidence?.m1_count_delta, 0, 2),
+            this._withinDelta(row?.evidence?.anomaly_count_delta, 0, 1),
+            this._withinDelta(row?.evidence?.state_count_delta, 0, 2),
+            this._withinDelta(row?.evidence?.basin_count_delta, 0, 1),
+            this._withinDelta(row?.evidence?.segment_count_delta, 0, 0),
+        ];
+        return this._safeRatio(checks.filter(Boolean).length, checks.length);
+    }
+
+    _pairwiseSupportRatio(row) {
+        const checks = [
+            this._withinDelta(row?.evidence?.h1_band_profile_distance, 0, 0.2),
+            this._withinDelta(row?.evidence?.m1_band_profile_distance, 0, 0.2),
+            this._withinDelta(row?.evidence?.basin_band_profile_distance, 0, 0.2),
+            this._withinDelta(row?.evidence?.dominant_frequency_delta, 0, 1.0),
+            this._withinDelta(row?.evidence?.state_duration_delta, 0, 0.5),
+        ];
+        return this._safeRatio(checks.filter(Boolean).length, checks.length);
+    }
+
+    _pairwiseTransitionRatio(row) {
+        const checks = [
+            this._withinDelta(row?.evidence?.total_transitions_delta, 0, 2),
+            this._withinDelta(row?.evidence?.total_re_entries_delta, 0, 1),
+            this._withinDelta(row?.evidence?.transition_density_delta, 0, 0.2),
+            this._withinDelta(row?.evidence?.recurrence_delta, 0, 1),
+        ];
+        return this._safeRatio(checks.filter(Boolean).length, checks.length);
+    }
+
+    _pairwiseBasinRatio(row) {
+        const checks = [
+            this._withinDelta(row?.evidence?.basin_count_delta, 0, 1),
+            this._withinDelta(row?.evidence?.basin_radius_delta, 0, 0.25),
+            this._withinDelta(row?.evidence?.basin_member_count_delta, 0, 1),
+        ];
+        return this._safeRatio(checks.filter(Boolean).length, checks.length);
+    }
 
     _finiteOrZero(v) {
         return Number.isFinite(v) ? v : 0;

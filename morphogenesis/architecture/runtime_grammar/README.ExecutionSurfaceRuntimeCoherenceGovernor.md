@@ -2,248 +2,155 @@
 
 ## Status
 
-This document is an operational companion surface within the active runtime
-grammar corpus for `ExecutionSurface`.
+This document classifies runtime-side transformations by coherence effect and
+prevents packaging or projection from outranking upstream runtime objects.
 
-It does not replace:
-
-- `README.ExecutionSurfaceRuntimeObjectGrammar.md`
-- `README.ExecutionSurfaceRuntimeEmissionAuthorityGrammar.md`
-- `README.ExecutionSurfaceRuntimeSeamLedger.md`
-
-Its role is narrower:
-
-- classify runtime-side transformations by coherence effect
-- prevent coherence inflation from silently becoming runtime authority
-- keep lawful descriptor compression distinct from semantic smoothing
-
----
+It is an operational companion surface within the runtime grammar corpus.
 
 ## Purpose
 
-ExecutionSurface already distinguishes:
+The core question is:
 
-- structural objects
-- support objects
-- receipt summaries
-- read-side projections
-- optional semantic overlays
+**Did a runtime-side step make the output look more unified, complete, or
+legible than its upstream objects actually justify?**
 
-What was still missing was a compact enforcement grammar for this question:
+This governor exists to keep that from silently becoming runtime authority.
 
-**Did a runtime-side transformation increase apparent coherence beyond what its
-upstream structural or support grounding can justify?**
+## Core invariant
 
-This file exists to answer that question without widening runtime doctrine into
-semantic policy or subjective style judgment.
+No runtime-side transformation may increase apparent coherence beyond what its
+declared upstream objects and relations justify.
 
----
+If a step crosses that line, it may remain as optional or diagnostic material,
+but it may not become primary runtime truth.
 
-## Core Invariant
+## Classification ladder
 
-No runtime-side transformation may increase apparent coherence beyond what is
-structurally or support-wise justified by its declared upstream objects.
+### RC0 - structure-preserving
 
-If a transformation crosses that line, it may still exist as an optional or
-diagnostic surface, but it must not become primary runtime authority.
+The step preserves source geometry or coordinate-bearing structure without
+changing authority class.
 
----
+Examples:
 
-## Non-Goals
+- ingest
+- alignment
+- windowing
+- transform
 
-This governor does not:
+### RC1 - support-deriving
 
-- ban lawful support recruitment
-- ban lawful descriptor compression
-- ban bounded read-side projections
-- require maximal verbosity or maximal object exposure everywhere
-- treat every summary as inflation
+The step derives support from lawful upstream structure.
 
-It is not an anti-compression doctrine.
-It is an anti-unfounded-coherence doctrine.
-
----
-
-## Classification Ladder
-
-Runtime-side transformations should be classified as one of the following:
-
-### RC0 - Structure-Preserving
-
-The step preserves structural composition without adding new coherence claims.
-
-Typical examples:
-
-- deterministic ingest normalization
-- explicit framing / segmentation that remains provenance-bound
-- structural transforms that keep geometry primary
-
-### RC1 - Support-Deriving
-
-The step recruits mathematical support from structure under declared reduction,
-comparison, clustering, replay, or retrieval rules.
-
-Typical examples:
+Examples:
 
 - `H1` recruitment
+- novelty evidence
+- merge
 - basin formation
-- trajectory support derivation
-- query support derivation
+- trajectory frame creation
+- query/replay over committed support
 
-### RC2 - Descriptor-Compressing
+### RC2 - topology-preserving packaging
 
-The step compresses already lawful structural or support objects into bounded
-descriptor surfaces without changing their authority class.
+The step compresses or packages lawful objects while preserving typed identity,
+relation posture, and reconstructable geometry.
 
-Typical examples:
+Examples:
 
-- state support descriptor exposure
-- basin support descriptor exposure
-- trajectory support descriptor exposure
-- replay support descriptor exposure
+- typed refs
+- bounded object cards
+- induced subgraph packets
 
-### RC3 - Projection-Assembling
+### RC3 - projection-assembling
 
-The step assembles bounded read-side views from lawful upstream objects and
-descriptors while remaining explicitly non-authoritative.
+The step assembles bounded read-side projections over lawful upstream objects.
 
-Typical examples:
+Examples:
 
-- workbench integration views
-- LM staging packets
-- reconstruction support summaries
-- bounded comparative support views
+- workbench
+- cross-run comparison report
+- LM staging packet
+- provenance marker receipt
 
-### RC4 - Coherence-Inflating
+### RC4 - coherence-inflating
 
-The step adds interpretive smoothness, semantic closure, synthetic unification,
-or apparent completeness that is not fully justified by the declared upstream
-objects or descriptors.
+The step adds smoothness, closure, or apparent completeness not justified by
+upstream objects and relations.
 
-Typical examples:
+Examples:
 
-- semantic overlay becoming necessary to read runtime shape
-- receipt-led packets standing in for support composition
-- interpretive aliasing that blurs object-class boundaries
-- prose or labels that imply stronger unity than the upstream objects support
+- receipt-only packets treated as runtime truth
+- semantic overlays becoming necessary
+- transport packets that erase typed identity
+- projections that imply stronger continuity than upstream support warrants
 
----
-
-## Hard Rules
+## Hard rules
 
 ### Rule 1 - RC4 may not carry primary runtime authority
 
-An `RC4` output may not become:
+`RC4` outputs may not become:
 
 - runtime transformation authority
 - runtime support authority
 - substrate storage law
-- default runtime admission dependency
+- commit-boundary law
 
-At most, it may remain:
-
-- optional
-- explicitly labeled
-- removable
-- read-side only
-- subordinate to lawful upstream structure/support surfaces
-
-### Rule 2 - RC3 must remain visibly non-authoritative
+### Rule 2 - RC3 must stay visibly secondary
 
 Projection assembly is lawful only when:
 
 - upstream object families are named
-- omitted material is bounded honestly
-- subordinate receipts remain secondary
-- the projection can disappear without collapsing runtime authority
+- omissions are explicit
+- typed identity is preserved where relevant
+- the projection can disappear without collapsing runtime truth
 
-### Rule 3 - RC2 must not secretly become RC4
+### Rule 3 - RC2 must preserve reconstructability
 
-Descriptor compression is lawful only when it preserves declared class and
-traceability.
+Packaging is lawful only when it keeps enough structure to reconstruct:
 
-If descriptor exposure begins to smuggle in interpretation, closure, or
-semantic necessity, it should be reclassified as `RC4`.
+- what object is being packaged
+- what family it belongs to
+- what relations remain active
+- what was omitted
 
-### Rule 4 - Receipts cannot launder coherence
+### Rule 4 - receipts cannot launder coherence
 
-A receipt remains subordinate even if it is convenient, stable, compact, or
-repeatedly used.
+Receipt repetition or convenience does not upgrade receipt authority.
 
-Receipt convenience does not upgrade receipt authority.
+## Diagnostic questions
 
----
+When evaluating a seam, ask:
 
-## Diagnostic Questions
+1. What upstream object or relation family supports this output?
+2. What typed identity remains visible?
+3. What geometry or relation posture was omitted?
+4. Could the same task have been done with a direct object, typed ref, or bounded object card instead?
+5. If this surface disappeared, would runtime truth remain intact?
 
-When evaluating a runtime-side seam or emitted surface, ask:
+If question 5 is answered with `no`, the surface is over-authoritative and
+should be investigated as `RC4`.
 
-1. What upstream object family supports this output?
-2. What authority class does that upstream object carry?
-3. What was omitted?
-4. Did the step add interpretation not present in the upstream structure or
-   support objects?
-5. Can the output be traced back to one named object family or descriptor
-   family?
-6. If this surface disappeared, would runtime authority still remain intact?
+## Default runtime posture
 
-If question 6 is answered with `no`, the surface is likely over-authoritative
-and should be investigated for `RC4` inflation.
+Default posture should remain:
 
----
-
-## Default Runtime Posture
-
-Default runtime posture should remain:
-
-- `RC0` through `RC2` on runtime-authoritative seams
-- `RC3` only on explicitly read-side or staging seams
+- `RC0` through `RC1` on runtime-authoritative seams
+- `RC2` through `RC3` on bounded read-side seams only
 - `RC4` excluded from default runtime authority
 
-This means the governor should bias toward:
+## Current high-attention seams
 
-- richer structural/support exposure
-- descriptor-led packaging
-- removable projections
-- explicit optionality for semantic overlays
+The seams most likely to need this governor are:
 
-It should not bias toward disabling lawful compression or useful bounded views.
-
----
-
-## Seam Consequences
-
-The seams most likely to need this governor are already known:
-
-- `Orchestrator runtime receipt seam`
-- `Orchestrator result assembly seam`
-- `Workbench runtime section seam`
-- `Workbench semantic overlay seam`
-- `LM wrapper extraction seam`
 - `Cross-run report seam`
+- `LM wrapper extraction seam`
+- `Live provenance seam`
+- `Provenance digest seam`
+- `Reconstruction support staging seam`
 
-The structural and direct support seams lower in the pipeline should mostly
-classify as `RC0` or `RC1` unless they begin exporting flattened substitutes.
+## One-line summary
 
----
-
-## Failure Posture
-
-When a seam is judged `RC4`, the default response is not to erase it blindly.
-
-The default response is to do one of:
-
-- downgrade it to optional read-side material
-- relabel it as transitional
-- replace it with descriptor-led exposure
-- remove it from default runtime flow
-
-This governor is therefore corrective, not punitive.
-
----
-
-## One-Line Summary
-
-The Runtime Coherence Governor classifies runtime-side transformations by how
-much coherence they add beyond declared structural or support grounding and
-prevents coherence-inflating outputs from becoming default runtime authority.
+The Runtime Coherence Governor now treats the main risk as over-flattening or
+over-unifying lawful runtime objects, and it prevents those packaging steps
+from becoming default runtime truth.

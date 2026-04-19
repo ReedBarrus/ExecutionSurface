@@ -344,16 +344,13 @@ const bad1 = session.addRun({ ok: false, error: "BAD" });
 eq(bad1.ok, false, "B3: failed run rejected");
 eq(bad1.error, "INVALID_RUN", "B4: failed run -> INVALID_RUN");
 
-const missingInterp = {
+const missingShape = {
     ok: true,
     artifacts: {},
-    substrate: {},
-    summaries: {},
-    audit: {},
 };
-const bad2 = session.addRun(missingInterp);
-eq(bad2.ok, false, "B5: run missing interpretation rejected");
-eq(bad2.error, "INVALID_RUN", "B6: run missing interpretation -> INVALID_RUN");
+const bad2 = session.addRun(missingShape);
+eq(bad2.ok, false, "B5: run missing structural/support surfaces rejected");
+eq(bad2.error, "INVALID_RUN", "B6: run missing structural/support surfaces -> INVALID_RUN");
 
 const addA = session.addRun(runA);
 eq(addA.ok, true, "B7: addRun(runA) ok");

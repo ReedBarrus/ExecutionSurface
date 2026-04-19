@@ -31,8 +31,6 @@ import { QueryOp } from "../operators/query/QueryOp.js";
 
 import { SegmentTracker } from "../operators/trajectory/SegmentTracker.js";
 import { MemorySubstrate } from "../operators/substrate/MemorySubstrate.js";
-import { TrajectoryInterpretationReport } from "./TrajectoryInterpretationReport.js";
-import { AttentionMemoryReport } from "./AttentionMemoryReport.js";
 
 export class DoorOneOrchestrator {
     /**
@@ -71,9 +69,6 @@ export class DoorOneOrchestrator {
         this._currentBaseline = null;
         this._a1 = null;
         this._a2 = null;
-
-        this._trajectoryInterpretation = new TrajectoryInterpretationReport();
-        this._attentionMemory = new AttentionMemoryReport();
     }
 
     /**
@@ -344,8 +339,6 @@ export class DoorOneOrchestrator {
             skippedWindows: this._skippedWindows,
             mergeFailures,
             segTracker: this._segTracker,
-            trajectoryInterpreter: this._trajectoryInterpretation,
-            attentionMemoryInterpreter: this._attentionMemory,
         });
     }
 
@@ -402,8 +395,6 @@ function buildResult({
     skippedWindows,
     mergeFailures,
     segTracker,
-    trajectoryInterpreter,
-    attentionMemoryInterpreter,
 }) {
     const substrateSummary = substrate.summary();
     const trajSummary = substrate.trajectory.summary();
@@ -460,12 +451,6 @@ function buildResult({
         runtime_receipt: runtimeReceipt,
     };
 
-    const trajectoryInterpretation = trajectoryInterpreter.interpret(baseInput);
-    const attentionMemory = attentionMemoryInterpreter.interpret(
-        baseInput,
-        trajectoryInterpretation
-    );
-
     return {
         ok: true,
         artifacts: baseInput.artifacts,
@@ -485,14 +470,6 @@ function buildResult({
             segtracker: segSummary,
         },
         runtime_receipt: runtimeReceipt,
-        semantic_overlay: {
-            trajectory: trajectoryInterpretation,
-            attention_memory: attentionMemory,
-        },
-        interpretation: {
-            trajectory: trajectoryInterpretation,
-            attention_memory: attentionMemory,
-        },
         audit: {
             skipped_windows: skippedWindows,
             merge_failures: mergeFailures,

@@ -2,428 +2,153 @@
 
 ## Status
 
-This document is part of the shared active runtime grammar authority for
-`ExecutionSurface`.
+This document defines what each runtime seam may emit and what authority those
+emissions do or do not carry.
 
-It defines what each runtime seam may emit and what authority those emissions do
-or do not carry.
+It is part of the active runtime grammar corpus.
 
-It should be read together with:
+## Corrective posture
 
-- `README.ExecutionSurfaceRuntimeObjectGrammar.md`
-- `README.ExecutionSurfaceRuntimeChainMap.md`
-- `README.ExecutionSurfaceRuntimeSeamLedger.md`
+The runtime now follows an object-first emission rule:
 
-## Purpose
+- direct structural/support objects first
+- typed refs second
+- bounded packaging third
+- receipts last and always subordinate
 
-This file exists to prevent runtime seams from becoming mixed convenience bundles
-whose labels are honest but whose packaging still encourages overread.
+Default runtime authority excludes semantic overlay, interpretation aliases, and
+receipt-led shape.
 
-Its main corrective posture is:
+Direct support-object exposure is mandatory wherever the seam can honestly
+carry `H1`, `M1`, or `MemoryObject`.
 
-- receipts are convenience only
-- receipts do not determine runtime shape
-- default runtime authority excludes semantic overlay
+## Authority bands
 
-## Authority Bands
+### Runtime transformation authority
 
-### Runtime Transformation Authority
+Belongs to lawful deterministic transformation of admitted input through the
+structural path.
 
-This authority is limited to lawful deterministic transformation of admitted
-input and preservation of lineage and policy anchors.
+### Runtime support authority
 
-It belongs to the structural path through `S1`.
+Begins at support recruitment and covers support comparison, storage, clustering,
+retrieval, and replay under explicit non-claims.
 
-### Runtime Support Authority
+### Read-side projection authority
 
-This authority is limited to lawful support recruitment, support comparison,
-support storage, support clustering, support retrieval, and support replay under
-bounded non-claims.
+Limited to bounded inspection, comparison, staging, and rendering over lawful
+upstream objects.
 
-It begins at `H1`.
+This is not runtime substance.
 
-### Subordinate Audit Authority
+### Subordinate audit authority
 
-This authority is limited to receipts, validator results, benchmark results, and
-other bounded audit surfaces.
+Receipts, validators, benchmarks, and compact transport artifacts.
 
-It must never be mistaken for runtime substance.
+Useful, but never truth-bearing by themselves.
 
-### Read-Side Projection Authority
+## Emission laws
 
-This is not runtime authority in the transformation sense.
+### Law 1: direct object priority
 
-It is limited to bounded inspection, staging, comparison, and rendering over
-lawful upstream objects.
+If a seam can honestly emit the direct object family, it should.
 
-It must remain explicitly non-authoritative relative to runtime substance.
+It should not collapse early into descriptors, summaries, or receipts for
+convenience.
 
-## Mechanism Strata
+For support-bearing continuity, this is not merely a preference.
 
-Emission law should be read through the following mechanism strata:
+It is a mandatory rule.
 
-- `Operator seam`
-- `Pipeline coordination function`
-- `Substrate boundary / surface`
-- `Read-side function`
-- `Transitional bridge`
+### Law 2: typed ref before packaging
 
-These strata are not interchangeable and should not be described as if they
-carry the same kind of authority.
+If a seam cannot bear the full object honestly or practically, it should prefer:
 
-## Emission Laws
+1. typed ref
+2. bounded object card
+3. compact derived projection
 
-### Law 1: Structural Seams
+Only after those fail should a receipt-like surface carry the load.
 
-Structural seams may emit:
+### Law 3: receipts are subordinate
 
-- one structural object
-- subordinate receipts
+Receipts may accompany any lawful seam.
 
-Structural seams must not emit:
+Receipts must not determine runtime shape, replace object carriage, or act as
+default evidence above `H1`.
 
-- semantic overlays
-- receipt-only substitutes for structural objects
+Index entries and corpus views share this subordinate posture.
 
-### Law 2: Support Recruitment Seams
+They must not masquerade as committed substrate truth.
 
-Support recruitment seams may emit:
+### Law 4: no default semantic dependency
 
-- one support object
-- subordinate receipts
-- bounded subordinate support observations when explicitly declared
+Default runtime, cross-run, reconstruction, LM staging, and provenance staging
+must not require semantic overlay, interpretation aliases, or compatibility
+mirrors.
 
-Support recruitment seams must not emit:
+### Law 5: mixed seams must preserve class split
 
-- semantic interpretation as part of default runtime authority
-- receipt-only substitutes for support objects
-
-### Law 3: Mixed Emission Restriction
-
-One seam may not casually bundle:
+If a seam assembles multiple families, it must keep them explicitly separated:
 
 - structural objects
 - support objects
-- interpretive overlays
+- substrate state
+- derived projections
+- audit surfaces
 
-inside one convenience packet without an explicit class split and explicit
-non-authority posture.
+Mixed convenience bundles without class separation are malformed.
 
-Even where labels are honest, mixed packaging is a risk seam and should be
-tightened or re-derived.
+## Seam map
 
-### Law 4: Receipt Subordination
-
-Receipts may accompany any seam lawfully.
-
-Receipts must remain:
-
-- subordinate
-- explicitly secondary
-- incapable of determining runtime shape by themselves
-
-### Law 5: No Default Semantic Dependency
-
-Default runtime admission, storage, cross-run comparison, reconstruction
-support, and LM staging must not require semantic overlay presence.
-
-### Law 6: No Compatibility Alias Bridges In Default Runtime
-
-Compatibility aliases that duplicate interpretive material across multiple names
-should not remain in the default runtime posture.
-
-They weaken provenance legibility and encourage overread across class
-boundaries.
-
-## Default Emission Grammar By Stratum
-
-### Operator Seams
-
-Allowed:
-
-- one structural or support object family at a time
-- subordinate receipts
-
-Not allowed by default:
-
-- semantic overlays
-- compatibility aliases
-- mixed convenience bundles of multiple authority classes
-
-### Pipeline Coordination Functions
-
-Allowed:
-
-- lawful routing of upstream objects
-- bounded assembly of sections that remain class-distinct
-- subordinate receipts
-
-Not allowed by default:
-
-- semantic duplication as runtime necessity
-- receipt-led substitution for missing descriptors
-- mixed class packaging without explicit split and explicit non-authority posture
-
-### Substrate Boundaries / Surfaces
-
-Allowed:
-
-- support objects
-- relation objects
-- subordinate receipts
-
-Not allowed by default:
-
-- semantic overlays as part of substrate storage law
-- receipts as stand-ins for support state composition
-
-### Read-Side Functions
-
-Allowed:
-
-- retrieval
-- replay
-- comparison
-- validation
-- staging
-- rendering
-- subordinate receipts
-
-Not allowed by default:
-
-- hidden runtime mutation
-- identity closure
-- semantic dependency for lawful admission unless explicitly declared as optional
-
-### Transitional Bridges
-
-Allowed only temporarily:
-
-- compatibility shims
-- mirrored fields
-- staged fallback packaging
-
-Default posture:
-
-- transitional bridges should be explicitly labeled
-- transitional bridges should be removable
-- transitional bridges should not be depended on by later durable seams
-
-## Default Emission Grammar By Region
-
-### Orchestrator Assembly
-
-Should emit:
-
-- structural and support sections only
-- bounded support descriptors
-- subordinate runtime receipt
-
-Should not emit by default:
-
-- semantic overlay
-- top-level interpretation aliasing
-
-### Workbench Integration
-
-Should emit:
-
-- bounded structural-support integration view
-- subordinate workbench receipt
-
-Should not emit by default:
-
-- semantic overlay duplication
-- compatibility aliases
-
-### Cross-Run Comparison
-
-Should emit:
-
-- structural-support comparison descriptors
-- reproducibility posture
-- subordinate comparison receipts
-
-Should not depend on:
-
-- interpretive label families for admission
-- optional semantic overlays for lawful comparison
-
-### LM Wrapper
-
-Should consume:
-
-- bounded support descriptors
-- subordinate receipts where helpful
-
-Should not consume by default:
-
-- semantic overlays as required input
-
-## Descriptor Routing Rule
-
-Descriptor families should route to seams as follows:
-
-- state support descriptors: orchestrator assembly, workbench runtime section,
-  LM staging, cross-run comparison
-- basin support descriptors: substrate read-side exposure, workbench runtime
-  section, cross-run comparison
-- trajectory support descriptors: substrate read-side exposure, orchestrator
-  assembly, cross-run comparison, workbench runtime section
-- query support descriptors: query seam output, orchestrator assembly,
-  workbench runtime section, LM staging when query is present
-- replay support descriptors: replay seam output, reconstruction support staging,
-  workbench runtime section when replay is present
-
-## Seam-By-Seam Descriptor Emission Map
-
-This table is the active routing skeleton for Phase 2 tightening.
-
-It defines, seam by seam:
-
-- what descriptor families are allowed
-- what receipts may remain subordinate
-- what should be removed or prohibited by default
-
-| Seam | Mechanism Stratum | Default Emitted Family | Allowed Descriptor Families | Allowed Subordinate Surfaces | Default Prohibited / To Remove | Active Correction Target |
-| --- | --- | --- | --- | --- | --- | --- |
-| `Ingest seam` | `Operator seam` | `Structural object` | none | ingest and sequence receipts | support descriptors, semantic overlays, receipt-only substitution | keep structural only |
-| `Clock alignment seam` | `Operator seam` | `Structural object` | none | alignment receipts | support descriptors, semantic overlays, receipt-only substitution | keep structural only |
-| `Windowing seam` | `Operator seam` | `Structural object` | none | window receipts | support descriptors, semantic overlays, receipt-only substitution | keep structural only |
-| `Transform seam` | `Operator seam` | `Structural object` | none | transform receipts | support descriptors, semantic overlays, receipt-only substitution | keep structural only |
-| `Support recruitment seam` | `Operator seam` | `Support object` | none at emission; source object is `H1` | compression receipts and gates | semantic overlays, receipt-only substitution | preserve `H1` as primary support carrier |
-| `Novelty evidence seam` | `Operator seam` | `Support object` | none at emission; source object is `An` | anomaly receipts | semantic overlays, semantic narration | preserve `An` as primary novelty carrier |
-| `Segmentation bookkeeping seam` | `Pipeline coordination function` | `Support object` | none at emission; source object is `SegmentTransition` | transition bookkeeping fields | semantic overlays, identity claims | preserve bounded transition object |
-| `Substrate commit seam` | `Substrate boundary / surface` | `Support object host` | none; this seam admits stored support objects rather than exporting descriptors by default | commit receipts, trajectory push metadata | semantic overlays, receipt-only substrate identity | preserve lawful commit boundary |
-| `Trajectory surface seam` | `Substrate boundary / surface` | `Support object` | `Trajectory support descriptor` | trajectory summaries, bounded receipts | semantic trajectory overlays, count-only packets as sole exposure | expose trajectory descriptor directly |
-| `Basin formation seam` | `Substrate boundary / surface` | `Support object` | `Basin support descriptor` | basin receipts | semantic basin narration, count-only packets as sole exposure | expose basin descriptor directly |
-| `Query seam` | `Read-side function` | `Support object` | `Query support descriptor` | query receipts | symbolic interpretation, ontological labeling | expose query descriptor directly |
-| `Merge seam` | `Operator seam` | `Support object` | none at emission; source object is `M1` | merge receipts | semantic overlays, receipt-only substitution | preserve `M1` as primary support carrier |
-| `Replay seam` | `Read-side function` | `Support object` | `Replay support descriptor` | reconstruct receipts | raw restoration claims, semantic overlays as replay necessity | expose replay descriptor directly |
-| `Orchestrator runtime receipt seam` | `Pipeline coordination function` | `Receipt summary` | none | `runtime_receipt` only | receipt-led runtime shape | subordinate receipt only |
-| `Orchestrator result assembly seam` | `Pipeline coordination function` | `Read-side projection` | `State support descriptor`, `Trajectory support descriptor`, `Query support descriptor`, `Replay support descriptor` when present | subordinate `runtime_receipt` | `semantic_overlay`, top-level `interpretation`, count-only runtime packets as sole exposure | rebuild around support descriptors |
-| `Trajectory interpretation seam` | `Read-side function` | `Semantic overlay` | none in default runtime | none | default dependency, runtime authority | remove from default posture |
-| `Attention/memory interpretation seam` | `Read-side function` | `Semantic overlay` | none in default runtime | none | default dependency, runtime authority | remove from default posture |
-| `Cross-run session admission seam` | `Pipeline coordination function` | `Read-side projection` | none directly; should admit runs with descriptor-capable runtime sections | bounded admission receipts | interpretive overlays as admission requirement | admit on structural-support basis |
-| `Cross-run report seam` | `Read-side function` | `Read-side projection` | `State support descriptor`, `Basin support descriptor`, `Trajectory support descriptor`, `Query support descriptor` when present | comparison receipts | interpretive label families as comparison basis | re-derive on structural-support descriptors |
-| `Workbench runtime section seam` | `Pipeline coordination function` | `Read-side projection` | `State support descriptor`, `Basin support descriptor`, `Trajectory support descriptor`, `Query support descriptor`, `Replay support descriptor` when present | subordinate `workbench_receipt` | count-heavy packets as sole exposure | rebuild as descriptor-led integration view |
-| `Workbench receipt seam` | `Pipeline coordination function` | `Receipt summary` | none | `workbench_receipt` only | receipt-led runtime shape | subordinate receipt only |
-| `Workbench semantic overlay seam` | `Pipeline coordination function` | `Semantic overlay` | none in default runtime | none | default runtime dependency | remove |
-| `Workbench compatibility alias seam` | `Transitional bridge` | `Semantic overlay` | none | transitional bridge only | durable dependency, provenance blur | remove entirely |
-| `LM wrapper extraction seam` | `Read-side function` | `Read-side projection` | `State support descriptor`, `Trajectory support descriptor`, `Query support descriptor` when present, `Replay support descriptor` when present | subordinate receipts when helpful | semantic overlays as required input, count-only packet as final target | retune packet around support descriptors |
-| `LM output validation seam` | `Read-side function` | `Read-side projection` | none; validates bounded LM output against upstream descriptor-based input | validation receipts | hidden write authority, widened authority posture | keep bounded validation seam |
-| `Reconstruction runtime support collection seam` | `Read-side function` | `Read-side projection` | `Replay support descriptor`, `State support descriptor` when needed for source support basis | reconstruction receipts | semantic overlays as required support basis | keep structural-support basis only |
-| `Reconstruction interpretive support seam` | `Read-side function` | `Semantic overlay` | none in default runtime | none | default support basis, widened interpretation reliance | remove |
-| `Probe receipt seam` | `Read-side function` | `Receipt summary` | none | probe receipts only | runtime authority, write authority | keep advisory-only |
-
-## Runtime Seam And Authority Grammar Compression
-
-Downstream mixed seams may assemble, stage, compare, validate, or expose lawful upstream structural and support objects through bounded support descriptors, read-side projections, and subordinate receipts.
-
-They may not treat semantic overlays, compatibility aliases, receipt-only summaries, hidden write authority, identity closure, truth posture, or canon posture as default runtime authority.
-
-Any downstream seam whose current usefulness depends on semantic overlay, compatibility aliasing, or receipt-only exposure above `H1` must be tightened, re-derived, removed, or quarantined before `Support Descriptor Contract Family` opens broadly.
-
-### Target mixed-seam classifications
-
-| Seam | Mechanism stratum | Allowed authority | Allowed default emission | Prohibited default emission | Forward posture |
+| Seam | Mechanism stratum | Default emitted family | Allowed subordinate surfaces | Prohibited default emission | Current posture |
 | --- | --- | --- | --- | --- | --- |
-| `Orchestrator result assembly seam` | `Pipeline coordination function` | `Read-side projection only` with subordinate audit | class-distinct structural/support sections, allowed support descriptors, subordinate `runtime_receipt` | semantic overlay as runtime dependency, top-level interpretation alias, receipt-only substitute above `H1`, hidden write authority, identity/truth/canon claims | `Re-derive` |
-| `Workbench runtime section seam` | `Pipeline coordination function` | `Read-side projection only` with subordinate audit | descriptor-led structural/support integration view, subordinate `workbench_receipt` | count-heavy packet as sole exposure, semantic overlay dependency, compatibility aliases, hidden write authority, identity/truth/canon claims | `Tighten` |
-| `Workbench compatibility alias seam` | `Transitional bridge` | `Transitional compatibility only` until removed | no durable default emission; temporary compatibility shim only when explicitly labeled | compatibility alias as durable law, semantic mirror as runtime necessity, provenance blur, receipt/object substitution | `Remove` |
-| `Cross-run session admission seam` | `Pipeline coordination function` | `Read-side projection only` for run admission | descriptor-capable runtime section admission, bounded admission receipt | interpretive overlay admission requirement, semantic label family dependency, hidden promotion/truth/canon posture | `Re-derive` |
-| `Cross-run report seam` | `Read-side function` | `Read-side projection only` with subordinate comparison receipts | descriptor-led structural/support comparison posture, reproducibility posture, subordinate comparison receipts | interpretive label comparison as default basis, semantic overlay dependency, truth/canon/same-object closure | `Re-derive` |
-| `LM wrapper extraction seam` | `Read-side function` | `Read-side projection only` | bounded descriptor-fed LM input view, subordinate receipts when useful | semantic overlay as required input, count-only packet as final target, hidden write authority, agent authority inflation | `Tighten` |
-| `Reconstruction runtime support collection seam` | `Read-side function` | `Read-side projection only` over runtime support | replay/state descriptor support basis, reconstruction receipts | interpretive support as required basis, raw restoration claim, source-equivalence proof, hidden enhancement | `Tighten` |
-| `Reconstruction interpretive support seam` | `Read-side function` | optional downstream read-side interpretation only | none in default runtime authority; optional overlay only when explicitly separated | default reconstruction support basis, widened interpretation reliance, semantic overlay as support authority | `Remove` |
+| `Ingest seam` | `Operator seam` | direct structural object | ingest receipt | semantic overlay, receipt-only substitution | keep direct |
+| `Clock alignment seam` | `Operator seam` | direct structural object | alignment receipt | semantic overlay, receipt-only substitution | keep direct |
+| `Windowing seam` | `Operator seam` | direct structural object | window receipt | semantic overlay, receipt-only substitution | keep direct |
+| `Transform seam` | `Operator seam` | direct structural object | transform receipt | semantic overlay, receipt-only substitution | keep direct |
+| `Support recruitment seam` | `Operator seam` | direct support object `H1` | compression receipt | semantic overlay, summary-first substitution | keep direct |
+| `Novelty evidence seam` | `Operator seam` | direct support object `An` | anomaly receipt | semantic narration as runtime authority | keep direct |
+| `Merge seam` | `Operator seam` | direct support object `M1` | merge receipt | semantic overlay, summary-first substitution | keep direct |
+| `Substrate commit seam` | `Substrate boundary / surface` | lawful support payload bound into `MemoryObject` | commit receipt | receipt-led substrate identity, corpus-only identity | freeze as commit target |
+| `Trajectory surface seam` | `Substrate boundary / surface` | direct trajectory frames or typed trajectory refs | bounded summary when needed | count-only sole exposure, semantic overlay | tighten toward direct/typed |
+| `Basin formation seam` | `Substrate boundary / surface` | direct basin objects | basin receipt | count-only sole exposure, semantic overlay | tighten toward direct/typed |
+| `Query seam` | `Read-side function` | direct query artifact | query receipt | symbolic interpretation, ontological labeling | keep direct |
+| `Replay seam` | `Read-side function` | direct replay artifact | reconstruct receipt | raw restoration claim, semantic overlay | keep direct |
+| `Orchestrator result assembly seam` | `Pipeline coordination function` | class-distinct direct object sections | subordinate `runtime_receipt` | semantic overlay, interpretation alias, receipt-led runtime shape | active direct posture |
+| `Workbench runtime section seam` | `Pipeline coordination function` | class-distinct direct object sections | subordinate `workbench_receipt`, bounded notes | compatibility aliases, semantic overlay, count-only runtime packet | active direct posture |
+| `Cross-run session admission seam` | `Pipeline coordination function` | direct structural/support basis for admission | admission receipt | interpretation requirement | active direct posture |
+| `Cross-run report seam` | `Read-side function` | bounded comparison projection derived from direct objects | comparison receipts | semantic comparison basis, authority inflation | lawful compression seam |
+| `LM wrapper extraction seam` | `Read-side function` | bounded transport projection over direct runtime sections | validation receipts | receipt-only final truth packet, semantic dependency | still too compressed |
+| `LM output validation seam` | `Read-side function` | validated bounded LM output | validation receipts | hidden write authority, widened authority posture | keep bounded |
+| `Reconstruction support collection seam` | `Read-side function` | direct replay/state support basis or typed refs | reconstruction receipts | interpretive support dependency | active direct posture |
+| `Provenance receipt seam` | `Read-side function` | compact structural marker projection | durable receipts | runtime substitution, semantic overlay dependency | lawful compression seam |
+| `Probe receipt seam` | `Read-side function` | advisory-only probe receipts | probe receipts | runtime authority, semantic authority | keep advisory-only |
 
-### Allowed emissions for the mixed downstream band
+## Mixed downstream band rule
 
-The mixed downstream band may emit or route:
+Downstream mixed seams may assemble, compare, stage, validate, or transport
+lawful upstream objects.
 
-- bounded read-side projections that preserve class separation
-- support descriptors routed from lawful upstream support objects
-- subordinate receipts for audit, validation, comparison, admission, or transport
-- optional semantic overlays only when explicitly downstream and non-default
-- temporary transitional bridges only when explicitly named, removable, and not used as later durable dependencies
+They must not:
 
-### Prohibited emissions for the mixed downstream band
+- replace objects with receipts by default
+- replace objects with descriptors or index entries by default
+- smuggle semantic overlay back in as dependency
+- hide write authority in packaging
+- flatten support composition into counts unless bounded transport truly requires it
 
-The mixed downstream band must not emit by default:
+## Current correction target
 
-- semantic overlay as runtime dependency
-- compatibility alias as durable law
-- receipt-only substitute above `H1`
-- hidden write authority
-- hidden memory retention or promotion
-- identity closure
-- truth claims
-- canon posture
-- source-equivalence or raw restoration claims
-- agent authority inflation
+The correction target is now:
 
-### Transitional-material posture
+1. keep direct object exposure primary in orchestrator, workbench, and substrate-facing seams
+2. move LM staging from receipt-heavy packets toward typed object refs or bounded object cards
+3. keep cross-run and provenance digests clearly labeled as derived comparison or audit layers
+4. remove interpretation-bearing probes and any test that hardens semantic drift as value
 
-Compatibility aliases, semantic mirrors, count-heavy convenience packets, and interpretive support dependencies are transitional material when they remain necessary for repo continuity.
+## One-line summary
 
-They may be tolerated only when explicitly labeled, removable, and subordinate to lawful upstream structural/support objects and support descriptors.
-
-They must not become descriptor-contract inputs, implementation proof targets, runtime authority, or default dependencies for cross-run admission, workbench exposure, LM staging, or reconstruction support.
-
-### Support Descriptor Contract Family opening condition
-
-`Support Descriptor Contract Family` may open only after this seam-authority grammar is stable enough that descriptor contracts will not harden:
-
-- semantic overlays as default runtime authority
-- compatibility aliases as durable law
-- receipt-only exposure above `H1`
-- mixed read-side projections without explicit non-authority posture
-- hidden write, identity, truth, canon, promotion, or source-equivalence claims
-
-The next descriptor-contract opening should either:
-
-- open the full first descriptor family only if Reflector and Auditor confirm the mixed downstream band is sufficiently bounded; or
-- open a first narrow slice for `State support descriptor` with explicit routing and non-claim limits if any seam-class tension remains.
-
-## Phase 2 Descriptor Priorities
-
-The descriptor families should be implemented in this order:
-
-1. `State support descriptor`
-2. `Trajectory support descriptor`
-3. `Basin support descriptor`
-4. `Query support descriptor`
-5. `Replay support descriptor`
-
-This order follows the active correction corridor:
-
-- orchestrator assembly
-- workbench runtime section
-- cross-run comparison
-- LM staging
-- reconstruction support staging
-
-## Revision Rule
-
-This emission grammar should remain open to correction when implementation shows
-that:
-
-- a seam stratum is misclassified
-- a descriptor family is routed to the wrong seam
-- a supposedly durable surface is still transitional
-- a read-side function is still smuggling authority
-
-## Current Runtime Correction Target
-
-The main correction target established here is:
-
-- remove default semantic emission from orchestrator and workbench
-- replace count-only read-side exposure with bounded support descriptors
-- keep receipts as subordinate audit surfaces
-
-## One-Line Summary
-
-ExecutionSurface emission law permits structural and support objects plus
-subordinate receipts at lawful seams, while forbidding receipt-led runtime shape
-and removing semantic overlay from default runtime authority across operators,
-coordination, substrate, and read-side seams.
+ExecutionSurface emission law now treats direct structural/support object
+exposure as default, allows typed refs and bounded packaging only as fallback,
+and keeps receipts strictly subordinate to runtime truth.

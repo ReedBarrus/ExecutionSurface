@@ -191,7 +191,10 @@ function makeRawInput() {
 
 function makeLiveProvenanceReceipt({ runResult, workbench }) {
     const runtimeReceipt = workbench?.runtime?.receipt ?? runResult?.runtime_receipt ?? {};
-    const interpretation = workbench?.interpretation?.trajectory ?? {};
+    const transitionReport = workbench?.runtime?.substrate?.transition_report ?? {};
+    const trajectorySummary = workbench?.runtime?.summaries?.trajectory ?? {};
+    const basinCount = runtimeReceipt?.basin_count ?? 0;
+    const segmentCount = runtimeReceipt?.segment_count ?? 0;
 
     return {
         receipt_type: "runtime:door_one_live_provenance_receipt",
@@ -212,13 +215,13 @@ function makeLiveProvenanceReceipt({ runResult, workbench }) {
         },
         structural_summary: {
             state_count: runtimeReceipt?.state_count ?? 0,
-            basin_count: runtimeReceipt?.basin_count ?? 0,
-            segment_count: runtimeReceipt?.segment_count ?? 0,
-            convergence: interpretation?.trajectory_character?.convergence ?? "unknown",
-            motion: interpretation?.trajectory_character?.motion ?? "unknown",
-            occupancy: interpretation?.neighborhood_character?.occupancy ?? "unknown",
-            recurrence: interpretation?.neighborhood_character?.recurrence_strength ?? "unknown",
-            continuity: interpretation?.segment_character?.continuity ?? "unknown",
+            basin_count: basinCount,
+            segment_count: segmentCount,
+            convergence: (trajectorySummary?.novelty_event_count ?? 0) > 0 ? "novelty_observed" : "novelty_quiet",
+            motion: (transitionReport?.total_transitions ?? 0) > 0 ? "transitions_observed" : "transition_quiet",
+            occupancy: basinCount > 1 ? "multi_basin_observed" : "single_basin_observed",
+            recurrence: (transitionReport?.total_re_entries ?? 0) > 0 ? "re_entry_observed" : "re_entry_absent",
+            continuity: segmentCount > 1 ? "multi_segment_observed" : "single_segment_observed",
         },
         cross_run_context: {
             available: false,
