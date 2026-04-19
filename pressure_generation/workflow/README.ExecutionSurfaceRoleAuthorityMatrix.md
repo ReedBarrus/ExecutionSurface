@@ -328,10 +328,20 @@ Required handoff:
 - final gate judgment
 - authority ceiling judgment
 - explicit reason for release, hold, defer, quarantine, or archive
+- explicit live-state verification record
+
+Required audit evidence:
+
+- live repo ref checked
+- files or surfaces checked by audit
+- packet presence and timing check
+- repo/ledger drift finding
+- release-blockers found or explicitly not found
 
 Hard stop:
 
 - if repo-state check-in is missing
+- if auditor did not personally check live repo state for the active seam
 - if packet authority is missing or was added too late
 - if role leakage is visible
 - if release is being justified by coherence rather than proof

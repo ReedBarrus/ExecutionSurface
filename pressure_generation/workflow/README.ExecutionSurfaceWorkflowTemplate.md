@@ -152,6 +152,13 @@ Every serious pass should carry:
 - `surfaces mutated or confirmed unchanged`
 - `handoff repo state`
 
+### Audit evidence
+
+- `auditor live-state check`
+- `audit surfaces checked`
+- `packet timing verified`
+- `release blockers`
+
 ## Shared-ledger execution rule
 
 The cleanest workflow execution posture is:
@@ -163,6 +170,7 @@ The cleanest workflow execution posture is:
 5. every role performs repo-state check-in and check-out.
 6. `Auditor` gates against the visible chain and live repo state, not against
    reconstructed prose.
+7. `Auditor` must append explicit audit evidence, not just an audit conclusion.
 
 ### Minimal entry chain
 
@@ -260,10 +268,12 @@ A subject may release only if all are true:
 5. live repo state was checked for the active seam
 6. any non-ledger mutator change was covered by an administrator mutation packet
 7. any `Mutator` pass stayed inside its declared mutation surface
-8. any post-hoc ratification stayed inside the packet ratification ceiling
-9. role leak is below inflation threshold
-10. process friction is productive or metastable
-11. the next move is narrower and more grounded
+8. auditor personally checked live repo state for the active seam
+9. auditor appended explicit audit evidence
+10. any post-hoc ratification stayed inside the packet ratification ceiling
+11. role leak is below inflation threshold
+12. process friction is productive or metastable
+13. the next move is narrower and more grounded
 
 ## Stop conditions
 
@@ -275,6 +285,8 @@ The workflow must hold, recruit downward, defer, pivot, or archive if:
 - a mutator performs non-ledger mutation without an administrator mutation packet
 - a mutator pass widens beyond its declared mutation surface
 - administrator retroactively legalizes out-of-scope broad-surface mutation
+- auditor did not personally check live repo state
+- auditor issued judgment without explicit audit evidence
 - the emitted object cannot be produced honestly
 - process friction is over-smooth
 - process friction is branch bloom

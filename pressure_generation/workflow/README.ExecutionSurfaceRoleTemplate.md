@@ -278,6 +278,7 @@ Repo-state responsibility:
 
 - verify the final chain against live repo state before release or defer
 - reject passes with missing repo check-in or unverifiable local-only claims
+- append explicit audit evidence for what live state was actually checked
 
 Leak risk:
 
