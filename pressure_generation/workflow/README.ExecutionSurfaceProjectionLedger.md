@@ -121,9 +121,24 @@ May:
 - route the entry into the working lane
 - mark hold, defer, pivot, rebase, or archive
 
+May ratify only:
+
+- a mutation already inside the explicitly scoped packet surface
+- a correction that narrows back to the declared surface
+
+Post-hoc ratification must not silently convert broad ambient repo edits into
+lawful bounded mutation.
+
+If out-of-scope surfaces were touched, `Administrator` must classify them as:
+
+- `quarantined mutation residue`
+- `requires separate packet`
+- `requires archive or revert review`
+
 Must not:
 
 - fabricate topology grounding for another role
+- retroactively legalize global or multi-surface mutation pressure by fiat
 - finalize a release judgment that belongs to `Auditor`
 
 #### Detector
@@ -266,7 +281,26 @@ administrator-written mutation packet containing:
 - `authority ceiling`
 - `expires after handoff to`
 
+The packet should also declare:
+
+- `global mutation mode: false` by default
+- `ratification ceiling`
+
 Without that packet, the default rule is ledger-only mutation.
+
+### Post-hoc ratification rule
+
+If a role mutates outside the granted packet surface, `Administrator` may log
+the event, quarantine it, or split it into new candidate entries.
+
+`Administrator` may not simply bless those extra touches into lawful history
+unless a broader mutation mode was declared in advance.
+
+Default posture:
+
+- no global mutation pressure
+- no retroactive broad-surface legalization
+- out-of-scope mutation becomes review residue, not success
 
 ## Gate to the working lane
 

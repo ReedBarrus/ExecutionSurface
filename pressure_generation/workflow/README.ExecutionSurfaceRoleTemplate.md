@@ -105,9 +105,17 @@ Ledger responsibility:
 - require repo-state check-in before accepting a role pass
 - record hold, pivot, rebase, defer, or archive posture
 
+Mutation-grant responsibility:
+
+- grant non-ledger mutation only through an explicit bounded packet
+- keep `global mutation mode` off unless a separate whole-project pressure pass
+  is intentionally declared
+- quarantine out-of-scope touched surfaces rather than retroactively blessing
+  them into lawful bounded output
+
 Leak risk:
 
-- becoming author instead of router
+- becoming author or broad ratifier instead of router
 
 ### 2. Detector
 

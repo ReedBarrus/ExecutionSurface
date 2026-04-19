@@ -138,6 +138,7 @@ Every serious pass should carry:
 - `expected emitted object`
 - `surface widening risk`
 - `mutation packet status`
+- `global mutation mode`
 
 ### Repo-state handoff
 
@@ -227,6 +228,23 @@ Without that packet:
 
 This keeps mutation authority explicit instead of ambient.
 
+## Global-mutation rule
+
+Whole-project or broad multi-surface mutation pressure is disabled by default.
+
+If a pass truly intends global or cross-surface pressure, that mode must be
+declared in advance as a separate workflow posture, not smuggled in through
+retroactive ratification.
+
+Without that explicit declaration:
+
+- `Administrator` may not legalize broad ambient edits after the fact
+- out-of-scope touched surfaces become quarantined residue
+- those surfaces require separate packets or separate review
+
+The normal workflow posture is bounded-surface mutation, not global mutation
+pressure.
+
 ## Release gate
 
 A subject may release only if all are true:
@@ -238,9 +256,10 @@ A subject may release only if all are true:
 5. live repo state was checked for the active seam
 6. any non-ledger mutator change was covered by an administrator mutation packet
 7. any `Mutator` pass stayed inside its declared mutation surface
-8. role leak is below inflation threshold
-9. process friction is productive or metastable
-10. the next move is narrower and more grounded
+8. any post-hoc ratification stayed inside the packet ratification ceiling
+9. role leak is below inflation threshold
+10. process friction is productive or metastable
+11. the next move is narrower and more grounded
 
 ## Stop conditions
 
@@ -251,6 +270,7 @@ The workflow must hold, recruit downward, defer, pivot, or archive if:
 - no live repo check-in occurred for the active seam
 - a mutator performs non-ledger mutation without an administrator mutation packet
 - a mutator pass widens beyond its declared mutation surface
+- administrator retroactively legalizes out-of-scope broad-surface mutation
 - the emitted object cannot be produced honestly
 - process friction is over-smooth
 - process friction is branch bloom
