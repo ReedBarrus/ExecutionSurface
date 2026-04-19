@@ -49,11 +49,11 @@ Allowed states:
 
 ## Current active subject
 
-- **Active subject:** Runtime Seam And Authority Grammar
+- **Active subject:** State Support Descriptor Contract
 - **Current state:** Seeded
-- **Why active now:** Runtime Grammar Pressure Review has rebounded because the runtime spine is strong enough to retain as current runtime-front reality, but downstream exposure, seam authority, descriptor routing, subordinate receipt posture, semantic-overlay optionality, and transitional-material handling need one narrower compression before descriptor contract writing can lawfully open.
+- **Why active now:** Runtime Seam And Authority Grammar has released. The next lawful move is the first load-bearing descriptor slice for `H1` / `M1` state support composition so descriptor-led downstream exposure can begin without opening the full descriptor family at once.
 - **Recommended next role:** Constructor
-- **Likely next child subject after release:** Support Descriptor Contract Family
+- **Likely next child subject after release:** State Descriptor Implementation Sweep
 
 ---
 
@@ -65,6 +65,7 @@ Allowed states:
 - The runtime grammar corpus now distinguishes operator seams, pipeline coordination functions, substrate boundaries / surfaces, read-side functions, and transitional bridges rather than describing all runtime mechanisms through one blurred seam vocabulary.
 - The current runtime doctrine now treats receipts as subordinate audit surfaces only and removes semantic overlay from default runtime authority, but this posture should still be pressure-tested before descriptor contract shapes harden.
 - Runtime Grammar Pressure Review produced useful findings and has now rebounded into Runtime Seam And Authority Grammar because descriptor-family sufficiency is not yet descriptor-contract readiness.
+- Runtime Seam And Authority Grammar has now released into `State Support Descriptor Contract`: the mixed downstream band is bounded enough to begin descriptor contract writing, but only on the State slice first rather than the full descriptor family.
 
 ---
 
@@ -144,19 +145,23 @@ Allowed states:
 
 ### 19. Runtime Grammar Pressure Review
 - state: Rebound
-- note: Produced useful findings and confirmed the runtime spine as current runtime-front reality, but did not release into broad descriptor contract writing because downstream exposure and seam-authority handling remain insufficiently compressed.
+- note: Produced useful findings and confirmed the runtime spine as current runtime-front reality, but did not release into broad descriptor contract writing because downstream exposure and seam-authority handling remained insufficiently compressed.
 
 ### 20. Runtime Seam And Authority Grammar
-- state: Seeded
-- note: Stabilize the distinction between operator seams, pipeline coordination functions, substrate boundaries / surfaces, read-side functions, transitional bridges, descriptor routing, subordinate receipts, semantic-overlay optionality, and downstream exposure authority before descriptor contracts harden.
+- state: Released
+- note: Stabilized downstream mixed-seam authority, descriptor routing, subordinate receipts, semantic-overlay optionality, transitional-material handling, and the State-support-first opening path.
 
 ### 21. Support Descriptor Contract Family
 - state: Deferred
-- note: Define the first lawful contract family for state, basin, trajectory, query, and replay support descriptors only after Runtime Seam And Authority Grammar compresses cleanly.
+- note: Full family remains deferred. State, Basin, Trajectory, Query, and Replay remain the valid descriptor-family set, but broad family writing should wait until the State descriptor slice proves the shared contract posture.
 
 ### 22. Transitional Material Elimination Posture
 - state: Seeded
 - note: Identify and remove remaining compatibility aliasing, semantic-default dependencies, and count-heavy convenience packets that still behave like durable law despite being transitional in posture.
+
+### 23. State Support Descriptor Contract
+- state: Seeded
+- note: Define the first load-bearing descriptor contract for `H1` / `M1` state support composition, bounded support-shape summary, provenance, explicit non-authority, and downstream descriptor-led exposure.
 
 ---
 
@@ -175,12 +180,12 @@ These are active across all subjects:
 
 ## Immediate gate question
 
-For **Runtime Seam And Authority Grammar**, the gate question is:
+For **State Support Descriptor Contract**, the gate question is:
 
-Can the mixed downstream seams be compressed clearly enough across seam authority, descriptor routing, subordinate receipts, semantic-overlay optionality, and transitional-material handling that Support Descriptor Contract Family can open without freezing blurry exposure assumptions into contract law?
+Can the first descriptor slice for `H1` / `M1` state support composition be defined clearly enough through source refs, support basis, bounded support shape, uncertainty / confidence posture, policy / provenance refs, and explicit non-claims that a State Descriptor Implementation Sweep can open without collapsing State descriptors into receipts, semantic overlays, truth, canon, identity closure, or broad full-family descriptor writing?
 
 ---
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with Runtime Seam And Authority Grammar active so descriptor contracts can later unfold from a stabilized runtime spine and compressed downstream seam-authority posture rather than from receipt-led, semantically mixed, or transitional exposure assumptions.
+This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with State Support Descriptor Contract active so the first load-bearing descriptor slice can be stabilized before implementation sweep and before broader Basin, Trajectory, Query, and Replay descriptor contracts open.
