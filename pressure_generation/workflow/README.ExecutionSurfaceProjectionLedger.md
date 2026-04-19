@@ -322,6 +322,68 @@ This ledger does not:
 - replace topology detection
 - replace perturbation
 
+## Ledger entries
+
+### Projection: Commit-Boundary Admission Basis for analog_signal
+
+- `projection_id`: `PG-ANALOG-COMMIT-BOUNDARY-001`
+- `projection`: record the lowered active topology for `analog_signal` commit-boundary admission.
+- `source`: Administrator handoff after perturbation result.
+- `desired function`: preserve direct `H1` / `M1` support-bearing payload as the lower active topology while keeping `MemoryObject` as projected commit-boundary candidate.
+- `status`: `requires administrator mutation packet or auditor routing`
+- `live_repo_ref`: `https://github.com/ReedBarrus/ExecutionSurface`
+- `runtime object/relation grounding`: runtime chain map identifies `MemorySubstrate.commit(H1/M1)` as the current substrate commit boundary.
+- `required detection`: satisfied by prior topology detection packet for `analog_signal -> H1 / M1 support-bearing payload -> projected MemoryObject admission envelope`.
+- `required perturbation`: satisfied by prior perturbation result lowering active topology to direct `H1` / `M1`.
+- `implementation seam`: proposed doc-only pressure-generation mutation across subject registry, implementation ladder, MemoryObject envelope, and substrate topology.
+- `defer/archive reason`: none from Mutator; non-ledger mutation is not authorized by this block.
+
+#### mutator block — 2026-04-19
+
+- `role`: `Mutator`
+- `thread_class`: `pressure_generation`
+- `active_subject`: `Commit-Boundary Admission Basis for analog_signal`
+- `active_macro_verb`: `Decide`
+- `state_before`: `Rebound`
+- `active_seam`: `analog_signal commit-boundary admission seam`
+- `role classification`: `R1 lawful contribution`
+- `role leak risk`: bounded after correction; this pass is ledger-only and does not touch non-ledger surfaces.
+- `check_in_time`: `2026-04-19`
+- `active branch or working ref`: `main`
+- `files or surfaces checked`:
+  - `pressure_generation/workflow/README.ExecutionSurfaceProjectionLedger.md`
+- `repo-state findings`:
+  - projection ledger is present and defines Mutator default authority as ledger-only unless an explicit administrator-granted mutation packet exists.
+  - no administrator mutation packet is currently present in this ledger entry.
+  - therefore this Mutator pass may append only this bounded ledger block and may not mutate subject registry, implementation ladder, MemoryObject envelope, substrate topology, code, schemas, or contracts.
+- `repo/local drift note`: prior non-ledger mutations were reverted by the operator; current retry is scoped to ledger append only.
+- `active mutation surface`: `pressure_generation/workflow/README.ExecutionSurfaceProjectionLedger.md`
+- `expected emitted object`: `Decision object / bounded mutation proposal`
+- `bounded mutation proposal`:
+  - Subject Registry should rebound `Source-Family Admission Basis` into active child subject `Commit-Boundary Admission Basis for analog_signal`.
+  - Implementation Ladder should clarify Rung 6 as direct `H1` / `M1` conservation proof before requiring `MemoryObject` wrapping.
+  - Implementation Ladder should preserve `MemoryObject` rebase as Rung 8, not immediate `analog_signal` admission floor.
+  - MemoryObject Envelope should add or reinforce that `MemoryObject` is not the payload floor for `analog_signal`; direct `H1` / `M1` remains lower lawful support payload.
+  - Substrate Topology should clarify that direct `H1` / `M1` commit remains current runtime reality and `MemoryObject` is the projected boundary target.
+- `proof target`: preserve `analog_signal -> direct H1 / M1 support-bearing payload -> current direct commit reality` as lower active topology while preserving `MemoryObject` as projected boundary target.
+- `observed implementation result`: ledger append only; no non-ledger mutation performed.
+- `non-claims`:
+  - no code mutation
+  - no `MemoryObject` implementation
+  - no `json` admission
+  - no subject release
+  - no non-ledger doc mutation authority claimed
+- `check_out_time`: `2026-04-19`
+- `surfaces mutated or confirmed unchanged`:
+  - mutated: `pressure_generation/workflow/README.ExecutionSurfaceProjectionLedger.md`
+  - confirmed unchanged by this pass: subject registry, implementation ladder, MemoryObject envelope, substrate topology, code, schemas, contracts.
+- `handoff state`: Mutator proposal appended; non-ledger mutation requires explicit Administrator mutation packet or Auditor routing.
+- `next role`: `Administrator` or `Auditor`
+- `open repo-state risks`:
+  - Administrator must explicitly grant a mutation packet before any non-ledger doc surfaces are touched.
+  - Auditor should verify that the reverted non-ledger mutations no longer remain in live repo state.
+  - Projection remains non-authoritative until gated.
+
 ## One-line summary
 
 The projection ledger allows ideas to enter freely while forcing them to remain
