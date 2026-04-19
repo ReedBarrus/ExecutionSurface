@@ -30,6 +30,7 @@ These define the object law and emission law for the current runtime.
 
 ### Operational companion surfaces
 
+- `README.ExecutionSurfaceMemoryObjectEnvelope.md`
 - `README.ExecutionSurfaceSubstrateTopology.md`
 - `README.ExecutionSurfaceSubstrateFunctionLedger.md`
 - `README.ExecutionSurfaceRuntimeObjectTopologyAudit.md`
@@ -47,14 +48,15 @@ Read in this order:
 
 1. `README.ExecutionSurfaceRuntimeObjectGrammar.md`
 2. `README.ExecutionSurfaceRuntimeEmissionAuthorityGrammar.md`
-3. `README.ExecutionSurfaceSubstrateTopology.md`
-4. `README.ExecutionSurfaceSubstrateFunctionLedger.md`
-5. `README.ExecutionSurfaceRuntimeObjectTopologyAudit.md`
-6. `README.ExecutionSurfaceRuntimeCoherenceGovernor.md`
-7. `README.ExecutionSurfaceRuntimeChainMap.md`
-8. `README.ExecutionSurfaceRuntimeSeamLedger.md`
-9. `README.ExecutionSurfaceRuntimeFindings.md`
-10. `README.ExecutionSurfaceRuntimeImplementationBridge.md`
+3. `README.ExecutionSurfaceMemoryObjectEnvelope.md`
+4. `README.ExecutionSurfaceSubstrateTopology.md`
+5. `README.ExecutionSurfaceSubstrateFunctionLedger.md`
+6. `README.ExecutionSurfaceRuntimeObjectTopologyAudit.md`
+7. `README.ExecutionSurfaceRuntimeCoherenceGovernor.md`
+8. `README.ExecutionSurfaceRuntimeChainMap.md`
+9. `README.ExecutionSurfaceRuntimeSeamLedger.md`
+10. `README.ExecutionSurfaceRuntimeFindings.md`
+11. `README.ExecutionSurfaceRuntimeImplementationBridge.md`
 
 ## Runtime posture established here
 

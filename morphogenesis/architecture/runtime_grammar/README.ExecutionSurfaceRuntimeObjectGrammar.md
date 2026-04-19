@@ -114,6 +114,9 @@ Implementation note:
 current repo code still commits mixed `H1` / `M1` objects directly. `MemoryObject`
 is the frozen commit-boundary target now being stabilized.
 
+See `README.ExecutionSurfaceMemoryObjectEnvelope.md` for the concrete projected
+field contract.
+
 ### Read-side projections
 
 Read-side projections are bounded convenience assemblies over lawful upstream

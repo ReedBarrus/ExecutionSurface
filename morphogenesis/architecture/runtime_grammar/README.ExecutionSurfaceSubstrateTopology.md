@@ -158,6 +158,9 @@ must preserve payload kind and internal support-bearing relations explicitly.
 
 The envelope must remain thinner than the payload it carries.
 
+The concrete envelope field contract and examples are defined in
+`README.ExecutionSurfaceMemoryObjectEnvelope.md`.
+
 ## 8. Intrinsic substrate functions
 
 These functions belong to the substrate stack itself:
