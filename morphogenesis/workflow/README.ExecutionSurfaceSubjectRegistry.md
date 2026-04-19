@@ -2,195 +2,158 @@
 
 ## Status
 
-This document is the working subject register for early ExecutionSurface architectural morphogenesis.
+This document is the live subject registry for the current `ExecutionSurface`
+architecture front.
 
-It is a process surface.
+It is not the older morphogenesis workflow seed.
 
-It is not yet an implementation contract or authority file.
+It is a bounded working register for active and pinned architectural subjects
+after the runtime grammar rebase.
 
-Its function is to:
+Historical process material now lives under:
 
-- keep one active subject in motion at a time
-- track subject state explicitly
-- make release / hold / defer posture visible
-- preserve narrowed next-step discipline
+- `morphogenesis/archive/`
 
-This registry should be read together with:
+## Purpose
 
-morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md
-morphogenesis/workflow/README.ArchitectMorphogenesisWorkflow.md
+The registry exists to:
 
----
-
-## Active branch rule
-
-Only one active subject may be live at a time.
-
-Alternatives may be proposed, but they remain subordinate until explicitly promoted into active subject status.
-
----
+- name the active architectural front cleanly
+- keep current and pinned future subjects visible
+- distinguish released foundation from active next work
+- prevent old descriptor-era or receipt-era branches from silently re-entering
 
 ## Subject states
 
 Allowed states:
 
-- Seeded
-- Tension-Held
-- Compressed
-- Gate-Pending
-- Released
-- Deferred
-- Downgraded
-- Rebound
-- Archived
-- Metastable Hold
-
----
+- `Seeded`
+- `Active`
+- `Compressed`
+- `Released`
+- `Deferred`
+- `Pinned Future`
+- `Archived`
 
 ## Current active subject
 
-- **Active subject:** State Descriptor Implementation Sweep
-- **Current state:** Seeded
-- **Why active now:** State Support Descriptor Contract has released. The next lawful move is to prove the first descriptor slice in implementation-facing surfaces without opening the broad descriptor family, mutating unrelated code, or collapsing State descriptors into receipts, semantic overlays, truth, canon, identity closure, routing, promotion, source-equivalence, agent authority, or hidden write posture.
-- **Recommended next role:** Constructor or Implementation-Constructor
-- **Likely next child subject after release:** Compression And Audit Sweep
+- `Active subject`: `Source-Family Admission Basis`
+- `Current state`: `Seeded`
+- `Why active now`: the runtime grammar corpus now freezes `MemoryObject`,
+  substrate topology, substrate function hierarchy, and direct exposure law. The
+  next lawful move is to define how early source families form lawful payload
+  for admission without pretending every source is an analog signal.
+- `Early target families`: `analog_signal`, `json`
+- `Likely next child subject`: `Topology Detection Object`
 
----
+## Released foundation
 
-## Recent findings
+These subjects are already load-bearing enough to function as current
+foundation.
 
-- Local-model benchmarking has now shown stable bounded `.json` contract obedience across repeated runs, so contract conformance is no longer the primary bottleneck for the current LM attachment seam.
-- The present LM-facing input view remains too receipt-thin and count-heavy to support meaningful object-level entrainment, reconstruction, comparison, or routing questions beyond format mimicry and generic bounded commentary.
-- The next architectural pressure therefore falls on lawful object addressability and bounded read-side object export rather than on prompt widening alone.
-- The runtime grammar corpus now distinguishes operator seams, pipeline coordination functions, substrate boundaries / surfaces, read-side functions, and transitional bridges rather than describing all runtime mechanisms through one blurred seam vocabulary.
-- The current runtime doctrine now treats receipts as subordinate audit surfaces only and removes semantic overlay from default runtime authority, but this posture should still be pressure-tested before descriptor contract shapes harden.
-- Runtime Grammar Pressure Review produced useful findings and has now rebounded into Runtime Seam And Authority Grammar because descriptor-family sufficiency is not yet descriptor-contract readiness.
-- Runtime Seam And Authority Grammar has now released into `State Support Descriptor Contract`: the mixed downstream band is bounded enough to begin descriptor contract writing, but only on the State slice first rather than the full descriptor family.
-- State Support Descriptor Contract has now released into `State Descriptor Implementation Sweep`: the State descriptor boundary is explicit over `H1` / `M1`, with artifact-class-specific support-shape posture, RC2 authority, read-side routing-hint limits, conditional reconstruction staging, subordinate receipt posture, and explicit malformed/non-claim conditions.
+### 1. Runtime Grammar Corpus
+- state: `Released`
+- note: the runtime grammar corpus is the current narrower authority chain for runtime object law, emission law, substrate topology, and commit-boundary targeting.
 
----
+### 2. Direct Exposure Law
+- state: `Released`
+- note: direct structural and support object exposure is the default, with packaging and receipts subordinate.
 
-## Subject register
+### 3. Major Partition
+- state: `Released`
+- note: the architecture now distinguishes substrate truth, derived organization, access layers, and over-substrate functions.
 
-### 1. Major Partition
-- state: Seeded
-- note: Distinguish memory medium, execution substrate, read-side helper surfaces, later control/action surfaces, and later agent exchange surfaces.
+### 4. Substrate Topology
+- state: `Released`
+- note: the substrate is now frozen as Layer 1 temporal support graph / hypergraph, Layer 2 neighborhood / basin complex, and Layer 3 corpus / index access.
 
-### 2. Object-Class Grammar
-- state: Released
-- note: Define the minimum lawful object families required for ExecutionSurface to function as a memory medium.
+### 5. MemoryObject Envelope
+- state: `Released`
+- note: the singular commit-boundary target is now `MemoryObject`, not retained-object or descriptor-era summary surfaces.
 
-### 3. Commit-Boundary Law
-- state: Released
-- note: Define what makes an object eligible to cross from runtime or workflow into retained continuity.
+### 6. Continuity Under Bounded Identity Posture
+- state: `Released`
+- note: persistence remains continuity-bearing without same-object closure.
 
-### 4. Comparison Law
-- state: Released
-- note: Make comparison first-class and distinct from truth, canon, or same-object closure.
+## Active and near-active subjects
 
-### 5. Reconstruction Law
-- state: Released
-- note: Define lawful re-entry from retained state using explicit source and lens.
+### 7. Source-Family Admission Basis
+- state: `Active`
+- note: define how early source families form lawful payload for admission into `MemoryObject`.
 
-### 6. Memory Routing Law
-- state: Released
-- note: Define retain / archive / promote posture, reconstruction availability, and reuse-condition handling.
+### 8. Topology Detection Object
+- state: `Seeded`
+- note: define the minimal object that records source artifact, active seam, input family, output family, transformation, conserved relations, lost relations, authority ceiling, verification handle, and unknowns before larger architectural moves are made.
 
-### 7. Read-Model Distinction
-- state: Released
-- note: Separate retained object, reconstruction object, comparison receipt, query/read result, and agent emission object.
+### 9. Comparison Basis Law
+- state: `Seeded`
+- note: define how comparison remains substrate-supported across source families without becoming object identity or truth closure.
 
-### 8. Continuity Under Bounded Identity Posture
-- state: Released
-- note: Preserve recurrence and reuse without silent same-object inflation.
+### 10. Reconstruction Lens Law
+- state: `Seeded`
+- note: define how reconstruction remains declared, bounded, source-family-aware, and distinct from raw restoration.
 
-### 9. Agent Write Discipline
-- state: Deferred
-- note: This subject is now premature in the current context. Runtime seam grammar, descriptor routing, and removal of default semantic dependency should stabilize before agent output law reopens.
+### 11. Corpus / Index Access Law
+- state: `Seeded`
+- note: define how access, retrieval, and management remain useful without flattening lower-layer truth.
 
-### 10. Agent Read / Reconstruction Discipline
-- state: Deferred
-- note: Wait until reconstruction law and read-model distinction are stable.
+### 12. Neighborhood / Basin Law
+- state: `Seeded`
+- note: define how Layer 2 organizes locality, recurrence, and transition structure over admitted memory objects.
 
-### 11. Multi-Agent Exchange Over Substrate
-- state: Deferred
-- note: Wait until agent write/read posture and comparison receipts are stable.
+## Pinned future branches
 
-### 12. Human Resolution And Governance
-- state: Deferred
-- note: Wait until bounded objects and routing law are stable enough to make acceptance / rejection / defer posture first-class.
+These remain important, but they should not outrun the current architecture
+front.
 
-### 13. Cross-Session Recursive Continuity
-- state: Deferred
-- note: Wait until retained objects, reconstruction, and continuity posture are stable enough to resume from substrate rather than chat memory.
+### 13. Query Projection Law
+- state: `Pinned Future`
+- note: query should remain a consult surface over substrate truth rather than a replacement for it.
 
-### 14. Recognition As Bounded Helper
-- state: Deferred
-- note: Recognition may appear after retained objects and comparison are lawful, but it should remain helper posture rather than project trunk.
+### 14. Human-Facing Projection Law
+- state: `Pinned Future`
+- note: future visual and textual projections should remain reconstructable, bounded, and non-authoritative.
 
-### 15. Control Intent / Action Object
-- state: Deferred
-- note: Only lawful after the project honestly crosses from memory medium toward bounded control architecture.
+### 15. Workflow Reseed
+- state: `Pinned Future`
+- note: reseed workflow only after architecture is stable enough to center topology detection, identity, decision, evaluation, and memory/archive retention.
 
-### 16. Retained Object Addressability Contract
-- state: Deferred
-- note: This subject remains useful but is now too narrow as written for the current runtime context. It should later be re-opened through descriptor-bearing state/support addressability rather than retained-object language alone.
+### 16. Agent Write Discipline
+- state: `Pinned Future`
+- note: do not reopen until source-family admission, comparison, reconstruction, and access law are stabilized.
 
-### 17. Reconstruction Export Surface
-- state: Deferred
-- note: This subject remains useful but should wait until replay support descriptor grammar is pressure-tested and stabilized.
+### 17. Agent Read / Reconstruction Discipline
+- state: `Pinned Future`
+- note: do not reopen until reconstruction and access law are stabilized.
 
-### 18. LM Read Packet Contract
-- state: Deferred
-- note: This subject remains useful but should wait until state / trajectory / query descriptor routing is pressure-tested and stabilized.
+### 18. Multi-Agent Exchange Over Substrate
+- state: `Pinned Future`
+- note: do not reopen until read/write and retrieval law are stabilized.
 
-### 19. Runtime Grammar Pressure Review
-- state: Rebound
-- note: Produced useful findings and confirmed the runtime spine as current runtime-front reality, but did not release into broad descriptor contract writing because downstream exposure and seam-authority handling remained insufficiently compressed.
+### 19. Human Resolution And Governance
+- state: `Pinned Future`
+- note: do not reopen until the architecture front is no longer shifting at the substrate level.
 
-### 20. Runtime Seam And Authority Grammar
-- state: Released
-- note: Stabilized downstream mixed-seam authority, descriptor routing, subordinate receipts, semantic-overlay optionality, transitional-material handling, and the State-support-first opening path.
+### 20. Cross-Session Recursive Continuity
+- state: `Pinned Future`
+- note: do not reopen until admitted memory objects, retrieval, and bounded continuity are implemented enough to carry real state.
 
-### 21. Support Descriptor Contract Family
-- state: Deferred
-- note: Full family remains deferred. State, Basin, Trajectory, Query, and Replay remain the valid descriptor-family set, but broad family writing should wait until the State implementation sweep proves the shared contract posture.
+## Explicitly archived branch residue
 
-### 22. Transitional Material Elimination Posture
-- state: Seeded
-- note: Identify and remove remaining compatibility aliasing, semantic-default dependencies, and count-heavy convenience packets that still behave like durable law despite being transitional in posture.
+The following categories are intentionally out of the live registry now:
 
-### 23. State Support Descriptor Contract
-- state: Released
-- note: Defined the first load-bearing descriptor contract for `H1` / `M1` state support composition, bounded support-shape summary, provenance, explicit non-authority, downstream descriptor-led exposure, artifact-class-specific support-shape posture, and malformed/non-claim conditions.
+- descriptor contract family branches
+- state descriptor implementation sweep branches
+- receipt-first read packet branches
+- compatibility alias cleanup as a primary trunk
+- recursion packet bureaucracy as active architecture law
 
-### 24. State Descriptor Implementation Sweep
-- state: Seeded
-- note: Prove the State descriptor contract through the smallest implementation-facing sweep that exposes `H1` / `M1` state support descriptors without opening broad descriptor-family contracts or importing semantic/default authority.
-
----
-
-## Ladder-wide invariants
-
-These are active across all subjects:
-
-1. No silent identity inflation.
-2. No retained object silently becomes canon.
-3. No reconstruction silently masquerades as raw original.
-4. No comparison silently becomes truth closure.
-5. No agent exchange bypasses auditability.
-6. No emergent loop hides state, provenance, or authority posture.
-
----
-
-## Immediate gate question
-
-For **State Descriptor Implementation Sweep**, the gate question is:
-
-Can the State descriptor contract be proven in the smallest implementation-facing sweep by exposing `H1` / `M1` support composition through bounded State descriptors while preserving source refs, artifact-class-specific support shape, uncertainty / confidence posture, policy / provenance refs, explicit non-claims, subordinate receipts, read-side-only routing, and fail-closed malformed cases without opening broad descriptor-family contracts or semantic/default authority?
-
----
+Those may survive only as archive history or as minor residue cleanup, not as
+current subject leadership.
 
 ## One-line summary
 
-This registry keeps early ExecutionSurface architectural morphogenesis on one active subject at a time, now with State Descriptor Implementation Sweep active so the first load-bearing descriptor contract can be proven before a Compression And Audit Sweep and before broader Basin, Trajectory, Query, and Replay descriptor contracts open.
+The live `ExecutionSurface` registry now starts from released runtime grammar
+and substrate law, keeps `Source-Family Admission Basis` active, and pins later
+comparison, reconstruction, access, projection, workflow, and agent branches
+without letting old descriptor-era subjects steer the front.

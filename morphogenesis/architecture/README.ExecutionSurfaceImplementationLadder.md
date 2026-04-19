@@ -2,392 +2,292 @@
 
 ## Status
 
-This document is a parallel implementation-planning surface for early ExecutionSurface development.
+This document is the live implementation ladder for the current
+`ExecutionSurface` front.
 
-It is not an authority file and it does not replace the architectural subject registry.
+It does not replace the runtime grammar corpus or the architecture seed.
 
-Its function is narrower:
+Its job is to translate stabilized architectural subjects into bounded proof and
+mechanization steps.
 
-- define how architectural subjects are mechanized
-- define how each rung is tested and proven
-- distinguish concept stabilization from code touch
-- keep proof posture explicit as development unfolds
+## Reading posture
 
-This document should be read together with:
+Read this ladder together with:
 
-morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md
-morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md
-morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md
-morphogenesis/workflow/README.ArchitectMorphogenesisWorkflow.md
+- `morphogenesis/architecture/README.ExecutionSurfaceArchitectureSeed.md`
+- `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md`
+- `morphogenesis/workflow/README.ExecutionSurfaceSubjectRegistry.md`
 
----
-
-## Purpose
-
-ExecutionSurface needs two parallel ladders:
-
-1. an **architectural subject ladder**
-2. an **implementation and proof ladder**
-
-The subject ladder answers:
-
-- what must be conceptually stabilized
-- what narrower child subject should unfold next
-- what remains deferred
-
-The implementation ladder answers:
-
-- how a stabilized subject is mechanized
-- what objects, validators, scripts, and tests are required
-- what proof is needed before a rung is considered usable
-
-This separation exists to prevent:
-
-- architecture from drifting into vague capability claims
-- implementation from outrunning unsettled object law
-- tests from scoring surfaces whose meaning is not yet stabilized
-
----
+Historical workflow material under `morphogenesis/archive/` is non-authoritative
+background only.
 
 ## Core rule
 
-No implementation rung may outrun the architectural subject it depends on.
+Implementation must not outrun the stabilized architectural object it depends
+on.
 
-A subject may be discussed before it is mechanized.
+Architecture names the substrate and boundary law first.
 
-A subject may be partially mechanized for exploratory pressure.
+The ladder then proves those laws through bounded objects, validators, code
+changes, and tests.
 
-But no mechanized surface should be treated as stable until the parent architectural subject is at least compressed enough to support bounded non-claims, explicit boundaries, and a named proof target.
+## Proof-object sequence
 
----
+Before larger implementation churn, every serious pass should be able to name
+one of these proof objects cleanly:
 
-## Ladder relationship
+1. `Topology detection object`
+2. `Identity object`
+3. `Decision object`
+4. `Evaluation object`
+5. `Memory record or archive entry`
 
-The default relationship is:
+These do not yet require a full workflow engine.
 
-- subject ladder leads
-- implementation ladder follows one stabilized rung behind
+They define the proof grammar that later workflow reseeding should mechanize.
 
-This keeps architectural law ahead of code churn.
+## Ladder
 
-Exploratory code may exist earlier, but exploratory code does not upgrade the architectural subject automatically.
+### Rung 0 - Runtime topology detection
 
----
-
-## Implementation ladder
-
-### Rung 0 — Object-family declaration surface
-
-**Depends on subject:** Object-Class Grammar
-
-**Implementation target:**
-- explicit object-family index
-- provisional shape definitions
-- explicit non-claims per class
-
-**Expected outputs:**
-- object family surface
-- provisional schema / type surfaces
-- class-distinction notes
-
-**Proof target:**
-- object classes are distinguishable enough that later retained / reconstructed / compared objects cannot silently collapse into one mixed class
-
----
-
-### Rung 1 — Commit-boundary and write eligibility
-
-**Depends on subject:** Commit-Boundary Law
+**Depends on subjects:**
+- `Runtime Grammar Corpus`
+- `Substrate Topology`
 
 **Implementation target:**
-- explicit write prerequisites
-- explicit commit gating
-- fail-closed malformed write handling
+- detect the implemented or implementable object chain for an active family
+- record what relations are conserved and what relations are lost across a seam
 
-**Expected outputs:**
-- write / retain contract surface
-- validator rules for eligibility
-- rejection receipt shape
+**Expected proof object:**
+- `Topology detection object`
+
+**Minimum fields:**
+- source artifact
+- active seam
+- input object family
+- output object family
+- transformation
+- conserved relations
+- lost or omitted relations
+- authority ceiling
+- verification handle
+- unknowns
 
 **Proof target:**
-- invalid objects fail closed
-- valid objects cross the boundary lawfully
-- commit does not silently upgrade authority
+- the active chain is inspectable enough that later architectural claims are
+  tied to real topology rather than prose convenience
 
----
+### Rung 1 - Architectural identity against detected topology
 
-### Rung 2 — Retained object implementation
-
-**Depends on subjects:** Object-Class Grammar, Commit-Boundary Law
+**Depends on subjects:**
+- `Topology Detection Object`
+- `Source-Family Admission Basis`
 
 **Implementation target:**
-- retained object shape
-- retain / reload path
-- provenance / policy anchor persistence
+- define what topology the current contract, doc, or code move is trying to
+  protect
 
-**Expected outputs:**
-- retained object schema or type
-- write helper / loader seam
-- invariance tests
+**Expected proof object:**
+- `Identity object`
 
 **Proof target:**
-- retain / reload preserves class, provenance refs, policy anchors, and authority posture without mutation
+- every major move can say what object chain and relation posture it is
+  conserving
 
----
+### Rung 2 - Decision discipline
 
-### Rung 3 — Comparison as a first-class operation
-
-**Depends on subject:** Comparison Law
+**Depends on subjects:**
+- `Source-Family Admission Basis`
+- `MemoryObject Envelope`
 
 **Implementation target:**
-- comparison receipt shape
-- explicit basis and operand refs
-- deterministic compare path
+- choose whether the next move is:
+  - implementation
+  - documentation
+  - contract
+  - validator
+  - cleanup
 
-**Expected outputs:**
-- comparison receipt schema
-- comparison helper / operator seam
-- identical-input stability tests
+**Expected proof object:**
+- `Decision object`
 
 **Proof target:**
-- retained↔retained and retained↔reconstruction comparisons emit stable receipts without truth or same-object closure
+- the repo does not widen into unrelated layers or move code before the target
+  object law is explicit
 
----
+### Rung 3 - Evaluation against topology
 
-### Rung 4 — Reconstruction with declared source and lens
-
-**Depends on subject:** Reconstruction Law
+**Depends on subjects:**
+- `Topology Detection Object`
+- `Comparison Basis Law`
+- `Reconstruction Lens Law`
 
 **Implementation target:**
-- reconstruction object shape
-- source + lens declaration requirement
-- reconstruction / source distinction enforcement
+- audit whether the proposed move preserves the detected topology or flattens it
 
-**Expected outputs:**
-- reconstruction schema
-- reconstruction seam
-- source/lens validation rules
+**Expected proof object:**
+- `Evaluation object`
 
 **Proof target:**
-- reconstruction cannot occur without declared source and lens
-- reconstruction is visibly distinct from retained source
+- evaluation can name conserved relations, lost relations, and authority
+  ceilings explicitly
 
----
+### Rung 4 - Historical retention or archive
 
-### Rung 5 — Memory routing implementation
-
-**Depends on subject:** Memory Routing Law
+**Depends on subjects:**
+- `Workflow Reseed` later
+- current doc-only discipline for now
 
 **Implementation target:**
-- retain / archive / promote posture object
-- reconstruction availability markers
-- bounded reuse-condition carriage
+- retain the result as a live memory-bearing surface or archive it as history
 
-**Expected outputs:**
-- memory routing object surface
-- routing validator rules
-- archive vs retain behavior tests
+**Expected proof object:**
+- `Memory record` or `archive entry`
 
 **Proof target:**
-- memory routing is explicit
-- archive is not deletion
-- retain is not proof
-- promote does not silently become canon
+- historical process material stays readable without remaining active authority
 
----
+### Rung 5 - `MemoryObject` contract surface
 
-### Rung 6 — Read-model distinction
-
-**Depends on subject:** Read-Model Distinction
+**Depends on subjects:**
+- `MemoryObject Envelope`
+- `Source-Family Admission Basis`
 
 **Implementation target:**
-- separate shapes and surfaces for retained object, reconstruction object, comparison receipt, query/read result, and later agent emission object
+- schema or type surface for `MemoryObject`
+- fail-closed validation for required and conditional fields
 
 **Expected outputs:**
-- role-distinct shapes
-- validation rules against class collapse
-- mixed-class rejection tests
+- `MemoryObject` schema or type
+- validator path
+- malformed-admission rejection tests
 
 **Proof target:**
-- read-side result cannot silently masquerade as retained state
-- reconstruction cannot silently masquerade as source object
+- admission binding preserves payload kind, refs, continuity constraints, and
+  non-claims without collapsing into summary surfaces
 
----
+### Rung 6 - `analog_signal` admission adapter
 
-### Rung 7 — Continuity under bounded identity posture
-
-**Depends on subject:** Continuity Under Bounded Identity Posture
+**Depends on subjects:**
+- `Source-Family Admission Basis`
+- `MemoryObject Envelope`
 
 **Implementation target:**
-- recurrence / reuse continuity surfaces
-- explicit same-object non-claim posture
-- continuity receipts or continuity fields
+- define how current `H1` / `M1` runtime payloads are bound into
+  `MemoryObject`
 
 **Expected outputs:**
-- continuity support shape
-- recurrence/reuse comparison tests
+- family contract surface for `analog_signal`
+- adapter or helper path
+- tests proving support geometry and lineage are conserved
 
 **Proof target:**
-- repeated reuse can be tracked without collapsing into same-object closure
+- current signal support can be admitted without flattening direct support
+  objects
 
----
+### Rung 7 - `json` admission adapter
 
-### Rung 8 — Agent write discipline
-
-**Depends on subject:** Agent Write Discipline
+**Depends on subjects:**
+- `Source-Family Admission Basis`
+- `MemoryObject Envelope`
 
 **Implementation target:**
-- typed agent emission object
-- bounded agent write contract
-- fail-closed validator path
+- define parsed-tree or schema-shape payload admission for `json`
 
 **Expected outputs:**
-- agent emission object
-- agent write validator
-- malformed agent write rejection tests
+- family contract surface for `json`
+- adapter or helper path
+- tests proving non-temporal families can still be placed into continuity
 
 **Proof target:**
-- agents can write only bounded classes under explicit policy and authority posture
+- the substrate is shown to be temporally continuous rather than
+  source-family-specific
 
----
+### Rung 8 - Substrate commit rebase
 
-### Rung 9 — Agent read / reconstruction discipline
-
-**Depends on subject:** Agent Read / Reconstruction Discipline
+**Depends on subjects:**
+- `MemoryObject Envelope`
+- `Substrate Topology`
 
 **Implementation target:**
-- lens-bound read surfaces for agents
-- auditable agent read receipts
-- reconstruction usage guardrails
+- move the commit boundary from direct mixed `H1` / `M1` storage toward explicit
+  `MemoryObject` admission
 
 **Expected outputs:**
-- agent read surface
-- agent read receipt
-- lens / source validation tests
+- commit path updates
+- retrieval updates
+- continuity-preservation tests
 
 **Proof target:**
-- agents can read and reconstruct lawfully without blurring retained state, reconstruction, and interpretation
+- admitted objects become singular and addressable without losing payload-native
+  dimensionality
 
----
+### Rung 9 - Comparison basis surfaces
 
-### Rung 10 — Multi-agent exchange over substrate
-
-**Depends on subject:** Multi-Agent Exchange Over Substrate
+**Depends on subjects:**
+- `Comparison Basis Law`
 
 **Implementation target:**
-- explicit handoff objects or exchange receipts
-- inspectable pass-to-pass diffs
-- role / lane declaration for each pass
+- family-aware comparison-basis surfaces for admitted objects
 
 **Expected outputs:**
-- exchange receipt shape
-- multi-pass replay harness
-- handoff tests
+- comparison-basis contracts
+- basis validators
+- same-input stability tests
 
 **Proof target:**
-- two or more agents can exchange over the substrate without hidden shared state and with explicit retained pass artifacts
+- comparison remains substrate-supported and non-identitarian
 
----
+### Rung 10 - Reconstruction lens surfaces
 
-### Rung 11 — Human resolution and governance
-
-**Depends on subject:** Human Resolution And Governance
+**Depends on subjects:**
+- `Reconstruction Lens Law`
 
 **Implementation target:**
-- accept / reject / defer / promote user resolution objects
-- user intervention continuity surface
+- source-family-aware reconstruction lenses over admitted objects
 
 **Expected outputs:**
-- governance object
-- user resolution receipt
-- continuity tests for intervention
+- reconstruction-lens contracts
+- replay or reconstruction helpers
+- source-versus-reconstruction distinction tests
 
 **Proof target:**
-- human acceptance or rejection becomes first-class continuity without silently becoming canon
+- reconstruction remains lens-bound and does not claim raw restoration
 
----
+### Rung 11 - Corpus / index access surfaces
 
-### Rung 12 — Cross-session recursive continuity
-
-**Depends on subject:** Cross-Session Recursive Continuity
+**Depends on subjects:**
+- `Corpus / Index Access Law`
 
 **Implementation target:**
-- re-entry surface from retained substrate objects rather than chat memory alone
-- session continuity receipts
+- typed addressability and retrieval over admitted objects
 
 **Expected outputs:**
-- session continuity object
-- re-entry harness
-- replay / resume tests
+- index or access contracts
+- retrieval helpers
+- tests proving access remains subordinate to lower-layer truth
 
 **Proof target:**
-- later sessions can resume from retained objects with visible reconstruction path and preserved non-claims
+- addressability becomes practical without corpus-only collapse
 
----
+## Testing posture
 
-## Stabilizing-pass posture
+Every rung should prefer:
 
-Between implementation rungs, stabilizing passes are lawful and encouraged.
+- direct object checks before receipt checks
+- relation conservation checks before count summaries
+- fail-closed validators
+- narrow fixture-based proofs
 
-A stabilizing pass may:
+Avoid treating:
 
-- tighten object boundaries
-- harden non-claims
-- refine validator scope
-- reduce silent authority inflation risk
-- improve reporting and explicitness
-
-A stabilizing pass must not:
-
-- silently widen the architectural subject
-- quietly import deferred upper-ladder behavior
-- treat exploratory code as settled proof
-
----
-
-## Test families
-
-Early proof should be organized into small test families:
-
-1. **shape tests**
-   - does the object match its declared class?
-
-2. **boundary tests**
-   - does malformed input fail closed?
-   - can class collapse be detected?
-
-3. **invariance tests**
-   - does retain / reload preserve what must persist?
-
-4. **comparison tests**
-   - do identical inputs yield stable comparison receipts?
-
-5. **reconstruction tests**
-   - is source/lens declaration mandatory?
-
-6. **routing tests**
-   - do retain / archive / promote postures remain explicit?
-
-7. **continuity tests**
-   - can recurrence be tracked without same-object inflation?
-
----
-
-## Non-claims
-
-This ladder does not yet define:
-
-- final package placement
-- final runtime orchestration
-- final agent prompt contracts
-- final benchmarking surface
-- final control-loop implementation
-- autonomous repo mutation policy
-
-These may unfold later when their parent subjects are stable enough.
-
----
+- receipts as object evidence
+- indexes as ontology
+- projections as proof of runtime shape
 
 ## One-line summary
 
-ExecutionSurface implementation should mechanize one stabilized subject at a time, proving each rung through bounded object shapes, fail-closed validators, explicit receipts, and narrow tests so code does not outrun the lawful memory-medium architecture.
+The live implementation ladder now starts from topology detection and
+`MemoryObject` admission, then steps through source-family adapters, substrate
+commit rebasing, comparison, reconstruction, and access law without reviving the
+older retained-object or receipt-era implementation grammar.
