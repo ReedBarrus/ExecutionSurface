@@ -12,6 +12,11 @@ It is not the older pre-rebase workflow seed.
 It is a bounded working register for active and pinned architectural subjects
 after the runtime grammar rebase.
 
+It is not active movement authority, role authority, or mutation authority.
+
+Its job is to register architectural subjects, not to run the development
+process.
+
 Historical process material now lives under:
 
 - `pressure_generation/archive/`
@@ -24,6 +29,11 @@ The registry exists to:
 - keep current and pinned future subjects visible
 - distinguish released foundation from active next work
 - prevent old descriptor-era or receipt-era branches from silently re-entering
+
+Operational movement remains governed by:
+
+- `README.EX.DecisionMatrix.md`
+- `README.EX.SeamDisciplineContract.md`
 
 ## Subject states
 

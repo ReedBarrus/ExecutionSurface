@@ -36,6 +36,15 @@ older references in this matrix to `morphogenesis` should now be read as the
 current `pressure_generation` method and file band unless the context is
 explicitly historical.
 
+Current workflow posture note:
+
+the prior experimental multi-role workflow surfaces under
+`pressure_generation/workflow/` are not active movement authority unless a file
+is explicitly kept live for architectural registry use.
+
+For the current front, active movement authority remains here in the matrix
+stack plus seam-local contracts.
+
 If this document and live repo state conflict about what currently exists, live
 repo state wins.
 
