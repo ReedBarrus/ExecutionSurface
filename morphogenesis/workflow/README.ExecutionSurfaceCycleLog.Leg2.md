@@ -725,3 +725,58 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Reflector
 - decision: Hold
 - reason: the State descriptor contract is strong enough to preserve, but Reflector should compress the unified-contract / artifact-class-specific-support-shape fork and tighten the two high-risk edges before Auditor gate.
+
+### ES-CYCLE-0012-REFLECTOR
+- cycle_id: ES-CYCLE-0012
+- active subject: State Support Descriptor Contract
+- active role: Reflector
+- active macro verb: Form / compression
+- expected emitted object: identity object / compressed descriptor contract
+- state before: Tension-Held
+- state after: Gate-Pending
+- doctrine-surface mutation status: updated `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeObjectGrammar.md`; appended cycle-log entry here; no implementation code, schemas, tests, subject registry, architecture seed, implementation ladder, Basin/Trajectory/Query/Replay descriptor contracts, LM packet contract, Agent Write / Agent Read law, workflow law, or coherence-governor authority posture mutated
+- exact repo write result:
+  - updated `morphogenesis/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeObjectGrammar.md`
+  - appended `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md`
+- compressed finding:
+  - State remains one unified descriptor contract over `H1` and `M1`.
+  - `support_shape` may vary by `artifact_class` inside the single State contract.
+  - `H1` preserves first recruited support composition from the support recruitment seam.
+  - `M1` preserves merged or compacted support composition from the merge / support compaction seam.
+  - These subprofiles are implementation-facing requirements inside State; they do not split State into separate `H1` and `M1` descriptor contracts.
+  - Downstream routing hints are read-side routing metadata only; they do not authorize semantic labels, interpretive summaries, convenience-shaped downstream projection law, memory routing posture, promotion posture, hidden authority, hidden write permission, or substitution for required descriptor fields.
+  - Reconstruction support staging may consume State descriptors only under declared replay / reconstruction need when a state-support basis is required; it is not a general default consumer.
+  - State remains `RC2 - Descriptor-Compressing` and must not drift into `RC3` projection assembly or `RC4` coherence inflation through downstream narrative, semantic smoothing, apparent completeness, or interpretive closure.
+  - Receipt-only State exposure above `H1` remains malformed.
+- proposals accepted:
+  - preserve one unified State Support Descriptor contract for `H1` and `M1`
+  - add artifact-class-specific `support_shape` subprofiles for `H1` and `M1`
+  - keep those subprofiles inside State rather than creating new descriptor families
+  - tighten downstream routing hints as non-authoritative read-side metadata only
+  - make reconstruction support staging conditional on declared replay / reconstruction need
+  - preserve State as `RC2 - Descriptor-Compressing`
+  - preserve receipt-only exposure above `H1` and semantic / truth / canon / identity / routing / promotion / source-equivalence claims as malformed
+- proposals rejected:
+  - splitting State into separate `H1` and `M1` contracts
+  - opening Basin, Trajectory, Query, or Replay descriptor contracts
+  - writing exact JSON schema or validator law
+  - mutating implementation code, tests, subject registry, architecture seed, implementation ladder, LM packet contract, Agent Write law, or Agent Read law
+  - treating downstream routing hints as semantic labels, convenience-shaped projection law, memory routing posture, or hidden authority
+  - treating reconstruction support staging as a general default State descriptor consumer
+  - treating State descriptors as runtime transformation authority, runtime support authority by themselves, replacement for `H1` / `M1`, truth, canon, identity closure, promotion, routing proof, source-equivalence proof, agent authority, or hidden write permission
+- what changed:
+  - The runtime object grammar now states that State remains one descriptor contract over `H1` and `M1`.
+  - The contract now states artifact-class-specific support-shape subprofiles for `H1` first recruited support posture and `M1` merged / compacted support posture.
+  - Downstream routing hints are now explicitly bounded as read-side routing metadata only.
+  - Reconstruction support staging is now explicitly conditional on declared replay / reconstruction need.
+  - Malformed descriptor posture now includes failed `H1` / `M1` subprofile support-shape preservation, illicit routing-hint inflation, unsupported reconstruction staging consumption, and receipt-only State exposure above `H1`.
+- what remains unresolved:
+  - Exact JSON schema remains deferred.
+  - Exact validator implementation remains deferred.
+  - Exact implementation edits remain deferred.
+  - Exact semantic-default removal payloads remain deferred.
+  - Basin, Trajectory, Query, and Replay descriptor contracts remain declared but unopened.
+  - Subject-registry state remains unchanged because this pass was not authorized to mutate it.
+- recommended next role: Auditor
+- decision: Release-to-Gate
+- reason: the unified State contract now carries enough `H1` / `M1` distinction, routing-hint boundary, reconstruction-staging condition, RC2 integrity, and malformed-posture clarity for Auditor to test release without opening schema or implementation.
