@@ -397,3 +397,59 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Creative
 - decision: Hold
 - reason: the seam-authority grammar is now compressed enough to pressure, but target seam classifications still deserve contrastive testing before release into descriptor contract writing.
+
+### ES-CYCLE-0011-CREATIVE
+- cycle_id: ES-CYCLE-0011
+- active subject: Runtime Seam And Authority Grammar
+- active role: Creative
+- active macro verb: Form / controlled pressure
+- expected emitted object: identity object / pressure finding
+- state before: Compressed
+- state after: Tension-Held
+- doctrine-surface mutation status: none; no doctrine surfaces, implementation code, schemas, tests, subject registry, architecture seed, implementation ladder, descriptor contracts, or coherence-governor authority posture mutated; appended cycle-log entry only to `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md`
+- exact repo write result: appended by connector execution in this pass
+- pressure applied:
+  - tested whether optional downstream-only semantic overlay is bounded tightly enough to prevent leakage back into default runtime authority
+  - tested whether temporary transitional bridge posture is bounded tightly enough to prevent compatibility aliases from surviving as durable law
+  - tested whether `Support Descriptor Contract Family` should open as the full five-family set or as a narrower first slice
+  - tested whether receipt-only exposure above `H1` is actually blocked or only prohibited abstractly
+  - tested whether the runtime/workflow coherence governors remain lawful audit/classification companions or risk becoming a hidden authority layer
+  - tested whether the compression is strong enough for descriptor contract writing now or needs Reflector tightening first
+- pressure result:
+  - The seam-authority compression holds as a strong floor, but it should remain Tension-Held rather than release directly into full descriptor-family contract writing.
+  - The most load-bearing still-live fork is `full Support Descriptor Contract Family` versus `first State support descriptor slice`.
+  - Semantic optionality is adequately named as downstream and non-default in doctrine, but implementation-facing default-dependency removal is not yet proven; this should remain an explicit pressure target, not a blocker to Reflector compression.
+  - Transitional bridge posture is adequately named as temporary, removable, and non-durable, but compatibility aliases should not be allowed to enter descriptor-contract inputs or proof targets; this should stay a hard non-claim.
+  - Receipt subordination is doctrinally strong, but receipt-only substitutes above `H1` still need descriptor-led proof before broad contract writing hardens.
+  - The coherence governors remain lawful as audit/classification companions only if their classifications stay subordinate to object/emission grammar and do not become primary runtime or workflow authority.
+- proposals accepted:
+  - preserve the Constructor compression as the current seam-authority floor
+  - keep semantic overlays optional, downstream, non-default, and removable
+  - keep compatibility aliases and semantic mirrors transitional, removable, and barred from durable descriptor-contract inputs
+  - keep receipts subordinate while preserving receipt-led exposure above `H1` as a still-live implementation / descriptor proof risk
+  - keep support descriptors as bounded read-side carriers grounded in lawful upstream support objects
+  - keep runtime and workflow coherence governors as companion audit vocabularies only, not primary authority or trunk subjects
+  - preserve one narrow fork for Reflector: full descriptor family opening versus State-support-first slice
+- proposals rejected:
+  - opening descriptor contract writing directly from Creative pressure
+  - opening broad `Support Descriptor Contract Family` without Reflector / Auditor compression of the mixed downstream band
+  - treating optional semantic overlays as default runtime dependencies
+  - treating compatibility aliases, semantic mirrors, or count-heavy convenience packets as durable law
+  - treating subordinate receipts as sufficient primary exposure above `H1`
+  - promoting coherence governors into primary authority or an active trunk subject
+  - mutating implementation code, schemas, tests, subject registry, architecture seed, implementation ladder, descriptor contracts, or doctrine surfaces in this pass
+  - importing LM read packet contract, Agent Write / Agent Read law, multi-agent exchange, human governance, or control intent into this subject
+- what changed:
+  - The Leg 2 cycle log now records that the Runtime Seam And Authority Grammar compression survives Creative pressure as a strong shared floor.
+  - The pressure pass narrows the next unresolved decision to whether descriptor contract opening should be full-family or State-support-first.
+  - The pass makes explicit that semantic overlay and transitional bridge risks are bounded in doctrine but still require implementation-facing proof before they can be treated as fully eliminated.
+  - The pass records coherence governors as useful audit/classification companions only, not hidden authority layers.
+- unresolved tensions:
+  - Reflector still needs to decide whether the next subject should be broad `Support Descriptor Contract Family` or a narrower State-support descriptor slice.
+  - Descriptor contract fields remain deferred.
+  - Implementation edits that remove semantic defaults, compatibility aliases, receipt-led substitutes, and interpretive support dependencies remain deferred.
+  - The mixed downstream seams still need proof that class-distinct descriptor-led projections can replace receipt-only or semantic-dependent exposure above `H1`.
+  - Coherence-governor placement must remain subordinate to runtime object/emission grammar and workflow law.
+- recommended next role: Reflector
+- decision: Hold
+- reason: the seam-authority compression is strong enough to preserve and compress, but not yet strong enough to release directly into broad descriptor-family writing without resolving the full-family versus State-support-first fork.
