@@ -281,3 +281,43 @@ New role-pass entries from ES-CYCLE-0008 onward should append here unless a late
 - recommended next role: Auditor
 - decision: Rebound
 - reason: the current review finding set is coherent, but the next lawful move is not descriptor contract writing; it is one narrower seam-authority compression to prevent mixed downstream exposure, receipt-led flattening, and transitional packaging from hardening into contract law.
+
+### ES-CYCLE-0010-AUDITOR
+- cycle_id: ES-CYCLE-0010
+- active subject: Runtime Grammar Pressure Review
+- active role: Auditor
+- active macro verb: Evaluate / Gate posture
+- expected emitted object: evaluation object
+- state before: Rebound
+- state after: Rebound committed
+- live-surface mutation status: no live-subject mutation; no architecture seed mutation; no implementation-ladder mutation; no code mutation; no schema mutation; no descriptor contract mutation; updated `morphogenesis/workflow/README.ExecutionSurfaceCycleLog.Leg2.md`
+- proposals accepted:
+  - affirm the Reflector rebound recommendation as lawful
+  - preserve the runtime grammar spine as current runtime-front reality
+  - block direct release into broad `Support Descriptor Contract Family` for now
+  - route the next active subject to `Runtime Seam And Authority Grammar`
+  - keep descriptor families directionally sufficient but not contract-ready
+  - keep receipt subordination as doctrine while treating receipt-led flattening above `H1` as an unresolved downstream exposure risk
+  - keep semantic overlay excluded from default runtime authority while requiring one narrower seam-authority compression before contract writing
+- proposals rejected:
+  - releasing directly into `Support Descriptor Contract Family`
+  - downgrading the runtime grammar corpus as too unstable to use
+  - holding for another broad Runtime Grammar Pressure Review pass
+  - writing descriptor contracts, schemas, benchmark law, implementation patches, or descriptor contract fields in this pass
+  - reopening Agent Write Discipline, Agent Read / Reconstruction Discipline, governance, multi-agent exchange, architecture seed rewrite, or implementation ladder mutation
+  - treating descriptor-family sufficiency as descriptor-contract readiness
+  - treating stable core runtime seams as proof that downstream read-side packaging is stable
+- what changed:
+  - Auditor verified that the current subject produced useful findings but is not ready to release into broad descriptor contract writing.
+  - Auditor verified that continuing directly into `Support Descriptor Contract Family` would freeze unresolved downstream exposure assumptions around orchestrator assembly, workbench integration, cross-run admission/reporting, LM extraction, and reconstruction staging.
+  - Auditor verified that `Runtime Seam And Authority Grammar` is a narrower corrective target directly addressing seam authority, emission routing, descriptor routing, subordinate receipts, semantic-overlay optionality, and transitional-material handling.
+  - The gate decision is now committed as Rebound into `Runtime Seam And Authority Grammar`.
+- unresolved tensions:
+  - Exact descriptor contract fields remain deferred.
+  - Exact implementation edits remain deferred.
+  - Exact transitional-material removal payloads remain deferred.
+  - Whether later descriptor-contract opening should start with the full descriptor family or a first State-support slice remains unresolved until seam-authority compression completes.
+  - `Support Descriptor Contract Family` remains deferred until the rebound subject compresses.
+- recommended next role: Constructor
+- decision: Rebound
+- reason: Runtime grammar findings are useful and the spine is stable, but descriptor contract writing would currently freeze unresolved downstream exposure and seam-authority ambiguity.
