@@ -227,6 +227,12 @@ It defines the minimum lawful State descriptor shape for compact exposure of
 state-support composition without expanding into Basin, Trajectory, Query, or
 Replay descriptor contracts.
 
+State remains one unified descriptor contract over `H1` and `M1`.
+
+`H1` and `M1` may require artifact-class-specific `support_shape` subprofiles,
+but those subprofiles do not create separate descriptor families or separate
+contracts.
+
 ### Source scope
 
 State Support Descriptor applies first to:
@@ -249,6 +255,16 @@ It does not cover:
 State Support Descriptor is `RC2 - Descriptor-Compressing`.
 
 It is a compact read-side exposure of a lawful upstream support object.
+
+It remains `RC2` only while it compresses declared `H1` / `M1` support
+composition without changing authority class.
+
+It must not become:
+
+- `RC3` projection assembly by containing downstream integration narrative
+- `RC4` coherence inflation by adding semantic smoothness, apparent
+  completeness, or interpretive closure not grounded in the source support
+  object
 
 It is not:
 
@@ -293,6 +309,33 @@ At minimum, `support_shape` must include:
 A State descriptor may compress or bound large support composition, but it must
 not reduce state support to counts alone.
 
+#### Artifact-class-specific support-shape subprofiles
+
+`support_shape` may vary by `artifact_class` inside this single State contract.
+
+For `artifact_class: H1`, `support_shape` must preserve first recruited support
+composition from the support recruitment seam.
+
+The `H1` subprofile should expose the support posture that first arises from
+`CompressOp -> H1`, including the kept-bin or bounded kept-bin projection,
+normalized band profile, raw energy or equivalent magnitude summary, and
+threshold / distortion / uncertainty posture needed to make that first support
+recruitment legible.
+
+For `artifact_class: M1`, `support_shape` must preserve merged or compacted
+support composition from the merge / support compaction seam.
+
+The `M1` subprofile should expose the compacted support posture, including the
+merged kept-bin or bounded projection, merged / compacted normalized band
+profile, raw energy or equivalent magnitude summary after compaction, merge
+lineage posture, and distortion / uncertainty posture needed to make the merge
+legible.
+
+These subprofiles are implementation-facing requirements inside one State
+Support Descriptor Contract.
+
+They do not split State into separate `H1` and `M1` descriptor contracts.
+
 ### Optional fields
 
 A State descriptor may optionally expose bounded helper fields when they remain
@@ -310,6 +353,24 @@ Optional fields may include:
 Optional fields must remain subordinate to the required fields.
 
 They must not become the only meaningful exposure of state support.
+
+#### Downstream routing hints
+
+Downstream routing hints are read-side routing metadata only.
+
+They may declare which lawful read-side consumer or seam is expected to consume
+the descriptor.
+
+They must not become:
+
+- semantic labels
+- interpretive summaries
+- convenience-shaped downstream projection law
+- memory routing posture
+- promotion posture
+- hidden authority
+- hidden write permission
+- a substitute for declared descriptor fields
 
 ### Upstream grounding
 
@@ -331,12 +392,20 @@ State descriptors may be consumed by:
 - workbench runtime section
 - LM staging
 - cross-run comparison
-- reconstruction support staging when a state-support basis is needed
+- reconstruction support staging when a declared replay / reconstruction need
+  requires a state-support basis
 
 These consumers receive State descriptors as bounded read-side exposure.
 
 They do not receive authority to treat the descriptor as `H1`, `M1`, truth,
 canon, identity closure, memory routing, or hidden write permission.
+
+Reconstruction support staging is conditional.
+
+It may consume State descriptors only under declared replay / reconstruction
+need.
+
+It is not a general default consumer of State descriptors.
 
 ### Subordinate receipts
 
@@ -399,11 +468,20 @@ A State descriptor is malformed or rejectable when any of the following occur:
 - missing `provenance_refs`
 - missing `explicit_non_claims`
 - `support_shape` collapses to count-only exposure
+- `support_shape` fails to preserve required `H1` first-recruited support posture
+  when `artifact_class` is `H1`
+- `support_shape` fails to preserve required `M1` merged / compacted support
+  posture when `artifact_class` is `M1`
 - required or default fields contain semantic labels
 - required or default fields contain truth, canon, identity, promotion,
   routing, agent-authority, hidden-write, raw-restoration, or source-equivalence
   claims
+- downstream routing hints become semantic labels, convenience-shaped projection
+  law, memory routing posture, or hidden authority
+- reconstruction support staging consumes the descriptor without declared replay /
+  reconstruction need
 - receipt-only substitute is offered as the State descriptor
+- receipt-only State exposure above `H1` is offered as lawful exposure
 - upstream `H1` / `M1` grounding is absent or ambiguous
 
 ### Contract non-goals
@@ -424,11 +502,12 @@ This contract does not define:
 
 ### One-line State contract
 
-A State Support Descriptor is a bounded `RC2` descriptor over `H1` / `M1` support
-composition that exposes source, scope, support basis, support shape,
-uncertainty/confidence posture, policy/provenance refs, and explicit non-claims
-without replacing the support object or importing semantic, truth, canon,
-identity, routing, promotion, agent-authority, or hidden-write posture.
+A State Support Descriptor is one bounded `RC2` descriptor contract over `H1` /
+`M1` support composition that exposes source, scope, support basis, artifact-class
+specific support shape, uncertainty/confidence posture, policy/provenance refs,
+and explicit non-claims without replacing the support object or importing
+semantic, truth, canon, identity, routing, promotion, agent-authority,
+source-equivalence, or hidden-write posture.
 
 ### Basin Support Descriptor
 
