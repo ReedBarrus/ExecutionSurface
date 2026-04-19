@@ -316,6 +316,75 @@ It defines, seam by seam:
 | `Reconstruction interpretive support seam` | `Read-side function` | `Semantic overlay` | none in default runtime | none | default support basis, widened interpretation reliance | remove |
 | `Probe receipt seam` | `Read-side function` | `Receipt summary` | none | probe receipts only | runtime authority, write authority | keep advisory-only |
 
+## Runtime Seam And Authority Grammar Compression
+
+Downstream mixed seams may assemble, stage, compare, validate, or expose lawful upstream structural and support objects through bounded support descriptors, read-side projections, and subordinate receipts.
+
+They may not treat semantic overlays, compatibility aliases, receipt-only summaries, hidden write authority, identity closure, truth posture, or canon posture as default runtime authority.
+
+Any downstream seam whose current usefulness depends on semantic overlay, compatibility aliasing, or receipt-only exposure above `H1` must be tightened, re-derived, removed, or quarantined before `Support Descriptor Contract Family` opens broadly.
+
+### Target mixed-seam classifications
+
+| Seam | Mechanism stratum | Allowed authority | Allowed default emission | Prohibited default emission | Forward posture |
+| --- | --- | --- | --- | --- | --- |
+| `Orchestrator result assembly seam` | `Pipeline coordination function` | `Read-side projection only` with subordinate audit | class-distinct structural/support sections, allowed support descriptors, subordinate `runtime_receipt` | semantic overlay as runtime dependency, top-level interpretation alias, receipt-only substitute above `H1`, hidden write authority, identity/truth/canon claims | `Re-derive` |
+| `Workbench runtime section seam` | `Pipeline coordination function` | `Read-side projection only` with subordinate audit | descriptor-led structural/support integration view, subordinate `workbench_receipt` | count-heavy packet as sole exposure, semantic overlay dependency, compatibility aliases, hidden write authority, identity/truth/canon claims | `Tighten` |
+| `Workbench compatibility alias seam` | `Transitional bridge` | `Transitional compatibility only` until removed | no durable default emission; temporary compatibility shim only when explicitly labeled | compatibility alias as durable law, semantic mirror as runtime necessity, provenance blur, receipt/object substitution | `Remove` |
+| `Cross-run session admission seam` | `Pipeline coordination function` | `Read-side projection only` for run admission | descriptor-capable runtime section admission, bounded admission receipt | interpretive overlay admission requirement, semantic label family dependency, hidden promotion/truth/canon posture | `Re-derive` |
+| `Cross-run report seam` | `Read-side function` | `Read-side projection only` with subordinate comparison receipts | descriptor-led structural/support comparison posture, reproducibility posture, subordinate comparison receipts | interpretive label comparison as default basis, semantic overlay dependency, truth/canon/same-object closure | `Re-derive` |
+| `LM wrapper extraction seam` | `Read-side function` | `Read-side projection only` | bounded descriptor-fed LM input view, subordinate receipts when useful | semantic overlay as required input, count-only packet as final target, hidden write authority, agent authority inflation | `Tighten` |
+| `Reconstruction runtime support collection seam` | `Read-side function` | `Read-side projection only` over runtime support | replay/state descriptor support basis, reconstruction receipts | interpretive support as required basis, raw restoration claim, source-equivalence proof, hidden enhancement | `Tighten` |
+| `Reconstruction interpretive support seam` | `Read-side function` | optional downstream read-side interpretation only | none in default runtime authority; optional overlay only when explicitly separated | default reconstruction support basis, widened interpretation reliance, semantic overlay as support authority | `Remove` |
+
+### Allowed emissions for the mixed downstream band
+
+The mixed downstream band may emit or route:
+
+- bounded read-side projections that preserve class separation
+- support descriptors routed from lawful upstream support objects
+- subordinate receipts for audit, validation, comparison, admission, or transport
+- optional semantic overlays only when explicitly downstream and non-default
+- temporary transitional bridges only when explicitly named, removable, and not used as later durable dependencies
+
+### Prohibited emissions for the mixed downstream band
+
+The mixed downstream band must not emit by default:
+
+- semantic overlay as runtime dependency
+- compatibility alias as durable law
+- receipt-only substitute above `H1`
+- hidden write authority
+- hidden memory retention or promotion
+- identity closure
+- truth claims
+- canon posture
+- source-equivalence or raw restoration claims
+- agent authority inflation
+
+### Transitional-material posture
+
+Compatibility aliases, semantic mirrors, count-heavy convenience packets, and interpretive support dependencies are transitional material when they remain necessary for repo continuity.
+
+They may be tolerated only when explicitly labeled, removable, and subordinate to lawful upstream structural/support objects and support descriptors.
+
+They must not become descriptor-contract inputs, implementation proof targets, runtime authority, or default dependencies for cross-run admission, workbench exposure, LM staging, or reconstruction support.
+
+### Support Descriptor Contract Family opening condition
+
+`Support Descriptor Contract Family` may open only after this seam-authority grammar is stable enough that descriptor contracts will not harden:
+
+- semantic overlays as default runtime authority
+- compatibility aliases as durable law
+- receipt-only exposure above `H1`
+- mixed read-side projections without explicit non-authority posture
+- hidden write, identity, truth, canon, promotion, or source-equivalence claims
+
+The next descriptor-contract opening should either:
+
+- open the full first descriptor family only if Reflector and Auditor confirm the mixed downstream band is sufficiently bounded; or
+- open a first narrow slice for `State support descriptor` with explicit routing and non-claim limits if any seam-class tension remains.
+
 ## Phase 2 Descriptor Priorities
 
 The descriptor families should be implemented in this order:
