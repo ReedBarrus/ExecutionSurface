@@ -71,6 +71,8 @@ export class MemorySubstrate {
 
         /** @type {Map<string, Object>} state_id → H1 or M1 artifact */
         this._states = new Map();
+        this._memoryObjects = new Map();
+        this._memoryObjectIdsByStateId = new Map();
 
         /** @type {Map<string, import("../basin/BasinOp.js").BasinState>} basin_id → BasinState */
         this._basins = new Map();
@@ -168,18 +170,22 @@ export class MemorySubstrate {
 
         // ── Idempotency: same state_id already committed ──
         if (this._states.has(state.state_id)) {
-            const existing = this._states.get(state.state_id);
-            // If it's truly the same object (by state_id), accept silently
+            const memoryObjectId = this._memoryObjectIdsByStateId.get(state.state_id) ?? null;
             return {
                 ok: true,
                 state_id: state.state_id,
+                memory_object_id: memoryObjectId,
                 basin_assignment: null,
                 duplicate: true,
             };
         }
 
         // ── Store immutable copy ──
-        this._states.set(state.state_id, Object.freeze(deepCopy(state)));
+        const storedState = Object.freeze(deepCopy(state));
+        const memoryObject = Object.freeze(this._buildMemoryObject(storedState));
+        this._states.set(state.state_id, storedState);
+        this._memoryObjects.set(memoryObject.memory_object_id, memoryObject);
+        this._memoryObjectIdsByStateId.set(state.state_id, memoryObject.memory_object_id);
         this._commit_count += 1;
 
         // ── Basin assignment (nearest neighbor from existing basins) ──
@@ -212,7 +218,7 @@ export class MemorySubstrate {
 
         // ── Trajectory frame ──
         this._trajectory.push({
-            state,
+            state: storedState,
             basin_id: basinAssignment?.basin_id ?? null,
             distance_to_basin_centroid: basinAssignment?.distance ?? null,
             novelty_gate_triggered: opts.novelty_gate_triggered ?? false,
@@ -221,6 +227,7 @@ export class MemorySubstrate {
         return {
             ok: true,
             state_id: state.state_id,
+            memory_object_id: memoryObject.memory_object_id,
             basin_assignment: basinAssignment,
             duplicate: false,
         };
@@ -286,6 +293,19 @@ export class MemorySubstrate {
     }
 
     /**
+     * Retrieve a stored MemoryObject by memory_object_id or payload state_id.
+     * Returns null if not found.
+     * @param {string} ref
+     * @returns {Object|null}
+     */
+    getMemoryObject(ref) {
+        const memoryObjectId = this._resolveMemoryObjectId(ref);
+        if (!memoryObjectId) return null;
+        const memoryObject = this._memoryObjects.get(memoryObjectId);
+        return memoryObject ? copyMemoryObject(memoryObject) : null;
+    }
+
+    /**
      * All committed states in chronological order (t_start ascending).
      * @returns {Object[]}
      */
@@ -296,12 +316,35 @@ export class MemorySubstrate {
     }
 
     /**
+     * All committed MemoryObjects in chronological order (t_start ascending).
+     * @returns {Object[]}
+     */
+    allMemoryObjects() {
+        return [...this._memoryObjects.values()]
+            .sort((a, b) =>
+                (a.admission_extent?.t_start ?? 0) - (b.admission_extent?.t_start ?? 0)
+            )
+            .map(copyMemoryObject);
+    }
+
+    /**
      * All committed states for a given segment_id, chronological.
      * @param {string} segment_id
      * @returns {Object[]}
      */
     statesForSegment(segment_id) {
         return this.allStates().filter(s => s.segment_id === segment_id);
+    }
+
+    /**
+     * All committed MemoryObjects for a given segment_id, chronological.
+     * @param {string} segment_id
+     * @returns {Object[]}
+     */
+    memoryObjectsForSegment(segment_id) {
+        return this.allMemoryObjects().filter(
+            (memoryObject) => memoryObject.admission_extent?.segment_id === segment_id
+        );
     }
 
     /**
@@ -602,6 +645,7 @@ export class MemorySubstrate {
             report_type: "substrate:operational_summary",
             substrate_id: this.substrate_id,
             state_count: this._states.size,
+            memory_object_count: this._memoryObjects.size,
             commit_count: this._commit_count,
             basin_count: this._basins.size,
             segment_count: segments.size,
@@ -615,6 +659,142 @@ export class MemorySubstrate {
     }
 
     // ─── Internal ─────────────────────────────────────────────────────────────
+
+    /**
+     * Build the admitted MemoryObject envelope for one lawful H1/M1 payload.
+     * @private
+     */
+    _buildMemoryObject(state) {
+        const payloadKind = state.artifact_class === "M1" ? "m1_support" : "h1_support";
+        const mergedFrom = asArray(state?.merge_record?.inputs);
+        const receiptMergedFrom = asArray(state?.receipts?.merge?.merged_from);
+        const lineageInputs = [...new Set([...mergedFrom, ...receiptMergedFrom])];
+        const structuralRefs = asArray(state?.provenance?.input_refs);
+        const supportRefs = [
+            {
+                ref_type: "support_payload",
+                artifact_class: state.artifact_class,
+                state_id: state.state_id,
+            },
+        ];
+        const comparisonBasisRefs = [
+            {
+                basis_type: "band_profile_norm",
+                path: "invariants.band_profile_norm.band_energy",
+            },
+            {
+                basis_type: "kept_bins",
+                path: "kept_bins",
+            },
+        ];
+        const memoryObject = {
+            memory_object_type: "MemoryObject",
+            memory_object_id: buildMemoryObjectId(state),
+            source_family: "analog_signal",
+            payload_kind: payloadKind,
+            payload_ref: {
+                ref_type: "support_state",
+                artifact_class: state.artifact_class,
+                state_id: state.state_id,
+            },
+            payload: state,
+            admission_extent: {
+                extent_type: "temporal_span",
+                stream_id: state.stream_id,
+                segment_id: state.segment_id,
+                t_start: state.window_span?.t_start ?? null,
+                t_end: state.window_span?.t_end ?? null,
+                duration_sec: state.window_span?.duration_sec ?? null,
+                window_count: state.window_span?.window_count ?? null,
+            },
+            provenance_edges: {
+                source_refs: structuralRefs,
+                operator_id: state?.provenance?.operator_id ?? null,
+                operator_version: state?.provenance?.operator_version ?? null,
+                payload_state_id: state.state_id,
+            },
+            policy_refs: {
+                ...deepCopy(state.policies ?? {}),
+            },
+            continuity_constraints: {
+                uncertainty_time: deepCopy(state?.uncertainty?.time ?? {}),
+                bounded_identity_posture: "support continuity only",
+                non_closure_constraint: "does not assert same-object closure",
+                replay_limit: "bounded to preserved support payload",
+                promotion_separation: "receipts and read-side projections remain subordinate",
+            },
+            relation_slots: {
+                provenance: structuralRefs.map((ref) => ({
+                    relation_type: "derived_from",
+                    ref,
+                })),
+                temporal_adjacency: [],
+                support_composition: supportRefs.map((ref) => ({
+                    relation_type: "payload_support",
+                    ref,
+                })),
+                merge_lineage: lineageInputs.map((ref) => ({
+                    relation_type: "merge_input",
+                    ref,
+                })),
+                neighborhood_membership: [],
+                comparison_basis: comparisonBasisRefs.map((ref) => ({
+                    relation_type: "comparison_basis",
+                    ref,
+                })),
+                reconstruction_source: [
+                    {
+                        relation_type: "reconstructable_from_payload",
+                        ref: state.state_id,
+                    },
+                ],
+                retrieval_consult: [
+                    {
+                        relation_type: "payload_ref",
+                        ref: state.state_id,
+                    },
+                ],
+            },
+            explicit_non_claims: [
+                "not_descriptor",
+                "not_receipt",
+                "not_object_card",
+                "not_semantic_wrapper",
+                "not_same_object_closure",
+                "not_semantic_identity",
+            ],
+            structural_refs: structuralRefs,
+            support_refs: supportRefs,
+            comparison_basis_refs: comparisonBasisRefs,
+            reconstruction_lenses: [
+                {
+                    lens_type: "kept_bin_support",
+                    path: "kept_bins",
+                },
+                {
+                    lens_type: "band_profile_support",
+                    path: "invariants.band_profile_norm.band_energy",
+                },
+            ],
+            family_contract_ref: "analog_signal.memory_object_admission.v1",
+            admission_mode: state.artifact_class === "M1" ? "derived_merge" : "temporal_stream",
+        };
+
+        if (lineageInputs.length > 0) {
+            memoryObject.lineage_refs = lineageInputs.map((ref) => ({
+                lineage_type: "merge_input",
+                ref,
+            }));
+        }
+
+        return memoryObject;
+    }
+
+    _resolveMemoryObjectId(ref) {
+        if (!ref || typeof ref !== "string") return null;
+        if (this._memoryObjects.has(ref)) return ref;
+        return this._memoryObjectIdsByStateId.get(ref) ?? null;
+    }
 
     /**
      * After BasinOp rebuilds basins for a segment, update any existing
@@ -701,6 +881,10 @@ function copyBasin(basin) {
     };
 }
 
+function copyMemoryObject(memoryObject) {
+    return deepCopy(memoryObject);
+}
+
 function l1(a, b) {
     const n = Math.max(a.length, b.length);
     let s = 0;
@@ -711,4 +895,12 @@ function l1(a, b) {
 function deepCopy(obj) {
     // JSON round-trip is sufficient for plain artifact objects (no functions/symbols)
     return JSON.parse(JSON.stringify(obj));
+}
+
+function buildMemoryObjectId(state) {
+    return `MO:${state.state_id}`;
+}
+
+function asArray(value) {
+    return Array.isArray(value) ? [...value] : [];
 }

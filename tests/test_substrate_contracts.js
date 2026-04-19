@@ -130,6 +130,79 @@ function makeH1WithProfile(tStart, tEnd, bandEnergy, segId = SEG_0, extras = {})
     return h;
 }
 
+function makeM1(tStart = 0, tEnd = 2, extras = {}) {
+    const inputA = extras.inputA ?? `H1:${STREAM_ID}:${SEG_0}:${tStart}:${tStart + 1}`;
+    const inputB = extras.inputB ?? `H1:${STREAM_ID}:${SEG_0}:${tStart + 1}:${tEnd}`;
+    return {
+        artifact_class: "M1",
+        state_id: extras.state_id ?? `M1:${STREAM_ID}:${SEG_0}:${tStart}:${tEnd}`,
+        stream_id: extras.stream_id ?? STREAM_ID,
+        segment_id: extras.segment_id ?? SEG_0,
+        window_span: {
+            t_start: tStart,
+            t_end: tEnd,
+            duration_sec: tEnd - tStart,
+            window_count: 2,
+        },
+        grid: { Fs_target: 8, N: 8, df: 1, bin_count_full: 5, bin_count_kept: 2 },
+        kept_bins: [
+            { k: 0, freq_hz: 0, re: 0.9, im: 0, magnitude: 0.9, phase: 0 },
+            { k: 1, freq_hz: 1, re: 0.4, im: 0, magnitude: 0.4, phase: 0 },
+        ],
+        invariants: {
+            energy_raw: 0.97,
+            energy_norm: 0.97,
+            band_profile_norm: { band_edges: [0, 4, 4], band_energy: [0.9, 0.1] },
+        },
+        uncertainty: {
+            time: { dt_nominal: null, jitter_rms: null, gap_total_duration: 0,
+                monotonicity_violations: 0, drift_ppm: null,
+                fit_residual_rms: null, post_align_jitter: null },
+        },
+        confidence: {
+            by_invariant: { identity: 1, energy: 1, band_profile: 1 },
+            overall: 1,
+            method: "test",
+        },
+        gates: {
+            eligible_for_authoritative_merge: true,
+            eligible_for_archive_tier: true,
+            blocked_reason: "none",
+        },
+        receipts: {
+            merge: {
+                merge_mode: "authoritative",
+                phase_alignment_mode: "clock_delta_rotation",
+                weights_mode: "duration",
+                merged_from: [inputA, inputB],
+                phase_deltas: [0, 1],
+                energy_drift_after_merge: 0,
+            },
+        },
+        merge_record: {
+            inputs: [inputA, inputB],
+            weights: [1, 1],
+            merge_policy_id: "MERGE:1",
+            output_ref: extras.state_id ?? `M1:${STREAM_ID}:${SEG_0}:${tStart}:${tEnd}`,
+            merge_tree_position: null,
+        },
+        policies: {
+            clock_policy_id: "CLK:v1",
+            grid_policy_id: "GRID:1",
+            window_policy_id: "WIN:1",
+            transform_policy_id: "XFRM:1",
+            compression_policy_id: "COMP:1",
+            merge_policy_id: "MERGE:1",
+        },
+        provenance: {
+            input_refs: [inputA, inputB],
+            operator_id: "MergeOp",
+            operator_version: "0.1.0",
+        },
+        ...extras,
+    };
+}
+
 const BASIN_POLICY = {
     policy_id: "basin.v1",
     similarity_threshold: 0.3,
@@ -565,11 +638,14 @@ const h1_2 = makeH1(2, 3, { state_id: `H1:${STREAM_ID}:${SEG_0}:2:3` });
 const c0 = ms.commit(h1_0);
 assert("commit valid H1: ok",              c0.ok, JSON.stringify(c0));
 assert("commit returns state_id",          c0.state_id === h1_0.state_id);
+assert("commit returns memory_object_id",  typeof c0.memory_object_id === "string");
+assert("commit memory_object_id is MO-prefixed", c0.memory_object_id.startsWith("MO:"));
 assert("commit returns duplicate=false",   c0.duplicate === false);
 
 // D2: idempotent commit — same state_id returns ok + duplicate=true
 const c0dup = ms.commit(h1_0);
 assert("idempotent commit: ok",            c0dup.ok);
+assert("idempotent commit: same memory_object_id", c0dup.memory_object_id === c0.memory_object_id);
 assert("idempotent commit: duplicate=true", c0dup.duplicate === true);
 
 // D3: duplicate does not increase state count
@@ -762,6 +838,69 @@ const trajSlice = ms.getTrajectory(0, 2);
 assert("getTrajectory returns trajectory frames in range",
     trajSlice.every(f => f.t_start >= 0 && f.t_end <= 2));
 
+// D29: MemoryObject retrieval exposes lawful envelope plus direct payload access
+const moRetrieved = ms.getMemoryObject(c0.memory_object_id);
+assert("getMemoryObject(memory_object_id) returns non-null", moRetrieved !== null);
+assert("MemoryObject.source_family = analog_signal",
+    moRetrieved !== null && moRetrieved.source_family === "analog_signal");
+assert("MemoryObject.payload_kind = h1_support",
+    moRetrieved !== null && moRetrieved.payload_kind === "h1_support");
+assert("MemoryObject.payload_ref points to committed H1",
+    moRetrieved !== null && moRetrieved.payload_ref.state_id === h1_0.state_id);
+assert("MemoryObject.payload preserves direct support payload",
+    moRetrieved !== null && moRetrieved.payload.state_id === h1_0.state_id);
+assert("MemoryObject admission_extent preserves temporal placement",
+    moRetrieved !== null &&
+    moRetrieved.admission_extent.segment_id === SEG_0 &&
+    moRetrieved.admission_extent.t_start === 0 &&
+    moRetrieved.admission_extent.t_end === 1);
+assert("MemoryObject provenance/policy/continuity fields are present",
+    moRetrieved !== null &&
+    Array.isArray(moRetrieved.provenance_edges.source_refs) &&
+    moRetrieved.policy_refs.clock_policy_id === h1_0.policies.clock_policy_id &&
+    typeof moRetrieved.continuity_constraints.non_closure_constraint === "string");
+assert("MemoryObject relation slots and non-claims are explicit",
+    moRetrieved !== null &&
+    Array.isArray(moRetrieved.relation_slots.retrieval_consult) &&
+    moRetrieved.explicit_non_claims.includes("not_descriptor"));
+
+// D30: MemoryObject lookup by state_id resolves the same envelope
+const moByStateId = ms.getMemoryObject(h1_0.state_id);
+assert("getMemoryObject(state_id) resolves envelope",
+    moByStateId !== null && moByStateId.memory_object_id === c0.memory_object_id);
+
+// D31: allMemoryObjects / memoryObjectsForSegment expose admitted envelopes
+const allMemoryObjects = ms.allMemoryObjects();
+assert("allMemoryObjects() count matches state count in this pass",
+    allMemoryObjects.length === ms.allStates().length);
+assert("memoryObjectsForSegment() returns SEG_0 envelopes",
+    ms.memoryObjectsForSegment(SEG_0).length === allMemoryObjects.length);
+
+// D32: summary reports explicit memory_object_count
+assert("substrate summary has memory_object_count",
+    typeof summ.memory_object_count === "number" && summ.memory_object_count === summ.state_count);
+
+// D33: M1 MemoryObject preserves merge lineage and derived-merge admission mode
+const msMO = new MemorySubstrate({ substrate_id: "memory_object_test" });
+const moM1 = makeM1(40, 42, {
+    state_id: `M1:${STREAM_ID}:${SEG_0}:40:42`,
+    inputA: h1_0.state_id,
+    inputB: h1_1.state_id,
+});
+const m1Commit = msMO.commit(moM1);
+const m1Envelope = msMO.getMemoryObject(m1Commit.memory_object_id);
+assert("M1 commit returns memory_object_id", typeof m1Commit.memory_object_id === "string");
+assert("M1 MemoryObject payload_kind = m1_support",
+    m1Envelope !== null && m1Envelope.payload_kind === "m1_support");
+assert("M1 MemoryObject admission_mode = derived_merge",
+    m1Envelope !== null && m1Envelope.admission_mode === "derived_merge");
+assert("M1 MemoryObject lineage_refs preserve merge inputs",
+    m1Envelope !== null &&
+    Array.isArray(m1Envelope.lineage_refs) &&
+    m1Envelope.lineage_refs.length === 2 &&
+    m1Envelope.lineage_refs.every((ref) =>
+        ref.ref === h1_0.state_id || ref.ref === h1_1.state_id));
+
 // ════════════════════════════════════════════════════════════════════════════
 // E. Boundary integrity
 // ════════════════════════════════════════════════════════════════════════════
@@ -903,6 +1042,19 @@ assert("F2: get() returns independent copies (not same reference)",
 assert("F2: get() copies have equal content",
     JSON.stringify(rpGetA) === JSON.stringify(rpGetB));
 
+const rpMo1 = msR.getMemoryObject(rpH1a.state_id);
+const rpMo2 = msR.getMemoryObject(rpH1a.state_id);
+assert("F2b: getMemoryObject() returns non-null", rpMo1 !== null);
+assert("F2b: getMemoryObject() returns independent copies",
+    rpMo1 !== rpMo2);
+rpMo1.payload.invariants.band_profile_norm.band_energy[0] = 2222;
+rpMo1.payload_ref.state_id = "mutated_payload_ref";
+const rpMo3 = msR.getMemoryObject(rpH1a.state_id);
+assert("F2b: getMemoryObject() payload is mutation-safe",
+    rpMo3.payload.invariants.band_profile_norm.band_energy[0] !== 2222);
+assert("F2b: getMemoryObject() payload_ref is mutation-safe",
+    rpMo3.payload_ref.state_id === rpH1a.state_id);
+
 // ── F3: allStates() items are mutation-safe ──
 const rpAll1 = msR.allStates();
 assert("F3: allStates() returns 2 states", rpAll1.length === 2);
@@ -916,6 +1068,13 @@ assert("F3: allStates() top-level stream_id immutable after caller mutation",
 // Each call returns independent arrays
 assert("F3: allStates() returns new array each call",
     msR.allStates() !== msR.allStates());
+
+const rpAllMo1 = msR.allMemoryObjects();
+assert("F3b: allMemoryObjects() returns 2 envelopes", rpAllMo1.length === 2);
+rpAllMo1[0].payload.kept_bins[0].re = 1111;
+const rpAllMo2 = msR.allMemoryObjects();
+assert("F3b: allMemoryObjects() payload kept_bins immutable after caller mutation",
+    rpAllMo2[0].payload.kept_bins[0].re !== 1111);
 
 // ── F4: statesForSegment() items are mutation-safe ──
 const rpSeg1 = msR.statesForSegment(SEG_0);
