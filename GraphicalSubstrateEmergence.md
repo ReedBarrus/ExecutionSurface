@@ -82,6 +82,8 @@ Graph state       = relation / topology / continuity floor
 Index layer       = retrieval / packaging / access
 ```
 
+The current separate runtime structures may remain as transitional scaffolding until the graph floor is explicitly implemented.
+
 ## MemoryObject, Support Object, and Graph Node
 
 The current distinction should be preserved and made explicit.

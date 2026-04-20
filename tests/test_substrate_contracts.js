@@ -914,6 +914,98 @@ assert("M1 MemoryObject lineage_refs preserve merge inputs",
 // E. Boundary integrity
 // ════════════════════════════════════════════════════════════════════════════
 
+// D34: MemoryObject.payload stays in direct parity with H1/M1 read surfaces
+const msParity = new MemorySubstrate({ substrate_id: "memory_object_parity_test" });
+const parityH1a = makeH1WithProfile(0, 1, [1.0, 0.0], SEG_0, {
+    state_id: `H1:${STREAM_ID}:${SEG_0}:parity:0:1`,
+});
+const parityH1b = makeH1WithProfile(1, 2, [0.85, 0.15], SEG_0, {
+    state_id: `H1:${STREAM_ID}:${SEG_0}:parity:1:2`,
+});
+const parityH1c = makeH1WithProfile(2, 3, [0.10, 0.90], SEG_0, {
+    state_id: `H1:${STREAM_ID}:${SEG_0}:parity:2:3`,
+});
+const parityM1 = makeM1(0, 2, {
+    state_id: `M1:${STREAM_ID}:${SEG_0}:parity:0:2`,
+    inputA: parityH1a.state_id,
+    inputB: parityH1b.state_id,
+});
+const parityH1Seg1 = makeH1WithProfile(3, 4, [0.50, 0.50], SEG_1, {
+    state_id: `H1:${STREAM_ID}:${SEG_1}:parity:3:4`,
+    segment_id: SEG_1,
+});
+const parityCommits = [
+    msParity.commit(parityH1a),
+    msParity.commit(parityH1b),
+    msParity.commit(parityH1c),
+    msParity.commit(parityM1),
+    msParity.commit(parityH1Seg1),
+];
+assert("MemoryObject parity fixture commits succeed",
+    parityCommits.every(result => result.ok));
+
+const parityDirectH1 = msParity.get(parityH1a.state_id);
+const parityEnvelopeH1 = msParity.getMemoryObject(parityH1a.state_id);
+const parityDirectM1 = msParity.get(parityM1.state_id);
+const parityEnvelopeM1 = msParity.getMemoryObject(parityM1.state_id);
+assert("MemoryObject.payload matches direct H1 read exactly",
+    parityDirectH1 !== null &&
+    parityEnvelopeH1 !== null &&
+    JSON.stringify(parityEnvelopeH1.payload) === JSON.stringify(parityDirectH1));
+assert("MemoryObject.payload matches direct M1 read exactly",
+    parityDirectM1 !== null &&
+    parityEnvelopeM1 !== null &&
+    JSON.stringify(parityEnvelopeM1.payload) === JSON.stringify(parityDirectM1));
+
+// D35: MemoryObject payload projections preserve direct state ordering/content
+const parityAllStates = msParity.allStates();
+const parityAllPayloads = msParity.allMemoryObjects().map((memoryObject) => memoryObject.payload);
+assert("allMemoryObjects().payload projection matches allStates()",
+    JSON.stringify(parityAllPayloads) === JSON.stringify(parityAllStates));
+
+const paritySegStates = msParity.statesForSegment(SEG_0);
+const paritySegPayloads = msParity.memoryObjectsForSegment(SEG_0)
+    .map((memoryObject) => memoryObject.payload);
+assert("memoryObjectsForSegment().payload projection matches statesForSegment()",
+    JSON.stringify(paritySegPayloads) === JSON.stringify(paritySegStates));
+
+// D36: trajectory frames round-trip through MemoryObject to the same support payload identity
+const parityTrajectory = msParity.trajectory.all();
+assert("trajectory frame memory_object_id resolves back to matching payload identity",
+    parityTrajectory.every((frame) => {
+        const memoryObject = msParity.getMemoryObject(frame.memory_object_id);
+        return memoryObject !== null &&
+            memoryObject.payload.state_id === frame.state_id &&
+            memoryObject.payload.artifact_class === frame.artifact_class &&
+            memoryObject.admission_extent.segment_id === frame.segment_id &&
+            memoryObject.admission_extent.t_start === frame.t_start &&
+            memoryObject.admission_extent.t_end === frame.t_end;
+    }));
+
+// D37: BasinOp behavior is unchanged when fed MemoryObject.payload projections
+const basinParityPolicy = { ...BASIN_POLICY, similarity_threshold: 0.5 };
+const basinFromStates = new BasinOp().run({
+    states: paritySegStates,
+    basin_policy: basinParityPolicy,
+});
+const basinFromPayloads = new BasinOp().run({
+    states: paritySegPayloads,
+    basin_policy: basinParityPolicy,
+});
+const basinSignatures = (result) => result.artifact.basins
+    .map((basin) => ({
+        basin_id: basin.basin_id,
+        members: [...basin.member_state_ids].sort(),
+    }))
+    .sort((a, b) => a.basin_id.localeCompare(b.basin_id));
+assert("BasinOp over MemoryObject.payload matches BasinOp over direct states",
+    basinFromStates.ok &&
+    basinFromPayloads.ok &&
+    JSON.stringify(basinSignatures(basinFromPayloads)) ===
+    JSON.stringify(basinSignatures(basinFromStates)) &&
+    JSON.stringify([...basinFromPayloads.artifact.unassigned_state_ids].sort()) ===
+    JSON.stringify([...basinFromStates.artifact.unassigned_state_ids].sort()));
+
 section("E. Boundary integrity — substrate does not cross into canon");
 
 // E1: BasinSet artifact class is BN, not C1
@@ -1582,6 +1674,31 @@ assert("I14: direct QueryOp = queryStates() for same corpus",
     JSON.stringify(viaMethod.artifact.results.map(r=>r.ref)));
 
 // ── I15: returned QueryResult items do not expose live corpus references ──
+// Mutating a QueryResult item's fields should not affect subsequent queries
+// I14b: direct QueryOp over MemoryObject.payload matches direct state corpus behavior
+const directStateFullCorpus = msQ.allStates();
+const directMemoryObjectCorpus = msQ.allMemoryObjects().map((memoryObject) => memoryObject.payload);
+const directStateFullResult = new QueryOp().run({
+    query_spec:{ query_id:"q_direct_memory_object", kind:"energy_trend", mode:"ENERGY",
+        scope:{ allow_cross_segment:true } },
+    query_policy: qpol,
+    corpus: directStateFullCorpus,
+});
+const directMemoryObjectResult = new QueryOp().run({
+    query_spec:{ query_id:"q_direct_memory_object", kind:"energy_trend", mode:"ENERGY",
+        scope:{ allow_cross_segment:true } },
+    query_policy: qpol,
+    corpus: directMemoryObjectCorpus,
+});
+assert("I14b: QueryOp over MemoryObject.payload matches QueryOp over allStates()",
+    directStateFullResult.ok &&
+    directMemoryObjectResult.ok &&
+    JSON.stringify(directMemoryObjectResult.artifact.results.map(r => r.ref)) ===
+    JSON.stringify(directStateFullResult.artifact.results.map(r => r.ref)) &&
+    JSON.stringify(directMemoryObjectResult.artifact.results.map(r => r.score)) ===
+    JSON.stringify(directStateFullResult.artifact.results.map(r => r.score)));
+
+// â”€â”€ I15: returned QueryResult items do not expose live corpus references â”€â”€
 // Mutating a QueryResult item's fields should not affect subsequent queries
 const qRes1 = msQ.queryStates(
     { query_id:"q_iso", kind:"energy_trend", mode:"ENERGY",
