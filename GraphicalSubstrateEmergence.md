@@ -6,6 +6,8 @@ Design target. Not an implementation packet. Not a runtime mutation contract.
 
 This document freezes the current conceptual target for an authoritative graphical substrate in ExecutionSurface. It exists to prevent a flattened read-side graph view, LM transport shape, or index card surface from accidentally inflating into substrate authority.
 
+This is the target Layer 1 exposure model after `MemoryObject` admission is stabilized. It does not replace the admission seam and should not be treated as the first implementation obligation unless the active packet explicitly grants that scope.
+
 ## Purpose
 
 The graphical substrate exists to expose the emergent relationships of admitted memory envelope signatures interacting over time.
@@ -26,19 +28,21 @@ node_id == memory_object_id
 
 A `CommittedMemoryNode` is therefore not a substitute for `MemoryObject`; it is the graph-native expression of a committed `MemoryObject`.
 
+This graph exposure must not remove, replace, or weaken truthful direct access to the underlying support object. Direct support access remains preserved through the object body store and existing state-first read paths unless a later packet explicitly changes that contract.
+
 ## Layered Substrate Model
 
 The hybrid substrate is organized into three distinct authority layers.
 
-### Layer 1 — Exposure Graph Ledger
+### Layer 1 - Exposure Graph Floor
 
-Layer 1 is the authoritative exposure substrate for committed memory topology.
+Layer 1 is the authoritative graph floor for committed memory topology.
 
-It stores graph-native committed memory nodes and minimal declared edges. Its role is to conserve multi-axis identity and exposed structural invariance over time.
+Its graph state is derived from an append-only graph ledger of lawful node and edge mutations. Its role is to conserve multi-axis identity and exposed structural invariance over time.
 
 Layer 1 does not derive neighborhoods, does not package cards, does not emit LM summaries, and does not claim canon.
 
-### Layer 2 — Emergent Relation Layer
+### Layer 2 - Emergent Relation Layer
 
 Layer 2 derives relationships over Layer 1 nodes and edges.
 
@@ -46,7 +50,7 @@ It may produce structural similarity relations, basin nodes, basin membership ed
 
 Layer 2 is derived substrate organization. It must remain subordinate to the Layer 1 graph floor.
 
-### Layer 3 — Corpus / Index / Transport Layer
+### Layer 3 - Corpus / Index / Transport Layer
 
 Layer 3 owns efficient packaging and access.
 
@@ -73,7 +77,8 @@ This document defines the target split:
 
 ```text
 Object body store = substance / payload body
-Graph ledger      = relation / topology / continuity authority
+Graph ledger      = append-only mutation history
+Graph state       = relation / topology / continuity floor
 Index layer       = retrieval / packaging / access
 ```
 
@@ -259,6 +264,13 @@ payload_ref
 
 The full support body remains in the object body store unless retention law explicitly requires embedded duplication.
 
+The local axis field `payload_ref` is a typed handle on the node. A graph `payload_ref` edge is a declared relation between the committed memory node and the support object identity. The field and the edge may carry the same target, but they have different roles:
+
+```text
+axis field = local typed handle
+edge       = graph-declared relation
+```
+
 ### Provenance Axis
 
 Conserves derivation source and operator lineage.
@@ -370,7 +382,7 @@ Example ledger event:
 
 ## Object Body Store vs Graph Ledger
 
-The object body store and graph ledger should not compete.
+The object body store, graph ledger, graph state, and index layer should not compete.
 
 The object body store holds payload bodies:
 
@@ -381,13 +393,21 @@ Basin objects, when derived
 Other emitted object bodies, later
 ```
 
-The graph ledger holds conserved graph exposure:
+The graph ledger holds graph mutation history:
+
+```text
+node admission events
+edge admission events
+mutation order
+replay/audit sequence
+```
+
+The graph state holds conserved graph exposure:
 
 ```text
 node identity
 node axes
 declared edges
-mutation history
 relation topology
 ```
 
@@ -409,7 +429,7 @@ payload ref
 policy / provenance / continuity posture
 ```
 
-The full support body remains available by reference through the object body store.
+The full support body remains available by reference through the object body store and through direct support read paths where those paths are already lawful.
 
 This keeps the graph meaningful without turning every node into a duplicated payload blob.
 
@@ -560,7 +580,7 @@ These remain intentionally open:
 The target architecture is:
 
 ```text
-MemoryObject -> CommittedMemoryNode -> GraphLedger -> Layer 2 emergent relations -> Layer 3 index/cards
+MemoryObject -> CommittedMemoryNode -> GraphLedger -> GraphState -> Layer 2 emergent relations -> Layer 3 index/cards
 ```
 
 One admitted memory envelope becomes one layered graph node.
