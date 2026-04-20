@@ -1006,6 +1006,217 @@ assert("BasinOp over MemoryObject.payload matches BasinOp over direct states",
     JSON.stringify([...basinFromPayloads.artifact.unassigned_state_ids].sort()) ===
     JSON.stringify([...basinFromStates.artifact.unassigned_state_ids].sort()));
 
+// D38: Minimal Layer 1 graph ledger admits graph-native CommittedMemoryNode records
+function makeGraphH1({ state_id, stream_id = STREAM_ID, segment_id = SEG_0, t_start, t_end, band_energy, input_ref }) {
+    const h1 = makeH1(t_start, t_end, {
+        state_id,
+        stream_id,
+        segment_id,
+        provenance: {
+            input_refs: [input_ref ?? `S1:${state_id}:w0`],
+            operator_id: "CompressOp",
+            operator_version: "0.1.0",
+        },
+    });
+    h1.invariants.band_profile_norm.band_energy = [...band_energy];
+    return h1;
+}
+
+const GRAPH_STREAM_B = "STR:test:ch1:voltage:arb:8";
+const GRAPH_SEG_B0 = `seg:${GRAPH_STREAM_B}:0`;
+const msGraph = new MemorySubstrate({ substrate_id: "graph_ledger_test" });
+const gH1a = makeGraphH1({
+    state_id: `H1:${STREAM_ID}:${SEG_0}:graph:0:1`,
+    t_start: 0,
+    t_end: 1,
+    band_energy: [1.0, 0.0],
+});
+const gH1b = makeGraphH1({
+    state_id: `H1:${STREAM_ID}:${SEG_0}:graph:1:2`,
+    t_start: 1,
+    t_end: 2,
+    band_energy: [0.8, 0.2],
+});
+const gH1c = makeGraphH1({
+    state_id: `H1:${STREAM_ID}:${SEG_0}:graph:2:3`,
+    t_start: 2,
+    t_end: 3,
+    band_energy: [0.6, 0.4],
+});
+const gH1Seg1 = makeGraphH1({
+    state_id: `H1:${STREAM_ID}:${SEG_1}:graph:3:4`,
+    segment_id: SEG_1,
+    t_start: 3,
+    t_end: 4,
+    band_energy: [0.3, 0.7],
+});
+const gH1StreamB = makeGraphH1({
+    state_id: `H1:${GRAPH_STREAM_B}:${GRAPH_SEG_B0}:graph:4:5`,
+    stream_id: GRAPH_STREAM_B,
+    segment_id: GRAPH_SEG_B0,
+    t_start: 4,
+    t_end: 5,
+    band_energy: [0.45, 0.55],
+});
+const gM1 = makeM1(5, 7, {
+    state_id: `M1:${STREAM_ID}:${SEG_1}:graph:5:7`,
+    segment_id: SEG_1,
+    inputA: gH1b.state_id,
+    inputB: gH1Seg1.state_id,
+});
+
+const gCommitA = msGraph.commit(gH1a);
+assert("graph ledger first H1 commit succeeds", gCommitA.ok, JSON.stringify(gCommitA));
+assert("graph ledger first H1 creates one graph node", msGraph.allGraphNodes().length === 1);
+const gNodeA = msGraph.graphNode(gCommitA.memory_object_id);
+assert("graph node lookup resolves committed H1 node", gNodeA !== null);
+assert("graph node node_id === memory_object_id",
+    gNodeA !== null && gNodeA.node_id === gCommitA.memory_object_id);
+assert("graph node node_type === CommittedMemoryNode",
+    gNodeA !== null && gNodeA.node_type === "CommittedMemoryNode");
+assert("graph node state_id matches committed H1",
+    gNodeA !== null && gNodeA.state_id === gH1a.state_id);
+assert("graph node artifact_class === H1",
+    gNodeA !== null && gNodeA.artifact_class === "H1");
+assert("graph node trajectory axis preserves stream/segment/time/frame placement",
+    gNodeA !== null &&
+    gNodeA.axes.trajectory.stream_id === gH1a.stream_id &&
+    gNodeA.axes.trajectory.segment_id === gH1a.segment_id &&
+    gNodeA.axes.trajectory.t_start === gH1a.window_span.t_start &&
+    gNodeA.axes.trajectory.t_end === gH1a.window_span.t_end &&
+    gNodeA.axes.trajectory.frame_index === 0);
+assert("graph node structure axis preserves vector, energy, and confidence",
+    gNodeA !== null &&
+    JSON.stringify(gNodeA.axes.structure.vector) === JSON.stringify(gH1a.invariants.band_profile_norm.band_energy) &&
+    gNodeA.axes.structure.energy_raw === gH1a.invariants.energy_raw &&
+    gNodeA.axes.structure.confidence === gH1a.confidence.overall);
+assert("graph node support/provenance/policy/continuity axes preserve required values",
+    gNodeA !== null &&
+    gNodeA.axes.support.payload_kind === "h1_support" &&
+    gNodeA.axes.support.payload_ref.state_id === gH1a.state_id &&
+    JSON.stringify(gNodeA.axes.provenance.source_refs) === JSON.stringify(gH1a.provenance.input_refs) &&
+    gNodeA.axes.policy.policy_refs.clock_policy_id === gH1a.policies.clock_policy_id &&
+    gNodeA.axes.continuity.explicit_non_claims.includes("not_canon"));
+
+const gEdgesAfterA = msGraph.graphEdges();
+const gPayloadEdgeA = gEdgesAfterA.find((edge) => edge.edge_type === "payload_ref" && edge.from === gCommitA.memory_object_id);
+assert("graph ledger H1 commit creates payload_ref edge from memory_object_id to state_id",
+    gPayloadEdgeA !== undefined && gPayloadEdgeA.to === gH1a.state_id);
+assert("graph ledger event count increments with unique commit", msGraph.graphLedgerEvents().length === 1);
+assert("graphNode(unknown) returns null", msGraph.graphNode("MO:missing") === null);
+
+const gCommitB = msGraph.commit(gH1b);
+const gCommitC = msGraph.commit(gH1c);
+const gCommitSeg1 = msGraph.commit(gH1Seg1);
+const gCommitStreamB = msGraph.commit(gH1StreamB);
+const gCommitM1 = msGraph.commit(gM1);
+assert("graph ledger remaining fixture commits succeed",
+    [gCommitB, gCommitC, gCommitSeg1, gCommitStreamB, gCommitM1].every((result) => result.ok));
+
+const gTemporalEdge = msGraph.graphEdges().find((edge) =>
+    edge.edge_type === "temporal_next" &&
+    edge.from === gCommitA.memory_object_id &&
+    edge.to === gCommitB.memory_object_id
+);
+assert("sequential H1 commits in same stream create temporal_next edge",
+    gTemporalEdge !== undefined);
+
+const gM1Node = msGraph.graphNode(gCommitM1.memory_object_id);
+const gM1MergeEdges = msGraph.graphEdges().filter((edge) =>
+    edge.edge_type === "merge_lineage_ref" && edge.from === gCommitM1.memory_object_id
+);
+assert("M1 commit creates CommittedMemoryNode with artifact_class M1",
+    gM1Node !== null && gM1Node.artifact_class === "M1");
+assert("M1 commit creates merge_lineage_ref edges for merge inputs",
+    gM1MergeEdges.length === 2 &&
+    gM1MergeEdges.some((edge) => edge.to === gH1b.state_id) &&
+    gM1MergeEdges.some((edge) => edge.to === gH1Seg1.state_id));
+assert("graph edges use deterministic GE-prefixed ids",
+    msGraph.graphEdges().every((edge) => edge.edge_id.startsWith(`GE:${edge.event_index}:`)));
+
+const graphNodeOrder = msGraph.allGraphNodes().map((node) => node.node_id);
+assert("allGraphNodes() preserves graph commit order",
+    JSON.stringify(graphNodeOrder) === JSON.stringify([
+        gCommitA.memory_object_id,
+        gCommitB.memory_object_id,
+        gCommitC.memory_object_id,
+        gCommitSeg1.memory_object_id,
+        gCommitStreamB.memory_object_id,
+        gCommitM1.memory_object_id,
+    ]));
+assert("graphLedgerEvents() preserves append order",
+    JSON.stringify(msGraph.graphLedgerEvents().map((event) => event.event_index)) === JSON.stringify([0, 1, 2, 3, 4, 5]));
+
+const graphNodeCountBeforeDup = msGraph.allGraphNodes().length;
+const graphEdgeCountBeforeDup = msGraph.graphEdges().length;
+const graphEventCountBeforeDup = msGraph.graphLedgerEvents().length;
+const gDup = msGraph.commit(gH1a);
+assert("duplicate commit remains duplicate=true under graph ledger", gDup.ok && gDup.duplicate === true);
+assert("duplicate commit does not increase graph node count",
+    msGraph.allGraphNodes().length === graphNodeCountBeforeDup);
+assert("duplicate commit does not increase graph edge count",
+    msGraph.graphEdges().length === graphEdgeCountBeforeDup);
+assert("duplicate commit does not increase graph ledger event count",
+    msGraph.graphLedgerEvents().length === graphEventCountBeforeDup);
+
+const gNodeRead1 = msGraph.graphNode(gCommitA.memory_object_id);
+const gNodeRead2 = msGraph.graphNode(gCommitA.memory_object_id);
+assert("graphNode() returns independent copies",
+    gNodeRead1 !== null && gNodeRead2 !== null && gNodeRead1 !== gNodeRead2);
+if (gNodeRead1) {
+    gNodeRead1.axes.structure.vector[0] = 9999;
+    gNodeRead1.axes.support.payload_ref.state_id = "mutated_graph_payload_ref";
+}
+const gNodeRead3 = msGraph.graphNode(gCommitA.memory_object_id);
+assert("graphNode() is mutation-safe",
+    gNodeRead3 !== null &&
+    gNodeRead3.axes.structure.vector[0] !== 9999 &&
+    gNodeRead3.axes.support.payload_ref.state_id === gH1a.state_id);
+
+const gEdgeRead1 = msGraph.graphEdges();
+gEdgeRead1[0].from = "mutated_graph_edge";
+const gEdgeRead2 = msGraph.graphEdges();
+assert("graphEdges() is mutation-safe",
+    gEdgeRead2[0].from !== "mutated_graph_edge");
+
+const gEventRead1 = msGraph.graphLedgerEvents();
+gEventRead1[0].edges_added[0] = "mutated_graph_event";
+const gEventRead2 = msGraph.graphLedgerEvents();
+assert("graphLedgerEvents() is mutation-safe",
+    gEventRead2[0].edges_added[0] !== "mutated_graph_event");
+
+const gView1 = msGraph.graphStateView();
+assert("graphStateView() default limit is applied",
+    gView1.scope.limit === 5 && gView1.nodes.length === 5);
+assert("graphStateView() returns latest nodes by graph commit order",
+    !gView1.nodes.some((node) => node.node_id === gCommitA.memory_object_id) &&
+    gView1.nodes.some((node) => node.node_id === gCommitM1.memory_object_id));
+assert("graphStateView() includes nodes and edges and omits raw payloads",
+    gView1.nodes.length > 0 &&
+    gView1.edges.length > 0 &&
+    !JSON.stringify(gView1).includes("\"kept_bins\"") &&
+    !JSON.stringify(gView1).includes("\"payload\":") &&
+    gView1.omissions.includes("raw_payload_not_included"));
+if (gView1.nodes.length > 0) {
+    gView1.nodes[0].state_id = "mutated_graph_view_node";
+}
+if (gView1.edges.length > 0) {
+    gView1.edges[0].to = "mutated_graph_view_edge";
+}
+const gView2 = msGraph.graphStateView();
+assert("graphStateView() is mutation-safe",
+    !gView2.nodes.some((node) => node.state_id === "mutated_graph_view_node") &&
+    !gView2.edges.some((edge) => edge.to === "mutated_graph_view_edge"));
+
+const gStreamView = msGraph.graphStateView({ stream_id: GRAPH_STREAM_B });
+assert("graphStateView({ stream_id }) filters by trajectory stream",
+    gStreamView.nodes.length === 1 &&
+    gStreamView.nodes.every((node) => node.axes.trajectory.stream_id === GRAPH_STREAM_B));
+const gSegmentView = msGraph.graphStateView({ segment_id: SEG_1 });
+assert("graphStateView({ segment_id }) filters by trajectory segment",
+    gSegmentView.nodes.length > 0 &&
+    gSegmentView.nodes.every((node) => node.axes.trajectory.segment_id === SEG_1));
+
 section("E. Boundary integrity â€” substrate does not cross into canon");
 
 // E1: BasinSet artifact class is BN, not C1

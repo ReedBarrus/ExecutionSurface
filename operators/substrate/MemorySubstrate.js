@@ -75,6 +75,11 @@ export class MemorySubstrate {
         this._memoryObjectIdsByStateId = new Map();
         this._lastCommittedStateId = null;
         this._lastCommittedMemoryObjectId = null;
+        this._graphLedgerEvents = [];
+        this._graphNodesById = new Map();
+        this._graphEdgesById = new Map();
+        this._lastGraphNodeByStreamId = new Map();
+        this._graphCommitOrder = [];
 
         /** @type {Map<string, import("../basin/BasinOp.js").BasinState>} basin_id → BasinState */
         this._basins = new Map();
@@ -188,9 +193,6 @@ export class MemorySubstrate {
         this._states.set(state.state_id, storedState);
         this._memoryObjects.set(memoryObject.memory_object_id, memoryObject);
         this._memoryObjectIdsByStateId.set(state.state_id, memoryObject.memory_object_id);
-        this._lastCommittedStateId = state.state_id;
-        this._lastCommittedMemoryObjectId = memoryObject.memory_object_id;
-        this._commit_count += 1;
 
         // ── Basin assignment (nearest neighbor from existing basins) ──
         const segmentBasinIds = this._basinsBySegment.get(state.segment_id) ?? [];
@@ -221,13 +223,32 @@ export class MemorySubstrate {
         }
 
         // ── Trajectory frame ──
-        this._trajectory.push({
+        const trajectoryResult = this._trajectory.push({
             state: storedState,
             memory_object_id: memoryObject.memory_object_id,
             basin_id: basinAssignment?.basin_id ?? null,
             distance_to_basin_centroid: basinAssignment?.distance ?? null,
             novelty_gate_triggered: opts.novelty_gate_triggered ?? false,
         });
+        if (!trajectoryResult.ok) {
+            this._states.delete(state.state_id);
+            this._memoryObjects.delete(memoryObject.memory_object_id);
+            this._memoryObjectIdsByStateId.delete(state.state_id);
+            return {
+                ok: false,
+                error: "TRAJECTORY_COMMIT_FAILURE",
+                reasons: trajectoryResult.reasons ?? ["trajectory push failed during commit"],
+            };
+        }
+
+        this._admitCommittedMemoryNode({
+            state: storedState,
+            memoryObject,
+            trajectoryFrame: trajectoryResult.frame,
+        });
+        this._lastCommittedStateId = state.state_id;
+        this._lastCommittedMemoryObjectId = memoryObject.memory_object_id;
+        this._commit_count += 1;
 
         return {
             ok: true,
@@ -330,6 +351,110 @@ export class MemorySubstrate {
                 (a.admission_extent?.t_start ?? 0) - (b.admission_extent?.t_start ?? 0)
             )
             .map(copyMemoryObject);
+    }
+
+    /**
+     * Retrieve a committed Layer 1 graph node by memory_object_id.
+     * Returns null if not found.
+     * @param {string} memory_object_id
+     * @returns {Object|null}
+     */
+    graphNode(memory_object_id) {
+        if (!memory_object_id || typeof memory_object_id !== "string") return null;
+        const node = this._graphNodesById.get(memory_object_id);
+        return node ? copyGraphNode(node) : null;
+    }
+
+    /**
+     * All committed Layer 1 graph nodes in graph commit order.
+     * @returns {Object[]}
+     */
+    allGraphNodes() {
+        return this._graphCommitOrder
+            .map((nodeId) => this._graphNodesById.get(nodeId))
+            .filter(Boolean)
+            .map(copyGraphNode);
+    }
+
+    /**
+     * All committed Layer 1 graph edges in deterministic order.
+     * @returns {Object[]}
+     */
+    graphEdges() {
+        return [...this._graphEdgesById.values()]
+            .sort((a, b) => {
+                if (a.event_index !== b.event_index) return a.event_index - b.event_index;
+                return a.edge_id.localeCompare(b.edge_id);
+            })
+            .map(copyGraphEdge);
+    }
+
+    /**
+     * All graph ledger events in append order.
+     * @returns {Object[]}
+     */
+    graphLedgerEvents() {
+        return this._graphLedgerEvents.map(copyGraphLedgerEvent);
+    }
+
+    /**
+     * Bounded read-side view over stored Layer 1 graph state.
+     * @param {Object} [opts]
+     * @param {number} [opts.limit=5]
+     * @param {string} [opts.stream_id]
+     * @param {string} [opts.segment_id]
+     * @returns {Object}
+     */
+    graphStateView(opts = {}) {
+        const limit = Number.isInteger(opts.limit) && opts.limit > 0 ? opts.limit : 5;
+        const streamId = opts.stream_id ?? null;
+        const segmentId = opts.segment_id ?? null;
+
+        let nodes = this.allGraphNodes();
+        if (streamId !== null) {
+            nodes = nodes.filter(
+                (node) => node.axes?.trajectory?.stream_id === streamId
+            );
+        }
+        if (segmentId !== null) {
+            nodes = nodes.filter(
+                (node) => node.axes?.trajectory?.segment_id === segmentId
+            );
+        }
+
+        const boundedNodes = nodes.slice(-limit);
+        const includedNodeIds = new Set(boundedNodes.map((node) => node.node_id));
+        const edges = this.graphEdges().filter(
+            (edge) => includedNodeIds.has(edge.from) || includedNodeIds.has(edge.to)
+        );
+
+        return {
+            view_type: "substrate_graph_state_view",
+            authority_posture: "read_side_view_over_layer_1_graph_state",
+            scope: {
+                limit,
+                stream_id: streamId,
+                segment_id: segmentId,
+            },
+            nodes: boundedNodes,
+            edges,
+            ledger_event_count: this._graphLedgerEvents.length,
+            node_count: boundedNodes.length,
+            edge_count: edges.length,
+            omissions: [
+                "raw_payload_not_included",
+                "layer_2_relations_not_included",
+                "layer_3_cards_not_included",
+            ],
+            non_claims: [
+                "not_canon",
+                "not_truth_closure",
+                "not_same_object_closure",
+                "not_raw_restoration",
+                "not_index_authority",
+                "not_lm_authority",
+            ],
+        };
     }
 
     /**
@@ -801,6 +926,103 @@ export class MemorySubstrate {
         return memoryObject;
     }
 
+    _admitCommittedMemoryNode({ state, memoryObject, trajectoryFrame }) {
+        const eventIndex = this._graphLedgerEvents.length;
+        const node = this._buildCommittedMemoryNode({ state, memoryObject, trajectoryFrame });
+        const edges = this._buildCommittedMemoryEdges({ state, memoryObject, eventIndex });
+        this._graphNodesById.set(node.node_id, Object.freeze(deepCopy(node)));
+        for (const edge of edges) {
+            this._graphEdgesById.set(edge.edge_id, Object.freeze(deepCopy(edge)));
+        }
+        this._graphCommitOrder.push(node.node_id);
+        this._lastGraphNodeByStreamId.set(state.stream_id, node.node_id);
+        this._graphLedgerEvents.push(Object.freeze(deepCopy({
+            event_type: "commit_committed_memory_node",
+            event_index: eventIndex,
+            node_id: node.node_id,
+            memory_object_id: node.memory_object_id,
+            state_id: node.state_id,
+            edges_added: edges.map((edge) => edge.edge_id),
+            source: "MemorySubstrate.commit",
+        })));
+    }
+
+    _buildCommittedMemoryNode({ state, memoryObject, trajectoryFrame }) {
+        return {
+            node_type: "CommittedMemoryNode",
+            node_id: memoryObject.memory_object_id,
+            memory_object_id: memoryObject.memory_object_id,
+            state_id: state.state_id,
+            artifact_class: state.artifact_class,
+            axes: {
+                trajectory: {
+                    stream_id: trajectoryFrame.stream_id,
+                    segment_id: trajectoryFrame.segment_id,
+                    t_start: trajectoryFrame.t_start,
+                    t_end: trajectoryFrame.t_end,
+                    frame_index: trajectoryFrame.frame_index,
+                },
+                structure: {
+                    signature_type: "band_energy_vector_v1",
+                    basis: "invariants.band_profile_norm.band_energy",
+                    vector: [...(state.invariants?.band_profile_norm?.band_energy ?? [])],
+                    energy_raw: state.invariants?.energy_raw ?? null,
+                    confidence: state.confidence?.overall ?? null,
+                },
+                support: {
+                    payload_kind: memoryObject.payload_kind,
+                    payload_ref: deepCopy(memoryObject.payload_ref),
+                },
+                provenance: {
+                    source_refs: [...(state.provenance?.input_refs ?? [])],
+                    operator_id: state.provenance?.operator_id ?? null,
+                    operator_version: state.provenance?.operator_version ?? null,
+                },
+                policy: {
+                    policy_refs: deepCopy(memoryObject.policy_refs ?? {}),
+                },
+                continuity: {
+                    admission_mode: memoryObject.admission_mode ?? null,
+                    continuity_constraints: deepCopy(memoryObject.continuity_constraints ?? {}),
+                    explicit_non_claims: [...(memoryObject.explicit_non_claims ?? [])],
+                },
+            },
+        };
+    }
+
+    _buildCommittedMemoryEdges({ state, memoryObject, eventIndex }) {
+        const nodeId = memoryObject.memory_object_id;
+        const edges = [
+            buildGraphEdge({
+                event_index: eventIndex,
+                edge_type: "payload_ref",
+                from: nodeId,
+                to: state.state_id,
+            }),
+        ];
+
+        const previousNodeId = this._lastGraphNodeByStreamId.get(state.stream_id) ?? null;
+        if (previousNodeId) {
+            edges.push(buildGraphEdge({
+                event_index: eventIndex,
+                edge_type: "temporal_next",
+                from: previousNodeId,
+                to: nodeId,
+            }));
+        }
+
+        for (const lineageRef of memoryObject.lineage_refs ?? []) {
+            edges.push(buildGraphEdge({
+                event_index: eventIndex,
+                edge_type: "merge_lineage_ref",
+                from: nodeId,
+                to: lineageRef.ref,
+            }));
+        }
+
+        return edges;
+    }
+
     _resolveMemoryObjectId(ref) {
         if (!ref || typeof ref !== "string") return null;
         if (this._memoryObjects.has(ref)) return ref;
@@ -896,6 +1118,18 @@ function copyMemoryObject(memoryObject) {
     return deepCopy(memoryObject);
 }
 
+function copyGraphNode(node) {
+    return deepCopy(node);
+}
+
+function copyGraphEdge(edge) {
+    return deepCopy(edge);
+}
+
+function copyGraphLedgerEvent(event) {
+    return deepCopy(event);
+}
+
 function l1(a, b) {
     const n = Math.max(a.length, b.length);
     let s = 0;
@@ -910,6 +1144,18 @@ function deepCopy(obj) {
 
 function buildMemoryObjectId(state) {
     return `MO:${state.state_id}`;
+}
+
+function buildGraphEdge({ event_index, edge_type, from, to }) {
+    return {
+        edge_id: `GE:${event_index}:${edge_type}:${from}:${to}`,
+        edge_type,
+        from,
+        to,
+        layer: "L1",
+        relation_status: "committed",
+        event_index,
+    };
 }
 
 function asArray(value) {
