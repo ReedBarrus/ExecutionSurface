@@ -78,6 +78,8 @@ export class MemorySubstrate {
         this._graphLedgerEvents = [];
         this._graphNodesById = new Map();
         this._graphEdgesById = new Map();
+        this._graphDerivedEdgesById = new Map();
+        this._graphDerivedRelationEvents = [];
         this._lastGraphNodeByStreamId = new Map();
         this._graphCommitOrder = [];
 
@@ -395,6 +397,135 @@ export class MemorySubstrate {
      */
     graphLedgerEvents() {
         return this._graphLedgerEvents.map(copyGraphLedgerEvent);
+    }
+
+    /**
+     * All derived Layer 2 graph edges in deterministic order.
+     * @param {Object} [opts]
+     * @param {string} [opts.edge_type]
+     * @param {string} [opts.from]
+     * @param {string} [opts.to]
+     * @param {string} [opts.layer]
+     * @param {string} [opts.policy_id]
+     * @returns {Object[]}
+     */
+    graphDerivedEdges(opts = {}) {
+        let edges = [...this._graphDerivedEdgesById.values()]
+            .sort((a, b) => {
+                if (a.event_index !== b.event_index) return a.event_index - b.event_index;
+                return a.edge_id.localeCompare(b.edge_id);
+            });
+
+        if (opts.edge_type) {
+            edges = edges.filter((edge) => edge.edge_type === opts.edge_type);
+        }
+        if (opts.from) {
+            edges = edges.filter((edge) => edge.from === opts.from);
+        }
+        if (opts.to) {
+            edges = edges.filter((edge) => edge.to === opts.to);
+        }
+        if (opts.layer) {
+            edges = edges.filter((edge) => edge.layer === opts.layer);
+        }
+        if (opts.policy_id) {
+            edges = edges.filter((edge) => edge.derived_by?.policy_id === opts.policy_id);
+        }
+
+        return edges.map(copyGraphDerivedEdge);
+    }
+
+    /**
+     * All Layer 2 derived relation events in append order.
+     * @returns {Object[]}
+     */
+    graphDerivedRelationEvents() {
+        return this._graphDerivedRelationEvents.map(copyGraphDerivedRelationEvent);
+    }
+
+    /**
+     * Derive first-pass Layer 2 structural similarity relations from stored
+     * Layer 1 committed memory nodes.
+     * @param {Object} [policy]
+     * @returns {Object}
+     */
+    deriveStructuralSimilarityRelations(policy = {}) {
+        const resolvedPolicy = normalizeStructuralSimilarityPolicy(policy);
+        const eventIndex = this._graphDerivedRelationEvents.length;
+        const nodes = this._graphCommitOrder
+            .map((nodeId) => this._graphNodesById.get(nodeId))
+            .filter(Boolean)
+            .filter((node) => matchesStructuralSimilarityScope(node, resolvedPolicy.compare_scope));
+
+        const nodeIds = nodes.map((node) => node.node_id);
+        const edgesAdded = [];
+        let pairCount = 0;
+
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const fromNode = nodes[i];
+                const toNode = nodes[j];
+                pairCount += 1;
+
+                if (!areStructurallyComparable(fromNode, toNode)) continue;
+
+                const spectralDistance = l1(
+                    fromNode.axes?.structure?.vector ?? [],
+                    toNode.axes?.structure?.vector ?? []
+                );
+                const amplitudeDistance = Math.abs(
+                    (fromNode.axes?.structure?.energy_raw ?? NaN) -
+                    (toNode.axes?.structure?.energy_raw ?? NaN)
+                );
+
+                if (!Number.isFinite(spectralDistance) || !Number.isFinite(amplitudeDistance)) continue;
+                if (spectralDistance > resolvedPolicy.spectral_threshold) continue;
+                if (resolvedPolicy.amplitude_threshold !== null &&
+                    amplitudeDistance > resolvedPolicy.amplitude_threshold) {
+                    continue;
+                }
+
+                if (this._hasDerivedStructuralSimilarityEdge({
+                    from: fromNode.node_id,
+                    to: toNode.node_id,
+                    policy_id: resolvedPolicy.policy_id,
+                })) {
+                    continue;
+                }
+
+                const edge = buildStructuralSimilarityDerivedEdge({
+                    event_index: eventIndex,
+                    fromNode,
+                    toNode,
+                    policy: resolvedPolicy,
+                    spectralDistance,
+                    amplitudeDistance,
+                });
+                this._graphDerivedEdgesById.set(edge.edge_id, Object.freeze(deepCopy(edge)));
+                edgesAdded.push(edge.edge_id);
+            }
+        }
+
+        this._graphDerivedRelationEvents.push(Object.freeze(deepCopy({
+            event_type: "derive_structural_similarity_relations",
+            event_index: eventIndex,
+            policy_id: resolvedPolicy.policy_id,
+            source_layer: "L1",
+            relation_layer: "L2",
+            edges_added: edgesAdded,
+            nodes_considered: nodeIds,
+            pair_count: pairCount,
+            source: "MemorySubstrate.deriveStructuralSimilarityRelations",
+        })));
+
+        return {
+            ok: true,
+            policy: deepCopy(resolvedPolicy),
+            event_index: eventIndex,
+            nodes_considered: nodeIds,
+            pair_count: pairCount,
+            edges_added: [...edgesAdded],
+        };
     }
 
     /**
@@ -1023,6 +1154,16 @@ export class MemorySubstrate {
         return edges;
     }
 
+    _hasDerivedStructuralSimilarityEdge({ from, to, policy_id }) {
+        for (const edge of this._graphDerivedEdgesById.values()) {
+            if (edge.edge_type !== "structural_similarity") continue;
+            if (edge.from !== from || edge.to !== to) continue;
+            if (edge.derived_by?.policy_id !== policy_id) continue;
+            return true;
+        }
+        return false;
+    }
+
     _resolveMemoryObjectId(ref) {
         if (!ref || typeof ref !== "string") return null;
         if (this._memoryObjects.has(ref)) return ref;
@@ -1130,6 +1271,14 @@ function copyGraphLedgerEvent(event) {
     return deepCopy(event);
 }
 
+function copyGraphDerivedEdge(edge) {
+    return deepCopy(edge);
+}
+
+function copyGraphDerivedRelationEvent(event) {
+    return deepCopy(event);
+}
+
 function l1(a, b) {
     const n = Math.max(a.length, b.length);
     let s = 0;
@@ -1155,6 +1304,125 @@ function buildGraphEdge({ event_index, edge_type, from, to }) {
         layer: "L1",
         relation_status: "committed",
         event_index,
+    };
+}
+
+function normalizeStructuralSimilarityPolicy(policy = {}) {
+    const compareScope = policy.compare_scope ?? {};
+    const spectralThreshold = Number.isFinite(policy.spectral_threshold)
+        ? policy.spectral_threshold
+        : 0.35;
+    const amplitudeThreshold = policy.amplitude_threshold === null || policy.amplitude_threshold === undefined
+        ? null
+        : (Number.isFinite(policy.amplitude_threshold) ? policy.amplitude_threshold : null);
+
+    return {
+        policy_id: typeof policy.policy_id === "string" && policy.policy_id.length > 0
+            ? policy.policy_id
+            : "graph_relation.structural_similarity.v1",
+        relation_type: "structural_similarity",
+        spectral_metric: "l1_distance",
+        amplitude_metric: "absolute_delta",
+        spectral_threshold: spectralThreshold,
+        amplitude_threshold: amplitudeThreshold,
+        compare_scope: {
+            stream_id: typeof compareScope.stream_id === "string" ? compareScope.stream_id : null,
+            segment_id: typeof compareScope.segment_id === "string" ? compareScope.segment_id : null,
+            artifact_class: typeof compareScope.artifact_class === "string" ? compareScope.artifact_class : null,
+        },
+        include_self_edges: false,
+    };
+}
+
+function matchesStructuralSimilarityScope(node, compareScope = {}) {
+    if (compareScope.stream_id !== null &&
+        node.axes?.trajectory?.stream_id !== compareScope.stream_id) {
+        return false;
+    }
+    if (compareScope.segment_id !== null &&
+        node.axes?.trajectory?.segment_id !== compareScope.segment_id) {
+        return false;
+    }
+    if (compareScope.artifact_class !== null &&
+        node.artifact_class !== compareScope.artifact_class) {
+        return false;
+    }
+    return true;
+}
+
+function areStructurallyComparable(nodeA, nodeB) {
+    return nodeA?.node_type === "CommittedMemoryNode" &&
+        nodeB?.node_type === "CommittedMemoryNode" &&
+        nodeA.axes?.structure?.signature_type === nodeB.axes?.structure?.signature_type &&
+        nodeA.axes?.structure?.basis === nodeB.axes?.structure?.basis &&
+        Array.isArray(nodeA.axes?.structure?.vector) &&
+        Array.isArray(nodeB.axes?.structure?.vector);
+}
+
+function buildStructuralSimilarityDerivedEdge({
+    event_index,
+    fromNode,
+    toNode,
+    policy,
+    spectralDistance,
+    amplitudeDistance,
+}) {
+    return {
+        edge_id: `GDE:${event_index}:structural_similarity:${fromNode.node_id}:${toNode.node_id}`,
+        edge_type: "structural_similarity",
+        layer: "L2",
+        relation_status: "derived",
+        from: fromNode.node_id,
+        to: toNode.node_id,
+        event_index,
+        derivation_basis: {
+            node_type: "CommittedMemoryNode",
+            source_layer: "L1",
+            channels: {
+                amplitude: {
+                    basis: "axes.structure.energy_raw",
+                    metric: "absolute_delta",
+                },
+                spectral_distribution: {
+                    basis: "axes.structure.vector",
+                    metric: "l1_distance",
+                },
+            },
+            policy_id: policy.policy_id,
+        },
+        channels: {
+            amplitude: {
+                channel_type: "absolute_energy_amplitude",
+                distance: amplitudeDistance,
+                from_value: fromNode.axes?.structure?.energy_raw ?? null,
+                to_value: toNode.axes?.structure?.energy_raw ?? null,
+                within_threshold: policy.amplitude_threshold === null
+                    ? null
+                    : amplitudeDistance <= policy.amplitude_threshold,
+            },
+            spectral_distribution: {
+                channel_type: "spectral_distribution",
+                distance: spectralDistance,
+                from_vector: [...(fromNode.axes?.structure?.vector ?? [])],
+                to_vector: [...(toNode.axes?.structure?.vector ?? [])],
+                within_threshold: spectralDistance <= policy.spectral_threshold,
+            },
+        },
+        fusion_posture: "not_fused",
+        summary_score: null,
+        non_claims: [
+            "not_canon",
+            "not_identity_closure",
+            "not_same_object_closure",
+            "not_prediction",
+            "not_basin_membership",
+            "not_persistence",
+        ],
+        derived_by: {
+            operator_id: "MemorySubstrate.deriveStructuralSimilarityRelations",
+            operator_version: "0.1.0",
+            policy_id: policy.policy_id,
+        },
     };
 }
 

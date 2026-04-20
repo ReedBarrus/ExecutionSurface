@@ -1022,6 +1022,13 @@ function makeGraphH1({ state_id, stream_id = STREAM_ID, segment_id = SEG_0, t_st
     return h1;
 }
 
+function l1Distance(a, b) {
+    const n = Math.max(a.length, b.length);
+    let sum = 0;
+    for (let i = 0; i < n; i++) sum += Math.abs((a[i] ?? 0) - (b[i] ?? 0));
+    return sum;
+}
+
 const GRAPH_STREAM_B = "STR:test:ch1:voltage:arb:8";
 const GRAPH_SEG_B0 = `seg:${GRAPH_STREAM_B}:0`;
 const msGraph = new MemorySubstrate({ substrate_id: "graph_ledger_test" });
@@ -1058,6 +1065,11 @@ const gH1StreamB = makeGraphH1({
     t_end: 5,
     band_energy: [0.45, 0.55],
 });
+gH1a.invariants.energy_raw = 1.00;
+gH1b.invariants.energy_raw = 1.08;
+gH1c.invariants.energy_raw = 1.80;
+gH1Seg1.invariants.energy_raw = 1.10;
+gH1StreamB.invariants.energy_raw = 1.05;
 const gM1 = makeM1(5, 7, {
     state_id: `M1:${STREAM_ID}:${SEG_1}:graph:5:7`,
     segment_id: SEG_1,
@@ -1216,6 +1228,175 @@ const gSegmentView = msGraph.graphStateView({ segment_id: SEG_1 });
 assert("graphStateView({ segment_id }) filters by trajectory segment",
     gSegmentView.nodes.length > 0 &&
     gSegmentView.nodes.every((node) => node.axes.trajectory.segment_id === SEG_1));
+
+// D39: Layer 2 structural_similarity derives two-channel relations over Layer 1 nodes
+const graphNodeCountBeforeDerived = msGraph.allGraphNodes().length;
+const graphEdgeCountBeforeDerived = msGraph.graphEdges().length;
+const graphLedgerEventCountBeforeDerived = msGraph.graphLedgerEvents().length;
+
+const derivedBasePolicy = {
+    policy_id: "graph_relation.structural_similarity.v1:test:base",
+    spectral_threshold: 0.35,
+};
+const derivedBase1 = msGraph.deriveStructuralSimilarityRelations(derivedBasePolicy);
+assert("structural similarity derivation over committed graph nodes succeeds",
+    derivedBase1.ok === true);
+const derivedBaseEdges1 = msGraph.graphDerivedEdges({ policy_id: derivedBasePolicy.policy_id });
+assert("Layer 2 derivation produces structural_similarity derived edges",
+    derivedBaseEdges1.length > 0 &&
+    derivedBaseEdges1.every((edge) =>
+        edge.edge_type === "structural_similarity" &&
+        edge.layer === "L2" &&
+        edge.relation_status === "derived"));
+const derivedCloseEdge = derivedBaseEdges1.find((edge) =>
+    edge.from === gCommitC.memory_object_id &&
+    edge.to === gCommitStreamB.memory_object_id
+);
+assert("close spectral profiles produce a structural_similarity edge",
+    derivedCloseEdge !== undefined);
+assert("far spectral profiles do not produce a structural_similarity edge",
+    !derivedBaseEdges1.some((edge) =>
+        edge.from === gCommitA.memory_object_id &&
+        edge.to === gCommitSeg1.memory_object_id));
+const gNodeCForDerived = msGraph.graphNode(gCommitC.memory_object_id);
+const gNodeStreamBForDerived = msGraph.graphNode(gCommitStreamB.memory_object_id);
+const expectedCloseSpectralDistance = l1Distance(
+    gNodeCForDerived?.axes?.structure?.vector ?? [],
+    gNodeStreamBForDerived?.axes?.structure?.vector ?? []
+);
+const expectedCloseAmplitudeDistance = Math.abs(
+    (gNodeCForDerived?.axes?.structure?.energy_raw ?? 0) -
+    (gNodeStreamBForDerived?.axes?.structure?.energy_raw ?? 0)
+);
+assert("derived edge preserves two-channel identity without fusion",
+    derivedCloseEdge !== undefined &&
+    derivedCloseEdge.channels?.amplitude !== undefined &&
+    derivedCloseEdge.channels?.spectral_distribution !== undefined &&
+    derivedCloseEdge.channels.amplitude.distance === expectedCloseAmplitudeDistance &&
+    derivedCloseEdge.channels.spectral_distribution.distance === expectedCloseSpectralDistance &&
+    derivedCloseEdge.channels.amplitude.within_threshold === null &&
+    derivedCloseEdge.channels.spectral_distribution.within_threshold === true &&
+    derivedCloseEdge.fusion_posture === "not_fused" &&
+    derivedCloseEdge.summary_score === null);
+assert("derived edge preserves non-claims and deterministic GDE-prefixed ids",
+    derivedBaseEdges1.every((edge) =>
+        edge.edge_id.startsWith(`GDE:${edge.event_index}:structural_similarity:`) &&
+        edge.non_claims.includes("not_basin_membership")));
+const derivedBaseEdgeIds1 = derivedBaseEdges1.map((edge) => edge.edge_id);
+assert("derived edge order is deterministic",
+    JSON.stringify(derivedBaseEdgeIds1) === JSON.stringify([...derivedBaseEdgeIds1].sort()));
+const derivedBaseEvents1 = msGraph.graphDerivedRelationEvents();
+assert("derived relation events are recorded with Layer 1 -> Layer 2 posture",
+    derivedBaseEvents1.length === 1 &&
+    derivedBaseEvents1[0].event_type === "derive_structural_similarity_relations" &&
+    derivedBaseEvents1[0].source_layer === "L1" &&
+    derivedBaseEvents1[0].relation_layer === "L2" &&
+    Array.isArray(derivedBaseEvents1[0].edges_added) &&
+    Array.isArray(derivedBaseEvents1[0].nodes_considered) &&
+    Number.isInteger(derivedBaseEvents1[0].pair_count));
+assert("graphDerivedEdges() filter by from and policy_id works",
+    msGraph.graphDerivedEdges({
+        policy_id: derivedBasePolicy.policy_id,
+        from: gCommitC.memory_object_id,
+    }).some((edge) => edge.to === gCommitStreamB.memory_object_id));
+
+const derivedBase2 = msGraph.deriveStructuralSimilarityRelations(derivedBasePolicy);
+const derivedBaseEdges2 = msGraph.graphDerivedEdges({ policy_id: derivedBasePolicy.policy_id });
+const derivedBaseEvents2 = msGraph.graphDerivedRelationEvents();
+assert("repeated derivation with same policy and unchanged graph state does not duplicate edges",
+    derivedBase2.ok === true &&
+    derivedBase2.edges_added.length === 0 &&
+    derivedBaseEdges2.length === derivedBaseEdges1.length &&
+    JSON.stringify(derivedBaseEdges2.map((edge) => edge.edge_id)) === JSON.stringify(derivedBaseEdgeIds1));
+assert("repeated derivation appends deterministic no-op relation event",
+    derivedBaseEvents2.length === 2 &&
+    derivedBaseEvents2[1].policy_id === derivedBasePolicy.policy_id &&
+    derivedBaseEvents2[1].edges_added.length === 0 &&
+    derivedBaseEvents2[1].pair_count === derivedBaseEvents2[0].pair_count);
+
+const amplitudeGatePolicy = {
+    policy_id: "graph_relation.structural_similarity.v1:test:amp_gate",
+    spectral_threshold: 0.35,
+    amplitude_threshold: 0.10,
+};
+const amplitudeGateResult = msGraph.deriveStructuralSimilarityRelations(amplitudeGatePolicy);
+const amplitudeGateEdges = msGraph.graphDerivedEdges({ policy_id: amplitudeGatePolicy.policy_id });
+assert("amplitude_threshold gates edge admission while preserving spectral gating",
+    amplitudeGateResult.ok === true &&
+    amplitudeGateEdges.some((edge) =>
+        edge.from === gCommitSeg1.memory_object_id &&
+        edge.to === gCommitStreamB.memory_object_id &&
+        edge.channels.amplitude.within_threshold === true) &&
+    !amplitudeGateEdges.some((edge) =>
+        edge.from === gCommitC.memory_object_id &&
+        edge.to === gCommitStreamB.memory_object_id));
+
+const streamScopePolicy = {
+    policy_id: "graph_relation.structural_similarity.v1:test:stream_scope",
+    spectral_threshold: 0.50,
+    compare_scope: {
+        stream_id: STREAM_ID,
+    },
+};
+msGraph.deriveStructuralSimilarityRelations(streamScopePolicy);
+const streamScopeEdges = msGraph.graphDerivedEdges({ policy_id: streamScopePolicy.policy_id });
+const graphNodesById = new Map(msGraph.allGraphNodes().map((node) => [node.node_id, node]));
+assert("stream_id scope filter limits compared nodes",
+    streamScopeEdges.length > 0 &&
+    streamScopeEdges.every((edge) =>
+        graphNodesById.get(edge.from)?.axes?.trajectory?.stream_id === STREAM_ID &&
+        graphNodesById.get(edge.to)?.axes?.trajectory?.stream_id === STREAM_ID));
+
+const segmentArtifactScopePolicy = {
+    policy_id: "graph_relation.structural_similarity.v1:test:segment_artifact_scope",
+    spectral_threshold: 0.50,
+    compare_scope: {
+        segment_id: SEG_0,
+        artifact_class: "H1",
+    },
+};
+const segmentArtifactScopeResult = msGraph.deriveStructuralSimilarityRelations(segmentArtifactScopePolicy);
+const segmentArtifactScopeEdges = msGraph.graphDerivedEdges({ policy_id: segmentArtifactScopePolicy.policy_id });
+assert("segment_id and artifact_class scope filters limit compared nodes",
+    segmentArtifactScopeResult.nodes_considered.length === 3 &&
+    segmentArtifactScopeResult.nodes_considered.every((nodeId) =>
+        graphNodesById.get(nodeId)?.axes?.trajectory?.segment_id === SEG_0 &&
+        graphNodesById.get(nodeId)?.artifact_class === "H1") &&
+    segmentArtifactScopeEdges.every((edge) =>
+        graphNodesById.get(edge.from)?.axes?.trajectory?.segment_id === SEG_0 &&
+        graphNodesById.get(edge.to)?.axes?.trajectory?.segment_id === SEG_0 &&
+        graphNodesById.get(edge.from)?.artifact_class === "H1" &&
+        graphNodesById.get(edge.to)?.artifact_class === "H1"));
+
+const derivedEdgeRead1 = msGraph.graphDerivedEdges({ policy_id: derivedBasePolicy.policy_id });
+if (derivedEdgeRead1.length > 0) {
+    derivedEdgeRead1[0].channels.spectral_distribution.from_vector[0] = 9999;
+    derivedEdgeRead1[0].derived_by.policy_id = "mutated_derived_policy";
+}
+const derivedEdgeRead2 = msGraph.graphDerivedEdges({ policy_id: derivedBasePolicy.policy_id });
+assert("graphDerivedEdges() is mutation-safe",
+    derivedEdgeRead2.length > 0 &&
+    derivedEdgeRead2[0].channels.spectral_distribution.from_vector[0] !== 9999 &&
+    derivedEdgeRead2[0].derived_by.policy_id === derivedBasePolicy.policy_id);
+
+const derivedEventRead1 = msGraph.graphDerivedRelationEvents();
+if (derivedEventRead1.length > 0) {
+    derivedEventRead1[0].edges_added[0] = "mutated_derived_event";
+    derivedEventRead1[0].nodes_considered[0] = "mutated_derived_node";
+}
+const derivedEventRead2 = msGraph.graphDerivedRelationEvents();
+assert("graphDerivedRelationEvents() is mutation-safe",
+    derivedEventRead2.length > 0 &&
+    derivedEventRead2[0].edges_added[0] !== "mutated_derived_event" &&
+    derivedEventRead2[0].nodes_considered[0] !== "mutated_derived_node");
+
+const layer1ViewAfterDerived = msGraph.graphStateView();
+assert("graphStateView() remains Layer 1 only after Layer 2 derivation",
+    layer1ViewAfterDerived.edges.every((edge) => edge.layer === "L1"));
+assert("Layer 1 graph state remains unchanged by Layer 2 derivation",
+    msGraph.allGraphNodes().length === graphNodeCountBeforeDerived &&
+    msGraph.graphEdges().length === graphEdgeCountBeforeDerived &&
+    msGraph.graphLedgerEvents().length === graphLedgerEventCountBeforeDerived);
 
 section("E. Boundary integrity -- substrate does not cross into canon");
 
