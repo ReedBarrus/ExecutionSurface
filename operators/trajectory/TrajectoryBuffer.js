@@ -82,6 +82,19 @@
  * @property {number} confidence
  * @property {boolean} novelty_gate_triggered
  * @property {number} frame_index
+ * @property {{
+ *   axis_type: "temporal_axis_v1",
+ *   frame_index: number,
+ *   stream_id: string,
+ *   segment_id: string,
+ *   t_start: number,
+ *   t_end: number,
+ *   duration_sec: number,
+ *   order_basis: "append_order",
+ *   signal_time_basis: "state.window_span",
+ *   memory_object_id: string|null,
+ *   state_id: string,
+ * }} temporal_axis
  */
 
 /**
@@ -115,6 +128,14 @@ export class TrajectoryBuffer {
         this._total_appended = 0;
         this._write_head = 0;           // next write position (circular)
     }
+
+    // Responsibility classification for Phase 1A:
+    // - temporal coordinate production is an active compatibility path
+    // - append/order mechanics remain active substrate support
+    // - basin annotations remain a legacy/transitional Layer 2 scaffold
+    // - velocity/convergence/dwell/recurrence/transition methods remain legacy
+    //   observational Layer 2 scaffolds until graph-native relations replace them
+    // - signature snapshots remain compatibility support for current consumers
 
     // ─── Write ────────────────────────────────────────────────────────────────
 
@@ -180,6 +201,16 @@ export class TrajectoryBuffer {
             confidence,
             novelty_gate_triggered: Boolean(novelty_gate_triggered),
             frame_index: this._total_appended,
+            temporal_axis: buildTemporalAxis({
+                frame_index: this._total_appended,
+                stream_id: state.stream_id,
+                segment_id: state.segment_id,
+                t_start: state.window_span.t_start,
+                t_end: state.window_span.t_end,
+                duration_sec: state.window_span.t_end - state.window_span.t_start,
+                memory_object_id,
+                state_id: state.state_id,
+            }),
         };
 
         if (this._frames.length < this.max_frames) {
@@ -614,6 +645,34 @@ function copyFrame(frame) {
         band_profile_snapshot: frame.band_profile_snapshot
             ? [...frame.band_profile_snapshot]
             : frame.band_profile_snapshot,
+        temporal_axis: frame.temporal_axis
+            ? { ...frame.temporal_axis }
+            : frame.temporal_axis,
+    };
+}
+
+function buildTemporalAxis({
+    frame_index,
+    stream_id,
+    segment_id,
+    t_start,
+    t_end,
+    duration_sec,
+    memory_object_id,
+    state_id,
+}) {
+    return {
+        axis_type: "temporal_axis_v1",
+        frame_index,
+        stream_id,
+        segment_id,
+        t_start,
+        t_end,
+        duration_sec,
+        order_basis: "append_order",
+        signal_time_basis: "state.window_span",
+        memory_object_id,
+        state_id,
     };
 }
 

@@ -661,6 +661,7 @@ graphical substrate path.
 Detailed phase-by-phase execution planning now lives in:
 
 - `pressure_generation/architecture/README.ExecutionSurfaceGraphicalSubstrateDevelopmentPlan.md`
+- `pressure_generation/architecture/README.ExecutionSurfaceSubstrateMeltdown.md`
 
 ### Current Landed State
 
@@ -682,6 +683,19 @@ Layer 3 corpus/index/cards/LM transport: not landed
 Temporal axis cleanup: not landed
 Legacy TrajectoryBuffer/BasinOp path: still active compatibility scaffold
 ```
+
+### Meltdown Cut Line
+
+The meltdown cut line is drawn at the new Layer 1 / Layer 2 substrate spine.
+
+Below the line, selected concepts may be conserved by explicit admission.
+
+Above the line, old runtime surfaces are non-authoritative by default.
+
+No old module, function, field, view, or transport surface survives by
+inertia.
+
+Any surviving component must be re-admitted by contract.
 
 ### Three Conserved Identity Families
 
@@ -784,6 +798,27 @@ TrajectoryBuffer basin / dwell / recurrence / transition reports
 BasinOp state-first path
 ```
 
+### Melted / Non-Authoritative Surfaces
+
+Melted above the substrate line for the new runtime:
+
+- old `DoorOneOrchestrator` assumptions
+- old `DoorOneWorkbench` assumptions
+- old `WorkbenchLmWrapper` assumptions
+- old `QueryOp` target assumptions
+- old `ProvenanceReconstructionPipeline` target assumptions
+- old `TrajectoryBuffer` as authority object
+- old `BasinOp` as target basin architecture
+- state-array-first query as target design
+- any support replay path that bypasses `MemoryObject` lenses
+- LM transport before Layer 3
+- receipt/card/package surfaces that are not explicitly Layer 3
+
+These may remain temporarily as reference or compatibility code.
+
+They are not the target runtime and may not define future substrate
+architecture.
+
 ### End-State Target
 
 The intended end-state is:
@@ -803,6 +838,24 @@ This means:
 - Layer 1 preserves node/edge/continuity truth
 - Layer 2 derives organization without replacing Layer 1
 - Layer 3 packages access without replacing lower-layer truth
+
+### Clean Construction Spine
+
+Clean runtime construction begins from:
+
+1. admit support payload
+2. mint `MemoryObject`
+3. mint `temporal_axis_v1` in a real `TemporalAxisLedger`
+4. mint `CommittedMemoryNode` in the Layer 1 graph / hypergraph ledger
+5. admit Layer 1 edges:
+   - `payload_ref`
+   - `temporal_next`
+   - `merge_lineage_ref`
+6. derive Layer 2 `structural_similarity`
+7. stop
+
+No orchestrator, workbench, query, support replay, basin, recurrence, cards,
+index, or LM transport enters the clean runtime until re-admitted by contract.
 
 ### Ladder V2
 
@@ -856,14 +909,14 @@ Targets:
 - preserve two-channel and placement-sensitive identity attribution
 - do not promote recurrence into same-object closure
 
-#### Phase 5 - Comparison / Query / Reconstruction Rebase
+#### Phase 5 - Comparison / Query / Lens-Bound Replay Admission
 
 Targets:
 
 - comparison uses declared comparison bases
 - query becomes `MemoryObject` / Layer 1 / Layer 2 aware while preserving
   direct support truth
-- reconstruction becomes `MemoryObject`-lens-first with lineage and support
+- support replay becomes `MemoryObject`-lens-first with lineage and support
   refs as lawful basis
 
 #### Phase 6 - Layer 3 Corpus / Index / Cards
@@ -915,16 +968,32 @@ Every implementation packet must name:
 - transitional structure introduced
 - exit condition for that transition
 
+### Project Placement
+
+Default placement:
+
+Create a clean construction lane inside the current repo rather than starting a
+new repo immediately.
+
+Candidate directory:
+
+- `hypergraph_runtime/`
+
+This lane must not import old orchestrator, workbench, query, support replay,
+trajectory, basin, card, or LM modules by default.
+
+A new repository is only justified if current repo topology blocks clean
+construction.
+
 ### Next Recommended Move
 
 Next recommended move:
 
 ```text
-Phase 1 - Stabilize Layer Boundaries And Temporal Axis
+Create the clean construction lane and build only the minimal conserved spine.
 ```
 
 Reason:
 
-Layer 1 and Layer 2 are now real enough that the old trajectory/basin scaffold
-must be classified before additional exposure, index, or basin derivation work
-continues.
+the new runtime should be constructed from the admitted substrate spine rather
+than by carrying old surfaces forward above the cut line.

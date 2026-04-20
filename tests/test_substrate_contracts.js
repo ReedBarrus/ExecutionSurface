@@ -339,6 +339,18 @@ assert("pushed frame.basin_id = null",        p0.frame.basin_id === null);
 assert("pushed frame.frame_index = 0",        p0.frame.frame_index === 0);
 assert("pushed frame.novelty_gate_triggered = false", p0.frame.novelty_gate_triggered === false);
 assert("pushed frame.memory_object_id = null by default", p0.frame.memory_object_id === null);
+assert("pushed frame.temporal_axis.axis_type = temporal_axis_v1",
+    p0.frame.temporal_axis?.axis_type === "temporal_axis_v1");
+assert("pushed frame.temporal_axis preserves frame_index/stream/segment/time",
+    p0.frame.temporal_axis?.frame_index === p0.frame.frame_index &&
+    p0.frame.temporal_axis?.stream_id === p0.frame.stream_id &&
+    p0.frame.temporal_axis?.segment_id === p0.frame.segment_id &&
+    p0.frame.temporal_axis?.t_start === p0.frame.t_start &&
+    p0.frame.temporal_axis?.t_end === p0.frame.t_end &&
+    p0.frame.temporal_axis?.duration_sec === (p0.frame.t_end - p0.frame.t_start));
+assert("pushed frame top-level temporal fields mirror temporal_axis",
+    p0.frame.temporal_axis?.memory_object_id === p0.frame.memory_object_id &&
+    p0.frame.temporal_axis?.state_id === p0.frame.state_id);
 assert("pushed frame.band_profile_snapshot = copy of invariants",
     JSON.stringify(p0.frame.band_profile_snapshot) ===
     JSON.stringify(h1s[0].invariants.band_profile_norm.band_energy));
@@ -1092,11 +1104,22 @@ assert("graph node artifact_class === H1",
     gNodeA !== null && gNodeA.artifact_class === "H1");
 assert("graph node trajectory axis preserves stream/segment/time/frame placement",
     gNodeA !== null &&
+    gNodeA.axes.trajectory.axis_type === "temporal_axis_v1" &&
     gNodeA.axes.trajectory.stream_id === gH1a.stream_id &&
     gNodeA.axes.trajectory.segment_id === gH1a.segment_id &&
     gNodeA.axes.trajectory.t_start === gH1a.window_span.t_start &&
     gNodeA.axes.trajectory.t_end === gH1a.window_span.t_end &&
+    gNodeA.axes.trajectory.duration_sec === (gH1a.window_span.t_end - gH1a.window_span.t_start) &&
+    gNodeA.axes.trajectory.order_basis === "append_order" &&
+    gNodeA.axes.trajectory.signal_time_basis === "state.window_span" &&
+    gNodeA.axes.trajectory.memory_object_id === gCommitA.memory_object_id &&
+    gNodeA.axes.trajectory.state_id === gH1a.state_id &&
     gNodeA.axes.trajectory.frame_index === 0);
+const gFrameA = msGraph.getTrajectory(0, 1).find((frame) => frame.state_id === gH1a.state_id);
+assert("graph node trajectory axis mirrors committed frame temporal_axis",
+    gNodeA !== null &&
+    gFrameA !== undefined &&
+    JSON.stringify(gNodeA.axes.trajectory) === JSON.stringify(gFrameA.temporal_axis));
 assert("graph node structure axis preserves vector, energy, and confidence",
     gNodeA !== null &&
     JSON.stringify(gNodeA.axes.structure.vector) === JSON.stringify(gH1a.invariants.band_profile_norm.band_energy) &&
@@ -1639,6 +1662,7 @@ assert("F10: getTrajectory() returns frames", rpTrajSlice.length > 0);
 rpTrajSlice[0].energy_raw = 2222;
 rpTrajSlice[0].band_profile_snapshot[0] = 1111;
 rpTrajSlice[0].memory_object_id = "mutated_memory_object";
+rpTrajSlice[0].temporal_axis.state_id = "mutated_temporal_axis_state";
 const rpTrajSlice2 = msR.getTrajectory(0, 2);
 assert("F10: getTrajectory() energy_raw immutable after caller mutation",
     rpTrajSlice2[0].energy_raw !== 2222);
@@ -1646,6 +1670,8 @@ assert("F10: getTrajectory() band_profile_snapshot immutable after caller mutati
     rpTrajSlice2[0].band_profile_snapshot[0] !== 1111);
 assert("F10: getTrajectory() memory_object_id immutable after caller mutation",
     rpTrajSlice2[0].memory_object_id !== "mutated_memory_object");
+assert("F10: getTrajectory() temporal_axis immutable after caller mutation",
+    rpTrajSlice2[0].temporal_axis.state_id !== "mutated_temporal_axis_state");
 
 // ============================================================================
 // G. TrajectoryBuffer read-path honesty -- mutation-safe copies
@@ -1668,6 +1694,7 @@ tbAll1[0].energy_raw = 9999;
 tbAll1[0].band_profile_snapshot[0] = 8888;
 tbAll1[0].basin_id = "mutated";
 tbAll1[0].memory_object_id = "mutated_mo";
+tbAll1[0].temporal_axis.state_id = "mutated_all_temporal_axis";
 const tbAll2 = tbR.all();
 assert("G1: all() energy_raw immutable after caller mutation",
     tbAll2[0].energy_raw !== 9999);
@@ -1677,6 +1704,8 @@ assert("G1: all() basin_id immutable after caller mutation",
     tbAll2[0].basin_id !== "mutated");
 assert("G1: all() memory_object_id immutable after caller mutation",
     tbAll2[0].memory_object_id !== "mutated_mo");
+assert("G1: all() temporal_axis immutable after caller mutation",
+    tbAll2[0].temporal_axis.state_id !== "mutated_all_temporal_axis");
 
 // -- G2: all() returns new array each call (independent references) --
 const tbAll3 = tbR.all();
@@ -1689,30 +1718,39 @@ const tbSlice1 = tbR.slice(0, 2);
 assert("G3: slice() returns frames in range", tbSlice1.length > 0);
 tbSlice1[0].energy_raw = 7777;
 tbSlice1[0].band_profile_snapshot[0] = 6666;
+tbSlice1[0].temporal_axis.segment_id = "mutated_slice_temporal_axis";
 const tbSlice2 = tbR.slice(0, 2);
 assert("G3: slice() energy_raw immutable after caller mutation",
     tbSlice2[0].energy_raw !== 7777);
 assert("G3: slice() band_profile_snapshot[0] immutable after caller mutation",
     tbSlice2[0].band_profile_snapshot[0] !== 6666);
+assert("G3: slice() temporal_axis immutable after caller mutation",
+    tbSlice2[0].temporal_axis.segment_id !== "mutated_slice_temporal_axis");
 
 // -- G4: tail() frames are mutation-safe --
 const tbTail1 = tbR.tail(2);
 assert("G4: tail() returns 2 frames", tbTail1.length === 2);
 tbTail1[0].energy_raw = 5555;
 tbTail1[0].band_profile_snapshot[0] = 4444;
+tbTail1[0].temporal_axis.frame_index = -1;
 const tbTail2 = tbR.tail(2);
 assert("G4: tail() energy_raw immutable after caller mutation",
     tbTail2[0].energy_raw !== 5555);
 assert("G4: tail() band_profile_snapshot[0] immutable after caller mutation",
     tbTail2[0].band_profile_snapshot[0] !== 4444);
+assert("G4: tail() temporal_axis immutable after caller mutation",
+    tbTail2[0].temporal_axis.frame_index !== -1);
 
 // -- G5: bySegment() frames are mutation-safe --
 const tbBySeg1 = tbR.bySegment(SEG_0);
 assert("G5: bySegment() returns frames", tbBySeg1.length > 0);
 tbBySeg1[0].energy_raw = 3333;
+tbBySeg1[0].temporal_axis.stream_id = "mutated_bysegment_temporal_axis";
 const tbBySeg2 = tbR.bySegment(SEG_0);
 assert("G5: bySegment() energy_raw immutable after caller mutation",
     tbBySeg2[0].energy_raw !== 3333);
+assert("G5: bySegment() temporal_axis immutable after caller mutation",
+    tbBySeg2[0].temporal_axis.stream_id !== "mutated_bysegment_temporal_axis");
 
 // -- G6: byBasin() frames are mutation-safe --
 const tbByBasin1 = tbR.byBasin("BN:test");

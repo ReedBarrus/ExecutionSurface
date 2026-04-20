@@ -11,6 +11,7 @@ Conceptual authority:
 
 - `GraphicalSubstrateEmergence.md`
 - `pressure_generation/architecture/README.ExecutionSurfaceGraphicalSubstrateDevelopmentPlan.md`
+- `pressure_generation/architecture/README.ExecutionSurfaceSubstrateMeltdown.md`
 
 Supporting runtime grammar:
 
@@ -50,17 +51,23 @@ split function cleanly, not as a sequence for building more packaging.
 ## Active Rung
 
 ```text
-Phase 1 - Stabilize Layer Boundaries And Temporal Axis
+Meltdown Phase 0 - Freeze cut line and construction spine
 ```
 
 Current focus:
 
-- define `temporal_axis_v1`
-- classify `TrajectoryBuffer` as compatibility scaffold vs reduced append/order
-  mechanic
-- align `CommittedMemoryNode.axes.trajectory` with the declared temporal axis
-- classify old dwell / recurrence / transition reporting as legacy Layer 2
-  scaffolding until graph-native replacements exist
+- declare the meltdown cut line
+- name the conserved substrate spine
+- mark old runtime surfaces above the substrate line as non-authoritative by
+  default
+- route the next build step into a clean construction lane inside the current
+  repo
+
+## Next Rung
+
+```text
+Meltdown Phase 1 - Create clean hypergraph runtime lane
+```
 
 ## Landed Rungs
 
@@ -78,13 +85,17 @@ Phase 0 currently includes:
 
 ## Blocked / Deferred Rungs
 
-- Layer 2 inspection exposure: blocked until Phase 1 boundary classification is
-  documented
-- graph-native basin membership: blocked until `temporal_axis_v1` and the Layer
-  2 relation contract are stable
-- Layer 3 cards/index: blocked until graph-native Layer 2 relations justify
-  packaging
-- LM graph transport: blocked until Layer 3 exists
+Blocked:
+
+- orchestrator rebuild
+- workbench rebuild
+- query rebuild
+- support replay rebuild
+- basin/neighborhood rebuild
+- Layer 3 index/cards
+- LM transport
+
+These remain blocked until the clean Layer 1/2 spine is built and tested.
 
 ## Transition Ledger
 
@@ -124,17 +135,33 @@ Every future implementation packet must name:
 - no widening LM transport before Layer 2 basin/recurrence structure is settled
 - no new identity fusion
 
+## Frozen Conserved Identity Families
+
+The graphical substrate path currently freezes three conserved identity
+families:
+
+1. amplitude / absolute energy identity
+2. spectral distribution identity
+3. placement-sensitive structural identity
+
+No implementation packet may fuse these into one authoritative score.
+
+Any summary score, routing score, card score, or LM-facing compression must
+preserve source attribution back to the relevant identity family and remain
+non-authoritative unless explicitly promoted by later governance.
+
 ## Near-Term Sequence
 
 ```text
+Meltdown Phase 0 - Freeze cut line and construction spine
+Meltdown Phase 1 - Create clean hypergraph runtime lane
 Phase 1 - Stabilize Layer Boundaries And Temporal Axis
 Phase 2 - Layer 2 Inspection Exposure
 Phase 3 - Graph-Native Basin / Neighborhood Contract
 Phase 4 - Graph-Native Dwell / Recurrence / Transition
-Phase 5 - Comparison / Query / Reconstruction Rebase
+Phase 5 - Comparison / Query / Lens-Bound Replay Admission
 Phase 6 - Layer 3 Corpus / Index / Cards
 Phase 7 - LM / Workbench Transport
-Phase 8 - Graph / Envelope Hardening
 ```
 
 ## Supersession Note

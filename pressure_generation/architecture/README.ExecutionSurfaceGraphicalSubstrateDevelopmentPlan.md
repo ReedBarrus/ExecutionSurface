@@ -11,6 +11,7 @@ not drift into local patching without a shared end-state map.
 It is subordinate to:
 
 - `GraphicalSubstrateEmergence.md`
+- `pressure_generation/architecture/README.ExecutionSurfaceSubstrateMeltdown.md`
 - `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeObjectGrammar.md`
 - `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceMemoryObjectEnvelope.md`
 - `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceSubstrateTopology.md`
@@ -29,6 +30,10 @@ This file answers:
 `GraphicalSubstrateEmergence.md` remains the conceptual target.
 
 This document is the execution-grade plan.
+
+It now assumes the meltdown cut line is already declared and that clean runtime
+construction proceeds from the substrate spine rather than by preserving older
+runtime surfaces above that line.
 
 ## Distributed Authority Goal
 
@@ -92,6 +97,165 @@ These identities must remain attributable.
 They must not be fused into one authoritative similarity or recurrence score.
 
 Any future summary scalar is Layer 3 convenience only.
+
+## Meltdown Cut Line
+
+The meltdown cut line is drawn at the new Layer 1 / Layer 2 substrate spine.
+
+Below the line, selected concepts may be conserved by explicit admission.
+
+Above the line, old runtime surfaces are non-authoritative by default.
+
+No old module, function, field, view, or transport surface survives by
+inertia.
+
+Any surviving component must be re-admitted by contract.
+
+## Conserved Spine
+
+The conserved spine for clean construction is:
+
+1. lawful `H1` / `M1` support payload outputs, where still valid as
+   support-body inputs
+2. `MemoryObject` as the commit-boundary persistence envelope
+3. `temporal_axis_v1` as the Layer 1 temporal coordinate
+4. `CommittedMemoryNode` as the graph-native exposure of an admitted
+   `MemoryObject`
+5. Layer 1 graph / hypergraph ledger:
+   - committed nodes
+   - declared Layer 1 edges
+   - append-only ledger events
+6. Layer 2 derived relation ledger:
+   - `structural_similarity` now
+   - later graph-native basin, dwell, recurrence, transition, drift,
+     interference
+7. frozen identity families:
+   - amplitude / absolute energy identity
+   - spectral distribution identity
+   - placement-sensitive structural identity
+
+## Melted / Non-Authoritative Surfaces
+
+Melted above the substrate line for the new runtime:
+
+- old `DoorOneOrchestrator` assumptions
+- old `DoorOneWorkbench` assumptions
+- old `WorkbenchLmWrapper` assumptions
+- old `QueryOp` target assumptions
+- old `ProvenanceReconstructionPipeline` target assumptions
+- old `TrajectoryBuffer` as authority object
+- old `BasinOp` as target basin architecture
+- state-array-first query as target design
+- any support replay path that bypasses `MemoryObject` lenses
+- LM transport before Layer 3
+- receipt/card/package surfaces that are not explicitly Layer 3
+
+These may remain in the repo temporarily as reference or compatibility code.
+
+They are not the target runtime and may not define future substrate
+architecture.
+
+## New Runtime Construction Spine
+
+Clean runtime construction begins from:
+
+1. admit support payload
+2. mint `MemoryObject`
+3. mint `temporal_axis_v1` in a real `TemporalAxisLedger`
+4. mint `CommittedMemoryNode` in the Layer 1 graph / hypergraph ledger
+5. admit Layer 1 edges:
+   - `payload_ref`
+   - `temporal_next`
+   - `merge_lineage_ref`
+6. derive Layer 2 `structural_similarity`
+7. stop
+
+No orchestrator, workbench, query, support replay, basin, recurrence, cards,
+index, or LM transport enters the clean runtime until re-admitted by contract.
+
+## Re-Admission Test
+
+Every old component must pass this test before entering the new runtime:
+
+1. What target layer does it belong to?
+2. What target function does it perform?
+3. Which conserved identity families does it touch?
+4. What authority does it claim?
+5. What old assumptions does it carry?
+6. What is its clean replacement shape?
+7. What tests prove it does not preserve semantic inflation?
+8. What is its exit condition if transitional?
+
+If any answer is unclear, the component remains outside the clean runtime.
+
+## Project Placement
+
+Default placement:
+
+Create a clean construction lane inside the current repo rather than starting a
+new repo immediately.
+
+Candidate directory:
+
+- `hypergraph_runtime/`
+
+This lane must not import old orchestrator, workbench, query, support replay,
+trajectory, basin, card, or LM modules by default.
+
+A new repository is only justified if current repo topology blocks clean
+construction.
+
+## Meltdown Phase 0 - Freeze Cut Line And Construction Spine
+
+### Purpose
+
+Freeze the cut line so future implementation packets stop assuming older
+runtime surfaces survive above the substrate spine by default.
+
+### Deliverables
+
+- explicit meltdown declaration
+- conserved spine declaration
+- melted surface declaration
+- re-admission test
+- clean placement rule for the new runtime lane
+
+### Acceptance
+
+- the cut line is explicit
+- old surfaces above the substrate line are non-authoritative by default
+- the clean construction spine is explicit
+- future work is routed through a clean construction lane inside the current
+  repo
+
+## Meltdown Phase 1 - Create Clean Hypergraph Runtime Lane
+
+### Purpose
+
+Start a clean construction lane without importing old runtime surfaces by
+default.
+
+### Deliverables
+
+- `hypergraph_runtime/`
+- empty admitted spine modules
+- empty admitted spine tests
+
+### First runtime target
+
+- `TemporalAxisLedger`
+- `MemoryObjectStore`
+- `HypergraphLedger`
+- `DerivedRelationLedger`
+- minimal commit path:
+  `support payload -> MemoryObject -> temporal axis -> CommittedMemoryNode -> L1 edges -> L2 structural_similarity`
+
+### Acceptance
+
+- the lane exists inside the current repo
+- the lane does not import old orchestrator, workbench, query, support replay,
+  trajectory, basin, card, or LM modules by default
+- the minimal conserved spine can be built and tested independently
 
 ## Current Foundation Snapshot
 
@@ -343,11 +507,11 @@ Phase 4 is complete when future recurrence or transition features no longer
 need to route through `TrajectoryBuffer` reporting as the primary semantic
 home.
 
-## Phase 5 - Comparison / Query / Reconstruction Rebase
+## Phase 5 - Comparison / Query / Lens-Bound Replay Admission
 
 ### Purpose
 
-Rebase comparison, query, and reconstruction around declared substrate
+Re-admit comparison, query, and support replay around declared substrate
 relations and admitted `MemoryObject` structure without losing direct support
 truth.
 
@@ -356,14 +520,14 @@ truth.
 - What comparison bases are declared and stable?
 - How should query consult Layer 1/2 relations without replacing direct H1/M1
   truth?
-- How should reconstruction become `MemoryObject`-lens-first while remaining
+- How should support replay become `MemoryObject`-lens-first while remaining
   support-trace bounded?
 
 ### In scope
 
 - declared comparison-basis contracts
 - query posture against `MemoryObject`, Layer 1, and Layer 2
-- reconstruction-lens posture over memory objects, lineage, and support refs
+- support-replay lens posture over memory objects, lineage, and support refs
 - compatibility policy for older state-corpus-first query behavior
 
 ### Not in scope
@@ -376,18 +540,18 @@ truth.
 
 - comparison basis contract
 - query rebase contract
-- reconstruction-lens rebase contract
+- support-replay re-admission contract
 
 ### Acceptance
 
 - comparison uses declared bases rather than ad hoc runtime convenience
 - query can name how it consults substrate layers
-- reconstruction can cite admitted memory and declared lenses as its lawful
+- support replay can cite admitted memory and declared lenses as its lawful
   basis
 
 ### Exit condition
 
-Phase 5 is complete when comparison/query/reconstruction can be described as
+Phase 5 is complete when comparison/query/support replay can be described as
 substrate-supported functions over admitted memory and derived relations rather
 than as detached read-side utilities.
 
@@ -544,11 +708,12 @@ without reopening Layer 1/2 authority questions.
 
 ## Immediate Recommendation
 
-The next recommended move remains:
+The next recommended move is now:
 
 ```text
-Phase 1 - Stabilize Layer Boundaries And Temporal Axis
+Create the clean construction lane and build only the minimal conserved spine.
 ```
 
-That phase should now be developed against this file instead of adding more
-detail to `GraphicalSubstrateEmergence.md`.
+That move should be developed against this file and
+`README.ExecutionSurfaceSubstrateMeltdown.md` rather than by widening old
+runtime surfaces above the cut line.

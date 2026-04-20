@@ -1079,6 +1079,19 @@ export class MemorySubstrate {
     }
 
     _buildCommittedMemoryNode({ state, memoryObject, trajectoryFrame }) {
+        const temporalAxis = trajectoryFrame.temporal_axis ?? {
+            axis_type: "temporal_axis_v1",
+            frame_index: trajectoryFrame.frame_index,
+            stream_id: trajectoryFrame.stream_id,
+            segment_id: trajectoryFrame.segment_id,
+            t_start: trajectoryFrame.t_start,
+            t_end: trajectoryFrame.t_end,
+            duration_sec: (trajectoryFrame.t_end ?? 0) - (trajectoryFrame.t_start ?? 0),
+            order_basis: "append_order",
+            signal_time_basis: "state.window_span",
+            memory_object_id: trajectoryFrame.memory_object_id ?? null,
+            state_id: trajectoryFrame.state_id,
+        };
         return {
             node_type: "CommittedMemoryNode",
             node_id: memoryObject.memory_object_id,
@@ -1087,11 +1100,17 @@ export class MemorySubstrate {
             artifact_class: state.artifact_class,
             axes: {
                 trajectory: {
-                    stream_id: trajectoryFrame.stream_id,
-                    segment_id: trajectoryFrame.segment_id,
-                    t_start: trajectoryFrame.t_start,
-                    t_end: trajectoryFrame.t_end,
-                    frame_index: trajectoryFrame.frame_index,
+                    axis_type: temporalAxis.axis_type,
+                    frame_index: temporalAxis.frame_index,
+                    stream_id: temporalAxis.stream_id,
+                    segment_id: temporalAxis.segment_id,
+                    t_start: temporalAxis.t_start,
+                    t_end: temporalAxis.t_end,
+                    duration_sec: temporalAxis.duration_sec,
+                    order_basis: temporalAxis.order_basis,
+                    signal_time_basis: temporalAxis.signal_time_basis,
+                    memory_object_id: temporalAxis.memory_object_id,
+                    state_id: temporalAxis.state_id,
                 },
                 structure: {
                     signature_type: "band_energy_vector_v1",
