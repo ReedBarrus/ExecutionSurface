@@ -219,6 +219,7 @@ export class MemorySubstrate {
         // ── Trajectory frame ──
         this._trajectory.push({
             state: storedState,
+            memory_object_id: memoryObject.memory_object_id,
             basin_id: basinAssignment?.basin_id ?? null,
             distance_to_basin_centroid: basinAssignment?.distance ?? null,
             novelty_gate_triggered: opts.novelty_gate_triggered ?? false,
@@ -762,6 +763,10 @@ export class MemorySubstrate {
                 "not_semantic_wrapper",
                 "not_same_object_closure",
                 "not_semantic_identity",
+                "not_canon",
+                "not_truth_closure",
+                "not_raw_restoration",
+                "not_hidden_write_authority",
             ],
             structural_refs: structuralRefs,
             support_refs: supportRefs,

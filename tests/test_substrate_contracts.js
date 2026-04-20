@@ -338,6 +338,7 @@ assert("pushed frame has correct state_id",   p0.frame.state_id === h1s[0].state
 assert("pushed frame.basin_id = null",        p0.frame.basin_id === null);
 assert("pushed frame.frame_index = 0",        p0.frame.frame_index === 0);
 assert("pushed frame.novelty_gate_triggered = false", p0.frame.novelty_gate_triggered === false);
+assert("pushed frame.memory_object_id = null by default", p0.frame.memory_object_id === null);
 assert("pushed frame.band_profile_snapshot = copy of invariants",
     JSON.stringify(p0.frame.band_profile_snapshot) ===
     JSON.stringify(h1s[0].invariants.band_profile_norm.band_energy));
@@ -775,6 +776,8 @@ const trajAll = ms.trajectory.all();
 assert("trajectory updated after 3 unique commits", trajAll.length === 3);
 assert("trajectory frames reference committed state_ids",
     trajAll.every(f => all.some(s => s.state_id === f.state_id)));
+assert("trajectory frames carry commit memory_object_id",
+    trajAll.some(f => f.state_id === h1_0.state_id && f.memory_object_id === c0.memory_object_id));
 
 // D22: rebuildBasins — works after enough commits
 // Add two clearly distinct-profile states to the segment
@@ -837,6 +840,8 @@ assert("statesInRange(0, 2): returns states within range",
 const trajSlice = ms.getTrajectory(0, 2);
 assert("getTrajectory returns trajectory frames in range",
     trajSlice.every(f => f.t_start >= 0 && f.t_end <= 2));
+assert("getTrajectory exposes memory_object_id for committed frame",
+    trajSlice.some(f => f.state_id === h1_0.state_id && f.memory_object_id === c0.memory_object_id));
 
 // D29: MemoryObject retrieval exposes lawful envelope plus direct payload access
 const moRetrieved = ms.getMemoryObject(c0.memory_object_id);
@@ -1145,11 +1150,14 @@ const rpTrajSlice = msR.getTrajectory(0, 2);
 assert("F10: getTrajectory() returns frames", rpTrajSlice.length > 0);
 rpTrajSlice[0].energy_raw = 2222;
 rpTrajSlice[0].band_profile_snapshot[0] = 1111;
+rpTrajSlice[0].memory_object_id = "mutated_memory_object";
 const rpTrajSlice2 = msR.getTrajectory(0, 2);
 assert("F10: getTrajectory() energy_raw immutable after caller mutation",
     rpTrajSlice2[0].energy_raw !== 2222);
 assert("F10: getTrajectory() band_profile_snapshot immutable after caller mutation",
     rpTrajSlice2[0].band_profile_snapshot[0] !== 1111);
+assert("F10: getTrajectory() memory_object_id immutable after caller mutation",
+    rpTrajSlice2[0].memory_object_id !== "mutated_memory_object");
 
 // ════════════════════════════════════════════════════════════════════════════
 // G. TrajectoryBuffer read-path honesty — mutation-safe copies
@@ -1171,6 +1179,7 @@ assert("G1: all() returns 3 frames", tbAll1.length === 3);
 tbAll1[0].energy_raw = 9999;
 tbAll1[0].band_profile_snapshot[0] = 8888;
 tbAll1[0].basin_id = "mutated";
+tbAll1[0].memory_object_id = "mutated_mo";
 const tbAll2 = tbR.all();
 assert("G1: all() energy_raw immutable after caller mutation",
     tbAll2[0].energy_raw !== 9999);
@@ -1178,6 +1187,8 @@ assert("G1: all() band_profile_snapshot[0] immutable after caller mutation",
     tbAll2[0].band_profile_snapshot[0] !== 8888);
 assert("G1: all() basin_id immutable after caller mutation",
     tbAll2[0].basin_id !== "mutated");
+assert("G1: all() memory_object_id immutable after caller mutation",
+    tbAll2[0].memory_object_id !== "mutated_mo");
 
 // ── G2: all() returns new array each call (independent references) ──
 const tbAll3 = tbR.all();

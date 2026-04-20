@@ -74,6 +74,7 @@
  * @property {"H1"|"M1"} artifact_class
  * @property {string} stream_id
  * @property {string} segment_id
+ * @property {string|null} memory_object_id
  * @property {string|null} basin_id
  * @property {number|null} distance_to_basin_centroid
  * @property {number[]} band_profile_snapshot
@@ -123,12 +124,19 @@ export class TrajectoryBuffer {
      *
      * @param {Object} args
      * @param {Object} args.state          — H1 or M1 artifact
+     * @param {string|null} [args.memory_object_id=null]
      * @param {string|null} [args.basin_id]
      * @param {number|null} [args.distance_to_basin_centroid]
      * @param {boolean} [args.novelty_gate_triggered=false]
      * @returns {{ ok: true, frame: TrajectoryFrame } | { ok: false, error: string, reasons: string[] }}
      */
-    push({ state, basin_id = null, distance_to_basin_centroid = null, novelty_gate_triggered = false }) {
+    push({
+        state,
+        memory_object_id = null,
+        basin_id = null,
+        distance_to_basin_centroid = null,
+        novelty_gate_triggered = false,
+    }) {
         const reasons = [];
 
         if (!state || (state.artifact_class !== "H1" && state.artifact_class !== "M1")) {
@@ -164,6 +172,7 @@ export class TrajectoryBuffer {
             artifact_class: state.artifact_class,
             stream_id: state.stream_id,
             segment_id: state.segment_id,
+            memory_object_id,
             basin_id,
             distance_to_basin_centroid,
             band_profile_snapshot,
