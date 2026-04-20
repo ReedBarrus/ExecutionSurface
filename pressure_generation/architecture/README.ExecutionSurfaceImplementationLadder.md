@@ -2,303 +2,143 @@
 
 ## Status
 
-This document is the live implementation ladder for the current
-`ExecutionSurface` front.
+This ladder supersedes the older workflow-object implementation assumption for
+the graphical substrate path.
 
-It does not replace the runtime grammar corpus or the architecture seed.
+It is now an operational tracker rather than a second architecture narrative.
 
-Its job is to translate stabilized architectural subjects into bounded proof and
-mechanization steps.
+Conceptual authority:
 
-## Reading posture
+- `GraphicalSubstrateEmergence.md`
+- `pressure_generation/architecture/README.ExecutionSurfaceGraphicalSubstrateDevelopmentPlan.md`
 
-Read this ladder together with:
+Supporting runtime grammar:
 
-- `pressure_generation/architecture/README.ExecutionSurfaceArchitectureSeed.md`
-- `pressure_generation/architecture/README.ExecutionSurfaceMemoryObjectImplementationEntry.md`
-- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeGrammarCorpus.md`
-- `pressure_generation/workflow/README.ExecutionSurfaceSubjectRegistry.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceRuntimeObjectGrammar.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceMemoryObjectEnvelope.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceSubstrateTopology.md`
+- `pressure_generation/architecture/runtime_grammar/README.ExecutionSurfaceSubstrateFunctionLedger.md`
 
-Historical workflow material under `pressure_generation/archive/` is non-authoritative
-background only.
+## Distributed Authority Reminder
 
-## Core rule
+The graphical substrate path is now trying to make a distributed authority
+stack function in code, not merely describe it in prose.
 
-Implementation must not outrun the stabilized architectural object it depends
-on.
+```text
+_states / object body store
+  = payload substance
 
-Architecture names the substrate and boundary law first.
+_memoryObjects
+  = admitted persistence envelopes
 
-The ladder then proves those laws through bounded objects, validators, code
-changes, and tests.
+_graphLedgerEvents
+  = Layer 1 mutation history
 
-## Proof-object sequence
+_graphNodesById + _graphEdgesById
+  = Layer 1 exposed topology
 
-Before larger implementation churn, every serious pass should be able to name
-one of these proof objects cleanly:
+_graphDerivedEdgesById + _graphDerivedRelationEvents
+  = Layer 2 emergent relation state and history
 
-1. `Topology detection object`
-2. `Identity object`
-3. `Decision object`
-4. `Evaluation object`
-5. `Memory record or archive entry`
+Layer 3 packets
+  = access and transport only
+```
 
-These do not yet require a full workflow engine.
+The ladder should be read as the order for making that distributed authority
+split function cleanly, not as a sequence for building more packaging.
 
-They define the proof grammar that later workflow reseeding should mechanize.
+## Active Rung
 
-## Immediate entry point
+```text
+Phase 1 - Stabilize Layer Boundaries And Temporal Axis
+```
 
-The current implementation entry note is:
+Current focus:
 
-- `pressure_generation/architecture/README.ExecutionSurfaceMemoryObjectImplementationEntry.md`
+- define `temporal_axis_v1`
+- classify `TrajectoryBuffer` as compatibility scaffold vs reduced append/order
+  mechanic
+- align `CommittedMemoryNode.axes.trajectory` with the declared temporal axis
+- classify old dwell / recurrence / transition reporting as legacy Layer 2
+  scaffolding until graph-native replacements exist
 
-Use that document for the first bounded `MemoryObject` admission slice.
+## Landed Rungs
 
-Use this ladder for broader sequencing across later rungs.
+- `Phase 0 - Landed Substrate Foundation`
 
-## Ladder
+Phase 0 currently includes:
 
-### Rung 0 - Runtime topology detection
+- `MemoryObject` admission
+- `MemoryObject` parity tests
+- Layer 1 `CommittedMemoryNode` graph ledger
+- Layer 1 `graphStateView()`
+- orchestrator/workbench Layer 1 `graph_state_view` exposure
+- Layer 2 `structural_similarity` derivation
+- Layer 2 derived relation reads
 
-**Depends on subjects:**
-- `Runtime Grammar Corpus`
-- `Substrate Topology`
+## Blocked / Deferred Rungs
 
-**Implementation target:**
-- detect the implemented or implementable object chain for an active family
-- record what relations are conserved and what relations are lost across a seam
+- Layer 2 inspection exposure: blocked until Phase 1 boundary classification is
+  documented
+- graph-native basin membership: blocked until `temporal_axis_v1` and the Layer
+  2 relation contract are stable
+- Layer 3 cards/index: blocked until graph-native Layer 2 relations justify
+  packaging
+- LM graph transport: blocked until Layer 3 exists
 
-**Expected proof object:**
-- `Topology detection object`
+## Transition Ledger
 
-**Minimum fields:**
-- source artifact
-- active seam
-- input object family
-- output object family
-- transformation
-- conserved relations
-- lost or omitted relations
-- authority ceiling
-- verification handle
-- unknowns
+This is the operational summary of the transition/deprecation ledger in
+`GraphicalSubstrateEmergence.md`.
 
-**Proof target:**
-- the active chain is inspectable enough that later architectural claims are
-  tied to real topology rather than prose convenience
-
-### Rung 1 - Architectural identity against detected topology
-
-**Depends on subjects:**
-- `Topology Detection Object`
-- `Source-Family Admission Basis`
-
-**Implementation target:**
-- define what topology the current contract, doc, or code move is trying to
-  protect
-
-**Expected proof object:**
-- `Identity object`
-
-**Proof target:**
-- every major move can say what object chain and relation posture it is
-  conserving
-
-### Rung 2 - Decision discipline
-
-**Depends on subjects:**
-- `Source-Family Admission Basis`
-- `MemoryObject Envelope`
-
-**Implementation target:**
-- choose whether the next move is:
-  - implementation
-  - documentation
-  - contract
-  - validator
-  - cleanup
-
-**Expected proof object:**
-- `Decision object`
-
-**Proof target:**
-- the repo does not widen into unrelated layers or move code before the target
-  object law is explicit
-
-### Rung 3 - Evaluation against topology
-
-**Depends on subjects:**
-- `Topology Detection Object`
-- `Comparison Basis Law`
-- `Reconstruction Lens Law`
-
-**Implementation target:**
-- audit whether the proposed move preserves the detected topology or flattens it
-
-**Expected proof object:**
-- `Evaluation object`
-
-**Proof target:**
-- evaluation can name conserved relations, lost relations, and authority
-  ceilings explicitly
-
-### Rung 4 - Historical retention or archive
-
-**Depends on subjects:**
-- `Workflow Reseed` later
-- current doc-only discipline for now
-
-**Implementation target:**
-- retain the result as a live memory-bearing surface or archive it as history
-
-**Expected proof object:**
-- `Memory record` or `archive entry`
-
-**Proof target:**
-- historical process material stays readable without remaining active authority
-
-### Rung 5 - `MemoryObject` contract surface
-
-**Depends on subjects:**
-- `MemoryObject Envelope`
-- `Source-Family Admission Basis`
-
-**Implementation target:**
-- schema or type surface for `MemoryObject`
-- fail-closed validation for required and conditional fields
-
-**Expected outputs:**
-- `MemoryObject` schema or type
-- validator path
-- malformed-admission rejection tests
-
-**Proof target:**
-- admission binding preserves payload kind, refs, continuity constraints, and
-  non-claims without collapsing into summary surfaces
-
-### Rung 6 - `analog_signal` admission adapter
-
-**Depends on subjects:**
-- `Source-Family Admission Basis`
-- `MemoryObject Envelope`
-
-**Implementation target:**
-- define how current `H1` / `M1` runtime payloads are bound into
-  `MemoryObject`
-
-**Expected outputs:**
-- family contract surface for `analog_signal`
-- adapter or helper path
-- tests proving support geometry and lineage are conserved
-
-**Proof target:**
-- current signal support can be admitted without flattening direct support
-  objects
-
-### Rung 7 - `json` admission adapter
-
-**Depends on subjects:**
-- `Source-Family Admission Basis`
-- `MemoryObject Envelope`
-
-**Implementation target:**
-- define parsed-tree or schema-shape payload admission for `json`
-
-**Expected outputs:**
-- family contract surface for `json`
-- adapter or helper path
-- tests proving non-temporal families can still be placed into continuity
-
-**Proof target:**
-- the substrate is shown to be temporally continuous rather than
-  source-family-specific
-
-### Rung 8 - Substrate commit rebase
-
-**Depends on subjects:**
-- `MemoryObject Envelope`
-- `Substrate Topology`
-
-**Implementation target:**
-- move the commit boundary from direct mixed `H1` / `M1` storage toward explicit
-  `MemoryObject` admission
-
-**Expected outputs:**
-- commit path updates
-- retrieval updates
-- continuity-preservation tests
-
-**Proof target:**
-- admitted objects become singular and addressable without losing payload-native
-  dimensionality
-
-### Rung 9 - Comparison basis surfaces
-
-**Depends on subjects:**
-- `Comparison Basis Law`
-
-**Implementation target:**
-- family-aware comparison-basis surfaces for admitted objects
-
-**Expected outputs:**
-- comparison-basis contracts
-- basis validators
-- same-input stability tests
-
-**Proof target:**
-- comparison remains substrate-supported and non-identitarian
-
-### Rung 10 - Reconstruction lens surfaces
-
-**Depends on subjects:**
-- `Reconstruction Lens Law`
-
-**Implementation target:**
-- source-family-aware reconstruction lenses over admitted objects
-
-**Expected outputs:**
-- reconstruction-lens contracts
-- replay or reconstruction helpers
-- source-versus-reconstruction distinction tests
-
-**Proof target:**
-- reconstruction remains lens-bound and does not claim raw restoration
-
-### Rung 11 - Corpus / index access surfaces
-
-**Depends on subjects:**
-- `Corpus / Index Access Law`
-
-**Implementation target:**
-- typed addressability and retrieval over admitted objects
-
-**Expected outputs:**
-- index or access contracts
-- retrieval helpers
-- tests proving access remains subordinate to lower-layer truth
-
-**Proof target:**
-- addressability becomes practical without corpus-only collapse
-
-## Testing posture
-
-Every rung should prefer:
-
-- direct object checks before receipt checks
-- relation conservation checks before count summaries
-- fail-closed validators
-- narrow fixture-based proofs
-
-Avoid treating:
-
-- receipts as object evidence
-- indexes as ontology
-- projections as proof of runtime shape
-
-## One-line summary
-
-The live implementation ladder now starts from topology detection and
-`MemoryObject` admission, then steps through source-family adapters, substrate
-commit rebasing, comparison, reconstruction, and access law without reviving the
-older retained-object or receipt-era implementation grammar.
+| Structure | Current role | Target role | Status | Exit condition |
+| --- | --- | --- | --- | --- |
+| `_states` | object body store for `H1` / `M1` | retained support body store | authoritative | keep direct support truth |
+| `_memoryObjects` | admitted persistence envelopes | commit-boundary object store | authoritative | add validator/schema |
+| `_graphLedgerEvents` | Layer 1 mutation history | retained graph mutation ledger | authoritative | keep explicit and validator-backed |
+| `_graphNodesById` | Layer 1 graph nodes | retained graph floor | authoritative | keep |
+| `_graphEdgesById` | Layer 1 declared edges | retained graph floor | authoritative | keep |
+| `_graphDerivedEdgesById` | Layer 2 derived relations | emergent relation state | partial authoritative for Layer 2 | expand relation families |
+| `_graphDerivedRelationEvents` | Layer 2 mutation history | derived relation ledger | authoritative for Layer 2 history | keep explicit and validator-backed |
+| `_trajectory` | temporal coordinate + legacy dynamics scaffold | temporal axis / compatibility scaffold | transitional | replace dwell/recurrence/transition with graph-native relations |
+| `_basins` | state-first basin compatibility | graph-native `BasinNode` / membership later | legacy/transitional | parity with graph-native basin layer |
+| `BasinOp` | state-first basin derivation | compatibility or graph-native adapter later | legacy/transitional | graph-native basin parity |
+| `WorkbenchLmWrapper` | LM transport | Layer 3 consumer only | hold | no widening before Layer 3 |
+
+## Packet Requirements
+
+Every future implementation packet must name:
+
+- target layer
+- target function
+- identity family touched
+- authority surface being changed
+- transitional structure introduced
+- exit condition for that transition
+
+## Operational Rules
+
+- no new read-side packaging until its substrate home layer is named
+- no new receipt-like transport unless it is explicitly Layer 3 and explicitly
+  temporary or permanent
+- no widening LM transport before Layer 2 basin/recurrence structure is settled
+- no new identity fusion
+
+## Near-Term Sequence
+
+```text
+Phase 1 - Stabilize Layer Boundaries And Temporal Axis
+Phase 2 - Layer 2 Inspection Exposure
+Phase 3 - Graph-Native Basin / Neighborhood Contract
+Phase 4 - Graph-Native Dwell / Recurrence / Transition
+Phase 5 - Comparison / Query / Reconstruction Rebase
+Phase 6 - Layer 3 Corpus / Index / Cards
+Phase 7 - LM / Workbench Transport
+Phase 8 - Graph / Envelope Hardening
+```
+
+## Supersession Note
+
+The older ladder language remains historically useful as background for how the
+repo moved through earlier `MemoryObject` and topology work, but it is no
+longer the active execution grammar for the graphical substrate path.

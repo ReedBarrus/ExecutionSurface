@@ -30,6 +30,50 @@ A `CommittedMemoryNode` is therefore not a substitute for `MemoryObject`; it is 
 
 This graph exposure must not remove, replace, or weaken truthful direct access to the underlying support object. Direct support access remains preserved through the object body store and existing state-first read paths unless a later packet explicitly changes that contract.
 
+## Distributed Authority
+
+The substrate does not have one single authority surface.
+
+Its authority is distributed across distinct functional layers that must not be
+collapsed into each other.
+
+```text
+Support object / object body store
+  = payload substance authority
+
+MemoryObject envelope
+  = admission and persistence authority
+
+Graph ledger
+  = mutation-history authority
+
+Layer 1 graph state
+  = exposed temporal / relational topology authority
+
+Layer 2 relation state
+  = derived emergent relation authority
+
+Layer 3 transport/index/card surfaces
+  = access and packaging only
+```
+
+Plainly:
+
+- the support object says what structural support was produced
+- the `MemoryObject` says what admitted memory envelope now carries it
+- the graph ledger says what node and edge mutations happened in what order
+- Layer 1 graph state says how admitted memory events are exposed in time and
+  relation
+- Layer 2 says what neighborhoods, basins, recurrence, drift, and interference
+  are derived over that exposed topology
+- Layer 3 says how bounded consumers inspect or transport the result
+
+Layer 1 is therefore not merely read-side packaging.
+
+It is the authoritative exposure floor for temporal and relational topology,
+while the object body store remains authoritative for payload substance and the
+graph ledger remains authoritative for mutation history.
+
 ## Layered Substrate Model
 
 The hybrid substrate is organized into three distinct authority layers.
@@ -77,8 +121,10 @@ This document defines the target split:
 
 ```text
 Object body store = substance / payload body
+MemoryObject      = admission / persistence envelope
 Graph ledger      = append-only mutation history
 Graph state       = relation / topology / continuity floor
+Layer 2 state     = derived emergent relation structure
 Index layer       = retrieval / packaging / access
 ```
 
@@ -523,22 +569,24 @@ index authority
 
 Layer 1 graph authority is exposure-substrate authority only. It is not canon authority.
 
-## Implementation Order
+## Execution Posture
 
-Recommended order:
+This document is not the execution order authority.
+
+Execution sequencing, current rung, and phase exit conditions belong to:
 
 ```text
-1. Stabilize MemoryObject admission seam.
-2. Preserve downstream state-first behavior.
-3. Thread memory_object_id through trajectory metadata.
-4. Define CommittedMemoryNode target and graph ledger law.
-5. Implement minimal GraphLedger as append-only node/edge admission history.
-6. Expose bounded graph state/views from the ledger.
-7. Derive Layer 2 neighborhoods/basins from Layer 1 graph nodes and edges.
-8. Let Layer 3 index/LM/UI consume bounded graph views and cards.
+README.ExecutionSurfaceImplementationLadder.md
+README.ExecutionSurfaceGraphicalSubstrateDevelopmentPlan.md
 ```
 
-Do not implement LM/workbench transport projections before the graph ledger boundary is clear, unless explicitly labeled as temporary read-side packaging.
+This document should stay focused on substrate target shape, authority split,
+and conserved identity structure rather than duplicating implementation order.
+
+Layer 1 graph exposure is not a decorative projection over a more real
+substrate elsewhere. It is the authoritative exposure floor for committed
+temporal and relational topology, while the object body store preserves payload
+substance and Layer 3 handles transport/index packaging.
 
 ## First Implementation Target
 
@@ -598,3 +646,285 @@ The graph state exposes current topology.
 Layer 2 derives emergent neighborhoods and relations.
 
 Layer 3 packages views, cards, queries, LM packets, and UI transport.
+
+## Implementation Ladder V2 And Current-State Audit
+
+This section freezes the current development read on the graphical substrate
+path so implementation can proceed against one explicit ladder instead of
+incremental seam memory.
+
+It does not replace the runtime grammar corpus.
+
+It does replace the older workflow-object implementation assumption for the
+graphical substrate path.
+
+Detailed phase-by-phase execution planning now lives in:
+
+- `pressure_generation/architecture/README.ExecutionSurfaceGraphicalSubstrateDevelopmentPlan.md`
+
+### Current Landed State
+
+The current repo reality is:
+
+```text
+MemoryObject admission seam: landed
+MemoryObject payload parity with H1/M1: tested
+Trajectory metadata carries memory_object_id: landed
+Layer 1 CommittedMemoryNode graph ledger: landed
+Layer 1 graphStateView(): landed
+Orchestrator/workbench Layer 1 graph_state_view exposure: landed
+Layer 2 structural_similarity derived relations: landed
+Layer 2 derived relation reads: landed
+Layer 2 orchestrator/workbench inspection: not landed
+Layer 2 basin/neighborhood graph derivation: not landed
+Layer 2 dwell/recurrence/transition graph derivation: not landed
+Layer 3 corpus/index/cards/LM transport: not landed
+Temporal axis cleanup: not landed
+Legacy TrajectoryBuffer/BasinOp path: still active compatibility scaffold
+```
+
+### Three Conserved Identity Families
+
+The substrate-first ladder now freezes three conserved identity families by
+name.
+
+#### 1. Amplitude / Absolute Energy Identity
+
+Conserved through `energy_raw` and amplitude-bearing metrics.
+
+This identity family preserves magnitude-bearing distinction and must remain
+attributable as its own channel.
+
+#### 2. Spectral Distribution Identity
+
+Conserved through `band_profile_norm.band_energy` and
+`CommittedMemoryNode.axes.structure.vector`.
+
+This identity family preserves frequency/shape distribution and must remain
+attributable as its own channel.
+
+#### 3. Placement-Sensitive Structural Identity
+
+This is the support-horizon resonance / band-boundary harmonic placement /
+finite amplitude splitting-window behavior identified in harmonic-placement
+probes.
+
+It currently exists as probe knowledge and basin-splitting law, not yet as a
+first-class runtime channel.
+
+It must be admitted deliberately later as either:
+
+- a Layer 2 relation family, or
+- an explicit structure-axis contract that later Layer 2 relations can consume
+
+#### Identity non-fusion rule
+
+No derived relation may fuse these identities into one authoritative score.
+
+Summaries may exist later only as Layer 3 routing conveniences.
+
+### Authority Split
+
+The current authority split should be treated as:
+
+#### Object body store
+
+Holds:
+
+```text
+H1 / M1 support payloads
+MemoryObject envelopes
+```
+
+#### Layer 1 graph floor
+
+Holds:
+
+```text
+CommittedMemoryNode records
+Layer 1 graph edges
+graph ledger events
+graphStateView()
+```
+
+#### Layer 2 emergent relation layer
+
+Holds:
+
+```text
+structural_similarity edges now
+later basin membership
+later recurrence
+later dwell
+later transition
+later drift
+later interference
+later placement-sensitive relation families
+```
+
+#### Layer 3 corpus / index / transport
+
+Future home of:
+
+```text
+cards
+compact packets
+LM-safe transport
+UI indexes
+query acceleration
+```
+
+#### Legacy compatibility scaffold
+
+The following remain active compatibility scaffolds until graph-native
+replacements are explicitly admitted and tested:
+
+```text
+TrajectoryBuffer basin / dwell / recurrence / transition reports
+BasinOp state-first path
+```
+
+### End-State Target
+
+The intended end-state is:
+
+```text
+MemoryObject = singular commit-boundary object
+H1 / M1      = direct support payload truth
+Layer 1      = authoritative exposure graph floor
+Layer 2      = graph-native derived neighborhood / comparison / recurrence layer
+Layer 3      = subordinate corpus / index / transport layer
+```
+
+This means:
+
+- direct support truth remains reachable
+- `MemoryObject` remains the admitted continuity-bearing envelope
+- Layer 1 preserves node/edge/continuity truth
+- Layer 2 derives organization without replacing Layer 1
+- Layer 3 packages access without replacing lower-layer truth
+
+### Ladder V2
+
+#### Phase 0 - Landed Substrate Foundation
+
+Landed:
+
+- `MemoryObject` admission
+- `MemoryObject` parity tests
+- Layer 1 `CommittedMemoryNode` graph ledger
+- Layer 1 graph state inspection
+- Layer 2 `structural_similarity` derivation
+
+#### Phase 1 - Stabilize Layer Boundaries And Temporal Axis
+
+Targets:
+
+- define `temporal_axis_v1`
+- decide whether `TrajectoryBuffer` remains compatibility scaffold or is reduced
+  to append/order mechanics
+- align `CommittedMemoryNode.axes.trajectory` with `temporal_axis_v1`
+- classify `TrajectoryBuffer` dwell/transition/recurrence reports as legacy
+  Layer 2 observational scaffolding until replaced
+- do not delete compatibility APIs until replacement coverage exists
+
+#### Phase 2 - Layer 2 Inspection Exposure
+
+Targets:
+
+- expose bounded Layer 2 derived relation inspection beside `graph_state_view`
+- keep `graphStateView()` Layer 1 only by default
+- do not feed Layer 2 to LM/cards/index yet
+
+#### Phase 3 - Graph-Native Basin / Neighborhood Contract
+
+Targets:
+
+- define `BasinNode` and `basin_membership` edges as Layer 2 derived structure
+- derive basin membership from Layer 1 node structure axes and Layer 2
+  similarity relations
+- preserve all three identity families
+- keep old `BasinOp` behavior as compatibility until graph-native basin parity
+  is tested
+
+#### Phase 4 - Graph-Native Dwell / Recurrence / Transition
+
+Targets:
+
+- derive dwell, recurrence, and transition from `temporal_axis_v1` plus Layer 2
+  relations
+- preserve two-channel and placement-sensitive identity attribution
+- do not promote recurrence into same-object closure
+
+#### Phase 5 - Comparison / Query / Reconstruction Rebase
+
+Targets:
+
+- comparison uses declared comparison bases
+- query becomes `MemoryObject` / Layer 1 / Layer 2 aware while preserving
+  direct support truth
+- reconstruction becomes `MemoryObject`-lens-first with lineage and support
+  refs as lawful basis
+
+#### Phase 6 - Layer 3 Corpus / Index / Cards
+
+Targets:
+
+- introduce compact cards only after Layer 2 graph-native relations justify
+  packaging
+- cards point back to Layer 1/2 refs
+- cards are access surfaces, not substrate authority
+
+#### Phase 7 - LM / Workbench Transport
+
+Targets:
+
+- LM transport consumes Layer 3 packets only after index/card posture is
+  explicit
+- LM must not consume raw Layer 1/2 graph state as interpretive authority
+
+### Transition / Deprecation Ledger
+
+| Structure | Current role | Target role | Status | Exit condition |
+| --- | --- | --- | --- | --- |
+| `_states` | object body store for `H1` / `M1` | retained support body store | authoritative | keep direct support truth |
+| `_memoryObjects` | admitted persistence envelopes | commit-boundary object store | authoritative | add validator/schema |
+| `_graphNodesById` | Layer 1 graph nodes | retained graph floor | authoritative | keep |
+| `_graphEdgesById` | Layer 1 declared edges | retained graph floor | authoritative | keep |
+| `_graphDerivedEdgesById` | Layer 2 derived relations | emergent relation store | partial authoritative for Layer 2 | expand relation families |
+| `_trajectory` | temporal coordinate + legacy dynamics scaffold | temporal axis / compatibility scaffold | transitional | replace dwell/recurrence/transition with graph-native relations |
+| `_basins` | state-first basin compatibility | graph-native `BasinNode` / membership later | legacy/transitional | parity with graph-native basin layer |
+| `BasinOp` | state-first basin derivation | compatibility or graph-native adapter later | legacy/transitional | graph-native basin parity |
+| `WorkbenchLmWrapper` | LM transport | Layer 3 consumer only | hold | no widening before Layer 3 |
+
+### Development Rules
+
+The active rules are:
+
+- no new read-side packaging until its substrate home layer is named
+- no new receipt-like transport unless it is explicitly Layer 3 and explicitly
+  temporary or permanent
+- no widening LM transport before Layer 2 basin/recurrence structure is settled
+- no new identity fusion
+
+Every implementation packet must name:
+
+- target layer
+- target function
+- identity family touched
+- transitional structure introduced
+- exit condition for that transition
+
+### Next Recommended Move
+
+Next recommended move:
+
+```text
+Phase 1 - Stabilize Layer Boundaries And Temporal Axis
+```
+
+Reason:
+
+Layer 1 and Layer 2 are now real enough that the old trajectory/basin scaffold
+must be classified before additional exposure, index, or basin derivation work
+continues.
