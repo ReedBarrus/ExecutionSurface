@@ -431,6 +431,8 @@ function buildResult({
         },
         substrate: {
             state_count: substrateSummary.state_count,
+            latest_committed_state_id: substrateSummary.latest_committed_state_id,
+            latest_committed_memory_object_id: substrateSummary.latest_committed_memory_object_id,
             basin_count: substrateSummary.basin_count,
             segment_count: substrateSummary.segment_count,
             trajectory_frames: trajSummary.frame_count,
@@ -456,6 +458,8 @@ function buildResult({
         artifacts: baseInput.artifacts,
         substrate: {
             state_count: substrateSummary.state_count,
+            latest_committed_state_id: substrateSummary.latest_committed_state_id,
+            latest_committed_memory_object_id: substrateSummary.latest_committed_memory_object_id,
             basin_count: substrateSummary.basin_count,
             segment_count: substrateSummary.segment_count,
             t_span: substrateSummary.t_span,

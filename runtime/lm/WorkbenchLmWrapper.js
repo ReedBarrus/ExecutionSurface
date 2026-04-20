@@ -35,6 +35,8 @@ function stableStringify(value) {
     return JSON.stringify(value, null, 2);
 }
 
+const MAX_RECENT_COMMITTED_HANDLE_PAIRS = 3;
+
 async function readJson(filePath) {
     const raw = await readFile(filePath, "utf8");
     return JSON.parse(raw);
@@ -45,6 +47,7 @@ async function writeJson(filePath, value) {
 }
 
 export function extractWorkbenchLmInputView(workbench) {
+    const substrateHandles = extractSubstrateHandles(workbench);
     return {
         input_type: "door_one_workbench_lm_view",
         workbench_type: workbench?.workbench_type ?? "runtime:door_one_workbench",
@@ -68,6 +71,7 @@ export function extractWorkbenchLmInputView(workbench) {
             skipped_window_count: workbench?.runtime?.receipt?.skipped_window_count ?? 0,
             merge_failure_count: workbench?.runtime?.receipt?.merge_failure_count ?? 0,
         },
+        substrate_handles: substrateHandles,
         claim_posture: {
             authority: "read_side_only",
             forbidden: [
@@ -128,6 +132,9 @@ export function buildWorkbenchLmPrompt(lmInput) {
         "questions must be an array of strings.",
         "non_claims must be an array of strings.",
         "authority_posture must exactly match the required booleans shown below.",
+        "substrate_handles are typed read-side refs only.",
+        "Do not treat substrate_handles as runtime authority.",
+        "Do not infer payload contents beyond the supplied typed refs.",
         "Do not claim canon authority.",
         "Do not claim runtime authority.",
         "Do not claim truth closure.",
@@ -198,5 +205,69 @@ export async function readAndValidateWorkbenchLmOutput(outputPath) {
     return {
         payload,
         validation,
+    };
+}
+
+function extractSubstrateHandles(workbench) {
+    const substrate = workbench?.runtime?.substrate ?? {};
+    const recentPairs = collectRecentCommittedHandlePairs(substrate);
+    const latestPair = recentPairs.length > 0 ? recentPairs[recentPairs.length - 1] : null;
+
+    return {
+        latest_committed_state_id:
+            substrate?.latest_committed_state_id ??
+            latestPair?.state_id ??
+            null,
+        latest_committed_memory_object_id:
+            substrate?.latest_committed_memory_object_id ??
+            latestPair?.memory_object_id ??
+            null,
+        recent_committed_handle_pairs: recentPairs,
+        handle_authority: "typed_refs_only_read_side",
+        payload_included: false,
+    };
+}
+
+function collectRecentCommittedHandlePairs(substrate) {
+    const directPairs = Array.isArray(substrate?.recent_committed_handle_pairs)
+        ? substrate.recent_committed_handle_pairs
+        : [];
+    const trajectoryFrames = Array.isArray(substrate?.trajectory_frames)
+        ? substrate.trajectory_frames
+        : [];
+
+    const sourcePairs = directPairs.length > 0
+        ? directPairs
+        : trajectoryFrames.map((frame) => ({
+            state_id: frame?.state_id ?? null,
+            memory_object_id: frame?.memory_object_id ?? null,
+            artifact_class: frame?.artifact_class ?? null,
+            segment_id: frame?.segment_id ?? null,
+            t_start: frame?.t_start ?? null,
+            t_end: frame?.t_end ?? null,
+        }));
+
+    return sourcePairs
+        .map(normalizeCommittedHandlePair)
+        .filter(Boolean)
+        .slice(-MAX_RECENT_COMMITTED_HANDLE_PAIRS);
+}
+
+function normalizeCommittedHandlePair(pair) {
+    if (!pair || typeof pair !== "object") return null;
+    if (typeof pair.state_id !== "string" || pair.state_id.length === 0) return null;
+    if (pair.memory_object_id !== null && pair.memory_object_id !== undefined &&
+        (typeof pair.memory_object_id !== "string" || pair.memory_object_id.length === 0)) {
+        return null;
+    }
+    if (pair.artifact_class !== "H1" && pair.artifact_class !== "M1") return null;
+
+    return {
+        state_id: pair.state_id,
+        memory_object_id: pair.memory_object_id ?? null,
+        artifact_class: pair.artifact_class,
+        segment_id: typeof pair.segment_id === "string" ? pair.segment_id : null,
+        t_start: Number.isFinite(pair.t_start) ? pair.t_start : null,
+        t_end: Number.isFinite(pair.t_end) ? pair.t_end : null,
     };
 }

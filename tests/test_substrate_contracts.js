@@ -824,6 +824,10 @@ const summ = ms.summary();
 assert("substrate summary has state_count",         typeof summ.state_count === "number");
 assert("substrate summary has basin_count",         typeof summ.basin_count === "number");
 assert("substrate summary has substrate_id",        summ.substrate_id === "test_substrate");
+assert("substrate summary latest_committed_state_id preserved",
+    summ.latest_committed_state_id === h1_hi.state_id);
+assert("substrate summary latest_committed_memory_object_id preserved",
+    summ.latest_committed_memory_object_id === `MO:${h1_hi.state_id}`);
 assert("substrate summary report_type = substrate:operational_summary",
     summ.report_type === "substrate:operational_summary");
 assert("substrate summary has no 'canon' fields",

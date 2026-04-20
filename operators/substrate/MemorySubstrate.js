@@ -73,6 +73,8 @@ export class MemorySubstrate {
         this._states = new Map();
         this._memoryObjects = new Map();
         this._memoryObjectIdsByStateId = new Map();
+        this._lastCommittedStateId = null;
+        this._lastCommittedMemoryObjectId = null;
 
         /** @type {Map<string, import("../basin/BasinOp.js").BasinState>} basin_id → BasinState */
         this._basins = new Map();
@@ -186,6 +188,8 @@ export class MemorySubstrate {
         this._states.set(state.state_id, storedState);
         this._memoryObjects.set(memoryObject.memory_object_id, memoryObject);
         this._memoryObjectIdsByStateId.set(state.state_id, memoryObject.memory_object_id);
+        this._lastCommittedStateId = state.state_id;
+        this._lastCommittedMemoryObjectId = memoryObject.memory_object_id;
         this._commit_count += 1;
 
         // ── Basin assignment (nearest neighbor from existing basins) ──
@@ -647,6 +651,8 @@ export class MemorySubstrate {
             substrate_id: this.substrate_id,
             state_count: this._states.size,
             memory_object_count: this._memoryObjects.size,
+            latest_committed_state_id: this._lastCommittedStateId,
+            latest_committed_memory_object_id: this._lastCommittedMemoryObjectId,
             commit_count: this._commit_count,
             basin_count: this._basins.size,
             segment_count: segments.size,

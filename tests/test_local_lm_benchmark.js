@@ -50,6 +50,38 @@ const lmInput = {
         skipped_window_count: 0,
         merge_failure_count: 0,
     },
+    substrate_handles: {
+        latest_committed_state_id: "H1:STR:test:ch0:voltage:arb:8:seg:STR:test:0:8:9",
+        latest_committed_memory_object_id: "MO:H1:STR:test:ch0:voltage:arb:8:seg:STR:test:0:8:9",
+        recent_committed_handle_pairs: [
+            {
+                state_id: "H1:STR:test:ch0:voltage:arb:8:seg:STR:test:0:6:7",
+                memory_object_id: "MO:H1:STR:test:ch0:voltage:arb:8:seg:STR:test:0:6:7",
+                artifact_class: "H1",
+                segment_id: "seg:STR:test:0",
+                t_start: 6,
+                t_end: 7,
+            },
+            {
+                state_id: "M1:STR:test:ch0:voltage:arb:8:seg:STR:test:0:6:8",
+                memory_object_id: "MO:M1:STR:test:ch0:voltage:arb:8:seg:STR:test:0:6:8",
+                artifact_class: "M1",
+                segment_id: "seg:STR:test:0",
+                t_start: 6,
+                t_end: 8,
+            },
+            {
+                state_id: "H1:STR:test:ch0:voltage:arb:8:seg:STR:test:0:8:9",
+                memory_object_id: "MO:H1:STR:test:ch0:voltage:arb:8:seg:STR:test:0:8:9",
+                artifact_class: "H1",
+                segment_id: "seg:STR:test:0",
+                t_start: 8,
+                t_end: 9,
+            },
+        ],
+        handle_authority: "typed_refs_only_read_side",
+        payload_included: false,
+    },
     claim_posture: {
         authority: "read_side_only",
         forbidden: [

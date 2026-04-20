@@ -64,6 +64,44 @@ const workbenchFixture = {
             skipped_window_count: 0,
             merge_failure_count: 0,
         },
+        substrate: {
+            latest_committed_state_id: "H1:STR:test:ch0:voltage:arb:8:seg:STR:test:ch0:voltage:arb:8:1:2:3",
+            latest_committed_memory_object_id: "MO:H1:STR:test:ch0:voltage:arb:8:seg:STR:test:ch0:voltage:arb:8:1:2:3",
+            recent_committed_handle_pairs: [
+                {
+                    state_id: "H1:STR:test:ch0:voltage:arb:8:seg:STR:test:ch0:voltage:arb:8:0:0:1",
+                    memory_object_id: "MO:H1:STR:test:ch0:voltage:arb:8:seg:STR:test:ch0:voltage:arb:8:0:0:1",
+                    artifact_class: "H1",
+                    segment_id: "seg:STR:test:ch0:voltage:arb:8:0",
+                    t_start: 0,
+                    t_end: 1
+                },
+                {
+                    state_id: "H1:STR:test:ch0:voltage:arb:8:seg:STR:test:ch0:voltage:arb:8:0:1:2",
+                    memory_object_id: "MO:H1:STR:test:ch0:voltage:arb:8:seg:STR:test:ch0:voltage:arb:8:0:1:2",
+                    artifact_class: "H1",
+                    segment_id: "seg:STR:test:ch0:voltage:arb:8:0",
+                    t_start: 1,
+                    t_end: 2
+                },
+                {
+                    state_id: "M1:STR:test:ch0:voltage:arb:8:seg:STR:test:ch0:voltage:arb:8:1:0:2",
+                    memory_object_id: "MO:M1:STR:test:ch0:voltage:arb:8:seg:STR:test:ch0:voltage:arb:8:1:0:2",
+                    artifact_class: "M1",
+                    segment_id: "seg:STR:test:ch0:voltage:arb:8:1",
+                    t_start: 0,
+                    t_end: 2
+                },
+                {
+                    state_id: "H1:STR:test:ch0:voltage:arb:8:seg:STR:test:ch0:voltage:arb:8:1:2:3",
+                    memory_object_id: "MO:H1:STR:test:ch0:voltage:arb:8:seg:STR:test:ch0:voltage:arb:8:1:2:3",
+                    artifact_class: "H1",
+                    segment_id: "seg:STR:test:ch0:voltage:arb:8:1",
+                    t_start: 2,
+                    t_end: 3
+                }
+            ]
+        },
         artifacts: {
             a1: {
                 timestamps: [0, 1, 2],
@@ -81,7 +119,17 @@ eq(lmInput.workbench_type, "runtime:door_one_workbench", "A3: workbench type pre
 eq(Array.isArray(lmInput.scope.segment_ids), true, "A4: segment_ids preserved");
 eq("artifacts" in lmInput, false, "A5: raw artifacts are not forwarded");
 eq(JSON.stringify(lmInput).includes("timestamps"), false, "A6: raw primary arrays are not forwarded");
-eq(lmInput.claim_posture.authority, "read_side_only", "A7: claim posture is read-side only");
+eq(lmInput.substrate_handles.latest_committed_state_id, workbenchFixture.runtime.substrate.latest_committed_state_id, "A7: latest committed state handle preserved");
+eq(lmInput.substrate_handles.latest_committed_memory_object_id, workbenchFixture.runtime.substrate.latest_committed_memory_object_id, "A8: paired latest memory object handle preserved");
+eq(lmInput.substrate_handles.handle_authority, "typed_refs_only_read_side", "A9: substrate handle authority explicit");
+eq(lmInput.substrate_handles.payload_included, false, "A10: substrate handle payload is excluded");
+eq(lmInput.substrate_handles.recent_committed_handle_pairs.length, 3, "A11: recent committed handle pairs are bounded");
+eq(lmInput.substrate_handles.recent_committed_handle_pairs[2].state_id, workbenchFixture.runtime.substrate.latest_committed_state_id, "A12: latest recent handle pair aligns to latest state handle");
+eq(JSON.stringify(lmInput).includes("kept_bins"), false, "A13: raw support payloads are not forwarded");
+eq(lmInput.runtime_receipt.state_count, workbenchFixture.runtime.receipt.state_count, "A14: existing receipt counts remain present");
+eq(lmInput.claim_posture.authority, "read_side_only", "A15: claim posture is read-side only");
+ok(lmInput.claim_posture.forbidden.includes("runtime_writeback"), "A16: forbidden posture still blocks runtime writeback");
+ok(lmInput.claim_posture.forbidden.includes("canon"), "A17: forbidden posture still blocks canon semantics");
 
 section("B. Wrapper contract");
 eq(WORKBENCH_LM_WRAPPER_CONTRACT.contract_type, "execution_surface:workbench_lm_wrapper_contract", "B1: wrapper contract type explicit");
@@ -160,6 +208,40 @@ section("D. Output boundary integrity");
 const validOutput = buildWorkbenchLmOutputTemplate("STR:test:ch0:voltage:arb:8");
 const validOutputValidation = await validateWorkbenchLmOutput(validOutput);
 eq(validOutputValidation.ok, true, `D1: happy-path LM output validates${validOutputValidation.ok ? "" : ` ${validOutputValidation.errors.join("; ")}`}`);
+
+section("E. Handle fallback");
+const fallbackWorkbench = {
+    workbench_type: "runtime:door_one_workbench",
+    scope: {
+        stream_id: "STR:fallback",
+        source_id: "fallback_source",
+        segment_ids: [],
+        cross_run_context: {
+            available: false,
+            run_count: 0,
+        },
+    },
+    runtime: {
+        receipt: {
+            state_count: 0,
+            basin_count: 0,
+            segment_count: 0,
+            trajectory_frames: 0,
+            segment_transition_count: 0,
+            h1_count: 0,
+            m1_count: 0,
+            anomaly_count: 0,
+            query_present: false,
+            skipped_window_count: 0,
+            merge_failure_count: 0,
+        },
+        substrate: {},
+    },
+};
+const fallbackLmInput = extractWorkbenchLmInputView(fallbackWorkbench);
+eq(fallbackLmInput.substrate_handles.latest_committed_state_id, null, "E1: latest committed state handle falls back to null");
+eq(fallbackLmInput.substrate_handles.latest_committed_memory_object_id, null, "E2: latest committed memory object handle falls back to null");
+eq(fallbackLmInput.substrate_handles.recent_committed_handle_pairs.length, 0, "E3: recent committed handle pairs fall back to empty array");
 
 console.log(`\n${PASS} passed   ${FAIL} failed`);
 if (FAIL > 0) process.exit(1);

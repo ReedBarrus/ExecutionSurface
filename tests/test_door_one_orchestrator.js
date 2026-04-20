@@ -181,11 +181,21 @@ assert("A11: artifacts.a3 exists when reconstruct_policy is supplied", a3?.artif
 assert("A12: artifacts.q has artifact_class Q", q?.artifact_class === "Q");
 
 assert("A13: substrate.state_count is number", typeof result.substrate.state_count === "number");
+assert("A13b: substrate.latest_committed_state_id is string",
+    typeof result.substrate.latest_committed_state_id === "string");
+assert("A13c: substrate.latest_committed_memory_object_id is string",
+    typeof result.substrate.latest_committed_memory_object_id === "string");
+assert("A13d: substrate.latest_committed_memory_object_id is MO-prefixed",
+    result.substrate.latest_committed_memory_object_id.startsWith("MO:"));
 assert("A14: substrate.basin_count is number", typeof result.substrate.basin_count === "number");
 assert("A15: substrate.segment_ids is array", Array.isArray(result.substrate.segment_ids));
 assert("A16: substrate.transition_report.report_type is explicit", result.substrate.transition_report?.report_type === "substrate:observational_report");
 
 assert("A17: summaries.substrate is operational summary", result.summaries.substrate?.report_type === "substrate:operational_summary");
+assert("A17b: summaries.substrate latest_committed_state_id mirrors substrate",
+    result.summaries.substrate?.latest_committed_state_id === result.substrate.latest_committed_state_id);
+assert("A17c: summaries.substrate latest_committed_memory_object_id mirrors substrate",
+    result.summaries.substrate?.latest_committed_memory_object_id === result.substrate.latest_committed_memory_object_id);
 assert("A18: summaries.trajectory is object", typeof result.summaries.trajectory === "object");
 assert("A19: summaries.segtracker is object", typeof result.summaries.segtracker === "object");
 

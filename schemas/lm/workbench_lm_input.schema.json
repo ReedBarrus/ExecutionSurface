@@ -10,6 +10,7 @@
     "workbench_type",
     "scope",
     "runtime_receipt",
+    "substrate_handles",
     "claim_posture"
   ],
   "properties": {
@@ -119,6 +120,91 @@
         "merge_failure_count": {
           "type": "integer",
           "minimum": 0
+        }
+      }
+    },
+    "substrate_handles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "latest_committed_state_id",
+        "latest_committed_memory_object_id",
+        "recent_committed_handle_pairs",
+        "handle_authority",
+        "payload_included"
+      ],
+      "properties": {
+        "latest_committed_state_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "latest_committed_memory_object_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "recent_committed_handle_pairs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "state_id",
+              "memory_object_id",
+              "artifact_class",
+              "segment_id",
+              "t_start",
+              "t_end"
+            ],
+            "properties": {
+              "state_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "memory_object_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "artifact_class": {
+                "type": "string",
+                "enum": [
+                  "H1",
+                  "M1"
+                ]
+              },
+              "segment_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "t_start": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "t_end": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "handle_authority": {
+          "type": "string",
+          "const": "typed_refs_only_read_side"
+        },
+        "payload_included": {
+          "type": "boolean",
+          "const": false
         }
       }
     },

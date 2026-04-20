@@ -292,6 +292,8 @@ eq(wbSingle.cross_run.available, false, "B6: single-run cross_run.available=fals
 eq(wbSingle.cross_run.report, null, "B7: single-run cross_run.report=null");
 ok(wbSingle.runtime.pipeline && typeof wbSingle.runtime.pipeline === "object", "B8: runtime.pipeline present");
 ok(wbSingle.runtime.pipeline.operators && typeof wbSingle.runtime.pipeline.operators === "object", "B9: runtime.pipeline.operators present");
+eq(wbSingle.runtime.substrate.latest_committed_state_id, runA?.substrate?.latest_committed_state_id, "B10: runtime.substrate latest_committed_state_id preserved");
+eq(wbSingle.runtime.substrate.latest_committed_memory_object_id, runA?.substrate?.latest_committed_memory_object_id, "B11: runtime.substrate latest_committed_memory_object_id preserved");
 
 section("C. Cross-run mode");
 eq(wbCross.scope.cross_run_context.available, true, "C1: cross-run scope.available=true");
@@ -316,6 +318,8 @@ ok(wbSingle.runtime.audit && typeof wbSingle.runtime.audit === "object", "E5: ru
 ok(Array.isArray(wbSingle.runtime.pipeline.operators.harmonic_states), "E6: harmonic states surfaced directly");
 ok("query" in wbSingle.runtime.pipeline.functions, "E7: function outputs surfaced separately");
 eq(wbSingle.workbench_receipt.state_count, wbSingle.runtime.receipt.state_count, "E8: workbench_receipt state_count mirrors runtime receipt");
+ok(typeof wbSingle.runtime.substrate.latest_committed_state_id === "string", "E9: runtime.substrate latest_committed_state_id visible");
+ok(typeof wbSingle.runtime.substrate.latest_committed_memory_object_id === "string", "E10: runtime.substrate latest_committed_memory_object_id visible");
 
 section("F. Determinism");
 const wbCross2 = workbench.assemble(runA, { crossRunReport });
