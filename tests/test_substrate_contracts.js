@@ -1,6 +1,6 @@
 ﻿// test_substrate_contracts.js
 //
-// Substrate Space â€” Phase B contract tests.
+// Substrate Space -- Phase B contract tests.
 //
 // Verifies determinism, boundary integrity, commit discipline, and
 // read-side honesty for all four substrate components:
@@ -17,40 +17,40 @@ import { TrajectoryBuffer } from "../operators/trajectory/TrajectoryBuffer.js";
 import { BasinOp }          from "../operators/basin/BasinOp.js";
 import { MemorySubstrate }  from "../operators/substrate/MemorySubstrate.js";
 
-// â”€â”€â”€ Harness â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// --- Harness ------------------------------------------------------------------
 
 let passed = 0, failed = 0;
 const failures = [];
 
 function assert(label, condition, detail = "") {
-    if (condition) { console.log(`  âœ“ ${label}`); passed++; }
+    if (condition) { console.log(`  PASS ${label}`); passed++; }
     else {
-        const msg = `  âœ— ${label}${detail ? ` â€” ${detail}` : ""}`;
+        const msg = `  FAIL ${label}${detail ? ` -- ${detail}` : ""}`;
         console.error(msg); failures.push(msg); failed++;
     }
 }
 
 function assertFails(label, result, expectedError) {
     if (!result.ok && result.error === expectedError) {
-        console.log(`  âœ“ ${label}`); passed++;
+        console.log(`  PASS ${label}`); passed++;
     } else if (!result.ok) {
-        const msg = `  âœ— ${label} â€” expected error=${expectedError}, got error=${result.error}`;
+        const msg = `  FAIL ${label} -- expected error=${expectedError}, got error=${result.error}`;
         console.error(msg); failures.push(msg); failed++;
     } else {
-        const msg = `  âœ— ${label} â€” expected failure but got ok=true`;
+        const msg = `  FAIL ${label} -- expected failure but got ok=true`;
         console.error(msg); failures.push(msg); failed++;
     }
 }
 
-function section(name) { console.log(`\nâ”€â”€ ${name} â”€â”€`); }
+function section(name) { console.log(`\n-- ${name} --`); }
 
-// â”€â”€â”€ Shared fixture factories â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// --- Shared fixture factories -------------------------------------------------
 
 const STREAM_ID = "STR:test:ch0:voltage:arb:8";
 const SEG_0     = `seg:${STREAM_ID}:0`;
 const SEG_1     = `seg:${STREAM_ID}:1`;
 
-/** Minimal valid AnomalyReport â€” novelty_gate_triggered is the key field */
+/** Minimal valid AnomalyReport -- novelty_gate_triggered is the key field */
 function makeReport(opts = {}) {
     return {
         artifact_type: "AnomalyReport",
@@ -212,11 +212,11 @@ const BASIN_POLICY = {
     cross_segment: false,
 };
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 // A. SegmentTracker
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 
-section("A. SegmentTracker â€” determinism and boundary");
+section("A. SegmentTracker -- determinism and boundary");
 
 const st = new SegmentTracker({ stream_id: STREAM_ID });
 
@@ -252,7 +252,7 @@ assert("transition.detected_event_types captured",
 assert("segment advanced to epoch 1",                st.currentSegmentId === `seg:${STREAM_ID}:1`);
 assert("transitions array has 1 entry",              st.transitions.length === 1);
 
-// A5: second non-novelty after transition â€” stays at epoch 1
+// A5: second non-novelty after transition -- stays at epoch 1
 const r3 = st.observe(makeReport({ novelty_gate_triggered: false }));
 assert("second false novelty: still at epoch 1",    st.currentSegmentId === `seg:${STREAM_ID}:1`);
 assert("second false novelty: returns null",         r3 === null);
@@ -270,14 +270,14 @@ assert("segmentHistory[0] = epoch 0",               hist[0] === `seg:${STREAM_ID
 assert("segmentHistory[1] = epoch 1",               hist[1] === `seg:${STREAM_ID}:1`);
 assert("segmentHistory[2] = epoch 2",               hist[2] === `seg:${STREAM_ID}:2`);
 
-// A8: determinism â€” same sequence produces identical history on fresh tracker
+// A8: determinism -- same sequence produces identical history on fresh tracker
 const stB = new SegmentTracker({ stream_id: STREAM_ID });
 stB.observe(makeReport({ novelty_gate_triggered: false }));
 stB.observe(makeReport({ novelty_gate_triggered: true, window_ref: "1:2", divergence_score: 0.8,
     detected_events: [{ type: "energy_shift" }] }));
 stB.observe(makeReport({ novelty_gate_triggered: false }));
 stB.observe(makeReport({ novelty_gate_triggered: true, window_ref: "3:4" }));
-assert("deterministic: same sequence â†’ same currentSegmentId",
+assert("deterministic: same sequence -> same currentSegmentId",
     stB.currentSegmentId === st.currentSegmentId);
 assert("deterministic: same segment history",
     JSON.stringify(stB.segmentHistory()) === JSON.stringify(st.segmentHistory()));
@@ -295,7 +295,7 @@ const batchTransitions = stC.observeAll(batchReports);
 assert("observeAll returns 2 transitions",           batchTransitions.length === 2);
 assert("observeAll: same final segment_id",          stC.currentSegmentId === st.currentSegmentId);
 
-// A10: no artifact mutation â€” reports are not modified by observe
+// A10: no artifact mutation -- reports are not modified by observe
 const report = makeReport({ novelty_gate_triggered: true, window_ref: "5:6" });
 const reportCopy = JSON.stringify(report);
 const stD = new SegmentTracker({ stream_id: STREAM_ID });
@@ -308,7 +308,7 @@ assert("reset: currentSegmentId returns to epoch 0", st.currentSegmentId === `se
 assert("reset: transitions cleared",                  st.transitions.length === 0);
 assert("reset: summary.epoch_counter = 0",            st.summary().epoch_counter === 0);
 
-// A12: summary fields â€” no canon/promotion language
+// A12: summary fields -- no canon/promotion language
 const stSummary = st.summary();
 assert("summary has stream_id",                       stSummary.stream_id === STREAM_ID);
 assert("summary has current_segment_id",              typeof stSummary.current_segment_id === "string");
@@ -316,11 +316,11 @@ assert("summary has epoch_counter",                   typeof stSummary.epoch_cou
 assert("summary has no 'canon' or 'promote' fields",
     !("canonical" in stSummary) && !("promoted" in stSummary) && !("canon" in stSummary));
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 // B. TrajectoryBuffer
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 
-section("B. TrajectoryBuffer â€” determinism, eviction, dynamics");
+section("B. TrajectoryBuffer -- determinism, eviction, dynamics");
 
 const tb = new TrajectoryBuffer({ max_frames: 4 }); // small capacity to test eviction
 
@@ -359,7 +359,7 @@ const allFrames = tb.all();
 assert("all() is chronological (t_start ascending)",
     allFrames.every((f, i) => i === 0 || f.t_start >= allFrames[i - 1].t_start));
 
-// B5: circular eviction â€” push 5th frame evicts oldest
+// B5: circular eviction -- push 5th frame evicts oldest
 const h5 = makeH1WithProfile(4, 5, [0.6, 0.4]);
 tb.push({ state: h5 });
 assert("after eviction: frame_count = 4 (capacity)", tb.all().length === 4);
@@ -384,7 +384,7 @@ assert("bySegment(SEG_0) returns 1 frame",  tbSeg.bySegment(SEG_0).length === 1)
 assert("bySegment(SEG_1) returns 1 frame",  tbSeg.bySegment(SEG_1).length === 1);
 assert("bySegment('missing') returns []",   tbSeg.bySegment("missing").length === 0);
 
-// B8: no artifact mutation â€” push extracts snapshot, H1 not modified
+// B8: no artifact mutation -- push extracts snapshot, H1 not modified
 const mutTest = makeH1WithProfile(10, 11, [1, 0]);
 const origProfile = JSON.stringify(mutTest.invariants.band_profile_norm.band_energy);
 const origStr = JSON.stringify(mutTest);
@@ -392,44 +392,44 @@ const tbMut = new TrajectoryBuffer();
 tbMut.push({ state: mutTest });
 assert("H1 not mutated by push",
     JSON.stringify(mutTest) === origStr);
-// Mutate the returned frame's snapshot â€” should not affect original H1
+// Mutate the returned frame's snapshot -- should not affect original H1
 const pushedFrame = tbMut.all()[0];
 pushedFrame.band_profile_snapshot[0] = 9999;
 assert("mutating frame.band_profile_snapshot does not affect H1.invariants",
     JSON.stringify(mutTest.invariants.band_profile_norm.band_energy) === origProfile);
 
-// B9: velocityEstimate â€” insufficient data returns honest sentinel
+// B9: velocityEstimate -- insufficient data returns honest sentinel
 const tbVel = new TrajectoryBuffer();
 const velResult0 = tbVel.velocityEstimate(8);
 assert("velocityEstimate on empty buffer: sufficient_data=false", !velResult0.sufficient_data);
 assert("velocityEstimate empty: mean=0 (sentinel, not measured)", velResult0.mean_l1_delta === 0);
 assert("velocityEstimate empty: max=0 (sentinel, not measured)",  velResult0.max_l1_delta === 0);
 
-// Push one frame â€” still insufficient
+// Push one frame -- still insufficient
 tbVel.push({ state: makeH1WithProfile(0, 1, [1, 0]) });
 const velResult1 = tbVel.velocityEstimate(8);
 assert("velocityEstimate 1 frame: sufficient_data=false", !velResult1.sufficient_data);
 
-// Push second frame â€” now sufficient
+// Push second frame -- now sufficient
 tbVel.push({ state: makeH1WithProfile(1, 2, [0.5, 0.5]) });
 const velResult2 = tbVel.velocityEstimate(8);
 assert("velocityEstimate 2 frames: sufficient_data=true", velResult2.sufficient_data);
 assert("velocityEstimate: mean_l1_delta is finite",       Number.isFinite(velResult2.mean_l1_delta));
 assert("velocityEstimate: frames_used = 2",               velResult2.frames_used === 2);
-// Identical profiles â†’ delta=0
+// Identical profiles -> delta=0
 tbVel.push({ state: makeH1WithProfile(2, 3, [0.5, 0.5], SEG_0, { state_id: `H1:${STREAM_ID}:${SEG_0}:2:3` }) });
-const velStable = tbVel.velocityEstimate(1); // window_n=1 â†’ tail(2): only the two identical [0.5,0.5] frames
+const velStable = tbVel.velocityEstimate(1); // window_n=1 -> tail(2): only the two identical [0.5,0.5] frames
 assert("velocityEstimate stable sequence: mean_l1_delta = 0",
     velStable.sufficient_data && velStable.mean_l1_delta === 0);
 
-// B10: isConverging â€” insufficient data (no basin distances)
+// B10: isConverging -- insufficient data (no basin distances)
 const tbConv = new TrajectoryBuffer();
 tbConv.push({ state: makeH1WithProfile(0, 1, [1, 0]) }); // basin_id=null by default
 const convResult0 = tbConv.isConverging(8);
-assert("isConverging: no basin distances â†’ sufficient_data=false", !convResult0.sufficient_data);
+assert("isConverging: no basin distances -> sufficient_data=false", !convResult0.sufficient_data);
 assert("isConverging: trend_slope=null when no data",              convResult0.trend_slope === null);
 
-// With decreasing distances â†’ is_converging = true
+// With decreasing distances -> is_converging = true
 const tbConv2 = new TrajectoryBuffer();
 tbConv2.push({ state: makeH1WithProfile(0, 1, [1, 0]), basin_id: "BN:x", distance_to_basin_centroid: 0.5 });
 tbConv2.push({ state: makeH1WithProfile(1, 2, [0.9, 0.1], SEG_0, { state_id: `H1:s:s:1:2` }),
@@ -437,32 +437,32 @@ tbConv2.push({ state: makeH1WithProfile(1, 2, [0.9, 0.1], SEG_0, { state_id: `H1
 tbConv2.push({ state: makeH1WithProfile(2, 3, [0.8, 0.2], SEG_0, { state_id: `H1:s:s:2:3` }),
     basin_id: "BN:x", distance_to_basin_centroid: 0.1 });
 const convResult2 = tbConv2.isConverging(8);
-assert("isConverging: decreasing distances â†’ is_converging=true",  convResult2.is_converging);
+assert("isConverging: decreasing distances -> is_converging=true",  convResult2.is_converging);
 assert("isConverging: trend_slope < 0 (converging)",               convResult2.trend_slope < 0);
 assert("isConverging: sufficient_data=true",                        convResult2.sufficient_data);
 
-// B11: currentBasinDwellCount â€” returns 0 when most recent frame has no basin
+// B11: currentBasinDwellCount -- returns 0 when most recent frame has no basin
 const tbDwell = new TrajectoryBuffer();
 tbDwell.push({ state: makeH1WithProfile(0, 1, [1, 0]), basin_id: null });
-assert("currentBasinDwellCount: last frame null basin â†’ 0", tbDwell.currentBasinDwellCount() === 0);
+assert("currentBasinDwellCount: last frame null basin -> 0", tbDwell.currentBasinDwellCount() === 0);
 
-// Push two frames with same basin â†’ dwell = 2
+// Push two frames with same basin -> dwell = 2
 tbDwell.push({ state: makeH1WithProfile(1, 2, [0.9, 0.1], SEG_0, { state_id: `H1:s:s:1:2` }),
     basin_id: "BN:a" });
 tbDwell.push({ state: makeH1WithProfile(2, 3, [0.8, 0.2], SEG_0, { state_id: `H1:s:s:2:3` }),
     basin_id: "BN:a" });
-assert("currentBasinDwellCount: 2 consecutive same basin â†’ 2",
+assert("currentBasinDwellCount: 2 consecutive same basin -> 2",
     tbDwell.currentBasinDwellCount() === 2);
 
-// Push frame with different basin â†’ dwell resets to 1
+// Push frame with different basin -> dwell resets to 1
 tbDwell.push({ state: makeH1WithProfile(3, 4, [0.2, 0.8], SEG_0, { state_id: `H1:s:s:3:4` }),
     basin_id: "BN:b" });
-assert("currentBasinDwellCount: different basin â†’ 1", tbDwell.currentBasinDwellCount() === 1);
+assert("currentBasinDwellCount: different basin -> 1", tbDwell.currentBasinDwellCount() === 1);
 
 // B12: currentBasinDwellCount returns 0 on empty buffer
-assert("currentBasinDwellCount empty buffer â†’ 0", new TrajectoryBuffer().currentBasinDwellCount() === 0);
+assert("currentBasinDwellCount empty buffer -> 0", new TrajectoryBuffer().currentBasinDwellCount() === 0);
 
-// B13: determinism â€” same push sequence produces identical frame sequence
+// B13: determinism -- same push sequence produces identical frame sequence
 const tbD1 = new TrajectoryBuffer();
 const tbD2 = new TrajectoryBuffer();
 for (const h of h1s) { tbD1.push({ state: h }); tbD2.push({ state: h }); }
@@ -470,11 +470,11 @@ assert("TrajectoryBuffer deterministic: identical all() output",
     JSON.stringify(tbD1.all().map(f => f.state_id)) ===
     JSON.stringify(tbD2.all().map(f => f.state_id)));
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 // C. BasinOp
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 
-section("C. BasinOp â€” clustering, determinism, boundary");
+section("C. BasinOp -- clustering, determinism, boundary");
 
 const bop = new BasinOp();
 
@@ -510,7 +510,7 @@ if (basinSet) {
     }
 }
 
-// C3: member assignments are correct â€” Group A and Group B in separate basins
+// C3: member assignments are correct -- Group A and Group B in separate basins
 if (basinSet && basinSet.basins.length === 2) {
     const [basinOne, basinTwo] = basinSet.basins.sort((a, b) => a.span.t_start - b.span.t_start);
     assert("Group A basin has 3 members", basinOne.member_count === 3);
@@ -520,7 +520,7 @@ if (basinSet && basinSet.basins.length === 2) {
         statesGroupB.every(s => basinTwo.member_state_ids.includes(s.state_id)));
 }
 
-// C4: determinism â€” same inputs + policy â†’ identical output
+// C4: determinism -- same inputs + policy -> identical output
 const basinResult2 = bop.run({ states: allStates, basin_policy: BASIN_POLICY });
 assert("BasinOp deterministic: basin_ids identical",
     basinResult.ok && basinResult2.ok &&
@@ -561,7 +561,7 @@ assert("min_member_count: singletons end up unassigned",
 assert("min_member_count: basins_formed = 0 when all singletons",
     singletonResult.ok && singletonResult.artifact.basins.length === 0);
 
-// C8: receipt honesty â€” no canon/truth language
+// C8: receipt honesty -- no canon/truth language
 if (basinSet) {
     assert("BasinSet receipts has no 'canon' fields",
         !JSON.stringify(Object.keys(basinSet.receipts)).includes("canon") &&
@@ -580,7 +580,7 @@ const stateBefore = JSON.stringify(allStates[0]);
 bop.run({ states: allStates, basin_policy: BASIN_POLICY });
 assert("BasinOp: input states not mutated", JSON.stringify(allStates[0]) === stateBefore);
 
-// C10: assignToBasin â€” nearest basin within threshold
+// C10: assignToBasin -- nearest basin within threshold
 if (basinSet) {
     const queryState = makeH1WithProfile(5, 6, [0.99, 0.01]); // close to Group A
     const assignment = bop.assignToBasin({
@@ -597,14 +597,14 @@ if (basinSet) {
     const noAssign = bop.assignToBasin({
         state: farState,
         basins: basinSet.basins,
-        threshold: 0.01, // very tight â€” should not match anything
+        threshold: 0.01, // very tight -- should not match anything
     });
     assert("assignToBasin: returns null for far state with tight threshold",
         noAssign === null);
 }
 
 // C11: assignToBasin with empty basins returns null
-assert("assignToBasin: empty basins â†’ null",
+assert("assignToBasin: empty basins -> null",
     bop.assignToBasin({ state: allStates[0], basins: [], threshold: 1.0 }) === null);
 
 // C12: provenance fields present
@@ -615,7 +615,7 @@ if (basinSet) {
         allStates.every(s => basinSet.provenance.input_refs.includes(s.state_id)));
 }
 
-// C13: complete_link linkage â€” different clustering than single_link
+// C13: complete_link linkage -- different clustering than single_link
 const clPolicy = { ...BASIN_POLICY, linkage: "complete_link", similarity_threshold: 0.2 };
 const clResult = bop.run({ states: allStates, basin_policy: clPolicy });
 assert("complete_link: ok", clResult.ok);
@@ -624,11 +624,11 @@ assert("complete_link produces deterministic result",
     JSON.stringify(clResult.artifact.basins.map(b => b.basin_id)) ===
     JSON.stringify(bop.run({ states: allStates, basin_policy: clPolicy }).artifact.basins.map(b => b.basin_id)));
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 // D. MemorySubstrate
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 
-section("D. MemorySubstrate â€” commit, legitimacy, reads, basin integration");
+section("D. MemorySubstrate -- commit, legitimacy, reads, basin integration");
 
 const ms = new MemorySubstrate({ substrate_id: "test_substrate" });
 const h1_0 = makeH1(0, 1);
@@ -643,7 +643,7 @@ assert("commit returns memory_object_id",  typeof c0.memory_object_id === "strin
 assert("commit memory_object_id is MO-prefixed", c0.memory_object_id.startsWith("MO:"));
 assert("commit returns duplicate=false",   c0.duplicate === false);
 
-// D2: idempotent commit â€” same state_id returns ok + duplicate=true
+// D2: idempotent commit -- same state_id returns ok + duplicate=true
 const c0dup = ms.commit(h1_0);
 assert("idempotent commit: ok",            c0dup.ok);
 assert("idempotent commit: same memory_object_id", c0dup.memory_object_id === c0.memory_object_id);
@@ -655,100 +655,100 @@ ms.commit(h1_0); // duplicate
 assert("duplicate does not increase state_count",
     ms.allStates().length === 2);
 
-// D4: legitimacy failure â€” wrong artifact_class
+// D4: legitimacy failure -- wrong artifact_class
 const badClass = { ...h1_0, state_id: "S1:x", artifact_class: "S1" };
 assertFails("commit S1: LEGITIMACY_FAILURE", ms.commit(badClass), "LEGITIMACY_FAILURE");
 
-// D5: legitimacy failure â€” missing state_id
+// D5: legitimacy failure -- missing state_id
 const noId = { ...h1_0, state_id: undefined };
 assertFails("commit no state_id: LEGITIMACY_FAILURE", ms.commit(noId), "LEGITIMACY_FAILURE");
 
-// D6: legitimacy failure â€” missing band_profile_norm.band_energy
+// D6: legitimacy failure -- missing band_profile_norm.band_energy
 const noBand = makeH1(5, 6, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:5:6`,
     invariants: { energy_raw: 1.0, energy_norm: 1.0 }, // no band_profile_norm
 });
 assertFails("commit no band_energy: LEGITIMACY_FAILURE", ms.commit(noBand), "LEGITIMACY_FAILURE");
 
-// D7: legitimacy failure â€” missing policy anchor
+// D7: legitimacy failure -- missing policy anchor
 const noPol = makeH1(6, 7, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:6:7`,
     policies: { clock_policy_id: "CLK:1" }, // no compression or merge policy_id
 });
 assertFails("commit no policy anchor: LEGITIMACY_FAILURE", ms.commit(noPol), "LEGITIMACY_FAILURE");
 
-// D8: legitimacy failure â€” missing clock_policy_id
+// D8: legitimacy failure -- missing clock_policy_id
 const noClk = makeH1(7, 8, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:7:8`,
     policies: { compression_policy_id: "COMP:1" }, // clock_policy_id absent
 });
 assertFails("commit no clock_policy_id: LEGITIMACY_FAILURE", ms.commit(noClk), "LEGITIMACY_FAILURE");
 
-// D9: legitimacy failure â€” empty provenance.input_refs
+// D9: legitimacy failure -- empty provenance.input_refs
 const emptyRefs = makeH1(8, 9, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:8:9`,
     provenance: { input_refs: [], operator_id: "CompressOp", operator_version: "0.1.0" },
 });
 assertFails("commit empty input_refs: LEGITIMACY_FAILURE", ms.commit(emptyRefs), "LEGITIMACY_FAILURE");
 
-// D10: legitimacy failure â€” missing provenance.input_refs field entirely
+// D10: legitimacy failure -- missing provenance.input_refs field entirely
 const noRefs = makeH1(9, 10, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:9:10`,
     provenance: { operator_id: "CompressOp", operator_version: "0.1.0" }, // input_refs absent
 });
 assertFails("commit no input_refs: LEGITIMACY_FAILURE", ms.commit(noRefs), "LEGITIMACY_FAILURE");
 
-// D11: legitimacy failure â€” incomplete grid (missing df)
+// D11: legitimacy failure -- incomplete grid (missing df)
 const badGrid = makeH1(10, 11, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:10:11`,
     grid: { Fs_target: 8, N: 8 }, // df missing
 });
 assertFails("commit incomplete grid (no df): LEGITIMACY_FAILURE", ms.commit(badGrid), "LEGITIMACY_FAILURE");
 
-// D12: legitimacy failure â€” non-finite grid field
+// D12: legitimacy failure -- non-finite grid field
 const nanGrid = makeH1(11, 12, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:11:12`,
     grid: { Fs_target: 8, N: NaN, df: 1 },
 });
 assertFails("commit NaN grid.N: LEGITIMACY_FAILURE", ms.commit(nanGrid), "LEGITIMACY_FAILURE");
 
-// D13: legitimacy failure â€” missing invariants.energy_raw
+// D13: legitimacy failure -- missing invariants.energy_raw
 const noEnergyRaw = makeH1(12, 13, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:12:13`,
     invariants: { energy_norm: 1.0, band_profile_norm: { band_edges: [0,4,4], band_energy: [1,0] } },
 });
 assertFails("commit no energy_raw: LEGITIMACY_FAILURE", ms.commit(noEnergyRaw), "LEGITIMACY_FAILURE");
 
-// D14: legitimacy failure â€” missing uncertainty.time
+// D14: legitimacy failure -- missing uncertainty.time
 const noUncertainty = makeH1(13, 14, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:13:14`,
     uncertainty: {}, // time field absent
 });
 assertFails("commit no uncertainty.time: LEGITIMACY_FAILURE", ms.commit(noUncertainty), "LEGITIMACY_FAILURE");
 
-// D15: legitimacy failure â€” empty kept_bins
+// D15: legitimacy failure -- empty kept_bins
 const emptyBins = makeH1(14, 15, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:14:15`,
     kept_bins: [],
 });
 assertFails("commit empty kept_bins: LEGITIMACY_FAILURE", ms.commit(emptyBins), "LEGITIMACY_FAILURE");
 
-// D16: legitimacy failure â€” non-finite confidence.overall
+// D16: legitimacy failure -- non-finite confidence.overall
 const badConf = makeH1(15, 16, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:15:16`,
     confidence: { overall: NaN, by_invariant: {} },
 });
 assertFails("commit NaN confidence.overall: LEGITIMACY_FAILURE", ms.commit(badConf), "LEGITIMACY_FAILURE");
 
-// D17: get() returns a safe copy â€” mutating it does not affect stored state
+// D17: get() returns a safe copy -- mutating it does not affect stored state
 const retrieved = ms.get(h1_0.state_id);
 assert("get() returns non-null for committed state", retrieved !== null);
-// Post-patch: get() returns a copyState() â€” a plain spread, not frozen.
+// Post-patch: get() returns a copyState() -- a plain spread, not frozen.
 // The contract is mutation-safety (isolated copy), not TypeError-on-assign.
 // Verify by mutating a critical nested field and checking subsequent get() is unaffected.
 if (retrieved) {
     retrieved.invariants.band_profile_norm.band_energy[0] = 9999;
-    retrieved.stream_id = "mutated_top_level"; // plain object â€” assignment succeeds
+    retrieved.stream_id = "mutated_top_level"; // plain object -- assignment succeeds
 }
 const retrieved2 = ms.get(h1_0.state_id);
 assert("get() mutation-safe: nested band_energy[0] unchanged after caller mutation",
@@ -779,7 +779,7 @@ assert("trajectory frames reference committed state_ids",
 assert("trajectory frames carry commit memory_object_id",
     trajAll.some(f => f.state_id === h1_0.state_id && f.memory_object_id === c0.memory_object_id));
 
-// D22: rebuildBasins â€” works after enough commits
+// D22: rebuildBasins -- works after enough commits
 // Add two clearly distinct-profile states to the segment
 const h1_lo = makeH1WithProfile(3, 4, [1.0, 0.0], SEG_0, {
     state_id: `H1:${STREAM_ID}:${SEG_0}:3:4`,
@@ -910,9 +910,9 @@ assert("M1 MemoryObject lineage_refs preserve merge inputs",
     m1Envelope.lineage_refs.every((ref) =>
         ref.ref === h1_0.state_id || ref.ref === h1_1.state_id));
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 // E. Boundary integrity
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 
 // D34: MemoryObject.payload stays in direct parity with H1/M1 read surfaces
 const msParity = new MemorySubstrate({ substrate_id: "memory_object_parity_test" });
@@ -1217,7 +1217,7 @@ assert("graphStateView({ segment_id }) filters by trajectory segment",
     gSegmentView.nodes.length > 0 &&
     gSegmentView.nodes.every((node) => node.axes.trajectory.segment_id === SEG_1));
 
-section("E. Boundary integrity â€” substrate does not cross into canon");
+section("E. Boundary integrity -- substrate does not cross into canon");
 
 // E1: BasinSet artifact class is BN, not C1
 if (basinSet) {
@@ -1301,11 +1301,11 @@ assert("substrate summary contains no 'canonical' string",
 assert("substrate summary contains no 'c1' artifact class reference",
     !ms4SummStr.includes("\"C1\""));
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// F. MemorySubstrate read-path honesty â€” mutation-safety
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
+// F. MemorySubstrate read-path honesty -- mutation-safety
+// ============================================================================
 
-section("F. MemorySubstrate read-path â€” mutation-safe copies");
+section("F. MemorySubstrate read-path -- mutation-safe copies");
 
 // Build a fresh substrate with known states for clean isolation
 const msR = new MemorySubstrate({ substrate_id: "readpath_test" });
@@ -1318,7 +1318,7 @@ msR.rebuildBasins({
     basin_policy: { ...BASIN_POLICY, similarity_threshold: 0.5 },
 });
 
-// â”€â”€ F1: get() returns safe copy â€” nested mutation does not affect stored state â”€â”€
+// -- F1: get() returns safe copy -- nested mutation does not affect stored state --
 const rpGot1 = msR.get(rpH1a.state_id);
 assert("F1: get() returns non-null", rpGot1 !== null);
 
@@ -1328,7 +1328,7 @@ const rpGot2 = msR.get(rpH1a.state_id);
 assert("F1: get() nested band_energy immutable after caller mutation",
     rpGot2.invariants.band_profile_norm.band_energy[0] !== 9999);
 
-// Mutate top-level field (plain spread â€” succeeds without throw)
+// Mutate top-level field (plain spread -- succeeds without throw)
 rpGot1.stream_id = "mutated";
 const rpGot3 = msR.get(rpH1a.state_id);
 assert("F1: get() top-level stream_id immutable after caller mutation",
@@ -1346,7 +1346,7 @@ const rpGot5 = msR.get(rpH1a.state_id);
 assert("F1: get() provenance.input_refs immutable after caller mutation",
     rpGot5.provenance.input_refs[0] !== "mutated_ref");
 
-// â”€â”€ F2: get() returns independent copies â€” two calls are not the same reference â”€â”€
+// -- F2: get() returns independent copies -- two calls are not the same reference --
 const rpGetA = msR.get(rpH1a.state_id);
 const rpGetB = msR.get(rpH1a.state_id);
 assert("F2: get() returns independent copies (not same reference)",
@@ -1367,7 +1367,7 @@ assert("F2b: getMemoryObject() payload is mutation-safe",
 assert("F2b: getMemoryObject() payload_ref is mutation-safe",
     rpMo3.payload_ref.state_id === rpH1a.state_id);
 
-// â”€â”€ F3: allStates() items are mutation-safe â”€â”€
+// -- F3: allStates() items are mutation-safe --
 const rpAll1 = msR.allStates();
 assert("F3: allStates() returns 2 states", rpAll1.length === 2);
 rpAll1[0].invariants.band_profile_norm.band_energy[0] = 8888;
@@ -1388,7 +1388,7 @@ const rpAllMo2 = msR.allMemoryObjects();
 assert("F3b: allMemoryObjects() payload kept_bins immutable after caller mutation",
     rpAllMo2[0].payload.kept_bins[0].re !== 1111);
 
-// â”€â”€ F4: statesForSegment() items are mutation-safe â”€â”€
+// -- F4: statesForSegment() items are mutation-safe --
 const rpSeg1 = msR.statesForSegment(SEG_0);
 assert("F4: statesForSegment() returns states", rpSeg1.length > 0);
 rpSeg1[0].invariants.band_profile_norm.band_energy[0] = 6666;
@@ -1396,7 +1396,7 @@ const rpSeg2 = msR.statesForSegment(SEG_0);
 assert("F4: statesForSegment() band_energy immutable after caller mutation",
     rpSeg2[0].invariants.band_profile_norm.band_energy[0] !== 6666);
 
-// â”€â”€ F5: statesInRange() items are mutation-safe â”€â”€
+// -- F5: statesInRange() items are mutation-safe --
 const rpRange1 = msR.statesInRange(0, 1);
 assert("F5: statesInRange() returns states", rpRange1.length > 0);
 rpRange1[0].invariants.band_profile_norm.band_energy[0] = 5555;
@@ -1404,7 +1404,7 @@ const rpRange2 = msR.statesInRange(0, 1);
 assert("F5: statesInRange() band_energy immutable after caller mutation",
     rpRange2[0].invariants.band_profile_norm.band_energy[0] !== 5555);
 
-// â”€â”€ F6: basinsForSegment() items are mutation-safe â”€â”€
+// -- F6: basinsForSegment() items are mutation-safe --
 const rpBasins1 = msR.basinsForSegment(SEG_0);
 assert("F6: basinsForSegment() returns basins", rpBasins1.length > 0);
 // Mutate centroid_band_profile in returned basin copy
@@ -1421,7 +1421,7 @@ const rpBasins3 = msR.basinsForSegment(SEG_0);
 assert("F6: basinsForSegment() member_state_ids immutable after mutation",
     rpBasins3[0].member_state_ids[0] !== "mutated_member");
 
-// â”€â”€ F7: nearestBasin() result.basin is mutation-safe â”€â”€
+// -- F7: nearestBasin() result.basin is mutation-safe --
 const rpNearest1 = msR.nearestBasin(rpH1a);
 assert("F7: nearestBasin() returns result", rpNearest1 !== null);
 const origNearCentroid = rpNearest1.basin.centroid_band_profile[0];
@@ -1434,7 +1434,7 @@ assert("F7: nearestBasin() centroid_band_profile immutable after mutation",
 assert("F7: nearestBasin() deterministic after prior result mutation",
     rpNearest2.distance === rpNearest1.distance);
 
-// â”€â”€ F8: nearestBasin() returns independent basin copies each call â”€â”€
+// -- F8: nearestBasin() returns independent basin copies each call --
 const rpNb1 = msR.nearestBasin(rpH1a);
 const rpNb2 = msR.nearestBasin(rpH1a);
 assert("F8: nearestBasin() basin copies are not same reference",
@@ -1442,7 +1442,7 @@ assert("F8: nearestBasin() basin copies are not same reference",
 assert("F8: nearestBasin() basin copies have equal content",
     JSON.stringify(rpNb1.basin) === JSON.stringify(rpNb2.basin));
 
-// â”€â”€ F9: rebuildBasins backfill is visible through read APIs (copy-on-read) â”€â”€
+// -- F9: rebuildBasins backfill is visible through read APIs (copy-on-read) --
 // After rebuildBasins, trajectory frames should have basin_id set (backfilled).
 // The patch fixes _backfillBasinAssignments to use _frames directly.
 const rpTrajAfterRebuild = msR.trajectory.all();
@@ -1452,7 +1452,7 @@ assert("F9: rebuildBasins backfill visible through trajectory.all()",
 assert("F9: backfilled frames have finite distance_to_basin_centroid",
     rpAssigned.every(f => Number.isFinite(f.distance_to_basin_centroid)));
 
-// â”€â”€ F10: getTrajectory() returns mutation-safe frames â”€â”€
+// -- F10: getTrajectory() returns mutation-safe frames --
 const rpTrajSlice = msR.getTrajectory(0, 2);
 assert("F10: getTrajectory() returns frames", rpTrajSlice.length > 0);
 rpTrajSlice[0].energy_raw = 2222;
@@ -1466,11 +1466,11 @@ assert("F10: getTrajectory() band_profile_snapshot immutable after caller mutati
 assert("F10: getTrajectory() memory_object_id immutable after caller mutation",
     rpTrajSlice2[0].memory_object_id !== "mutated_memory_object");
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// G. TrajectoryBuffer read-path honesty â€” mutation-safe copies
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
+// G. TrajectoryBuffer read-path honesty -- mutation-safe copies
+// ============================================================================
 
-section("G. TrajectoryBuffer read-path â€” mutation-safe copies");
+section("G. TrajectoryBuffer read-path -- mutation-safe copies");
 
 const tbR = new TrajectoryBuffer({ max_frames: 8 });
 const rpTbH1a = makeH1WithProfile(0, 1, [1.0, 0.0]);
@@ -1480,7 +1480,7 @@ tbR.push({ state: rpTbH1a });
 tbR.push({ state: rpTbH1b, basin_id: "BN:test", distance_to_basin_centroid: 0.2 });
 tbR.push({ state: rpTbH1c, basin_id: "BN:test", distance_to_basin_centroid: 0.1 });
 
-// â”€â”€ G1: all() returns safe copies â€” mutating returned frames does not affect future reads â”€â”€
+// -- G1: all() returns safe copies -- mutating returned frames does not affect future reads --
 const tbAll1 = tbR.all();
 assert("G1: all() returns 3 frames", tbAll1.length === 3);
 tbAll1[0].energy_raw = 9999;
@@ -1497,13 +1497,13 @@ assert("G1: all() basin_id immutable after caller mutation",
 assert("G1: all() memory_object_id immutable after caller mutation",
     tbAll2[0].memory_object_id !== "mutated_mo");
 
-// â”€â”€ G2: all() returns new array each call (independent references) â”€â”€
+// -- G2: all() returns new array each call (independent references) --
 const tbAll3 = tbR.all();
 const tbAll4 = tbR.all();
 assert("G2: all() returns new array each call", tbAll3 !== tbAll4);
 assert("G2: all() frame copies are not same reference", tbAll3[0] !== tbAll4[0]);
 
-// â”€â”€ G3: slice() frames are mutation-safe â”€â”€
+// -- G3: slice() frames are mutation-safe --
 const tbSlice1 = tbR.slice(0, 2);
 assert("G3: slice() returns frames in range", tbSlice1.length > 0);
 tbSlice1[0].energy_raw = 7777;
@@ -1514,7 +1514,7 @@ assert("G3: slice() energy_raw immutable after caller mutation",
 assert("G3: slice() band_profile_snapshot[0] immutable after caller mutation",
     tbSlice2[0].band_profile_snapshot[0] !== 6666);
 
-// â”€â”€ G4: tail() frames are mutation-safe â”€â”€
+// -- G4: tail() frames are mutation-safe --
 const tbTail1 = tbR.tail(2);
 assert("G4: tail() returns 2 frames", tbTail1.length === 2);
 tbTail1[0].energy_raw = 5555;
@@ -1525,7 +1525,7 @@ assert("G4: tail() energy_raw immutable after caller mutation",
 assert("G4: tail() band_profile_snapshot[0] immutable after caller mutation",
     tbTail2[0].band_profile_snapshot[0] !== 4444);
 
-// â”€â”€ G5: bySegment() frames are mutation-safe â”€â”€
+// -- G5: bySegment() frames are mutation-safe --
 const tbBySeg1 = tbR.bySegment(SEG_0);
 assert("G5: bySegment() returns frames", tbBySeg1.length > 0);
 tbBySeg1[0].energy_raw = 3333;
@@ -1533,7 +1533,7 @@ const tbBySeg2 = tbR.bySegment(SEG_0);
 assert("G5: bySegment() energy_raw immutable after caller mutation",
     tbBySeg2[0].energy_raw !== 3333);
 
-// â”€â”€ G6: byBasin() frames are mutation-safe â”€â”€
+// -- G6: byBasin() frames are mutation-safe --
 const tbByBasin1 = tbR.byBasin("BN:test");
 assert("G6: byBasin() returns frames with that basin", tbByBasin1.length === 2);
 tbByBasin1[0].energy_raw = 2222;
@@ -1547,15 +1547,15 @@ assert("G6: byBasin() basin_id immutable after caller mutation",
 assert("G6: byBasin() still finds correct frames after prior mutation",
     tbByBasin2.length === 2);
 
-// â”€â”€ G7: copy isolation â€” mutations to one read result don't affect another â”€â”€
+// -- G7: copy isolation -- mutations to one read result don't affect another --
 const tbAllX = tbR.all();
 const tbAllY = tbR.all();
 tbAllX[0].energy_raw = 1111;
 assert("G7: mutations to one all() result do not affect another",
     tbAllY[0].energy_raw !== 1111);
 
-// â”€â”€ G8: trajectory getter returns live buffer (documented escape hatch) â”€â”€
-// The trajectory getter returns the live TrajectoryBuffer instance intentionally â€”
+// -- G8: trajectory getter returns live buffer (documented escape hatch) --
+// The trajectory getter returns the live TrajectoryBuffer instance intentionally --
 // it is needed for dynamics methods (velocityEstimate, isConverging, etc.).
 // The README documents this as "Caller should not mutate."
 // This is a documented exception to the "immutable copies" contract.
@@ -1564,41 +1564,41 @@ const tbGetter1 = msR.trajectory;
 const tbGetter2 = msR.trajectory;
 assert("G8: trajectory getter returns same live instance (documented exception)",
     tbGetter1 === tbGetter2);
-// The JSDoc says "read-only reference to buffer instance â€” Caller should not mutate"
+// The JSDoc says "read-only reference to buffer instance -- Caller should not mutate"
 // Verify it is the live buffer by checking a known frame count
 assert("G8: trajectory getter instance has correct frame count",
     tbGetter1.all().length === msR.allStates().length);
 
-// â”€â”€ G9: velocityEstimate/isConverging use safe copies â€” dynamics unaffected by read mutations â”€â”€
+// -- G9: velocityEstimate/isConverging use safe copies -- dynamics unaffected by read mutations --
 // Push additional frames to tbR for dynamics tests
 const rpDynH1a = makeH1WithProfile(3, 4, [0.9, 0.1], SEG_0, { state_id:`H1:s:s:dyn:3:4` });
 const rpDynH1b = makeH1WithProfile(4, 5, [0.8, 0.2], SEG_0, { state_id:`H1:s:s:dyn:4:5` });
 tbR.push({ state: rpDynH1a, basin_id:"BN:test", distance_to_basin_centroid:0.15 });
 tbR.push({ state: rpDynH1b, basin_id:"BN:test", distance_to_basin_centroid:0.05 });
 const vel1 = tbR.velocityEstimate(4);
-// Mutate all() result and recompute â€” dynamics should be unchanged
+// Mutate all() result and recompute -- dynamics should be unchanged
 const junk = tbR.all();
 for (const f of junk) { f.band_profile_snapshot[0] = 9999; }
 const vel2 = tbR.velocityEstimate(4);
 assert("G9: velocityEstimate unaffected by caller mutation of prior all() result",
     vel1.mean_l1_delta === vel2.mean_l1_delta);
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// H. Contract alignment â€” README vs implementation
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
+// H. Contract alignment -- README vs implementation
+// ============================================================================
 
-section("H. Contract alignment â€” README 'immutable copies' claim");
+section("H. Contract alignment -- README 'immutable copies' claim");
 
 // The README_SubstrateLayer.md says:
 //   "All reads return immutable copies"
 //
 // After the read-path patch:
-//   - MemorySubstrate state/basin reads: return copyState()/copyBasin() â€” plain spread objects
-//   - TrajectoryBuffer reads: return copyFrame() â€” plain spread objects
+//   - MemorySubstrate state/basin reads: return copyState()/copyBasin() -- plain spread objects
+//   - TrajectoryBuffer reads: return copyFrame() -- plain spread objects
 //   - trajectory getter: returns the live buffer (documented exception)
 //
 // "Copies" is satisfied: every read call produces a new object.
-// "Immutable" in the README means the caller cannot corrupt substrate state â€” satisfied.
+// "Immutable" in the README means the caller cannot corrupt substrate state -- satisfied.
 // The copies are not Object.frozen (they are plain objects), but the isolation guarantee holds.
 
 // H1: every read returns a new object (copy), not the stored reference
@@ -1617,7 +1617,7 @@ const allB = msHTest.allStates();
 assert("H1: each allStates() call returns distinct item objects",
     allA[0] !== allB[0]);
 
-// H2: copies are safe to pass to untrusted callers â€” no way to corrupt substrate
+// H2: copies are safe to pass to untrusted callers -- no way to corrupt substrate
 // through the public read API (mutation attempt, then verify substrate unchanged)
 const hResult = msHTest.get(hH1.state_id);
 hResult.state_id = "corrupted";
@@ -1631,7 +1631,7 @@ assert("H2: substrate energy_raw unchanged after caller corruption attempt",
 assert("H2: substrate kept_bins unchanged after caller corruption attempt",
     hCheck.kept_bins.length === hH1.kept_bins.length);
 
-// H3: trajectory getter is the documented exception â€”
+// H3: trajectory getter is the documented exception --
 // it is a live reference, not a copy, but this is explicitly noted in JSDoc.
 // The README wording ("all reads") should be understood as "all data reads"
 // (states, basins, frames), not the buffer handle itself.
@@ -1641,13 +1641,13 @@ assert("H3: trajectory getter returns a TrajectoryBuffer instance (not a data co
     msR.trajectory instanceof TB);
 // This is the correct design: dynamics methods live on the buffer; exposing the
 // handle avoids re-implementing them on MemorySubstrate.
-// The contract is "Caller should not mutate" â€” an advisory, not a technical barrier.
+// The contract is "Caller should not mutate" -- an advisory, not a technical barrier.
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// I. Substrate Query Integration â€” perception loop contract
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
+// I. Substrate Query Integration -- perception loop contract
+// ============================================================================
 
-section("I. Substrate query integration â€” perception loop");
+section("I. Substrate query integration -- perception loop");
 
 import { QueryOp } from "../operators/query/QueryOp.js";
 
@@ -1662,7 +1662,7 @@ const qH1a = makeH1WithProfile(0, 1, [1.00, 0.00], SEG_0, { state_id:`H1:${STREA
 const qH1b = makeH1WithProfile(1, 2, [0.80, 0.20], SEG_0, { state_id:`H1:${STREAM_ID}:${SEG_0}:q:1:2` });
 const qH1c = makeH1WithProfile(2, 3, [0.20, 0.80], SEG_0, { state_id:`H1:${STREAM_ID}:${SEG_0}:q:2:3` });
 
-// M1 â€” minimal lawful merged state
+// M1 -- minimal lawful merged state
 const qM1 = {
     artifact_class: "M1",
     state_id: `M1:${STREAM_ID}:${SEG_0}:0:2`,
@@ -1705,7 +1705,7 @@ assert("I: 5 states committed", msQ.allStates().length === 5);
 
 const qpol = { policy_id:"qp.test", scoring:"energy_delta", normalization:"none", topK:10 };
 
-// â”€â”€ I1: queryStates() over full corpus (H1+M1, all segments) â”€â”€
+// -- I1: queryStates() over full corpus (H1+M1, all segments) --
 const qAll = msQ.queryStates(
     { query_id:"q_all", kind:"energy_trend", mode:"ENERGY",
         scope:{ allow_cross_segment:true } },
@@ -1715,7 +1715,7 @@ assert("I1: queryStates full corpus: ok", qAll.ok, JSON.stringify(qAll));
 assert("I1: returns Q artifact",             qAll.ok && qAll.artifact.artifact_class === "Q");
 assert("I1: results contains all 5 states", qAll.ok && qAll.artifact.results.length === 5);
 
-// â”€â”€ I2: H1-only corpus filter â”€â”€
+// -- I2: H1-only corpus filter --
 const qH1only = msQ.queryStates(
     { query_id:"q_h1", kind:"energy_trend", mode:"ENERGY", scope:{ allow_cross_segment:true } },
     qpol,
@@ -1726,7 +1726,7 @@ assert("I2: H1-only results = 4", qH1only.ok && qH1only.artifact.results.length 
 assert("I2: all results have artifact_class H1",
     qH1only.ok && qH1only.artifact.results.every(r => r.artifact_class === "H1"));
 
-// â”€â”€ I3: M1-only corpus filter â”€â”€
+// -- I3: M1-only corpus filter --
 const qM1only = msQ.queryStates(
     { query_id:"q_m1", kind:"energy_trend", mode:"ENERGY", scope:{ allow_cross_segment:true } },
     qpol,
@@ -1737,7 +1737,7 @@ assert("I3: M1-only results = 1", qM1only.ok && qM1only.artifact.results.length 
 assert("I3: result artifact_class = M1",
     qM1only.ok && qM1only.artifact.results[0].artifact_class === "M1");
 
-// â”€â”€ I4: segment-scoped query â”€â”€
+// -- I4: segment-scoped query --
 const qSeg0 = msQ.queryStates(
     { query_id:"q_seg0", kind:"energy_trend", mode:"ENERGY",
         scope:{ allow_cross_segment:false } },
@@ -1750,7 +1750,7 @@ assert("I4: segment-scoped returns 4 (3 H1 + 1 M1 in SEG_0)",
 assert("I4: all results from SEG_0",
     qSeg0.ok && qSeg0.artifact.results.every(r => r.segment_id === SEG_0));
 
-// â”€â”€ I5: stream-scoped query â”€â”€
+// -- I5: stream-scoped query --
 const qStream = msQ.queryStates(
     { query_id:"q_stream", kind:"energy_trend", mode:"ENERGY",
         scope:{ allow_cross_segment:true } },
@@ -1769,7 +1769,7 @@ const qBadStream = msQ.queryStates(
 );
 assert("I5: non-existent stream: EMPTY_CORPUS", !qBadStream.ok && qBadStream.error === "EMPTY_CORPUS");
 
-// â”€â”€ I6: similarity query over H1 corpus â”€â”€
+// -- I6: similarity query over H1 corpus --
 const qSim = msQ.queryStates(
     { query_id:"q_sim", kind:"similarity", mode:"BAND_PROFILE",
         scope:{ allow_cross_segment:true },
@@ -1785,7 +1785,7 @@ assert("I6: similarity results ranked",
 assert("I6: top result is the query state itself",
     qSim.ok && qSim.artifact.results[0].ref === qH1a.state_id);
 
-// â”€â”€ I7: determinism â€” identical query produces identical result â”€â”€
+// -- I7: determinism -- identical query produces identical result --
 const qDet1 = msQ.queryStates(
     { query_id:"q_det", kind:"energy_trend", mode:"ENERGY",
         scope:{ allow_cross_segment:true } }, qpol);
@@ -1801,7 +1801,7 @@ assert("I7: deterministic: same scores both calls",
     JSON.stringify(qDet1.artifact.results.map(r=>r.score)) ===
     JSON.stringify(qDet2.artifact.results.map(r=>r.score)));
 
-// â”€â”€ I8: queryStates does not mutate committed states â”€â”€
+// -- I8: queryStates does not mutate committed states --
 const corpusBefore = JSON.stringify(msQ.allStates().map(s=>s.state_id+s.invariants.energy_raw));
 msQ.queryStates(
     { query_id:"q_mut", kind:"energy_trend", mode:"ENERGY", scope:{ allow_cross_segment:true } },
@@ -1811,7 +1811,7 @@ const corpusAfter = JSON.stringify(msQ.allStates().map(s=>s.state_id+s.invariant
 assert("I8: queryStates does not mutate substrate committed states",
     corpusBefore === corpusAfter);
 
-// â”€â”€ I9: queryStates does not mutate basin index â”€â”€
+// -- I9: queryStates does not mutate basin index --
 msQ.rebuildBasins({ segment_id:SEG_0,
     basin_policy:{ ...BASIN_POLICY, similarity_threshold:0.5 } });
 const basinsBefore = JSON.stringify(msQ.basinsForSegment(SEG_0).map(b=>b.basin_id+b.centroid_band_profile[0]));
@@ -1822,7 +1822,7 @@ msQ.queryStates(
 const basinsAfter = JSON.stringify(msQ.basinsForSegment(SEG_0).map(b=>b.basin_id+b.centroid_band_profile[0]));
 assert("I9: queryStates does not mutate basin index", basinsBefore === basinsAfter);
 
-// â”€â”€ I10: queryStates does not mutate trajectory state â”€â”€
+// -- I10: queryStates does not mutate trajectory state --
 const trajBefore = JSON.stringify(msQ.trajectory.all().map(f=>f.state_id+f.basin_id));
 msQ.queryStates(
     { query_id:"q_traj", kind:"energy_trend", mode:"ENERGY", scope:{ allow_cross_segment:true } },
@@ -1831,7 +1831,7 @@ msQ.queryStates(
 const trajAfter = JSON.stringify(msQ.trajectory.all().map(f=>f.state_id+f.basin_id));
 assert("I10: queryStates does not mutate trajectory frames", trajBefore === trajAfter);
 
-// â”€â”€ I11: QueryResult contains no canon/promotion fields â”€â”€
+// -- I11: QueryResult contains no canon/promotion fields --
 assert("I11: Q artifact_class = Q (not C1)",
     qAll.ok && qAll.artifact.artifact_class === "Q");
 assert("I11: QueryResult has no 'canonical' field",
@@ -1845,7 +1845,7 @@ assert("I11: query_policy_id is inside receipts.query (not top-level)",
     !("query_policy_id" in qAll.artifact) &&
     typeof qAll.artifact.receipts.query.query_policy_id === "string");
 
-// â”€â”€ I12: empty substrate returns EMPTY_CORPUS â”€â”€
+// -- I12: empty substrate returns EMPTY_CORPUS --
 const msEmpty = new MemorySubstrate();
 const qEmpty = msEmpty.queryStates(
     { query_id:"q_empty", kind:"energy_trend", mode:"ENERGY", scope:{ allow_cross_segment:true } },
@@ -1854,7 +1854,7 @@ const qEmpty = msEmpty.queryStates(
 assert("I12: empty substrate: ok=false", !qEmpty.ok);
 assert("I12: empty substrate: error=EMPTY_CORPUS", qEmpty.error === "EMPTY_CORPUS");
 
-// â”€â”€ I13: invalid query_spec fails explicitly from QueryOp â”€â”€
+// -- I13: invalid query_spec fails explicitly from QueryOp --
 const qBad = msQ.queryStates(
     { query_id:"q_bad", kind:"totally_unknown_kind", mode:"ENERGY",
         scope:{ allow_cross_segment:true } },
@@ -1864,7 +1864,7 @@ assert("I13: unsupported query kind: ok=false", !qBad.ok);
 assert("I13: unsupported query kind: error=UNSUPPORTED_QUERY_KIND",
     qBad.error === "UNSUPPORTED_QUERY_KIND");
 
-// â”€â”€ I14: direct QueryOp on allStates() produces same result as queryStates() â”€â”€
+// -- I14: direct QueryOp on allStates() produces same result as queryStates() --
 // Verifies the two paths are equivalent
 const directCorpus = msQ.allStates().filter(s => s.artifact_class === "H1");
 const directResult = new QueryOp().run({
@@ -1918,7 +1918,7 @@ const qRes1 = msQ.queryStates(
 );
 if (qRes1.ok) {
     // QueryResultItem carries ref, score, rank, artifact_class, stream_id, segment_id, window_span
-    // These are plain strings/numbers â€” no live references to stored states
+    // These are plain strings/numbers -- no live references to stored states
     qRes1.artifact.results[0].score = -9999;
     qRes1.artifact.results[0].ref = "corrupted";
 }
@@ -1932,7 +1932,7 @@ assert("I15: mutating prior QueryResult does not affect subsequent query",
     qRes2.artifact.results[0].score !== -9999 &&
     qRes2.artifact.results[0].ref !== "corrupted");
 
-// â”€â”€ I16: band_lookup query over substrate corpus â”€â”€
+// -- I16: band_lookup query over substrate corpus --
 const qBand = msQ.queryStates(
     { query_id:"q_band", kind:"band_lookup", mode:"BAND_PROFILE",
         scope:{ allow_cross_segment:true },
@@ -1944,7 +1944,7 @@ assert("I16: band_lookup results ordered by score desc",
     qBand.ok && qBand.artifact.results.every((r,i) =>
         i === 0 || r.score <= qBand.artifact.results[i-1].score));
 
-// â”€â”€ I17: compare query between two substrate states â”€â”€
+// -- I17: compare query between two substrate states --
 const qCompare = msQ.queryStates(
     { query_id:"q_compare", kind:"compare", mode:"ENERGY",
         scope:{ allow_cross_segment:true },
@@ -1957,13 +1957,13 @@ const qCompare = msQ.queryStates(
 assert("I17: compare query: ok", qCompare.ok, JSON.stringify(qCompare));
 assert("I17: compare result has 1 item", qCompare.ok && qCompare.artifact.results.length === 1);
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 // J. Proto-basin dwell, transition, and recurrence instrumentation
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 
 section("J. Proto-basin dwell, transition, and recurrence instrumentation");
 
-// â”€â”€ Shared fixture builder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- Shared fixture builder --------------------------------------------------
 // Constructs a minimal H1-like object for TrajectoryBuffer.push().
 // basin_id is passed separately per push() API; not embedded in state.
 function makeTbState(ts, te, seg = SEG_0, overrides = {}) {
@@ -1986,7 +1986,7 @@ const BN_A = "BN:test:seg0:c0:aaaaaaaa";
 const BN_B = "BN:test:seg0:c1:bbbbbbbb";
 const BN_C = "BN:test:seg0:c2:cccccccc";
 
-// â•â•â•â• A. Dwell metrics â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ==== A. Dwell metrics =======================================================
 
 // J-A1: consecutive same-neighborhood frames increase dwell count
 {
@@ -2012,7 +2012,7 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
         tb.currentDwellDurationSec() === 2);
 }
 
-// J-A3: null neighborhood â€” dwell count and duration return 0
+// J-A3: null neighborhood -- dwell count and duration return 0
 {
     const tb = new TrajectoryBuffer();
     tb.push({ state: makeTbState(0, 1), basin_id: null });
@@ -2023,17 +2023,17 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
         tb.currentDwellDurationSec() === 0);
 }
 
-// J-A4: BNâ†’null does not extend prior dwell; nullâ†’BN starts fresh dwell
+// J-A4: BN->null does not extend prior dwell; null->BN starts fresh dwell
 {
     const tb = new TrajectoryBuffer();
     tb.push({ state: makeTbState(0, 1), basin_id: BN_A });
     tb.push({ state: makeTbState(1, 2, SEG_0, { state_id:`H1:s:s:tb:1:2` }), basin_id: null }); // lost
-    assert("J-A4: BNâ†’null: dwell count = 0",   tb.currentBasinDwellCount() === 0);
-    assert("J-A4: BNâ†’null: dwell duration = 0", tb.currentDwellDurationSec() === 0);
+    assert("J-A4: BN->null: dwell count = 0",   tb.currentBasinDwellCount() === 0);
+    assert("J-A4: BN->null: dwell duration = 0", tb.currentDwellDurationSec() === 0);
 
     tb.push({ state: makeTbState(2, 3, SEG_0, { state_id:`H1:s:s:tb:2:3` }), basin_id: BN_A }); // re-enter
-    assert("J-A4: nullâ†’BN: dwell count = 1",    tb.currentBasinDwellCount() === 1);
-    assert("J-A4: nullâ†’BN: dwell duration = 1", tb.currentDwellDurationSec() === 1);
+    assert("J-A4: null->BN: dwell count = 1",    tb.currentBasinDwellCount() === 1);
+    assert("J-A4: null->BN: dwell duration = 1", tb.currentDwellDurationSec() === 1);
 }
 
 // J-A5: empty buffer returns 0 for both dwell methods
@@ -2052,60 +2052,60 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
         Math.abs(tb.currentDwellDurationSec() - 2.0) < 1e-10);
 }
 
-// â•â•â•â• B. Transition instrumentation â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ==== B. Transition instrumentation ==========================================
 
-// J-B1: Aâ†’B transition recorded exactly once
+// J-B1: A->B transition recorded exactly once
 {
     const tb = new TrajectoryBuffer();
     tb.push({ state: makeTbState(0, 1), basin_id: BN_A });
     tb.push({ state: makeTbState(1, 2, SEG_0, { state_id:`H1:s:s:tb:1:2` }), basin_id: BN_B });
     const ts = tb.neighborhoodTransitionSummary();
-    assert("J-B1: Aâ†’B: total_transitions = 1", ts.total_transitions === 1);
-    assert("J-B1: Aâ†’B: transition.from = BN_A",  ts.transitions[0].from === BN_A);
-    assert("J-B1: Aâ†’B: transition.to = BN_B",    ts.transitions[0].to === BN_B);
-    assert("J-B1: Aâ†’B: t_transition = 1",         ts.transitions[0].t_transition === 1);
+    assert("J-B1: A->B: total_transitions = 1", ts.total_transitions === 1);
+    assert("J-B1: A->B: transition.from = BN_A",  ts.transitions[0].from === BN_A);
+    assert("J-B1: A->B: transition.to = BN_B",    ts.transitions[0].to === BN_B);
+    assert("J-B1: A->B: t_transition = 1",         ts.transitions[0].t_transition === 1);
 }
 
-// J-B2: repeated Aâ†’A frames do NOT create transitions
+// J-B2: repeated A->A frames do NOT create transitions
 {
     const tb = new TrajectoryBuffer();
     tb.push({ state: makeTbState(0, 1), basin_id: BN_A });
     tb.push({ state: makeTbState(1, 2, SEG_0, { state_id:`H1:s:s:tb:1:2` }), basin_id: BN_A });
     tb.push({ state: makeTbState(2, 3, SEG_0, { state_id:`H1:s:s:tb:2:3` }), basin_id: BN_A });
     const ts = tb.neighborhoodTransitionSummary();
-    assert("J-B2: Aâ†’Aâ†’A: total_transitions = 0", ts.total_transitions === 0);
-    assert("J-B2: Aâ†’Aâ†’A: transitions array is empty", ts.transitions.length === 0);
+    assert("J-B2: A->A->A: total_transitions = 0", ts.total_transitions === 0);
+    assert("J-B2: A->A->A: transitions array is empty", ts.transitions.length === 0);
 }
 
-// J-B3: Aâ†’Bâ†’A records both transitions with correct directions
+// J-B3: A->B->A records both transitions with correct directions
 {
     const tb = new TrajectoryBuffer();
     tb.push({ state: makeTbState(0, 1), basin_id: BN_A });
     tb.push({ state: makeTbState(1, 2, SEG_0, { state_id:`H1:s:s:tb:1:2` }), basin_id: BN_B });
     tb.push({ state: makeTbState(2, 3, SEG_0, { state_id:`H1:s:s:tb:2:3` }), basin_id: BN_A });
     const ts = tb.neighborhoodTransitionSummary();
-    assert("J-B3: Aâ†’Bâ†’A: total_transitions = 2", ts.total_transitions === 2);
-    assert("J-B3: first transition: Aâ†’B",  ts.transitions[0].from === BN_A && ts.transitions[0].to === BN_B);
-    assert("J-B3: second transition: Bâ†’A", ts.transitions[1].from === BN_B && ts.transitions[1].to === BN_A);
+    assert("J-B3: A->B->A: total_transitions = 2", ts.total_transitions === 2);
+    assert("J-B3: first transition: A->B",  ts.transitions[0].from === BN_A && ts.transitions[0].to === BN_B);
+    assert("J-B3: second transition: B->A", ts.transitions[1].from === BN_B && ts.transitions[1].to === BN_A);
     // Transition counts by key
-    assert("J-B3: transition_counts['BN_Aâ†’BN_B'] = 1",
+    assert("J-B3: transition_counts['BN_A->BN_B'] = 1",
         ts.transition_counts[`${BN_A}->${BN_B}`] === 1);
-    assert("J-B3: transition_counts['BN_Bâ†’BN_A'] = 1",
+    assert("J-B3: transition_counts['BN_B->BN_A'] = 1",
         ts.transition_counts[`${BN_B}->${BN_A}`] === 1);
 }
 
-// J-B4: null frames are transparent â€” nullâ†’BN and BNâ†’null not counted as transitions
+// J-B4: null frames are transparent -- null->BN and BN->null not counted as transitions
 {
     const tb = new TrajectoryBuffer();
     tb.push({ state: makeTbState(0, 1), basin_id: BN_A });
     tb.push({ state: makeTbState(1, 2, SEG_0, { state_id:`H1:s:s:tb:1:2` }), basin_id: null }); // gap
     tb.push({ state: makeTbState(2, 3, SEG_0, { state_id:`H1:s:s:tb:2:3` }), basin_id: BN_B }); // not a transition from BN_A
     const ts = tb.neighborhoodTransitionSummary();
-    assert("J-B4: null gap: BN_Aâ†’nullâ†’BN_B counts 0 transitions (null frames transparent)",
+    assert("J-B4: null gap: BN_A->null->BN_B counts 0 transitions (null frames transparent)",
         ts.total_transitions === 0);
 }
 
-// J-B5: Aâ†’B with multiple B frames then Bâ†’C â€” counts accumulate correctly
+// J-B5: A->B with multiple B frames then B->C -- counts accumulate correctly
 {
     const tb = new TrajectoryBuffer();
     tb.push({ state: makeTbState(0, 1), basin_id: BN_A });
@@ -2113,8 +2113,8 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
     tb.push({ state: makeTbState(2, 3, SEG_0, { state_id:`H1:s:s:tb:2:3` }), basin_id: BN_B });
     tb.push({ state: makeTbState(3, 4, SEG_0, { state_id:`H1:s:s:tb:3:4` }), basin_id: BN_C });
     const ts = tb.neighborhoodTransitionSummary();
-    assert("J-B5: Aâ†’BBâ†’C: total_transitions = 2", ts.total_transitions === 2);
-    assert("J-B5: transitions are Aâ†’B and Bâ†’C",
+    assert("J-B5: A->BB->C: total_transitions = 2", ts.total_transitions === 2);
+    assert("J-B5: transitions are A->B and B->C",
         ts.transitions[0].from === BN_A && ts.transitions[0].to === BN_B &&
         ts.transitions[1].from === BN_B && ts.transitions[1].to === BN_C);
 }
@@ -2131,7 +2131,7 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
         JSON.stringify(ts1) === JSON.stringify(ts2));
 }
 
-// â•â•â•â• C. Recurrence / re-entry â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ==== C. Recurrence / re-entry ================================================
 
 // J-C1: re-entry increments count for returned neighborhood
 {
@@ -2145,7 +2145,7 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
     assert("J-C1: total_re_entries = 1", rs.total_re_entries === 1);
 }
 
-// J-C2: neighborhood seen once, never revisited â€” re_entry_count = 0
+// J-C2: neighborhood seen once, never revisited -- re_entry_count = 0
 {
     const tb = new TrajectoryBuffer();
     tb.push({ state: makeTbState(0, 1), basin_id: BN_A });
@@ -2160,7 +2160,7 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
 
 // J-C3: multiple re-entries accumulate correctly
 {
-    // Aâ†’Bâ†’Aâ†’Bâ†’A = 3 dwell runs for A, 2 re-entries; 2 runs for B, 1 re-entry
+    // A->B->A->B->A = 3 dwell runs for A, 2 re-entries; 2 runs for B, 1 re-entry
     const tb = new TrajectoryBuffer();
     const push = (ts, te, bid, n) => tb.push({
         state: makeTbState(ts, te, SEG_0, { state_id:`H1:s:s:tb:${ts}:${te}:${n}` }),
@@ -2186,14 +2186,14 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
     tb.push({ state: makeTbState(1, 2, SEG_0, { state_id:`H1:s:s:tb:1:2` }), basin_id: null });
     tb.push({ state: makeTbState(2, 3, SEG_0, { state_id:`H1:s:s:tb:2:3` }), basin_id: BN_A });
     const rs = tb.recurrenceSummary();
-    // Null gap between two BN_A dwells â€” two separate runs â†’ re_entry_count = 1
+    // Null gap between two BN_A dwells -- two separate runs -> re_entry_count = 1
     assert("J-C4: null gap between BN_A runs still counts as re-entry",
         rs.by_neighborhood[BN_A]?.re_entry_count === 1);
     assert("J-C4: null frames have no entry in recurrence summary",
         !(null in rs.by_neighborhood) && !("null" in rs.by_neighborhood));
 }
 
-// â•â•â•â• D. Segment-aware reporting â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ==== D. Segment-aware reporting ==============================================
 
 // J-D1: segment_id filter restricts transition summary to one segment
 {
@@ -2206,19 +2206,19 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
     tb.push({ state: makeTbState(3, 4, SEG_1, { state_id:`H1:s:seg1:tb:3:4`, segment_id:SEG_1 }), basin_id: BN_C });
 
     const ts0 = tb.neighborhoodTransitionSummary({ segment_id: SEG_0 });
-    assert("J-D1: SEG_0 transitions = 1 (Aâ†’B only)", ts0.total_transitions === 1);
+    assert("J-D1: SEG_0 transitions = 1 (A->B only)", ts0.total_transitions === 1);
     assert("J-D1: SEG_0 transition segment_id correct",
         ts0.transitions.every(t => t.segment_id === SEG_0));
 
     const ts1 = tb.neighborhoodTransitionSummary({ segment_id: SEG_1 });
-    assert("J-D1: SEG_1 transitions = 1 (Aâ†’C only)", ts1.total_transitions === 1);
+    assert("J-D1: SEG_1 transitions = 1 (A->C only)", ts1.total_transitions === 1);
 
-    // Full (no filter) should see both transitions but NOT a cross-segment BN_Bâ†’BN_A
-    // (SEG_0's last frame is BN_B, SEG_1's first is BN_A â€” but segment IDs differ)
+    // Full (no filter) should see both transitions but NOT a cross-segment BN_B->BN_A
+    // (SEG_0's last frame is BN_B, SEG_1's first is BN_A -- but segment IDs differ)
     // Since neighborhoodTransitionSummary doesn't impose segment-boundary breaks
     // on the unfiltered path, we document the actual behavior:
     const tsAll = tb.neighborhoodTransitionSummary();
-    // Aâ†’B (seg0), Bâ†’A (cross-segment), Aâ†’C (seg1) = 3 transitions when unfiltered
+    // A->B (seg0), B->A (cross-segment), A->C (seg1) = 3 transitions when unfiltered
     assert("J-D1: unfiltered transitions includes cross-segment frame adjacency",
         tsAll.total_transitions >= 2);
 }
@@ -2244,7 +2244,7 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
 // J-D3: recurrence summary respects segment filter
 {
     const tb = new TrajectoryBuffer();
-    // SEG_0: BN_A â†’ BN_B â†’ BN_A (1 re-entry in SEG_0)
+    // SEG_0: BN_A -> BN_B -> BN_A (1 re-entry in SEG_0)
     tb.push({ state: makeTbState(0, 1, SEG_0), basin_id: BN_A });
     tb.push({ state: makeTbState(1, 2, SEG_0, { state_id:`H1:s:seg0:tb:1:2` }), basin_id: BN_B });
     tb.push({ state: makeTbState(2, 3, SEG_0, { state_id:`H1:s:seg0:tb:2:3` }), basin_id: BN_A });
@@ -2260,7 +2260,7 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
         rs1.by_neighborhood[BN_A]?.re_entry_count === 0);
 }
 
-// â•â•â•â• E. Boundary safety â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ==== E. Boundary safety ======================================================
 
 // J-E1: instrumentation methods do not mutate committed H1 artifacts
 {
@@ -2344,7 +2344,7 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
         JSON.stringify(tb.recurrenceSummary()) === JSON.stringify(tb.recurrenceSummary()));
 }
 
-// J-E5: instrumentation methods return plain data â€” no live buffer references
+// J-E5: instrumentation methods return plain data -- no live buffer references
 {
     const tb = new TrajectoryBuffer();
     tb.push({ state: makeTbState(0, 1), basin_id: BN_A });
@@ -2354,7 +2354,7 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
     // Mutate returned transitions array
     ts.transitions[0].from = "corrupted";
     ts.total_transitions = 999;
-    // Re-call â€” should produce original unaffected result
+    // Re-call -- should produce original unaffected result
     const ts2 = tb.neighborhoodTransitionSummary();
     assert("J-E5: mutating returned transition summary does not affect subsequent calls",
         ts2.total_transitions === 1 && ts2.transitions[0].from === BN_A);
@@ -2366,7 +2366,7 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
         ds2.by_neighborhood[BN_A].runs === 1);
 }
 
-// â•â•â•â• F. Dwell summary correctness â€” edge cases â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ==== F. Dwell summary correctness -- edge cases ===============================
 
 // J-F1: single-frame dwell
 {
@@ -2380,7 +2380,7 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
         ds.by_neighborhood[BN_A]?.mean_duration_sec === 2);
 }
 
-// J-F2: mixed null and assigned frames â€” null frames not counted in dwell
+// J-F2: mixed null and assigned frames -- null frames not counted in dwell
 {
     const tb = new TrajectoryBuffer();
     tb.push({ state: makeTbState(0, 1), basin_id: null });
@@ -2408,13 +2408,13 @@ const BN_C = "BN:test:seg0:c2:cccccccc";
         ts.total_transitions === 0);
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// K. Neighborhood Transition Report â€” MemorySubstrate.neighborhoodTransitionReport()
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
+// K. Neighborhood Transition Report -- MemorySubstrate.neighborhoodTransitionReport()
+// ============================================================================
 
 section("K. Neighborhood Transition Report");
 
-// â”€â”€ Shared fixture â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- Shared fixture -----------------------------------------------------------
 // Build a fresh MemorySubstrate with a known sequence of neighborhood visits.
 // We bypass the full pipeline and inject basin_ids directly into internal frames
 // to keep the fixture tight. This is test-internal only.
@@ -2448,13 +2448,13 @@ kFrames[3].basin_id = BN_K_A;
 kFrames[4].basin_id = null;
 kFrames[5].basin_id = BN_K_C;
 // sequence: A A B A null C
-// transitions: Aâ†’B, Bâ†’A (null gap before C means no Bâ†’C or Aâ†’C transition)
+// transitions: A->B, B->A (null gap before C means no B->C or A->C transition)
 // dwell runs: A=[0,1], B=[2], A=[3], C=[5] (frame4 null is transparent)
-// re-entries: A: 2 runs â†’ 1 re-entry; B: 1 run; C: 1 run
+// re-entries: A: 2 runs -> 1 re-entry; B: 1 run; C: 1 run
 
 const kReport = msK.neighborhoodTransitionReport();
 
-// â”€â”€ K-A: Basic report shape â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- K-A: Basic report shape --------------------------------------------------
 
 assert("K-A1: report is a plain object (not null)", kReport !== null && typeof kReport === "object");
 assert("K-A2: report.scope is present", typeof kReport.scope === "object");
@@ -2483,9 +2483,9 @@ assert("K-A15: current_dwell_count matches tb.currentBasinDwellCount()",
 assert("K-A16: current_dwell_duration_sec matches tb.currentDwellDurationSec()",
     kReport.current_dwell_duration_sec === msK.trajectory.currentDwellDurationSec());
 
-// â”€â”€ K-B: Transition correctness â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- K-B: Transition correctness ----------------------------------------------
 
-// Sequence A A B A null C â†’ only Aâ†’B and Bâ†’A are non-nullâ†’different-non-null transitions
+// Sequence A A B A null C -> only A->B and B->A are non-null->different-non-null transitions
 assert("K-B1: total_transitions = 2", kReport.total_transitions === 2);
 assert("K-B2: transitions sorted by key (lexicographic)",
     kReport.transitions.every((t, i) => {
@@ -2495,21 +2495,21 @@ assert("K-B2: transitions sorted by key (lexicographic)",
         return curr >= prev;
     }));
 
-// Aâ†’B and Bâ†’A each appear once
+// A->B and B->A each appear once
 const kTrans_AB = kReport.transitions.find(t => t.from === BN_K_A && t.to === BN_K_B);
 const kTrans_BA = kReport.transitions.find(t => t.from === BN_K_B && t.to === BN_K_A);
-assert("K-B3: Aâ†’B transition count = 1", kTrans_AB?.count === 1);
-assert("K-B4: Bâ†’A transition count = 1", kTrans_BA?.count === 1);
+assert("K-B3: A->B transition count = 1", kTrans_AB?.count === 1);
+assert("K-B4: B->A transition count = 1", kTrans_BA?.count === 1);
 
-// Null gap: frame4 is null so Aâ†’null and nullâ†’C are NOT counted
+// Null gap: frame4 is null so A->null and null->C are NOT counted
 const kTrans_AC = kReport.transitions.find(t => t.from === BN_K_A && t.to === BN_K_C);
 const kTrans_BC = kReport.transitions.find(t => t.from === BN_K_B && t.to === BN_K_C);
-assert("K-B5: no Aâ†’C transition (null gap is transparent)", kTrans_AC === undefined);
-assert("K-B6: no Bâ†’C transition (not adjacent)", kTrans_BC === undefined);
+assert("K-B5: no A->C transition (null gap is transparent)", kTrans_AC === undefined);
+assert("K-B6: no B->C transition (not adjacent)", kTrans_BC === undefined);
 
-// Repeated Aâ†’A does not create a transition (frames 0 and 1)
+// Repeated A->A does not create a transition (frames 0 and 1)
 const kTrans_AA = kReport.transitions.find(t => t.from === BN_K_A && t.to === BN_K_A);
-assert("K-B7: no Aâ†’A self-transition", kTrans_AA === undefined);
+assert("K-B7: no A->A self-transition", kTrans_AA === undefined);
 
 // transition_counts mirrors the array (same data, different shape)
 assert("K-B8: transition_counts matches transitions array",
@@ -2518,7 +2518,7 @@ assert("K-B8: transition_counts matches transitions array",
         return kReport.transition_counts[key] === t.count;
     }));
 
-// â”€â”€ K-C: Dwell / recurrence correctness â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- K-C: Dwell / recurrence correctness -------------------------------------
 
 // dwell array sorted by basin_id
 assert("K-C1: dwell sorted by basin_id",
@@ -2550,7 +2550,7 @@ assert("K-C10: recurrence sorted by basin_id",
         i === 0 || r.basin_id >= kReport.recurrence[i-1].basin_id));
 
 const kRecA = kReport.recurrence.find(r => r.basin_id === BN_K_A);
-assert("K-C11: BN_A re_entry_count = 1 (2 runs â†’ 1 re-entry)", kRecA?.re_entry_count === 1);
+assert("K-C11: BN_A re_entry_count = 1 (2 runs -> 1 re-entry)", kRecA?.re_entry_count === 1);
 assert("K-C12: total_re_entries = 1", kReport.total_re_entries === 1);
 
 // recurrence matches TrajectoryBuffer.recurrenceSummary()
@@ -2568,9 +2568,9 @@ assert("K-C15: neighborhoods_seen contains all non-null neighborhoods",
 assert("K-C16: null not in neighborhoods_seen",
     !kReport.neighborhoods_seen.includes(null));
 
-// â”€â”€ K-D: Scope behavior â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- K-D: Scope behavior ------------------------------------------------------
 
-// segment_id filter â€” SEG_K0 has frames 0-4; SEG_K1 has frame 5
+// segment_id filter -- SEG_K0 has frames 0-4; SEG_K1 has frame 5
 const kRptSeg0 = msK.neighborhoodTransitionReport({ segment_id: SEG_K0 });
 assert("K-D1: segment-scoped report: scope.segment_id preserved",
     kRptSeg0.scope.segment_id === SEG_K0);
@@ -2588,7 +2588,7 @@ assert("K-D5: stream-scoped report: scope.stream_id preserved",
 assert("K-D6: stream-scoped: all 6 frames returned (all have same stream_id)",
     kRptStream.total_frames_considered === 6);
 
-// Non-existent segment â†’ empty but lawful report
+// Non-existent segment -> empty but lawful report
 const kRptEmpty = msK.neighborhoodTransitionReport({ segment_id: "missing:segment" });
 assert("K-D7: missing segment: total_frames_considered = 0", kRptEmpty.total_frames_considered === 0);
 assert("K-D8: missing segment: total_transitions = 0",       kRptEmpty.total_transitions === 0);
@@ -2596,7 +2596,7 @@ assert("K-D9: missing segment: neighborhoods_seen is empty", kRptEmpty.neighborh
 assert("K-D10: missing segment: current_neighborhood_id = null",
     kRptEmpty.current_neighborhood_id === null);
 
-// â”€â”€ K-E: Determinism â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- K-E: Determinism ---------------------------------------------------------
 
 const kRpt1 = msK.neighborhoodTransitionReport();
 const kRpt2 = msK.neighborhoodTransitionReport();
@@ -2606,7 +2606,7 @@ assert("K-E2: segment-scoped report deterministic",
     JSON.stringify(msK.neighborhoodTransitionReport({ segment_id: SEG_K0 })) ===
     JSON.stringify(msK.neighborhoodTransitionReport({ segment_id: SEG_K0 })));
 
-// â”€â”€ K-F: Boundary safety â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- K-F: Boundary safety -----------------------------------------------------
 
 // F1: report does not mutate committed states
 const statesBefore = JSON.stringify(msK.allStates().map(s => s.state_id + s.invariants.energy_raw));
@@ -2645,18 +2645,19 @@ msK.neighborhoodTransitionReport();
 const bopAfter = JSON.stringify(bopK.run({ states:bopStates, basin_policy:BASIN_POLICY }).artifact.basins.map(b=>b.basin_id));
 assert("K-F5: report does not alter BasinOp clustering", bopBefore === bopAfter);
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 // Results
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ============================================================================
 
-console.log(`\n${"â•".repeat(54)}`);
+console.log(`\n${"=".repeat(54)}`);
 console.log(`  ${passed} passed   ${failed} failed`);
 if (failures.length > 0) {
     console.log("\nFailed:");
     for (const f of failures) console.log(f);
-    console.log(`\n  SOME TESTS FAILED âœ—`);
+    console.log(`\n  SOME TESTS FAILED`);
     process.exit(1);
 } else {
-    console.log(`  ALL TESTS PASSED âœ“`);
+    console.log(`  ALL TESTS PASSED`);
 }
+
 

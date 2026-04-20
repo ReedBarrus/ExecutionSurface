@@ -398,6 +398,7 @@ function buildResult({
 }) {
     const substrateSummary = substrate.summary();
     const trajSummary = substrate.trajectory.summary();
+    const graphStateView = substrate.graphStateView({ limit: 5 });
     const segSummary = segTracker?.summary() ?? null;
     const segmentIds = segSummary?.segment_ids ?? [];
     const runtimeReceipt = {
@@ -437,6 +438,7 @@ function buildResult({
             segment_count: substrateSummary.segment_count,
             trajectory_frames: trajSummary.frame_count,
             t_span: substrateSummary.t_span,
+            graph_state_view: graphStateView,
             segment_ids: segmentIds,
             segment_transitions: segmentTransitions,
             transition_report: transitionReport,
@@ -464,6 +466,7 @@ function buildResult({
             segment_count: substrateSummary.segment_count,
             t_span: substrateSummary.t_span,
             trajectory_frames: trajSummary.frame_count,
+            graph_state_view: graphStateView,
             segment_ids: segTracker?.segmentHistory() ?? [],
             segment_transitions: segmentTransitions,
             transition_report: transitionReport,

@@ -267,6 +267,13 @@ section("E. Structural workbench integration");
 ok(ingestC.workbench.runtime && typeof ingestC.workbench.runtime === "object", "E1: workbench includes runtime section");
 ok(ingestC.workbench.runtime.pipeline && typeof ingestC.workbench.runtime.pipeline === "object", "E2: workbench includes runtime.pipeline");
 ok(ingestC.workbench.runtime.pipeline.operators && typeof ingestC.workbench.runtime.pipeline.operators === "object", "E3: workbench exposes operator artifacts directly");
+ok(ingestC.workbench.runtime.substrate?.graph_state_view && typeof ingestC.workbench.runtime.substrate.graph_state_view === "object", "E4: workbench exposes substrate.graph_state_view");
+eq(ingestC.workbench.runtime.substrate.graph_state_view?.view_type, "substrate_graph_state_view", "E5: graph_state_view type preserved");
+eq(ingestC.workbench.runtime.substrate.graph_state_view?.authority_posture, "read_side_view_over_layer_1_graph_state", "E6: graph_state_view authority posture preserved");
+eq(ingestC.workbench.runtime.substrate.graph_state_view?.scope?.limit, 5, "E7: graph_state_view uses bounded default limit");
+ok(Array.isArray(ingestC.workbench.runtime.substrate.graph_state_view?.nodes), "E8: graph_state_view nodes surfaced");
+ok(Array.isArray(ingestC.workbench.runtime.substrate.graph_state_view?.edges), "E9: graph_state_view edges surfaced");
+ok(!JSON.stringify(ingestC.workbench.runtime.substrate.graph_state_view).includes('\"payload\":'), "E10: graph_state_view excludes raw payloads");
 
 section("F. Determinism");
 const lane2 = new DoorOneExecutiveLane({
